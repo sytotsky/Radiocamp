@@ -7,4 +7,18 @@
 		<RootNamespace>Dartware.Radiocamp.Windows.UI</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Folder Include="Animation\" />
+	  <Folder Include="AttachedProperties\" />
+	  <Folder Include="Controls\" />
+	  <Folder Include="Converters\" />
+	  <Folder Include="Localization\" />
+	  <Folder Include="Styles\" />
+	  <Folder Include="Resources\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj" />
+	</ItemGroup>
+
 </Project>
