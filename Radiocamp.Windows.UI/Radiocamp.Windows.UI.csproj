@@ -12,16 +12,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Icons\Icons.ttf" />
+	  <Resource Include="Resources\Icons\Icons.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Animation\" />
 	  <Folder Include="AttachedProperties\" />
-	  <Folder Include="Controls\" />
 	  <Folder Include="Converters\" />
-	  <Folder Include="Localization\" />
-	  <Folder Include="Styles\" />
 	</ItemGroup>
 
 	<ItemGroup>

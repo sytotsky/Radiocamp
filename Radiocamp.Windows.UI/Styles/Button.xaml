@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Dartware.Radiocamp.Windows.UI.Controls">
+
+	<Style TargetType="{x:Type Button}">
+		<Setter Property="Focusable" Value="False"/>
+	</Style>
+
+	<Style TargetType="{x:Type controls:WindowButton}">
+
+		<Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+		<Setter Property="RegularBackground" Value="Transparent"/>
+		<Setter Property="RegularForeground" Value="{DynamicResource DimFg}"/>
+		<Setter Property="OverBackground" Value="{DynamicResource WindowCaptionOver}"/>
+		<Setter Property="OverForeground" Value="{DynamicResource MainFg}"/>
+		<Setter Property="Background" Value="{Binding RegularBackground, RelativeSource={RelativeSource Self}}"/>
+		<Setter Property="Foreground" Value="{Binding RegularForeground, RelativeSource={RelativeSource Self}}"/>
+		<Setter Property="Size" Value="22"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:WindowButton}">
+
+					<Border x:Name="Border"
+					        Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+					        SnapsToDevicePixels="True"
+					        Width="{TemplateBinding Size}"
+					        Height="{TemplateBinding Size}">
+						<TextBlock x:Name="Icon"
+						           HorizontalAlignment="Center"
+						           VerticalAlignment="Center"
+						           Margin="{TemplateBinding IconMargin}"
+						           FontFamily="{StaticResource RadiocampIcons}"
+						           Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+						           FontSize="{TemplateBinding FontSize}"
+						           SnapsToDevicePixels="True"
+						           UseLayoutRounding="True"
+						           Text="{TemplateBinding Icon}"
+						           RenderTransformOrigin="0.5 0.5">
+							<TextBlock.RenderTransform>
+								<RotateTransform CenterX="0.5"
+								                 CenterY="0.5"
+								                 Angle="{Binding IconRotateAngle, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+							</TextBlock.RenderTransform>
+						</TextBlock>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="{Binding OverBackground, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="Foreground" Value="{Binding OverForeground, RelativeSource={RelativeSource Self}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
+	</Style>
+
+</ResourceDictionary>
