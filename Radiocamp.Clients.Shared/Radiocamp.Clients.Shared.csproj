@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Dartware.Radiocamp.Clients.Shared</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\NRadio\NRadio\NRadio.csproj" />
+    <ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
+  </ItemGroup>
+
+</Project>

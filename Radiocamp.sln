@@ -3,7 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radiocamp.Windows", "Radiocamp.Windows\Radiocamp.Windows.csproj", "{EE5BB86E-8CB6-4733-A708-BFC7F26F1EF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NRadio", "..\NRadio\NRadio\NRadio.csproj", "{DF52FADA-FB98-487D-AC32-9685C8E1D760}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radiocamp.Core", "Radiocamp.Core\Radiocamp.Core.csproj", "{C06D4C1D-D443-497D-90AF-065979DD1A6E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Radiocamp.Clients.Shared", "Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj", "{2AC387C9-BBC2-4AB7-A687-5F2D05A8D365}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radiocamp.Windows.UI", "Radiocamp.Windows.UI\Radiocamp.Windows.UI.csproj", "{2345183F-61E0-4E45-9BE1-E7726110E98A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE5BB86E-8CB6-4733-A708-BFC7F26F1EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE5BB86E-8CB6-4733-A708-BFC7F26F1EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE5BB86E-8CB6-4733-A708-BFC7F26F1EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE5BB86E-8CB6-4733-A708-BFC7F26F1EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF52FADA-FB98-487D-AC32-9685C8E1D760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF52FADA-FB98-487D-AC32-9685C8E1D760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF52FADA-FB98-487D-AC32-9685C8E1D760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF52FADA-FB98-487D-AC32-9685C8E1D760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C06D4C1D-D443-497D-90AF-065979DD1A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06D4C1D-D443-497D-90AF-065979DD1A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06D4C1D-D443-497D-90AF-065979DD1A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06D4C1D-D443-497D-90AF-065979DD1A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AC387C9-BBC2-4AB7-A687-5F2D05A8D365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC387C9-BBC2-4AB7-A687-5F2D05A8D365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC387C9-BBC2-4AB7-A687-5F2D05A8D365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC387C9-BBC2-4AB7-A687-5F2D05A8D365}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2345183F-61E0-4E45-9BE1-E7726110E98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2345183F-61E0-4E45-9BE1-E7726110E98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2345183F-61E0-4E45-9BE1-E7726110E98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2345183F-61E0-4E45-9BE1-E7726110E98A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Radiocamp</AssemblyName>
+    <RootNamespace>Dartware.Radiocamp.Windows</RootNamespace>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj" />
+    <ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
+    <ProjectReference Include="..\Radiocamp.Windows.UI\Radiocamp.Windows.UI.csproj" />
+  </ItemGroup>
+
+</Project>
