@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+	<FontFamily x:Key="RadiocampIcons">pack://application:,,,/Radiocamp.Windows.UI;component/Resources/Icons/Icons.ttf#radiocamp-desktop</FontFamily>
+
+	<system:String x:Key="InstrumentsIcon">&#x0031;</system:String>
+	<system:String x:Key="HeadphonesIcon">&#x0033;</system:String>
+	<system:String x:Key="MusicalNotesIcon">&#x0034;</system:String>
+	<system:String x:Key="TrayIcon">&#x0035;</system:String>
+	<system:String x:Key="StreamlineAudioSettingsIcon">&#x0036;</system:String>
+	<system:String x:Key="RecordOutlineIcon">&#x0037;</system:String>
+	<system:String x:Key="KeyboardIcon">&#x0038;</system:String>
+	<system:String x:Key="PauseIcon">&#x0042;</system:String>
+	<system:String x:Key="AboutIcon">&#x0044;</system:String>
+	<system:String x:Key="ExitIcon">&#x0045;</system:String>
+	<system:String x:Key="SettingsIcon">&#x0046;</system:String>
+	<system:String x:Key="AudioSettingsIcon">&#x0047;</system:String>
+	<system:String x:Key="CoverLineIcon">&#x0048;</system:String>
+	<system:String x:Key="SortingIcon">&#x0050;</system:String>
+	<system:String x:Key="SortingDescendingIcon">&#x0051;</system:String>
+	<system:String x:Key="SortingAscendingIcon">&#x0052;</system:String>
+	<system:String x:Key="PinIcon">&#x0053;</system:String>
+	<system:String x:Key="SoundLevelOneIcon">&#x0054;</system:String>
+	<system:String x:Key="SoundLevelTwoIcon">&#x0055;</system:String>
+	<system:String x:Key="SoundLevelThreeIcon">&#x0056;</system:String>
+	<system:String x:Key="FilterIcon">&#x0057;</system:String>
+	<system:String x:Key="WindowModeIcon">&#x0058;</system:String>
+	<system:String x:Key="CurrentIcon">&#x0059;</system:String>
+	<system:String x:Key="NextIcon">&#x0061;</system:String>
+	<system:String x:Key="CheckIcon">&#x0062;</system:String>
+	<system:String x:Key="RecordIcon">&#x0063;</system:String>
+	<system:String x:Key="CloseIcon">&#x0064;</system:String>
+	<system:String x:Key="DownIcon">&#x0065;</system:String>
+	<system:String x:Key="MuteIcon">&#x0066;</system:String>
+	<system:String x:Key="UserIcon">&#x0067;</system:String>
+	<system:String x:Key="UIIcon">&#x0068;</system:String>
+	<system:String x:Key="RadiostationsListIcon">&#x0069;</system:String>
+	<system:String x:Key="MenuIcon">&#x006A;</system:String>
+	<system:String x:Key="PreviousIcon">&#x006B;</system:String>
+	<system:String x:Key="UpIcon">&#x006C;</system:String>
+	<system:String x:Key="MaximizeIcon">&#x0071;</system:String>
+	<system:String x:Key="AddIcon">&#x0072;</system:String>
+	<system:String x:Key="CoverFlowIcon">&#x0073;</system:String>
+	<system:String x:Key="HistoryIcon">&#x0074;</system:String>
+	<system:String x:Key="PlayIcon">&#x0075;</system:String>
+	<system:String x:Key="MinimizeIcon">&#x0077;</system:String>
+	<system:String x:Key="FillStarIcon">&#x0079;</system:String>
+	<system:String x:Key="EmptyStarIcon">&#x007A;</system:String>
+
+</ResourceDictionary>
