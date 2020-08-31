@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<AssemblyName>Radiocamp.Clients.Windows.UI</AssemblyName>
+		<RootNamespace>Dartware.Radiocamp.Clients.Windows.UI</RootNamespace>
+		<Platforms>AnyCPU;x86</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Icons\Icons.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Animation\" />
+		<Folder Include="AttachedProperties\" />
+		<Folder Include="Converters\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj" />
+		<ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\Icons\Icons.ttf" />
+	</ItemGroup>
+
+</Project>

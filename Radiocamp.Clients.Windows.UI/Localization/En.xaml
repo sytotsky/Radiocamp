@@ -1,0 +1,545 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+	<!-- Shared -->
+
+    <system:String x:Key="Dartware">Dartware</system:String>
+    <system:String x:Key="Radiocamp">Radiocamp</system:String>
+	<system:String x:Key="Browse">Browse</system:String>
+	<system:String x:Key="Country">Country</system:String>
+	<system:String x:Key="Genre">Genre</system:String>
+	<system:String x:Key="Unknown">Unknown</system:String>
+	<system:String x:Key="OK">OK</system:String>
+	<system:String x:Key="Search">Search</system:String>
+	<system:String x:Key="Buffering">Buffering</system:String>
+	<system:String x:Key="Connecting">Connecting</system:String>
+	<system:String x:Key="Clear">Clear</system:String>
+    <system:String x:Key="Edit">Edit</system:String>
+    <system:String x:Key="Remove">Remove</system:String>
+    <system:String x:Key="AddToFavorites">Add to favorites</system:String>
+    <system:String x:Key="RemoveFromFavorites">Remove from favorites</system:String>
+    <system:String x:Key="StartPlayback">Start playback</system:String>
+    <system:String x:Key="StopPlayback">Stop playback</system:String>
+    <system:String x:Key="ShowOnlyFavorites">Show only favorites</system:String>
+    <system:String x:Key="ShowAll">Show all</system:String>
+    <system:String x:Key="RadiostationSettings">Radiostation settings</system:String>
+    <system:String x:Key="Filters">Filters</system:String>
+    <system:String x:Key="ResetFilters">Reset filters</system:String>
+    <system:String x:Key="Loading">Loading</system:String>
+    <system:String x:Key="Playback">Playback</system:String>
+    <system:String x:Key="Record">Record</system:String>
+	<system:String x:Key="CopySongName">Copy song name</system:String>
+	<system:String x:Key="ExitCompactMode">Exit compact mode</system:String>
+	<system:String x:Key="ShowList">Show list</system:String>
+	<system:String x:Key="HideList">Hide list</system:String>
+	<system:String x:Key="CompactMode">Compact mode</system:String>
+	<system:String x:Key="Exit">Exit</system:String>
+	<system:String x:Key="Create">Create</system:String>
+	<system:String x:Key="CreateRadiostation">Create radiostation</system:String>
+	<system:String x:Key="Settings">Settings</system:String>
+	<system:String x:Key="Radiostations">Radiostations</system:String>
+	<system:String x:Key="Hotkeys">Hotkeys</system:String>
+	<system:String x:Key="About">About</system:String>
+	<system:String x:Key="OnlyСustom">Only custom</system:String>
+
+    <!-- Errors -->
+
+	<system:String x:Key="Errors_InvalidURL">Invalid stream URL</system:String>
+	<system:String x:Key="Errors_NoInternetConnection">No internet connection</system:String>
+	<system:String x:Key="Errors_ConnectionError">Connection error</system:String>
+
+	<!-- Search Engines -->
+
+	<system:String x:Key="Google">Google</system:String>
+	<system:String x:Key="Spotify">Spotify</system:String>
+	<system:String x:Key="SoundCloud">SoundCloud</system:String>
+	<system:String x:Key="Deezer">Deezer</system:String>
+	<system:String x:Key="Tidal">Tidal</system:String>
+	<system:String x:Key="Yandex">Yandex</system:String>
+	<system:String x:Key="DuckDuckGo">DuckDuckGo</system:String>
+	<system:String x:Key="YouTube">YouTube</system:String>
+	<system:String x:Key="Bing">Bing</system:String>
+	<system:String x:Key="Yahoo">Yahoo</system:String>
+	<system:String x:Key="LastFm">Last.fm</system:String>
+	<system:String x:Key="Beatport">Beatport</system:String>
+
+	<!-- Countries -->
+
+	<system:String x:Key="Afghanistan">Afghanistan</system:String>
+	<system:String x:Key="Albania">Albania</system:String>
+	<system:String x:Key="Algeria">Algeria</system:String>
+	<system:String x:Key="Andorra">Andorra</system:String>
+	<system:String x:Key="Angola">Angola</system:String>
+	<system:String x:Key="AntiguaAndBarbuda">Antigua and Barbuda</system:String>
+	<system:String x:Key="Argentina">Argentina</system:String>
+	<system:String x:Key="Armenia">Armenia</system:String>
+	<system:String x:Key="Australia">Australia</system:String>
+	<system:String x:Key="Austria">Austria</system:String>
+	<system:String x:Key="Azerbaijan">Azerbaijan</system:String>
+	<system:String x:Key="Bahrain">Bahrain</system:String>
+	<system:String x:Key="Bangladesh">Bangladesh</system:String>
+	<system:String x:Key="Barabados">Barabados</system:String>
+	<system:String x:Key="Belarus">Belarus</system:String>
+	<system:String x:Key="Belgium">Belgium</system:String>
+	<system:String x:Key="Belize">Belize</system:String>
+	<system:String x:Key="Benin">Benin</system:String>
+	<system:String x:Key="Bhutan">Bhutan</system:String>
+	<system:String x:Key="Bolivia">Bolivia</system:String>
+	<system:String x:Key="BosniaAndHerzegovina">Bosnia and Herzegovina</system:String>
+	<system:String x:Key="Botswana">Botswana</system:String>
+	<system:String x:Key="Brazil">Brazil</system:String>
+	<system:String x:Key="Brunei">Brunei</system:String>
+	<system:String x:Key="Bulgaria">Bulgaria</system:String>
+	<system:String x:Key="BurkinaFaso">Burkina Faso</system:String>
+	<system:String x:Key="Burundi">Burundi</system:String>
+	<system:String x:Key="Cambodia">Cambodia</system:String>
+	<system:String x:Key="Cameroon">Cameroon</system:String>
+	<system:String x:Key="Canada">Canada</system:String>
+	<system:String x:Key="CapeVerde">Cape Verde</system:String>
+	<system:String x:Key="CentralAfricanRepublic">Central African Republic</system:String>
+	<system:String x:Key="Chad">Chad</system:String>
+	<system:String x:Key="Chile">Chile</system:String>
+	<system:String x:Key="China">China</system:String>
+	<system:String x:Key="Colombia">Colombia</system:String>
+	<system:String x:Key="Comoros">Comoros</system:String>
+	<system:String x:Key="CostaRica">Costa Rica</system:String>
+	<system:String x:Key="Croatia">Croatia</system:String>
+	<system:String x:Key="Cuba">Cuba</system:String>
+	<system:String x:Key="Cyprus">Cyprus</system:String>
+	<system:String x:Key="CzechRepublic">Czech Republic</system:String>
+	<system:String x:Key="Denmark">Denmark</system:String>
+	<system:String x:Key="Djibouti">Djibouti</system:String>
+	<system:String x:Key="Dominica">Dominica</system:String>
+	<system:String x:Key="DominicanRepublic">Dominican Republic</system:String>
+	<system:String x:Key="EastTimor">East Timor</system:String>
+	<system:String x:Key="Ecuador">Ecuador</system:String>
+	<system:String x:Key="Egypt">Egypt</system:String>
+	<system:String x:Key="ElSalvador">El Salvador</system:String>
+	<system:String x:Key="EquatorialGuinea">Equatorial Guinea</system:String>
+	<system:String x:Key="Eritrea">Eritrea</system:String>
+	<system:String x:Key="Estonia">Estonia</system:String>
+	<system:String x:Key="Ethiopia">Ethiopia</system:String>
+	<system:String x:Key="Fiji">Fiji</system:String>
+	<system:String x:Key="Finland">Finland</system:String>
+	<system:String x:Key="France">France</system:String>
+	<system:String x:Key="Gabon">Gabon</system:String>
+	<system:String x:Key="Georgia">Georgia</system:String>
+	<system:String x:Key="Germany">Germany</system:String>
+	<system:String x:Key="Ghana">Ghana</system:String>
+	<system:String x:Key="Greece">Greece</system:String>
+	<system:String x:Key="Grenada">Grenada</system:String>
+	<system:String x:Key="Guatemala">Guatemala</system:String>
+	<system:String x:Key="Guinea">Guinea</system:String>
+	<system:String x:Key="GuineaBissau">Guinea-Bissau</system:String>
+	<system:String x:Key="Guyana">Guyana</system:String>
+	<system:String x:Key="Haiti">Haiti</system:String>
+	<system:String x:Key="VaticanCity">Vatican City</system:String>
+	<system:String x:Key="Honduras">Honduras</system:String>
+	<system:String x:Key="Hungary">Hungary</system:String>
+	<system:String x:Key="Iceland">Iceland</system:String>
+	<system:String x:Key="India">India</system:String>
+	<system:String x:Key="Indonesia">Indonesia</system:String>
+	<system:String x:Key="Iran">Iran</system:String>
+	<system:String x:Key="Iraq">Iraq</system:String>
+	<system:String x:Key="Ireland">Ireland</system:String>
+	<system:String x:Key="Israel">Israel</system:String>
+	<system:String x:Key="Italy">Italy</system:String>
+	<system:String x:Key="IvoryCoast">Ivory Coast</system:String>
+	<system:String x:Key="Jamaica">Jamaica</system:String>
+	<system:String x:Key="Japan">Japan</system:String>
+	<system:String x:Key="Jordan">Jordan</system:String>
+	<system:String x:Key="Kenya">Kenya</system:String>
+	<system:String x:Key="Kiribati">Kiribati</system:String>
+	<system:String x:Key="Kuwait">Kuwait</system:String>
+	<system:String x:Key="Kyrgyzstan">Kyrgyzstan</system:String>
+	<system:String x:Key="Laos">Laos</system:String>
+	<system:String x:Key="Latvia">Latvia</system:String>
+	<system:String x:Key="Lebanon">Lebanon</system:String>
+	<system:String x:Key="Lesotho">Lesotho</system:String>
+	<system:String x:Key="Liberia">Liberia</system:String>
+	<system:String x:Key="Libya">Libya</system:String>
+	<system:String x:Key="Liechtenstein">Liechtenstein</system:String>
+	<system:String x:Key="Lithuania">Lithuania</system:String>
+	<system:String x:Key="Luxembourg">Luxembourg</system:String>
+	<system:String x:Key="Macedonia">Macedonia</system:String>
+	<system:String x:Key="Madagascar">Madagascar</system:String>
+	<system:String x:Key="Malawi">Malawi</system:String>
+	<system:String x:Key="Malaysia">Malaysia</system:String>
+	<system:String x:Key="Maldives">Maldives</system:String>
+	<system:String x:Key="Mali">Mali</system:String>
+	<system:String x:Key="Malta">Malta</system:String>
+	<system:String x:Key="MarshallIslands">Marshall Islands</system:String>
+	<system:String x:Key="Mauritania">Mauritania</system:String>
+	<system:String x:Key="Mauritius">Mauritius</system:String>
+	<system:String x:Key="Mexico">Mexico</system:String>
+	<system:String x:Key="Micronesia">Micronesia</system:String>
+	<system:String x:Key="Moldova">Moldova</system:String>
+	<system:String x:Key="Monaco">Monaco</system:String>
+	<system:String x:Key="Mongolia">Mongolia</system:String>
+	<system:String x:Key="Montenegro">Montenegro</system:String>
+	<system:String x:Key="Morocco">Morocco</system:String>
+	<system:String x:Key="Mozambique">Mozambique</system:String>
+	<system:String x:Key="Myanmar">Myanmar</system:String>
+	<system:String x:Key="Namibia">Namibia</system:String>
+	<system:String x:Key="Nauru">Nauru</system:String>
+	<system:String x:Key="Nepal">Nepal</system:String>
+	<system:String x:Key="Netherlands">Netherlands</system:String>
+	<system:String x:Key="NewZealand">New Zealand</system:String>
+	<system:String x:Key="Nicaragua">Nicaragua</system:String>
+	<system:String x:Key="Niger">Niger</system:String>
+	<system:String x:Key="Nigeria">Nigeria</system:String>
+	<system:String x:Key="NorthKorea">North Korea</system:String>
+	<system:String x:Key="Norway">Norway</system:String>
+	<system:String x:Key="Oman">Oman</system:String>
+	<system:String x:Key="Pakistan">Pakistan</system:String>
+	<system:String x:Key="Palau">Palau</system:String>
+	<system:String x:Key="Panama">Panama</system:String>
+	<system:String x:Key="PapuaNewGuinea">Papua New Guinea</system:String>
+	<system:String x:Key="Paraguay">Paraguay</system:String>
+	<system:String x:Key="Peru">Peru</system:String>
+	<system:String x:Key="Philippines">Philippines</system:String>
+	<system:String x:Key="Poland">Poland</system:String>
+	<system:String x:Key="Portugal">Portugal</system:String>
+	<system:String x:Key="Qatar">Qatar</system:String>
+	<system:String x:Key="Romania">Romania</system:String>
+	<system:String x:Key="Russia">Russia</system:String>
+	<system:String x:Key="Rwanda">Rwanda</system:String>
+	<system:String x:Key="SaintKittsAndNevis">Saint Kitts and Nevis</system:String>
+	<system:String x:Key="SaintLucia">Saint Lucia</system:String>
+	<system:String x:Key="SaintVincentAndTheGrenadines">Saint Vincent and the Grenadines</system:String>
+	<system:String x:Key="Samoa">Samoa</system:String>
+	<system:String x:Key="SanMarino">San Marino</system:String>
+	<system:String x:Key="SaoTomeAndPrincipe">Sao Tome and Principe</system:String>
+	<system:String x:Key="SaudiArabia">Saudi Arabia</system:String>
+	<system:String x:Key="Senegal">Senegal</system:String>
+	<system:String x:Key="Serbia">Serbia</system:String>
+	<system:String x:Key="Seychelles">Seychelles</system:String>
+	<system:String x:Key="SierraLeone">Sierra Leone</system:String>
+	<system:String x:Key="Singapore">Singapore</system:String>
+	<system:String x:Key="Slovakia">Slovakia</system:String>
+	<system:String x:Key="Slovenia">Slovenia</system:String>
+	<system:String x:Key="SolomonIslands">Solomon Islands</system:String>
+	<system:String x:Key="Somalia">Somalia</system:String>
+	<system:String x:Key="SouthAfrica">South Africa</system:String>
+	<system:String x:Key="SouthKorea">South Korea</system:String>
+	<system:String x:Key="SouthSudan">South Sudan</system:String>
+	<system:String x:Key="Spain">Spain</system:String>
+	<system:String x:Key="SriLanka">Sri Lanka</system:String>
+	<system:String x:Key="StateOfPalestine">State of Palestine</system:String>
+	<system:String x:Key="Sudan">Sudan</system:String>
+	<system:String x:Key="Suriname">Suriname</system:String>
+	<system:String x:Key="Swaziland">Swaziland</system:String>
+	<system:String x:Key="Sweden">Sweden</system:String>
+	<system:String x:Key="Switzerland">Switzerland</system:String>
+	<system:String x:Key="Syria">Syria</system:String>
+	<system:String x:Key="Tajikistan">Tajikistan</system:String>
+	<system:String x:Key="Tanzania">Tanzania</system:String>
+	<system:String x:Key="Thailand">Thailand</system:String>
+	<system:String x:Key="TheBahamas">The Bahamas</system:String>
+	<system:String x:Key="TheDemocraticRepublicOfTheCongo">The Democratic Republic of the Congo</system:String>
+	<system:String x:Key="TheGambia">The Gambia</system:String>
+	<system:String x:Key="TheRepublicOfTheCongo">The Republic of the Congo</system:String>
+	<system:String x:Key="Togo">Togo</system:String>
+	<system:String x:Key="Tonga">Tonga</system:String>
+	<system:String x:Key="TrinidadAndTobago">Trinidad and Tobago</system:String>
+	<system:String x:Key="Tunisia">Tunisia</system:String>
+	<system:String x:Key="Turkey">Turkey</system:String>
+	<system:String x:Key="Turkmenistan">Turkmenistan</system:String>
+	<system:String x:Key="Tuvalu">Tuvalu</system:String>
+	<system:String x:Key="Uganda">Uganda</system:String>
+	<system:String x:Key="Ukraine">Ukraine</system:String>
+	<system:String x:Key="UnitedArabEmirates">United Arab Emirates</system:String>
+	<system:String x:Key="UnitedKingdom">United Kingdom</system:String>
+	<system:String x:Key="UnitedStates">USA</system:String>
+	<system:String x:Key="Uruguay">Uruguay</system:String>
+	<system:String x:Key="Uzbekistan">Uzbekistan</system:String>
+	<system:String x:Key="Vanuatu">Vanuatu</system:String>
+	<system:String x:Key="Venezuela">Venezuela</system:String>
+	<system:String x:Key="Vietnam">Vietnam</system:String>
+	<system:String x:Key="Yemen">Yemen</system:String>
+	<system:String x:Key="Zambia">Zambia</system:String>
+	<system:String x:Key="Zimbabwe">Zimbabwe</system:String>
+
+	<!-- Genres -->
+
+	<system:String x:Key="Classic">Classic</system:String>
+	<system:String x:Key="Electronic">Electronic</system:String>
+	<system:String x:Key="Folk">Folk</system:String>
+	<system:String x:Key="Jazz">Jazz</system:String>
+	<system:String x:Key="Light">Light</system:String>
+	<system:String x:Key="Other">Other</system:String>
+	<system:String x:Key="Pop">Pop</system:String>
+	<system:String x:Key="Religious">Religious</system:String>
+	<system:String x:Key="Retro">Retro</system:String>
+	<system:String x:Key="Rock">Rock</system:String>
+	<system:String x:Key="Talk">Talk</system:String>
+
+	<system:String x:Key="Adult">Adult</system:String>
+	<system:String x:Key="Americana">Americana</system:String>
+	<system:String x:Key="Community">Community</system:String>
+	<system:String x:Key="Blues">Blues</system:String>
+	<system:String x:Key="CountryMusic">Country</system:String>
+	<system:String x:Key="Dance">Dance</system:String>
+	<system:String x:Key="Eclectic">Eclectic</system:String>
+	<system:String x:Key="Ambient">Ambient</system:String>
+	<system:String x:Key="Chillout">Chillout</system:String>
+	<system:String x:Key="DrumAndBass">Drum &amp; Bass</system:String>
+	<system:String x:Key="House">House</system:String>
+	<system:String x:Key="Industrial">Industrial</system:String>
+	<system:String x:Key="Lounge">Lounge</system:String>
+	<system:String x:Key="Techno">Techno</system:String>
+	<system:String x:Key="Trance">Trance</system:String>
+	<system:String x:Key="Hits">Hits</system:String>
+	<system:String x:Key="Independent">Independent</system:String>
+	<system:String x:Key="Latin">Latin</system:String>
+	<system:String x:Key="Comedy">Comedy</system:String>
+	<system:String x:Key="Musical">Musical</system:String>
+	<system:String x:Key="NewAge">New Age</system:String>
+	<system:String x:Key="RapAndHipHop">Rap &amp; Hip-hop</system:String>
+	<system:String x:Key="Soul">Soul</system:String>
+	<system:String x:Key="OST">OST</system:String>
+
+    <!-- Radiostations -->
+
+    <system:String x:Key="Radiostations_NotFound">Radiostations not found</system:String>
+
+	<!-- Confirm Dialog -->
+
+	<system:String x:Key="ConfirmDialog_FirstButton">CANCEL</system:String>
+	<system:String x:Key="ConfirmDialog_SecondButton">OK</system:String>
+
+	<!-- Dialog -->
+
+	<system:String x:Key="Dialog_Cancel">CANCEL</system:String>
+	<system:String x:Key="Dialog_Ok">OK</system:String>
+	<system:String x:Key="Dialog_Create">CREATE</system:String>
+
+	<!-- Hotkey Editor Dialog -->
+
+	<system:String x:Key="HotkeyEditorDialog_Activate">Activate</system:String>
+	<system:String x:Key="HotkeyEditorDialog_CurrentHotkey">Current keyboard shortcut:</system:String>
+	<system:String x:Key="HotkeyEditorDialog_Header">Keyboard shortcut</system:String>
+	<system:String x:Key="HotkeyEditorDialog_Text">Press shortcut keys</system:String>
+	<system:String x:Key="HotkeyEditorDialog_IsEnabled">Enable</system:String>
+	<system:String x:Key="HotkeyEditorDialog_Save">SAVE</system:String>
+
+	<!-- Hotkeys -->
+
+	<system:String x:Key="Hotkeys_AntiBossSwitch">Anti-boss</system:String>
+	<system:String x:Key="Hotkeys_EditButton">Edit</system:String>
+	<system:String x:Key="Hotkeys_MuteUnmute">Mute/Unmute</system:String>
+	<system:String x:Key="Hotkeys_PlayPause">Play/Pause</system:String>
+	<system:String x:Key="Hotkeys_ShowHideSwitch">Hide/Show</system:String>
+	<system:String x:Key="Hotkeys_StartStopRecord">Start/Stop record</system:String>
+	<system:String x:Key="Hotkeys_VolumeDown">Volume down</system:String>
+	<system:String x:Key="Hotkeys_VolumeUp">Volume up</system:String>
+
+	<!-- Hotkeys Page -->
+
+	<system:String x:Key="HotkeysPage_HotkeysIsEnable">Hotkeys support is enabled</system:String>
+
+	<!-- Radiostation Editor -->
+
+	<system:String x:Key="RadiostationEditor_AddToFavorites">Add to favorites</system:String>
+	<system:String x:Key="RadiostationEditor_CoverColorMode">Color mode: </system:String>
+	<system:String x:Key="RadiostationEditor_CoverFormat">Format: </system:String>
+	<system:String x:Key="RadiostationEditor_CoverImageURL">Image URL</system:String>
+	<system:String x:Key="RadiostationEditor_CoverOriginalResolution">Original resolution: </system:String>
+	<system:String x:Key="RadiostationEditor_CoverPlaceholderText">Drag the cover image into the modal window, or click the «Browse» button.</system:String>
+	<system:String x:Key="RadiostationEditor_CoverResolution">Resolution: </system:String>
+	<system:String x:Key="RadiostationEditor_Create">CREATE</system:String>
+	<system:String x:Key="RadiostationEditor_CreateTitle">Create radiostation</system:String>
+	<system:String x:Key="RadiostationEditor_ImageProcessingLoader">Processing...</system:String>
+	<system:String x:Key="RadiostationEditor_RemoveCoverButton">Remove</system:String>
+	<system:String x:Key="RadiostationEditor_StartPlayback">Start playback</system:String>
+	<system:String x:Key="RadiostationEditor_StreamURL">Stream URL</system:String>
+	<system:String x:Key="RadiostationEditor_SupportedFormats">Supported formats: PNG, JPEG, GIF</system:String>
+	<system:String x:Key="RadiostationEditor_Title">Title</system:String>
+	<system:String x:Key="RadiostationEditor_EditTitle">Edit radiostation</system:String>
+	<system:String x:Key="RadiostationEditor_Save">SAVE</system:String>
+
+	<!-- Select Language Dialog -->
+
+	<system:String x:Key="SelectLanguageDialog_Header">Languages</system:String>
+
+	<!-- Select Search Engine Dialog -->
+
+	<system:String x:Key="SelectSearchEngineDialog_Header">Search engines</system:String>
+
+	<!-- Settings -->
+
+	<system:String x:Key="Settings_AlwaysShowTrayIcon">Always show tray icon</system:String>
+	<system:String x:Key="Settings_ChangeLanguage">Change language</system:String>
+	<system:String x:Key="Settings_ClearPlaybackHistory">Clear playback history</system:String>
+	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmSecondButton">CLEAR</system:String>
+	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmText">A you sure you want to clear playback history? This action cannot be undone.</system:String>
+	<system:String x:Key="Settings_CloseButtonHideToTray">Close button hide Radiocamp to tray</system:String>
+	<system:String x:Key="Settings_ContinuePlaybackAfterExitFromAntiBossMode">Continue playback after exiting anti-boss mode</system:String>
+	<system:String x:Key="Settings_EditHotkeys">Edit hotkeys</system:String>
+	<system:String x:Key="Settings_EnableNightMode">Enable night mode</system:String>
+	<system:String x:Key="Settings_General">General</system:String>
+	<system:String x:Key="Settings_HideTaskbarIconInAntiBossMode">Hide tray icon in anti-boss mode</system:String>
+	<system:String x:Key="Settings_Hotkeys">Hotkeys</system:String>
+	<system:String x:Key="Settings_HotkeysIsEnable">Hotkeys support is enabled</system:String>
+	<system:String x:Key="Settings_MinimizeButtonHideToTray">Minimize button hide Radiocamp to tray</system:String>
+	<system:String x:Key="Settings_OpenFavoritesAtStart">Show favorites at application startup</system:String>
+	<system:String x:Key="Settings_PlayLastStationAtStart">Begin playback the last radio station on application start</system:String>
+	<system:String x:Key="Settings_ResetSettings">Reset settings</system:String>
+	<system:String x:Key="Settings_ResetSettingsConfirmSecondButton">RESET</system:String>
+	<system:String x:Key="Settings_ResetSettingsConfirmText">A you sure you want to reset allication settings? This action cannot be undone.</system:String>
+	<system:String x:Key="Settings_StartMinimized">Start minimized</system:String>
+	<system:String x:Key="Settings_StartWhenOSStarts">Start Radiocamp when Windows starts</system:String>
+	<system:String x:Key="Settings_Tray">Tray</system:String>
+	<system:String x:Key="Settings_UI">User interface</system:String>
+	<system:String x:Key="Settings_RecordPath">Path</system:String>
+	<system:String x:Key="Settings_StopRecordIfAntiBoss">Stop record in anti-boss mode</system:String>
+	<system:String x:Key="Settings_CreateSubfoldersDuringRecording">Create subfolders for each radio station</system:String>
+	<system:String x:Key="Settings_RecordSplitByComposition">Split files by song while recording</system:String>
+	<system:String x:Key="Settings_SearchEngine">Search engine</system:String>
+	<system:String x:Key="Settings_RemoveAllRadiostations">Remove all radiostations</system:String>
+	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmText">A you sure you want to remove all radiostations? This action cannot be undone.</system:String>
+	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmSecondButton">REMOVE</system:String>
+	<system:String x:Key="Settings_AudioDevice">Audio device</system:String>
+	<system:String x:Key="Settings_AutoDetectAudioDevice">Auto detect audio device</system:String>
+	<system:String x:Key="Settings_AutoRadiostationsViewType">Automatically determine the type of representation of the radio stations list</system:String>
+	<system:String x:Key="Settings_UseFuzzySearch">Use fuzzy search</system:String>
+	<system:String x:Key="Settings_Sound">Sound</system:String>
+	<system:String x:Key="Settings_ShowCurrentSongInWindowTitle">Show current song name in the window caption</system:String>
+	<system:String x:Key="Settings_SaveVolume">Save volume level for each radiostation</system:String>
+	<system:String x:Key="Settings_VolumeStep">Volume step:</system:String>
+	<system:String x:Key="Settings_MainWindowTopmost">Keep the application on top of other windows</system:String>
+	<system:String x:Key="Settings_Opacity">Opacity:</system:String>
+	<system:String x:Key="Settings_DisableOpacityOnHover">Turn off transparency when hovering over a window</system:String>
+	<system:String x:Key="Settings_ShowListOnCompactWindowOver">Show list of radio stations when hovering mouse over window in compact mode</system:String>
+	<system:String x:Key="Settings_CompactModeOnly">Compact mode only</system:String>
+	<system:String x:Key="Settings_HideInTaskbar">Hide in taskbar</system:String>
+	<system:String x:Key="Settings_GeneralDescription">Basic settings, autorun, import/export</system:String>
+	<system:String x:Key="Settings_TrayDescription">Taskbar icon settings</system:String>
+	<system:String x:Key="Settings_UIDescription">Language, night mode and other interface settings</system:String>
+	<system:String x:Key="Settings_PlaybackDescription">Playback settings</system:String>
+	<system:String x:Key="Settings_RecordDescription">The path to save files, separation into compositions, etc.</system:String>
+	<system:String x:Key="Settings_SoundDescription">Sound settings, equalizer</system:String>
+	<system:String x:Key="Settings_HotkeysDescription">Global hotkey settings</system:String>
+	<system:String x:Key="Settings_AudioDeviceDescription">Sound output device selection, auto detection</system:String>
+	<system:String x:Key="Settings_ShowOnlyCustomAtStart">Show only custom radiostations at start</system:String>
+
+	<!-- Taskbar -->
+
+	<system:String x:Key="Taskbar_OpenRadiocamp">Open Radiocamp</system:String>
+	<system:String x:Key="Taskbar_QuitRadiocamp">Quit Radiocamp</system:String>
+
+	<!-- Validation -->
+
+	<system:String x:Key="Validation_MaxRule_ErrorMessage">Maximum string length</system:String>
+	<system:String x:Key="Validation_URLRule_ErrorMessage">Invalid URL format</system:String>
+
+	<!-- Radiostation Item -->
+
+    <system:String x:Key="RadiostationItem_CM_CopyStreamURL">Copy stream URL</system:String>
+    <system:String x:Key="RadiostationItem_CM_CopyName">Copy name</system:String>
+
+	<!-- Audio Device Selector -->
+
+	<system:String x:Key="AudioDeviceSelector_AudioDevices">Audio devices</system:String>
+	<system:String x:Key="AudioDeviceSelector_DevicesNotFound">Devices not found</system:String>
+
+	<!-- Equalizer -->
+
+	<system:String x:Key="Equalizer">Equalizer</system:String>
+	<system:String x:Key="Equalizer_IsEnabled">Equalizer is enabled</system:String>
+	<system:String x:Key="Equalizer_Reset">Reset equalizer</system:String>
+
+    <!-- Audio Settings Dialog -->
+
+    <system:String x:Key="AudioSettingsDialog_StationSettings">Station settings</system:String>
+    <system:String x:Key="AudioSettingsDialog_ReplaceEqSettings">Replace global equalizer settings</system:String>
+    <system:String x:Key="AudioSettingsDialog_SaveVolumeLevel">Save volume level</system:String>
+    <system:String x:Key="AudioSettingsDialog_Audio">Audio</system:String>
+    <system:String x:Key="AudioSettingsDialog_Record">Record</system:String>
+    <system:String x:Key="AudioSettingsDialog_ReplaceGlobalRecordSettings">Replace global record settings</system:String>
+    <system:String x:Key="AudioSettingsDialog_CreateSubfolder">Create subfolder</system:String>
+
+    <!-- Playback History -->
+
+    <system:String x:Key="PlaybackHistory">Playback history</system:String>
+    <system:String x:Key="PlaybackHistory_HistoryNotFound">History not found</system:String>
+
+    <!-- About -->
+
+    <system:String x:Key="About_Description">The modern online radio player for Windows.</system:String>
+
+    <!-- Sorting -->
+
+    <system:String x:Key="Sorting">Sorting</system:String>
+    <system:String x:Key="Sorting_None">None</system:String>
+    <system:String x:Key="Sorting_NameAscending">By name (Ascending)</system:String>
+    <system:String x:Key="Sorting_NameDescending">By name (Descending)</system:String>
+    <system:String x:Key="Sorting_FavoritesFirst">Favorites first</system:String>
+    <system:String x:Key="Sorting_PopularFirst">Popular first</system:String>
+    <system:String x:Key="Sorting_DateAddedAscending">By date added (Old first)</system:String>
+    <system:String x:Key="Sorting_DateAddedDescending">By date added (New first)</system:String>
+	<system:String x:Key="Sorting_PlaybackOrder">In playback order</system:String>
+	<system:String x:Key="Sorting_CustomFirst">Custom first</system:String>
+
+    <!-- Pin -->
+
+    <system:String x:Key="Pin_PinToTop">Pin to top</system:String>
+    <system:String x:Key="Pin_UnpinFromTop">Unpin from top</system:String>
+
+	<!-- Equalizer Presets -->
+
+	<system:String x:Key="EqualizerPresets">Equalizer presets</system:String>
+	<system:String x:Key="EqualizerPresets_CreatePreset">Create preset</system:String>
+	<system:String x:Key="EqualizerPresets_Title">Title</system:String>
+	<system:String x:Key="EqualizerPresets_Apply">Apply preset</system:String>
+	<system:String x:Key="EqualizerPresets_Default">Default</system:String>
+	<system:String x:Key="EqualizerPresets_AmplifyBass">Amplify bass</system:String>
+	<system:String x:Key="EqualizerPresets_FullBassAndTreble">Full bass and treble</system:String>
+	<system:String x:Key="EqualizerPresets_AmplifyTreble">Amplify treble</system:String>
+	<system:String x:Key="EqualizerPresets_LaptopSpeakers">Laptop speakers</system:String>
+	<system:String x:Key="EqualizerPresets_LargeHall">Large hall</system:String>
+	<system:String x:Key="EqualizerPresets_Live">Live</system:String>
+	<system:String x:Key="EqualizerPresets_Party">Party</system:String>
+	<system:String x:Key="EqualizerPresets_Current">Current</system:String>
+	<system:String x:Key="EqualizerPresets_Remove">Remove</system:String>
+
+	<!-- Pager -->
+
+	<system:String x:Key="Pager_Position_Page">Page </system:String>
+	<system:String x:Key="Pager_Position_Of"> of </system:String>
+	<system:String x:Key="Pager_PageSize"> items per page</system:String>
+	<system:String x:Key="Pager_PageSizeSelectorTitle">Page size</system:String>
+
+	<!-- Import / Export -->
+
+	<system:String x:Key="ImportRadiostations">Import radiostations</system:String>
+	<system:String x:Key="ExportRadiostations">Export radiostations</system:String>
+	<system:String x:Key="Dialog_Export">EXPORT</system:String>
+	<system:String x:Key="Dialog_Import">IMPORT</system:String>
+	<system:String x:Key="ImportExport_All">All</system:String>
+	<system:String x:Key="ImportExport_OnlyFavoritesOrCustom">Only favorites or custom</system:String>
+	<system:String x:Key="ImportExport_FavoritesOnly">Favorites only</system:String>
+	<system:String x:Key="ImportExport_CustomOnly">Custom only</system:String>
+	<system:String x:Key="ImportExport_SaveSoundSettings">Save sound settings</system:String>
+	<system:String x:Key="ImportExport_SaveFavoritesTags">Save favorites tags</system:String>
+	<system:String x:Key="ImportExport_SaveCovers">Save covers</system:String>
+	<system:String x:Key="ImportExport_Format">Format</system:String>
+	<system:String x:Key="ImportExport_ExportFormat">Export format</system:String>
+	<system:String x:Key="ImportExport_BinaryFormat">Binary</system:String>
+	<system:String x:Key="ImportExport_JSONFormat">JSON</system:String>
+
+	<!-- Tray -->
+
+	<system:String x:Key="Tray_OpenRadiocamp">Open Radiocamp</system:String>
+	<system:String x:Key="Tray_QuitRadiocamp">Quit Radiocamp</system:String>
+
+	<!-- Effects -->
+
+	<system:String x:Key="Effects">Effects</system:String>
+	<system:String x:Key="Effects_Chorus">Chorus</system:String>
+	<system:String x:Key="Effects_Echo">Echo</system:String>
+	<system:String x:Key="Effects_Flanger">Flanger</system:String>
+	<system:String x:Key="Effects_Reverb">Reverb</system:String>
+
+</ResourceDictionary>
