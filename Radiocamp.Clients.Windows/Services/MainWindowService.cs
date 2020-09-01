@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
+using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
@@ -9,9 +10,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	public sealed class MainWindowService : IMainWindow
 	{
 
-		public MainWindow Window
+		public RadiocampWindow Window
 		{
-			get => Application.Current.MainWindow as MainWindow;
+			get => Application.Current.MainWindow as RadiocampWindow;
 			private set => Application.Current.MainWindow = value;
 		}
 
@@ -29,6 +30,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		{
 
 			Window.Show();
+			Window.Activate();
+			Window.Focus();
 
 			Boolean top = Window.Topmost;
 
