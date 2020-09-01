@@ -20,8 +20,11 @@ namespace Dartware.Radiocamp.Clients.Windows
 			});
 
 			Dependencies.Services.AddSingleton<ISettings, SettingsService>();
+			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
 
 			Dependencies.Build();
+
+			Dependencies.Get<IMainWindow>().Initialize();
 
 		}
 	}
