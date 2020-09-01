@@ -7,6 +7,7 @@
     <RootNamespace>Dartware.Radiocamp.Clients.Windows</RootNamespace>
     <AssemblyName>Radiocamp</AssemblyName>
     <Platforms>AnyCPU;x86</Platforms>
+    <StartupObject>Dartware.Radiocamp.Clients.Windows.Program</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
