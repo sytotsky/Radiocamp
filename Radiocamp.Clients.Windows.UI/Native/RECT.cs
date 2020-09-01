@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
+namespace Dartware.Radiocamp.Clients.Windows.UI.Native
 {
 	public struct RECT
 	{

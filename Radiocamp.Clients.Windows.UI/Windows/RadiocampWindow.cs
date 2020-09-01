@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Win32;
+using Dartware.Radiocamp.Clients.Windows.UI.Native;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 {

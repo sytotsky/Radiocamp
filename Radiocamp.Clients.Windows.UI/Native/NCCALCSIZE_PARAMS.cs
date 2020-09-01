@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
+namespace Dartware.Radiocamp.Clients.Windows.UI.Native
 {
 	public struct NCCALCSIZE_PARAMS
 	{
