@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Database;
 using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Clients.Windows.ViewModels;
 
 namespace Dartware.Radiocamp.Clients.Windows
 {
@@ -29,6 +30,8 @@ namespace Dartware.Radiocamp.Clients.Windows
 
 			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
+
+			Dependencies.Services.AddSingleton<MainWindowViewModel>();
 
 			Dependencies.Build();
 

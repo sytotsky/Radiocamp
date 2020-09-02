@@ -1,4 +1,7 @@
-﻿using Dartware.Radiocamp.Clients.Windows.UI.Windows;
+﻿using System.ComponentModel;
+using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.UI.Windows;
+using Dartware.Radiocamp.Clients.Windows.ViewModels;
 
 namespace Dartware.Radiocamp.Clients.Windows.Windows
 {
@@ -6,7 +9,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Windows
 	{
 		public MainWindow()
 		{
+
+			if (!DesignerProperties.GetIsInDesignMode(this))
+			{
+				DataContext = Dependencies.Get<MainWindowViewModel>();
+			}
+
 			InitializeComponent();
+
 		}
 	}
 }

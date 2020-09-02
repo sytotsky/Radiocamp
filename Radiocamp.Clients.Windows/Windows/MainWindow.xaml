@@ -5,10 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:corewindows="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Windows;assembly=Radiocamp.Clients.Windows.UI"
         xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.Windows"
+        xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
         Title="MainWindow"
-        Height="450"
-        Width="800">
+        Width="{Binding Width, Mode=OneWay}"
+        Height="{Binding Height, Mode=OneWay}"
+        Left="{Binding Left, Mode=OneWay}"
+        Top="{Binding Top, Mode=OneWay}">
 
 	<corewindows:RadiocampWindow.Resources>
 		<Style TargetType="{x:Type windows:MainWindow}" BasedOn="{StaticResource RadiocampWindowStyle}"/>
