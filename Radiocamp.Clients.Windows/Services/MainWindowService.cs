@@ -4,6 +4,7 @@ using System.Windows.Interop;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
+using WindowState = Dartware.Radiocamp.Clients.Windows.Core.Models.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -30,6 +31,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Show();
 			HwndSource.FromHwnd(new WindowInteropHelper(Window).Handle).AddHook(WndProc);
+
+			Window.WindowStateChanged += settings.SetState;
 
 		}
 

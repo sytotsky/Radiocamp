@@ -67,6 +67,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
 
 			base.SizeChanged += new SizeChangedEventHandler(this.OnSizeChanged);
+			SizeChanged += OnStateSizeChanged;
+			LocationChanged += OnStateLocationChanged;
 			base.StateChanged += new EventHandler(this.OnStateChanged);
 			base.Loaded += new RoutedEventHandler(this.OnLoaded);
 
