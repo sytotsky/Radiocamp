@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.UI.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -37,7 +38,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			set => SetValue(value);
 		}
 
-		public void SetState(WindowState windowState)
+		public WindowState MainWindowState
+		{
+			get => new WindowState(MainWindowWidth, MainWindowHeight, MainWindowLeft, MainWindowTop);
+			set => SetMainWindowState(value);
+		}
+
+		private void SetMainWindowState(WindowState windowState)
 		{
 			
 			if (windowState == null)

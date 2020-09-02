@@ -31,7 +31,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			Show();
 			HwndSource.FromHwnd(new WindowInteropHelper(Window).Handle).AddHook(WndProc);
 
-			Window.WindowStateChanged += settings.SetState;
+			Window.WindowStateChanged += windowState => settings.MainWindowState = windowState;
 
 		}
 
