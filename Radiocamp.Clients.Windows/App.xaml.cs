@@ -32,6 +32,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 
 			Dependencies.Build();
 
+			Dependencies.Get<ISettings>().Initialize();
 			Dependencies.Get<IMainWindow>().Initialize();
 
 		}

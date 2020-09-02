@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Clients.Shared.Models;
+using Dartware.Radiocamp.Clients.Shared.Attributes;
 
 namespace Dartware.Radiocamp.Clients.Shared.Services
 {
@@ -19,7 +22,52 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			this.databaseContext = databaseContext;
 		}
 
-		protected void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)
+		public virtual void Initialize()
+		{
+
+			SettingsType settings = databaseContext.Set<SettingsType>().AsNoTracking().FirstOrDefault();
+
+			if (settings == null)
+			{
+				return;
+			}
+
+			Type thisType = GetType();
+			IEnumerable<FieldInfo> thisFields = thisType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetField);
+			IEnumerable<String> thisFieldsNames = thisFields.Select(field => field.Name);
+			Type settingsType = settings.GetType();
+			IEnumerable<PropertyInfo> settingsProperties = settingsType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+			foreach (PropertyInfo settingsProperty in settingsProperties)
+			{
+
+				if (Attribute.IsDefined(settingsProperty, typeof(IgnorePropertyAttribute)))
+				{
+					continue;
+				}
+
+				String serviceFieldName = settingsProperty.Name.ToLowerCaseFirstChar();
+
+				if (!thisFieldsNames.Contains(serviceFieldName))
+				{
+					continue;
+				}
+
+				Object value = settingsProperty.GetValue(settings);
+				FieldInfo field = thisFields.Where(fieldInfo => fieldInfo.Name.Equals(serviceFieldName)).FirstOrDefault();
+
+				if (field == null)
+				{
+					continue;
+				}
+
+				field.SetValue(this, value);
+
+			}
+
+		}
+
+		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)
 		{
 			if (!propertyName.IsNullOrEmpty())
 			{
