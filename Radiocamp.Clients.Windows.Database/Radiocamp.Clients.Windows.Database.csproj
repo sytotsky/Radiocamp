@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Dartware.Radiocamp.Clients.Windows.Database</RootNamespace>
   </PropertyGroup>
 
@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj" />
     <ProjectReference Include="..\Radiocamp.Clients.Windows.Core\Radiocamp.Clients.Windows.Core.csproj" />
+    <ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
   </ItemGroup>
 
 </Project>

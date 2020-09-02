@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -8,8 +9,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 	{
 		public DatabaseContext CreateDbContext(String[] args)
 		{
+
 			DbContextOptionsBuilder<DatabaseContext> optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-			String connectionString = "Data Source=DTData.db";
+			String connectionString = $"Data Source={Path.Combine(Path.GetTempPath(), "DTData.db")}";
 
 			optionsBuilder.UseSqlite(connectionString);
 
