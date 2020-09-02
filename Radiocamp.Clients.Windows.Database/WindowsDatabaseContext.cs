@@ -4,12 +4,12 @@ using Dartware.Radiocamp.Clients.Windows.Database.Configurations;
 
 namespace Dartware.Radiocamp.Clients.Windows.Database
 {
-	public sealed class DatabaseContext : DbContext
+	public sealed class WindowsDatabaseContext : DbContext
 	{
 
-		public DbSet<Settings> Settings { get; set; }
+		public DbSet<WindowsSettings> Settings { get; set; }
 
-		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+		public WindowsDatabaseContext(DbContextOptions<WindowsDatabaseContext> options) : base(options)
 		{
 			Database.Migrate();
 		}
@@ -17,7 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
-			modelBuilder.ApplyConfiguration(new SettingsConfiguration());
+			modelBuilder.ApplyConfiguration(new WindowsSettingsConfiguration());
 		}
 
 	}

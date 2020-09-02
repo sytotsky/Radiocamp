@@ -14,12 +14,12 @@ namespace Dartware.Radiocamp.Clients.Windows
 			
 			base.OnStartup(args);
 
-			Dependencies.Services.AddDbContext<DatabaseContext>(builder =>
+			Dependencies.Services.AddDbContext<WindowsDatabaseContext>(builder =>
 			{
 				builder.UseSqlite("Data Source=Database.db");
 			});
 
-			Dependencies.Services.AddSingleton<ISettings, SettingsService>();
+			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
 
 			Dependencies.Build();

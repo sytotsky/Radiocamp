@@ -3,7 +3,7 @@ using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
-	public interface ISettings : ISettings<Settings>
+	public interface ISettings : ISettings<WindowsSettings>
 	{
 	}
 }
