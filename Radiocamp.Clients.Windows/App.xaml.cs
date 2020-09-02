@@ -17,7 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddDbContext<WindowsDatabaseContext>(builder =>
 			{
 				builder.UseSqlite("Data Source=Database.db");
-			});
+			}, ServiceLifetime.Transient);
 
 			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
