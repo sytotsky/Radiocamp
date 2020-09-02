@@ -4,9 +4,9 @@ using Dartware.Radiocamp.Clients.Windows.Database;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
-	public sealed class WindowsSettingsService : SettingsService<WindowsSettings, WindowsDatabaseContext>, ISettings
+	public sealed class WindowsSettingsService : SettingsService<WindowsSettings, DatabaseContext>, ISettings
 	{
-		public WindowsSettingsService(WindowsDatabaseContext databaseContext) : base(databaseContext)
+		public WindowsSettingsService(DatabaseContext databaseContext) : base(databaseContext)
 		{
 		}
 	}

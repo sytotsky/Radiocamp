@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Dartware.Radiocamp.Clients.Windows.Core;
@@ -14,9 +16,15 @@ namespace Dartware.Radiocamp.Clients.Windows
 			
 			base.OnStartup(args);
 
-			Dependencies.Services.AddDbContext<WindowsDatabaseContext>(builder =>
+			#if DEBUG
+			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.DEBUG.db")}";
+			#else
+			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.db")}";
+			#endif
+
+			Dependencies.Services.AddDbContext<DatabaseContext>(builder =>
 			{
-				builder.UseSqlite("Data Source=Database.db");
+				builder.UseSqlite(databaseConnectionSting);
 			}, ServiceLifetime.Transient);
 
 			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();

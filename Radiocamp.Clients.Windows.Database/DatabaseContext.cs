@@ -4,12 +4,12 @@ using Dartware.Radiocamp.Clients.Windows.Database.Configurations;
 
 namespace Dartware.Radiocamp.Clients.Windows.Database
 {
-	public sealed class WindowsDatabaseContext : DbContext
+	public sealed class DatabaseContext : DbContext
 	{
 
 		public DbSet<WindowsSettings> Settings { get; set; }
 
-		public WindowsDatabaseContext(DbContextOptions<WindowsDatabaseContext> options) : base(options)
+		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
 		{
 			Database.Migrate();
 		}
