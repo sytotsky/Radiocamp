@@ -10,10 +10,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	public sealed class MainWindowService : IMainWindow
 	{
 
+		private readonly ISettings settings;
+
 		public RadiocampWindow Window
 		{
 			get => Application.Current.MainWindow as RadiocampWindow;
 			private set => Application.Current.MainWindow = value;
+		}
+
+		public MainWindowService(ISettings settings)
+		{
+			this.settings = settings;
 		}
 
 		public void Initialize()
