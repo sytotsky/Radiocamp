@@ -24,6 +24,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Double Top { get; private set; }
 
+		[Reactive]
+		public String Title { get; private set; }
+
 		public MainWindowViewModel(ISettings settings)
 		{
 
@@ -36,6 +39,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Height = settings.MainWindowHeight;
 			Left = settings.MainWindowLeft;
 			Top = settings.MainWindowTop;
+			Title = "Radiocamp";
 
 		}
 
