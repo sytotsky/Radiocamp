@@ -6,10 +6,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	public interface ISettings : ISettings<WindowsSettings>
 	{
+
+		event Action<Boolean> HotkeysIsEnabledChanged;
+
 		Double MainWindowWidth { get; set; }
 		Double MainWindowHeight { get; set; }
 		Double MainWindowLeft { get; set; }
 		Double MainWindowTop { get; set; }
 		WindowState MainWindowState { get; set; }
+		Boolean HotkeysIsEnabled { get; set; }
+
 	}
 }

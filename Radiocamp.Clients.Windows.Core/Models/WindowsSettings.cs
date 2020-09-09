@@ -9,5 +9,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Core.Models
 		public Double MainWindowHeight { get; set; }
 		public Double MainWindowLeft { get; set; }
 		public Double MainWindowTop { get; set; }
+		public Boolean HotkeysIsEnabled { get; set; }
 	}
 }

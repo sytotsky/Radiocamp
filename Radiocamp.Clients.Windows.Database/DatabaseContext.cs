@@ -8,6 +8,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 	{
 
 		public DbSet<WindowsSettings> Settings { get; set; }
+		public DbSet<Hotkey> Hotkeys { get; set; }
 
 		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
 		{
@@ -18,6 +19,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 		{
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.ApplyConfiguration(new WindowsSettingsConfiguration());
+			modelBuilder.ApplyConfiguration(new HotkeyConfiguration());
 		}
 
 	}
