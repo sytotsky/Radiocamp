@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
-using Dartware.Radiocamp.Clients.Windows.Services;
-using Dartware.Radiocamp.Clients.Windows.UI.Models;
 using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
+using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {

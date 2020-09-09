@@ -1,9 +1,8 @@
 ﻿using System;
 using Dartware.Radiocamp.Clients.Shared.Services;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
-using Dartware.Radiocamp.Clients.Windows.UI.Models;
 
-namespace Dartware.Radiocamp.Clients.Windows.Services
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	public interface ISettings : ISettings<WindowsSettings>
 	{

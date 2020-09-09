@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Interop;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;

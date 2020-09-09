@@ -7,6 +7,8 @@ using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Database;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
+using Dartware.Radiocamp.Clients.Windows.Hotkeys;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows
 {
@@ -30,12 +32,14 @@ namespace Dartware.Radiocamp.Clients.Windows
 
 			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
+			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
 
 			Dependencies.Build();
 
 			Dependencies.Get<ISettings>().Initialize();
+			Dependencies.Get<IHotkeys>().Initialize();
 			Dependencies.Get<IMainWindow>().Initialize();
 
 		}

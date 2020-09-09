@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
-using Dartware.Radiocamp.Clients.Windows.UI.Models;
 
-namespace Dartware.Radiocamp.Clients.Windows.Services
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	public sealed partial class WindowsSettingsService
 	{
