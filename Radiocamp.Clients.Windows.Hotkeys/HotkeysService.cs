@@ -93,6 +93,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			hotkey.IsEnabled = true;
 
+			Register(hotkey);
 			All.AddOrUpdate(hotkey);
 			databaseContext.Hotkeys.Attach(hotkey);
 			databaseContext.SaveChanges();
@@ -109,6 +110,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			hotkey.IsEnabled = false;
 
+			Unregister(hotkey);
 			All.AddOrUpdate(hotkey);
 			databaseContext.Hotkeys.Attach(hotkey);
 			databaseContext.SaveChanges();
