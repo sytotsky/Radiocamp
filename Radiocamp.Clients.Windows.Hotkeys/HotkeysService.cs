@@ -43,7 +43,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		public void Initialize()
 		{
 
-			All.AddOrUpdate(databaseContext.Hotkeys.AsNoTracking());
+			All.AddOrUpdate(databaseContext.Hotkeys.AsNoTracking().ToList());
 
 			foreach (Hotkey hotkey in All.Items)
 			{
@@ -66,7 +66,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			{
 				throw new ArgumentNullException(nameof(hotkey), "Hotkey cannot be null.");
 			}
-			
+
+			Unregister(hotkey.Command);
+			Register(hotkey);
 			All.AddOrUpdate(hotkey);
 			databaseContext.Hotkeys.Attach(hotkey);
 			databaseContext.SaveChanges();
@@ -110,7 +112,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			hotkey.IsEnabled = false;
 
-			Unregister(hotkey);
+			Unregister(hotkey.Command);
 			All.AddOrUpdate(hotkey);
 			databaseContext.Hotkeys.Attach(hotkey);
 			databaseContext.SaveChanges();
@@ -146,7 +148,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			{
 				foreach (Hotkey hotkey in All.Items)
 				{
-					Unregister(hotkey);
+					Unregister(hotkey.Command);
 				}
 			}));
 		}
@@ -189,22 +191,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		}
 
-		private void Unregister(Hotkey hotkey)
+		private void Unregister(HotkeyCommand command)
 		{
-
-			if (hotkey == null)
-			{
-				throw new ArgumentNullException(nameof(hotkey), "Hotkey cannot be null.");
-			}
-
-			registered.TryGetValue(hotkey.Command, out Boolean isRegistered);
+			
+			registered.TryGetValue(command, out Boolean isRegistered);
 
 			if (isRegistered)
 			{
 
-				HotkeyManager.Current.Remove(Enum.GetName(typeof(HotkeyCommand), hotkey.Command));
+				HotkeyManager.Current.Remove(Enum.GetName(typeof(HotkeyCommand), command));
 
-				registered[hotkey.Command] = false;
+				registered[command] = false;
 
 			}
 
