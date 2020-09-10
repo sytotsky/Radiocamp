@@ -121,6 +121,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		private void RegisterAll()
 		{
+
+			if (!settings.HotkeysIsEnabled)
+			{
+				return;
+			}
+
 			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
 			{
 				foreach (Hotkey hotkey in All.Items)
@@ -131,6 +137,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 					}
 				}
 			}));
+
 		}
 
 		private void UnregisterAll()
@@ -146,6 +153,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		private void Register(Hotkey hotkey)
 		{
+
+			if (!settings.HotkeysIsEnabled)
+			{
+				return;
+			}
 
 			if (hotkey == null)
 			{
