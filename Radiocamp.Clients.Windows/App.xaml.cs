@@ -35,6 +35,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
+			Dependencies.Services.AddSingleton<DialogDimmableOverlayViewModel>();
 
 			Dependencies.Build();
 

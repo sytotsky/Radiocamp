@@ -14,8 +14,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Animation\" />
-		<Folder Include="AttachedProperties\" />
 		<Folder Include="Converters\" />
 		<Folder Include="Utilities\" />
 	</ItemGroup>

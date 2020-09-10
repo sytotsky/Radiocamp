@@ -6,19 +6,12 @@ using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Windows;
 
-namespace Dartware.Radiocamp.Clients.Windows.ViewModels.Dialogs
+namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 	public sealed class DialogWindowViewModel : ViewModel
 	{
 
-		private readonly DialogWindow window;
-
 		public Control Content { get; set; }
-
-		public DialogWindowViewModel(DialogWindow window)
-		{
-			this.window = window;
-		}
 
 		public void OnKeyDown(Object sender, KeyEventArgs args)
 		{
@@ -31,7 +24,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels.Dialogs
 			if (args.Key == Key.Escape)
 			{
 				Dependencies.Get<IHotkeys>().RegisterAll();
-				window.Close();
+				(sender as DialogWindow).Close();
 			}
 
 		}
