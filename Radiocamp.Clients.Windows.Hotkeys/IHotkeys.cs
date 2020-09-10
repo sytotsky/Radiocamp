@@ -17,6 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		void Update(Hotkey hotkey);
 		void Enable(HotkeyCommand command);
 		void Disable(HotkeyCommand command);
+		void RegisterAll();
 
 	}
 }

@@ -119,7 +119,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		private Hotkey Get(HotkeyCommand command) => All.Items.FirstOrDefault(hotkey => hotkey.Command == command);
 
-		private void RegisterAll()
+		public void RegisterAll()
 		{
 
 			if (!settings.HotkeysIsEnabled)
