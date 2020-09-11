@@ -5,11 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 		xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.Windows"
+        xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
         mc:Ignorable="d"
-        Title="DialogWindow"
-        Height="450"
-        Width="800">
+        d:DataContext="{d:DesignInstance vm:DialogWindowViewModel}"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        WindowState="Normal"
+        AllowsTransparency="True"
+        SizeToContent="WidthAndHeight"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True"
+        x:Name="DialogWindowControl">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type windows:DialogWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type windows:DialogWindow}">
+                        <Border Background="{DynamicResource WindowBg}">
+
+                            <Border.Effect>
+                                <DropShadowEffect Color="{DynamicResource ShadowColor}"
+                                                  BlurRadius="15"
+                                                  Direction="0"
+                                                  ShadowDepth="0"
+                                                  Opacity="0.25"
+                                                  RenderingBias="Quality"/>
+                            </Border.Effect>
+
+                            <Grid>
+
+                                <ContentPresenter Content="{Binding Content}"/>
+
+                                <Border x:Name="OVerlay"
+                                        Panel.ZIndex="1"
+                                        ap:AnimateFadeIn.Value="{Binding OverlayVisible, ElementName=DialogWindowControl, Mode=OneWay}"
+                                        Background="{DynamicResource DimmableOverlay}"/>
+
+                            </Grid>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     
-	<Grid></Grid>
+	<ContentControl Content="{Binding Content}"/>
 
 </Window>
