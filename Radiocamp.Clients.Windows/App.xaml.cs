@@ -30,6 +30,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 				builder.UseSqlite(databaseConnectionSting);
 			}, ServiceLifetime.Transient);
 
+			Dependencies.Services.AddSingleton<IApplication, ApplicationService>();
 			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
 			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
