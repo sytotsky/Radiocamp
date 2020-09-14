@@ -6,6 +6,7 @@
                              xmlns:corewindows="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Windows;assembly=Radiocamp.Clients.Windows.UI"
                              xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.Windows"
                              xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+							 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
                              mc:Ignorable="d"
                              d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
                              Title="{Binding Title, Mode=OneWay}"
@@ -18,6 +19,35 @@
 		<Style TargetType="{x:Type windows:MainWindow}" BasedOn="{StaticResource RadiocampWindowStyle}"/>
 	</corewindows:RadiocampWindow.Resources>
 
-	<Grid></Grid>
+	<Grid>
+
+        <Grid x:Name="RegularHost">
+
+	        <Grid.RowDefinitions>
+		        <RowDefinition Height="Auto"/>
+		        <RowDefinition Height="*"/>
+		        <RowDefinition Height="Auto"/>
+	        </Grid.RowDefinitions>
+
+	        <Grid.ColumnDefinitions>
+		        <ColumnDefinition Width="Auto"/>
+		        <ColumnDefinition Width="*"/>
+	        </Grid.ColumnDefinitions>
+
+			<views:TopBar Grid.Row="0"
+			              Grid.ColumnSpan="2"/>
+
+			<views:SideMenuDimmableOverlay Grid.Row="0"
+			                               Grid.RowSpan="3"
+			                               Grid.Column="0"
+			                               Grid.ColumnSpan="2"/>
+
+			<views:SideMenu Grid.Row="0"
+			                Grid.RowSpan="3"
+			                Grid.Column="0"/>
+
+		</Grid>
+
+	</Grid>
 
 </corewindows:RadiocampWindow>

@@ -19,8 +19,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 			if (!DesignerProperties.GetIsInDesignMode(this))
 			{
-				viewModel = Dependencies.Get<SideMenuViewModel>();
-				DataContext = viewModel;
+				DataContext = viewModel = Dependencies.Get<SideMenuViewModel>();
 			}
 
 		}

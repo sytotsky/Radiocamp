@@ -58,4 +58,51 @@
 
 	</Style>
 
+	<Style TargetType="{x:Type controls:IconButton}">
+
+		<Setter Property="Cursor" Value="Hand"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="FontFamily" Value="{StaticResource RadiocampIcons}"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="RegularBackground" Value="Transparent"/>
+		<Setter Property="RegularForeground" Value="{DynamicResource DimFg}"/>
+		<Setter Property="OverBackground" Value="Transparent"/>
+		<Setter Property="OverForeground" Value="{DynamicResource MainFg}"/>
+		<Setter Property="Background" Value="{Binding RegularBackground, RelativeSource={RelativeSource Self}}"/>
+		<Setter Property="Foreground" Value="{Binding RegularForeground, RelativeSource={RelativeSource Self}}"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:IconButton}">
+
+					<Border x:Name="Border"
+                            Cursor="{TemplateBinding Cursor}"
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="{TemplateBinding Margin}"
+                            Padding="{TemplateBinding Padding}"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
+						<TextBlock x:Name="Icon"
+						           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+						           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+						           FontFamily="{TemplateBinding FontFamily}"
+						           Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+						           FontSize="{TemplateBinding FontSize}"
+						           Text="{TemplateBinding Content}"/>
+					</Border>
+
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="{Binding OverBackground, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="Foreground" Value="{Binding OverForeground, RelativeSource={RelativeSource Self}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
+	</Style>
+
 </ResourceDictionary>
