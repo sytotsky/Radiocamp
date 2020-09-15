@@ -1,11 +1,10 @@
 ﻿using System;
-using Dartware.Radiocamp.Clients.Shared.Attributes;
 
 namespace Dartware.Radiocamp.Clients.Shared.Models
 {
 	public abstract class Settings
 	{
-		[IgnoreProperty]
+		[Ignore]
 		public Guid Id { get; set; }
 	}
 }
