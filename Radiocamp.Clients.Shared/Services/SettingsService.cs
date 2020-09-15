@@ -65,6 +65,11 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 		}
 
+		public virtual void Reset()
+		{
+			throw new NotImplementedException();
+		}
+
 		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)
 		{
 			if (!propertyName.IsNullOrEmpty())
