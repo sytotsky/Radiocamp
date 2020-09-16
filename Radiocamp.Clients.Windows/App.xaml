@@ -8,7 +8,7 @@
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/ColorThemes/DarkTheme.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Localization/En.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Resources/Icons/Icons.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Button.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Buttons.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Window.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -5,11 +5,27 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
                 xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
+                xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
                 mc:Ignorable="d"
                 d:DataContext="{d:DesignInstance vm:AboutDialogViewModel}"
                 Width="360"
                 Height="300">
     
-	<Grid></Grid>
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<controls:IconButton Grid.Row="0"
+		                     Style="{StaticResource CloseDialogButtonStyle}"
+		                     Command="{Binding CloseCommand}"/>
+
+		<StackPanel Grid.Row="0"
+		            Margin="20 20 20 0"
+		            Orientation="Vertical"></StackPanel>
+
+	</Grid>
 
 </dialogs:Dialog>
