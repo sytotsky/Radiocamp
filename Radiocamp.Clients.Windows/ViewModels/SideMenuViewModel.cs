@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Dartware.Radiocamp.Clients.Windows.Core;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
@@ -11,7 +12,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	{
 
 		private readonly IApplication application;
-		private readonly SideMenuDimmableOverlayViewModel sideMenuDimmableOverlayViewModel;
+		private readonly IDialogs dialogs;
 
 		[Reactive]
 		public Boolean Visible { get; set; }
@@ -22,11 +23,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ICommand AboutCommand { get; }
 		public ICommand ExitCommand { get; }
 
-		public SideMenuViewModel(SideMenuDimmableOverlayViewModel sideMenuDimmableOverlayViewModel, IMainWindow mainWindow, IApplication application)
+		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs)
 		{
 
-			this.sideMenuDimmableOverlayViewModel = sideMenuDimmableOverlayViewModel;
 			this.application = application;
+			this.dialogs = dialogs;
 
 			ToggleCommand = ReactiveCommand.Create(Toggle);
 			CreateCommand = ReactiveCommand.Create(Create);
@@ -34,11 +35,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			AboutCommand = ReactiveCommand.Create(About);
 			ExitCommand = ReactiveCommand.Create(Exit);
 
-			sideMenuDimmableOverlayViewModel.Click += Hide;
+			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Click += Hide;
 			mainWindow.EscapeEvent += Hide;
+			dialogs.ShowDialog += Hide;
 
 			this.WhenAnyValue(viewModel => viewModel.Visible).Subscribe(OnVisibleChanged);
-
+			
 		}
 
 		public void Show()
@@ -64,8 +66,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 		}
 
-		private void About()
+		private async void About()
 		{
+			await dialogs.About();
 		}
 
 		private void Exit()
@@ -75,7 +78,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private void OnVisibleChanged(Boolean visible)
 		{
-			sideMenuDimmableOverlayViewModel.Visible = visible;
+			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Visible = visible;
 		}
 
 	}

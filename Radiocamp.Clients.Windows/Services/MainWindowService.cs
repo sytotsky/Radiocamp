@@ -17,6 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly ISettings settings;
 
 		public event Action EscapeEvent;
+		public event Action HideEvent;
 
 		public RadiocampWindow Window
 		{

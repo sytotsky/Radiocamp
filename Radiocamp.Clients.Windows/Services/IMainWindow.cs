@@ -6,6 +6,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		event Action EscapeEvent;
+		event Action HideEvent;
 
 		void Initialize();
 

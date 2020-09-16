@@ -48,6 +48,8 @@
 
 		</Grid>
 
+		<views:DialogDimmableOverlay/>
+
 	</Grid>
 
 </corewindows:RadiocampWindow>
