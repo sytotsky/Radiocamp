@@ -55,7 +55,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				}
 			});
 
-			return taskCompletionSource.Task;
+			Task task = taskCompletionSource.Task;
+
+			task.ContinueWith(task =>
+			{
+				viewModel.Dispose();
+			});
+
+			return task;
 
 		}
 
@@ -83,7 +90,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				}
 			});
 
-			return taskCompletionSource.Task;
+			Task<ResultTypeDefenition> task = taskCompletionSource.Task;
+
+			task.ContinueWith(task =>
+			{
+				viewModel.Dispose();
+			});
+
+			return task;
 
 		}
 

@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Windows.Input;
+using System.Reactive;
 using Dartware.Radiocamp.Clients.Windows.Core;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Windows;
-using ReactiveUI;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 
-	public abstract class DialogViewModel : ViewModel, IDisposable
+	public abstract class DialogViewModel : ViewModel
 	{
 
 		[Reactive]
@@ -42,20 +42,26 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			}
 		}
 
-		public ICommand CloseCommand { get; }
+		public ReactiveCommand<Unit, Unit> CloseCommand { get; }
 
 		public DialogViewModel()
 		{
 
 			CloseCommand = ReactiveCommand.Create(Close);
 
+			disposables.Add(CloseCommand);
+
 			Dependencies.Get<IMainWindow>().HideEvent += OnMainWindowHide;
 
 		}
 
-		public virtual void Dispose()
+		public override void Dispose()
 		{
+
+			base.Dispose();
+
 			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
+
 		}
 
 		protected virtual void Close()
