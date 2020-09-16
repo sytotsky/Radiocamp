@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Core.Extensions;
 using Dartware.Radiocamp.Clients.Shared.Models;
-using Dartware.Radiocamp.Clients.Shared.Attributes;
 
 namespace Dartware.Radiocamp.Clients.Shared.Services
 {
@@ -40,7 +39,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			foreach (PropertyInfo settingsProperty in settingsProperties)
 			{
 
-				if (Attribute.IsDefined(settingsProperty, typeof(IgnorePropertyAttribute)))
+				if (Attribute.IsDefined(settingsProperty, typeof(IgnoreAttribute)))
 				{
 					continue;
 				}
@@ -64,6 +63,11 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 			}
 
+		}
+
+		public virtual void Reset()
+		{
+			throw new NotImplementedException();
 		}
 
 		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)

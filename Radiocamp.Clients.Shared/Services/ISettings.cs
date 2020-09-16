@@ -5,5 +5,6 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 	public interface ISettings<SettingsType> where SettingsType : Settings
 	{
 		void Initialize();
+		void Reset();
 	}
 }

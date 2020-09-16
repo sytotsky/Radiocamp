@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.DialogDimmableOverlay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+             xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance vm:DialogDimmableOverlayViewModel}">
+
+	<Border Background="{DynamicResource DimmableOverlay}"
+	        ap:AnimateFadeIn.Value="{Binding Visible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>
+
+</UserControl>

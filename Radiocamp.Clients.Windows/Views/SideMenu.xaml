@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.SideMenu"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			 xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance vm:SideMenuViewModel}"
+			 Width="200"
+			 d:DesignHeight="450"
+			 Background="{DynamicResource WindowBg}"
+			 ap:AnimateSlideInFromLeft.Value="{Binding Visible}">
+
+	<UserControl.Effect>
+		<DropShadowEffect Color="{DynamicResource ShadowColor}"
+						  Direction="315"
+						  BlurRadius="20"
+						  Opacity="0.2"
+						  RenderingBias="Quality"/>
+	</UserControl.Effect>
+
+	<ScrollViewer Margin="0 15"
+				  HorizontalScrollBarVisibility="Disabled"
+				  VerticalScrollBarVisibility="Auto">
+		<StackPanel Orientation="Vertical">
+
+			<controls:SideMenuButton Command="{Binding CreateCommand}"
+									 Icon="{StaticResource AddIcon}"
+									 Content="{DynamicResource Create}"/>
+
+			<controls:SideMenuButton Command="{Binding SettingsCommand}"
+									 Icon="{StaticResource SettingsIcon}"
+									 Content="{DynamicResource Settings}"/>
+
+			<controls:SideMenuButton Command="{Binding AboutCommand}"
+									 Icon="{StaticResource AboutIcon}"
+									 Content="{DynamicResource About}"/>
+
+			<controls:SideMenuButton Command="{Binding ExitCommand}"
+									 Icon="{StaticResource ExitIcon}"
+									 Content="{DynamicResource Exit}"/>
+
+
+		</StackPanel>
+	</ScrollViewer>
+
+</UserControl>

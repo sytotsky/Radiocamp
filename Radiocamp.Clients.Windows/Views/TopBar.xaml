@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.TopBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+             xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+             mc:Ignorable="d"
+             Padding="0 10">
+    
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<controls:IconButton x:Name="SideMenuToggleButton"
+		                     Grid.Column="0"
+		                     VerticalAlignment="Stretch"
+		                     Padding="12 0"
+		                     d:DataContext="{d:DesignInstance vm:SideMenuViewModel}"
+		                     FontSize="24"
+		                     Command="{Binding ToggleCommand}"
+		                     Content="{StaticResource MenuIcon}"/>
+
+	</Grid>
+
+</UserControl>

@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DrawingImage x:Key="TaskbarPlay">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="#FFC2C3C7"
+                             Geometry="F1 M 917.414,1009.152 L 928.886,1015.776 C 929.268,1015.996 929.268,1016.546 928.886,1016.766 L 917.414,1023.389 C 917.033,1023.609 916.557,1023.334 916.557,1022.894 L 916.557,1009.647 C 916.557,1009.207 917.033,1008.932 917.414,1009.152 Z"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="TaskbarPause">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+
+                    <GeometryDrawing Brush="#FFC2C3C7"
+                                     Geometry="F1 M 920.851,1023.466 L 916.557,1023.466 L 916.557,1009.066 L 920.851,1009.066 L 920.851,1023.466 Z"/>
+
+                    <GeometryDrawing Brush="#FFC2C3C7"
+                                     Geometry="F1 M 929.172,1023.466 L 924.878,1023.466 L 924.878,1009.066 L 929.172,1009.066 L 929.172,1023.466 Z"/>
+
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="TaskbarRecordStop">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="#FFC2C3C7"
+                             Geometry="F1 M 929.172,1016.271 C 929.172,1019.754 926.348,1022.578 922.865,1022.578 C 919.381,1022.578 916.557,1019.754 916.557,1016.271 C 916.557,1012.787 919.381,1009.963 922.865,1009.963 C 926.348,1009.963 929.172,1012.787 929.172,1016.271 Z"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="TaskbarRecordStart">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="#FF76393D"
+                             Geometry="F1 M 929.172,1016.271 C 929.172,1019.754 926.348,1022.578 922.865,1022.578 C 919.381,1022.578 916.557,1019.754 916.557,1016.271 C 916.557,1012.787 919.381,1009.963 922.865,1009.963 C 926.348,1009.963 929.172,1012.787 929.172,1016.271 Z"/>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Buttons/Button.xaml"/>
+		<ResourceDictionary Source="Buttons/WindowButton.xaml"/>
+		<ResourceDictionary Source="Buttons/IconButton.xaml"/>
+		<ResourceDictionary Source="Buttons/SideMenuButton.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

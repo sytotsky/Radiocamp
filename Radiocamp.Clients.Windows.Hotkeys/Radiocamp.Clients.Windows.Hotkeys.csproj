@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Radiocamp.Clients.Windows.Database\Radiocamp.Clients.Windows.Database.csproj" />
-    <ProjectReference Include="..\Radiocamp.Clients.Windows.Libraries\Radiocamp.Clients.Windows.Libraries.csproj" />
     <ProjectReference Include="..\Radiocamp.Clients.Windows.Settings\Radiocamp.Clients.Windows.Settings.csproj" />
     <ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
   </ItemGroup>

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
+using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
@@ -12,6 +15,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly ISettings settings;
+
+		public event Action EscapeEvent;
+		public event Action HideEvent;
 
 		public RadiocampWindow Window
 		{
@@ -34,6 +40,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Window.WindowStateChanged += windowState => settings.MainWindowState = windowState;
 
+			Window.InputBindings.AddRange(new List<InputBinding>()
+			{
+				new KeyBinding()
+				{
+					Command = new RelayCommand(OnEscape),
+					Gesture = new KeyGesture(Key.Escape)
+				}
+			});
+
 		}
 
 		public void Show()
@@ -48,6 +63,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			Window.Topmost = true;
 			Window.Topmost = top;
 
+		}
+
+		private void OnEscape()
+		{
+			EscapeEvent?.Invoke();
 		}
 
 		private IntPtr WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, ref Boolean handled)
