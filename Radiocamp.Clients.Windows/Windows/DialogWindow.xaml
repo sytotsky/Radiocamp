@@ -52,6 +52,7 @@
         </Style>
     </Window.Resources>
     
-	<ContentControl Content="{Binding Content}"/>
+	<ContentControl Foreground="{DynamicResource MainFg}"
+	                Content="{Binding Content}"/>
 
 </Window>
