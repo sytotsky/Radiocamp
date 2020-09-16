@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using Dartware.Radiocamp.Clients.Shared.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Dartware.Radiocamp.Clients.Windows.Core;
@@ -35,6 +36,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
 			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
 			Dependencies.Services.AddSingleton<IDialogs, DialogsService>();
+			Dependencies.Services.AddSingleton<IBrowser, BrowserService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
 			Dependencies.Services.AddSingleton<DialogDimmableOverlayViewModel>();
