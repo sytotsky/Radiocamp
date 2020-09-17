@@ -18,11 +18,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public String Copyright { get; private set; }
 
-		public ReactiveCommand<Unit, Unit> TelegramCommand { get; }
-		public ReactiveCommand<Unit, Unit> YouTubeCommand { get; }
+		public ReactiveCommand<Unit, Unit> TelegramCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> YouTubeCommand { get; private set; }
 
-		public AboutDialogViewModel()
+		public override void Initialize()
 		{
+
+			base.Initialize();
 
 			IBrowser browser = Dependencies.Get<IBrowser>();
 

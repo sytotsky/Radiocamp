@@ -1,0 +1,166 @@
+﻿<dialogs:BaseSettingsDialog x:Class="Dartware.Radiocamp.Clients.Windows.Dialogs.SettingsDialog"
+							xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+							xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+							xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+							xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+							xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
+							xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+							xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
+							xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+							mc:Ignorable="d"
+							d:DataContext="{d:DesignInstance vm:SettingsViewModel}"
+							Width="360"
+							Height="460"
+							CurrentSection="{Binding CurrentSection, Mode=OneWay}">
+
+	<dialogs:BaseSettingsDialog.Resources>
+		<Style TargetType="{x:Type dialogs:SettingsDialog}">
+
+			<Setter Property="CurrentSection" Value="Navigator"/>
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type dialogs:SettingsDialog}">
+
+						<Grid>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<Grid Grid.Row="0"
+								  Margin="10">
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Row="0"
+										   Style="{StaticResource DialogTitleTextBlock}"
+										   Text="{DynamicResource Settings}"/>
+
+								<controls:IconButton Grid.Column="1"
+													 Style="{DynamicResource CloseDialogButtonStyle}"
+													 Margin="0"
+													 Command="{Binding CloseCommand}"/>
+
+							</Grid>
+
+							<Grid Grid.Row="1">
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="360"/>
+									<ColumnDefinition Width="360"/>
+								</Grid.ColumnDefinitions>
+
+								<views:SettingsNavigator x:Name="Navigator"
+														 Grid.Column="0"
+														 Opacity="1"/>
+
+								<Grid x:Name="Section"
+									  Grid.Column="1"
+									  Opacity="0">
+
+									<views:GeneralSettings x:Name="General"
+									                       Visibility="Collapsed"/>
+
+								</Grid>
+
+							</Grid>
+
+						</Grid>
+
+						<ControlTemplate.Triggers>
+
+							<Trigger Property="IsNavigator" Value="False">
+
+								<Trigger.EnterActions>
+									<BeginStoryboard>
+										<Storyboard>
+
+											<ThicknessAnimation Duration="0:0:0.150"
+											                    Storyboard.TargetProperty="Margin"
+											                    Storyboard.TargetName="Section"
+											                    To="-360 0 360 0">
+												<ThicknessAnimation.EasingFunction>
+													<SineEase EasingMode="EaseInOut"/>
+												</ThicknessAnimation.EasingFunction>
+											</ThicknessAnimation>
+
+											<ThicknessAnimation Duration="0:0:0.150"
+											                    Storyboard.TargetProperty="Margin"
+											                    Storyboard.TargetName="Navigator"
+											                    To="-360 0 360 0">
+												<ThicknessAnimation.EasingFunction>
+													<SineEase EasingMode="EaseInOut"/>
+												</ThicknessAnimation.EasingFunction>
+											</ThicknessAnimation>
+
+											<DoubleAnimation Duration="0:0:0.300"
+											                 Storyboard.TargetProperty="Opacity"
+											                 Storyboard.TargetName="Navigator"
+											                 To="0"/>
+
+											<DoubleAnimation Duration="0:0:0.300"
+											                 Storyboard.TargetProperty="Opacity"
+											                 Storyboard.TargetName="Section"
+											                 To="1"/>
+
+										</Storyboard>
+									</BeginStoryboard>
+								</Trigger.EnterActions>
+
+								<Trigger.ExitActions>
+									<BeginStoryboard>
+										<Storyboard>
+
+											<ThicknessAnimation Duration="0:0:0.150"
+											                    Storyboard.TargetProperty="Margin"
+											                    Storyboard.TargetName="Section"
+											                    To="0 0 0 0">
+												<ThicknessAnimation.EasingFunction>
+													<SineEase EasingMode="EaseInOut"/>
+												</ThicknessAnimation.EasingFunction>
+											</ThicknessAnimation>
+
+											<ThicknessAnimation Duration="0:0:0.150"
+											                    Storyboard.TargetProperty="Margin"
+											                    Storyboard.TargetName="Navigator"
+											                    To="0 0 0 0">
+												<ThicknessAnimation.EasingFunction>
+													<SineEase EasingMode="EaseInOut"/>
+												</ThicknessAnimation.EasingFunction>
+											</ThicknessAnimation>
+
+											<DoubleAnimation Duration="0:0:0.300"
+											                 Storyboard.TargetProperty="Opacity"
+											                 Storyboard.TargetName="Navigator"
+											                 To="1"/>
+
+											<DoubleAnimation Duration="0:0:0.300"
+											                 Storyboard.TargetProperty="Opacity"
+											                 Storyboard.TargetName="Section"
+											                 To="0"/>
+
+										</Storyboard>
+									</BeginStoryboard>
+								</Trigger.ExitActions>
+
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="General">
+								<Setter TargetName="General" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+						</ControlTemplate.Triggers>
+
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+	</dialogs:BaseSettingsDialog.Resources>
+
+</dialogs:BaseSettingsDialog>

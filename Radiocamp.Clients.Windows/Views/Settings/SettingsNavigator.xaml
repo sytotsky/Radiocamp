@@ -1,0 +1,67 @@
+﻿<views:SettingsView x:Class="Dartware.Radiocamp.Clients.Windows.Views.SettingsNavigator"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
+                    xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+                    xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+                    mc:Ignorable="d"
+                    d:DataContext="{d:DesignInstance vm:SettingsViewModel}"
+                    Margin="0">
+    
+	<ScrollViewer VerticalScrollBarVisibility="Visible"
+	              IsDeferredScrollingEnabled="False">
+        <StackPanel Orientation="Vertical">
+
+	        <controls:SettingsNavigatorButton Command="{Binding GoToGeneralSettingsCommand}"
+	                                          Icon="{StaticResource InstrumentsIcon}"
+	                                          IconFontSize="24"
+	                                          Description="{DynamicResource Settings_GeneralDescription}"
+	                                          Content="{DynamicResource Settings_General}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToTraySettingsCommand}"
+			                                  Icon="{StaticResource TrayIcon}"
+			                                  IconFontSize="24"
+											  IconRotateAngle="180"
+			                                  Description="{DynamicResource Settings_TrayDescription}"
+			                                  Content="{DynamicResource Settings_Tray}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToUISettingsCommand}"
+			                                  Icon="{StaticResource UIIcon}"
+			                                  IconFontSize="24"
+			                                  Description="{DynamicResource Settings_UIDescription}"
+			                                  Content="{DynamicResource Settings_UI}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToPlaybackSettingsCommand}"
+			                                  Icon="{StaticResource MusicalNotesIcon}"
+			                                  IconFontSize="26"
+			                                  Description="{DynamicResource Settings_PlaybackDescription}"
+			                                  Content="{DynamicResource Playback}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToRecordSettingsCommand}"
+			                                  Icon="{StaticResource RecordOutlineIcon}"
+			                                  Description="{DynamicResource Settings_RecordDescription}"
+			                                  Content="{DynamicResource Record}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToSoundSettingsCommand}"
+			                                  Icon="{StaticResource StreamlineAudioSettingsIcon}"
+			                                  IconFontSize="24"
+			                                  Description="{DynamicResource Settings_SoundDescription}"
+			                                  Content="{DynamicResource Settings_Sound}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToHotkeysSettingsCommand}"
+			                                  Icon="{StaticResource KeyboardIcon}"
+			                                  IconFontSize="25"
+			                                  Description="{DynamicResource Settings_HotkeysDescription}"
+			                                  Content="{DynamicResource Hotkeys}"/>
+
+			<controls:SettingsNavigatorButton Command="{Binding GoToAudioDeviceSettingsCommand}"
+			                                  Icon="{StaticResource HeadphonesIcon}"
+			                                  Description="{DynamicResource Settings_AudioDeviceDescription}"
+			                                  Content="{DynamicResource Settings_AudioDevice}"/>
+
+		</StackPanel>
+	</ScrollViewer>
+
+</views:SettingsView>

@@ -42,6 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<DialogDimmableOverlayViewModel>();
 			Dependencies.Services.AddSingleton<SideMenuDimmableOverlayViewModel>();
 			Dependencies.Services.AddSingleton<SideMenuViewModel>();
+			Dependencies.Services.AddSingleton<SettingsViewModel>();
 
 			Dependencies.Build();
 

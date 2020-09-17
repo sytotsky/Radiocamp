@@ -6,7 +6,8 @@
              xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
              xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance vm:DialogDimmableOverlayViewModel}">
+             d:DataContext="{d:DesignInstance vm:DialogDimmableOverlayViewModel}"
+             Focusable="False">
 
 	<Border Background="{DynamicResource DimmableOverlay}"
 	        ap:AnimateFadeIn.Value="{Binding Visible, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, IsAsync=True}"/>

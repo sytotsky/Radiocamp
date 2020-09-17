@@ -9,6 +9,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		event Action ShowDialog;
 
 		Task About();
+		Task Settings();
 
 	}
 }

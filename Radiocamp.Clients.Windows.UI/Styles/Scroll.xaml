@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="Scroll/ScrollBar.xaml"/>
+		<ResourceDictionary Source="Scroll/ScrollViewer.xaml"/>
+		<ResourceDictionary Source="Scroll/ScrollContentPresenter.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

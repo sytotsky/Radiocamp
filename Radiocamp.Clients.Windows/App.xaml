@@ -10,7 +10,13 @@
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Resources/Icons/Icons.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Buttons.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Window.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Resources/Animations.xaml"/>
+				<ResourceDictionary Source="Resources/Images/Images.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/TextBlock.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Label.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Thumb.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Scroll.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 	</Application.Resources>
 

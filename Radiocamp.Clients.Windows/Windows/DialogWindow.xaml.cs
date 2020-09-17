@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
@@ -32,8 +31,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Windows
 			}
 		}
 
-		public Boolean CloseOnEscape { get; set; }
-
 		public static readonly DependencyProperty OverlayVisibleProperty = DependencyProperty.Register(nameof(OverlayVisible), typeof(Boolean), typeof(DialogWindow), new PropertyMetadata(default(Boolean)));
 
 		public Boolean OverlayVisible
@@ -44,16 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Windows
 
 		public DialogWindow()
 		{
-			
 			InitializeComponent();
-
-			CloseOnEscape = true;
-
-		}
-
-		protected override void OnKeyDown(KeyEventArgs args)
-		{
-			ViewModel.OnKeyDown(this, args);
 		}
 
 		protected override void OnInitialized(EventArgs args)

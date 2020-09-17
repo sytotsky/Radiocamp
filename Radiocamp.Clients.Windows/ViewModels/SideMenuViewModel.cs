@@ -62,8 +62,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 		}
 
-		private void Settings()
+		private async void Settings()
 		{
+			await dialogs.Settings();
 		}
 
 		private async void About()

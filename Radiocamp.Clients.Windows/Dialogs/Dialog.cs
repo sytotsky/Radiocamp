@@ -46,6 +46,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 					dialogWindow.ViewModel.Content = this;
 					DataContext = viewModel;
 
+					viewModel.Initialize();
 					dialogWindow.ShowDialog();
 
 				}
@@ -81,6 +82,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 					dialogWindow.ViewModel.Content = this;
 					DataContext = viewModel;
 
+					viewModel.Initialize();
 					dialogWindow.ShowDialog();
 
 				}

@@ -6,6 +6,8 @@
 		<ResourceDictionary Source="Buttons/IconButton.xaml"/>
 		<ResourceDictionary Source="Buttons/SideMenuButton.xaml"/>
 		<ResourceDictionary Source="Buttons/LinkButton.xaml"/>
+		<ResourceDictionary Source="Buttons/SettingsNavigatorButton.xaml"/>
+		<ResourceDictionary Source="Buttons/SettingsSectionHeaderButton.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
