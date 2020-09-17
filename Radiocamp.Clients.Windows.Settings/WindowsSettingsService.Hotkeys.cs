@@ -1,4 +1,5 @@
 ﻿using System;
+using Dartware.Radiocamp.Clients.Shared;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -9,6 +10,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		private event Action<Boolean> hotkeysIsEnabledChanged;
 
+		[UserSetting]
+		[Default(false)]
 		public Boolean HotkeysIsEnabled
 		{
 			get => hotkeysIsEnabled;

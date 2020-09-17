@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type CheckBox}">
+        
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0 8"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Focusable" Value="False"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+
+                    <Grid x:Name="TemplateRoot"
+                          Background="Transparent"
+                          SnapsToDevicePixels="True">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="CheckBoxBorder"
+                                BorderBrush="{DynamicResource Blue}"
+                                BorderThickness="1"
+                                Background="Transparent"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="0"
+                                VerticalAlignment="Center"
+                                Width="18"
+                                Height="18"
+                                CornerRadius="0">
+                            <Border x:Name="CheckBoxInner">
+                                <TextBlock x:Name="OptionMark"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 0 1"
+                                           Visibility="Hidden"
+                                           Foreground="White"
+                                           FontFamily="{StaticResource RadiocampIcons}"
+                                           FontSize="12"
+                                           Text="{StaticResource CheckIcon}"/>
+                            </Border>
+                        </Border>
+
+                        <TextBlock x:Name="ContentPresenter"
+                                   Text="{TemplateBinding Content}"
+                                   Grid.Column="1"
+                                   Focusable="False"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   Margin="10 0 0 0"
+                                   SnapsToDevicePixels="True"
+                                   VerticalAlignment="Center"
+                                   FontSize="14"
+                                   Foreground="{DynamicResource MainFg}"/>
+
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckBoxInner" Property="Background" Value="{DynamicResource Blue}"/>
+                            <Setter TargetName="CheckBoxBorder" Property="BorderBrush" Value="{DynamicResource Blue}"/>
+                            <Setter TargetName="OptionMark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="CheckBoxBorder" Property="BorderBrush" Value="{DynamicResource Disabled}"/>
+							<Setter TargetName="ContentPresenter" Property="TextBlock.Foreground" Value="{DynamicResource Disabled}"/>
+                        </Trigger>
+
+                        <MultiTrigger>
+
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsEnabled" Value="False"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="CheckBoxInner" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="OptionMark" Property="Visibility" Value="Hidden"/>
+                            </MultiTrigger.Setters>
+
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsEnabled" Value="False"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+								<Setter TargetName="CheckBoxInner" Property="Background" Value="{DynamicResource Disabled}"/>
+                                <Setter TargetName="OptionMark" Property="Visibility" Value="Visible"/>
+                            </MultiTrigger.Setters>
+
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    
+</ResourceDictionary>

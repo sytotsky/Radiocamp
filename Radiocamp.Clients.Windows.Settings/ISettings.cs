@@ -9,12 +9,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		event Action<Boolean> HotkeysIsEnabledChanged;
 
+		String ApplicationName { get; }
+
 		Double MainWindowWidth { get; set; }
 		Double MainWindowHeight { get; set; }
 		Double MainWindowLeft { get; set; }
 		Double MainWindowTop { get; set; }
 		WindowState MainWindowState { get; set; }
 		Boolean HotkeysIsEnabled { get; set; }
+		Boolean RunAtWindowsStart { get; set; }
 
 	}
 }
