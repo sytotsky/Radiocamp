@@ -66,6 +66,27 @@
 									<views:GeneralSettings x:Name="General"
 									                       Visibility="Collapsed"/>
 
+									<views:TraySettings x:Name="Tray"
+									                    Visibility="Collapsed"/>
+
+									<views:UISettings x:Name="UI"
+									                  Visibility="Collapsed"/>
+
+									<views:PlaybackSettings x:Name="Playback"
+									                        Visibility="Collapsed"/>
+
+									<views:RecordSettings x:Name="Record"
+									                      Visibility="Collapsed"/>
+
+									<views:SoundSettings x:Name="Sound"
+									                     Visibility="Collapsed"/>
+
+									<views:HotkeysSettings x:Name="Hotkeys"
+									                       Visibility="Collapsed"/>
+
+									<views:AudioDeviceSettings x:Name="AudioDevice"
+									                           Visibility="Collapsed"/>
+
 								</Grid>
 
 							</Grid>
@@ -152,6 +173,34 @@
 
 							<Trigger Property="CurrentSection" Value="General">
 								<Setter TargetName="General" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="Tray">
+								<Setter TargetName="Tray" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="UI">
+								<Setter TargetName="UI" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="Playback">
+								<Setter TargetName="Playback" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="Record">
+								<Setter TargetName="Record" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="Sound">
+								<Setter TargetName="Sound" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="Hotkeys">
+								<Setter TargetName="Hotkeys" Property="Visibility" Value="Visible"/>
+							</Trigger>
+
+							<Trigger Property="CurrentSection" Value="AudioDevice">
+								<Setter TargetName="AudioDevice" Property="Visibility" Value="Visible"/>
 							</Trigger>
 
 						</ControlTemplate.Triggers>

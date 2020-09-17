@@ -14,6 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	public abstract class DialogViewModel : ViewModel
 	{
 
+		private Boolean isInitialized;
 		private DialogWindow dialogWindow;
 
 		protected Boolean CloseOnEscape { get; set; }
@@ -65,12 +66,19 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public virtual void Initialize()
 		{
 
+			if (isInitialized)
+			{
+				return;
+			}
+
 			CloseOnEscape = true;
 			CloseCommand = ReactiveCommand.Create(Close);
 
 			disposables.Add(CloseCommand);
 
 			Dependencies.Get<IMainWindow>().HideEvent += OnMainWindowHide;
+
+			isInitialized = true;
 
 		}
 

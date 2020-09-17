@@ -1,4 +1,5 @@
-﻿using Dartware.Radiocamp.Clients.Windows.Settings;
+﻿using System;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.Views;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -8,6 +9,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly ISettings settings;
 
+		private Boolean isInitialized;
+
 		public SettingsViewModel(ISettings settings)
 		{
 			this.settings = settings;
@@ -15,8 +18,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public override void Initialize()
 		{
+
 			base.Initialize();
+
+			if (isInitialized)
+			{
+				return;
+			}
+
 			InitializeNavigator();
+
+			isInitialized = true;
+
 		}
 
 		public override void Dispose()
