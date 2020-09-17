@@ -26,6 +26,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			base.Initialize();
 
+			Width = 360;
+			Height = 300;
+
 			IBrowser browser = Dependencies.Get<IBrowser>();
 
 			TelegramCommand = ReactiveCommand.Create(browser.Telegram);

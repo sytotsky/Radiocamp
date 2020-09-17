@@ -37,6 +37,11 @@
 				<CheckBox IsChecked="{Binding ShowOnlyCustomAtStart, Mode=TwoWay}"
 				          Content="{DynamicResource Settings_ShowOnlyCustomAtStart}"/>
 
+				<Button Style="{DynamicResource LinkButton}"
+				        HorizontalAlignment="Left"
+				        Command="{Binding ResetCommand}"
+				        Content="{DynamicResource Settings_ResetSettings}"/>
+
 			</StackPanel>
 		</ScrollViewer>
 

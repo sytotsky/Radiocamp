@@ -1,0 +1,46 @@
+﻿<dialogs:Dialog x:Class="Dartware.Radiocamp.Clients.Windows.Dialogs.ConfirmDialog"
+				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
+				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				mc:Ignorable="d"
+				d:DataContext="{d:DesignInstance vm:ConfirmDialogViewModel}">
+	
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0"
+				   FontSize="15"
+				   FontWeight="Regular"
+				   HorizontalAlignment="Left"
+				   VerticalAlignment="Top"
+				   TextWrapping="WrapWithOverflow"
+				   Text="{Binding Text, Mode=OneWay}"/>
+
+		<StackPanel Grid.Row="1"
+					Orientation="Horizontal"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Bottom">
+
+			<controls:TransparentButton Type="{Binding FirstButtonType, Mode=OneWay}"
+										IsCancel="True"
+										Command="{Binding CloseCommand}"
+										Content="{Binding FirstButtonText, Mode=OneWay}"/>
+
+			<controls:TransparentButton Type="{Binding SecondButtonType, Mode=OneWay}"
+										IsDefault="True"
+										Command="{Binding OkCommand}"
+										Content="{Binding SecondButtonText, Mode=OneWay}"/>
+
+		</StackPanel>
+
+	</Grid>
+
+</dialogs:Dialog>

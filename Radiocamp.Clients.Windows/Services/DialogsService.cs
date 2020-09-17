@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
+using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
+using Dartware.Radiocamp.Core.Extensions;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -11,14 +13,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public event Action ShowDialog;
 
-		public Task About()
+		public Task<Boolean> Confirm(ConfirmDialogArgs args)
 		{
 
 			ShowDialog?.Invoke();
 
-			AboutDialogViewModel aboutDialogViewModel = new AboutDialogViewModel();
+			ConfirmDialogViewModel confirmDialogViewModel = new ConfirmDialogViewModel()
+			{
+				Text = args.Text,
+				FirstButtonType = args.FirstButtonType,
+				SecondButtonType = args.SecondButtonType
+			};
 
-			return new AboutDialog().ShowDialog(aboutDialogViewModel);
+			if (!args.FirstButtonText.IsNullOrEmptyOrWhiteSpace())
+			{
+				confirmDialogViewModel.FirstButtonText = args.FirstButtonText;
+			}
+			else
+			{
+				confirmDialogViewModel.FirstButtonText = LocalizationResources.ConfirmDialog_FirstButton;
+			}
+
+			if (!args.SecondButtonText.IsNullOrEmptyOrWhiteSpace())
+			{
+				confirmDialogViewModel.SecondButtonText = args.SecondButtonText;
+			}
+			else
+			{
+				confirmDialogViewModel.SecondButtonText = LocalizationResources.ConfirmDialog_SecondButton;
+			}
+
+			return new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
 
 		}
 
@@ -30,6 +55,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			SettingsViewModel settingsViewModel = Dependencies.Get<SettingsViewModel>();
 
 			return new SettingsDialog().ShowDialog(settingsViewModel);
+
+		}
+
+		public Task About()
+		{
+
+			ShowDialog?.Invoke();
+
+			AboutDialogViewModel aboutDialogViewModel = new AboutDialogViewModel();
+
+			return new AboutDialog().ShowDialog(aboutDialogViewModel);
 
 		}
 

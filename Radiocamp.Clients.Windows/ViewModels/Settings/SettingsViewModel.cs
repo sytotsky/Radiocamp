@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Dartware.Radiocamp.Clients.Shared;
+using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.Views;
 
@@ -10,12 +11,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	{
 
 		private readonly ISettings settings;
+		private readonly IDialogs dialogs;
 
 		private Boolean isInitialized;
 
-		public SettingsViewModel(ISettings settings)
+		public SettingsViewModel(ISettings settings, IDialogs dialogs)
 		{
 			this.settings = settings;
+			this.dialogs = dialogs;
 		}
 
 		public override void Initialize()
@@ -27,6 +30,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			{
 				return;
 			}
+
+			Width = 360;
+			Height = 460;
 
 			Type settingsType = settings.GetType();
 			Type thisType = GetType();

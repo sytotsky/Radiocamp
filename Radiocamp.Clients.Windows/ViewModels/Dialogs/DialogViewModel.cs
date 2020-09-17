@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Windows;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -61,6 +62,27 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			}
 		}
 
+		[Reactive]
+		public Double Width { get; protected set; }
+
+		[Reactive]
+		public Double Height { get; protected set; }
+
+		[Reactive]
+		public Double MaxWidth { get; protected set; }
+
+		[Reactive]
+		public Double MaxHeight { get; protected set; }
+
+		[Reactive]
+		public Double MinWidth { get; protected set; }
+
+		[Reactive]
+		public Double MinHeight { get; protected set; }
+
+		[Reactive]
+		public Thickness Padding { get; protected set; }
+
 		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
 
 		public virtual void Initialize()
@@ -70,6 +92,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			{
 				return;
 			}
+
+			MaxWidth = Double.MaxValue;
+			MaxHeight = Double.MaxValue;
+			MinWidth = 0;
+			MinHeight = 0;
+			Padding = new Thickness(0);
 
 			CloseOnEscape = true;
 			CloseCommand = ReactiveCommand.Create(Close);

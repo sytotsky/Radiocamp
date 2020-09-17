@@ -9,8 +9,6 @@
 							xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
 							mc:Ignorable="d"
 							d:DataContext="{d:DesignInstance vm:SettingsViewModel}"
-							Width="360"
-							Height="460"
 							CurrentSection="{Binding CurrentSection, Mode=OneWay}">
 
 	<dialogs:BaseSettingsDialog.Resources>

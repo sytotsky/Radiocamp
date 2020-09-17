@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
@@ -31,7 +32,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			}
 		}
 
-		public Task ShowDialog<ViewModelTypeDefenition>(ViewModelTypeDefenition viewModel) where ViewModelTypeDefenition : DialogViewModel
+		public Task ShowDialog<ViewModelType>(ViewModelType viewModel) where ViewModelType : DialogViewModel
 		{
 
 			viewModel.DialogWindow = dialogWindow;
@@ -47,6 +48,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 					DataContext = viewModel;
 
 					viewModel.Initialize();
+					CreateBindings(viewModel);
 					dialogWindow.ShowDialog();
 
 				}
@@ -67,12 +69,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 
 		}
 
-		public Task<ResultTypeDefenition> ShowDialog<ViewModelTypeDefenition, ResultTypeDefenition>(ViewModelTypeDefenition viewModel) where ViewModelTypeDefenition : DialogViewModel<ResultTypeDefenition>
+		public Task<ResultType> ShowDialog<ViewModelType, ResultType>(ViewModelType viewModel) where ViewModelType : DialogViewModel<ResultType>
 		{
 
 			viewModel.DialogWindow = dialogWindow;
 
-			TaskCompletionSource<ResultTypeDefenition> taskCompletionSource = new TaskCompletionSource<ResultTypeDefenition>();
+			TaskCompletionSource<ResultType> taskCompletionSource = new TaskCompletionSource<ResultType>();
 
 			Application.Current.Dispatcher.Invoke(() =>
 			{
@@ -83,6 +85,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 					DataContext = viewModel;
 
 					viewModel.Initialize();
+					CreateBindings(viewModel);
 					dialogWindow.ShowDialog();
 
 				}
@@ -92,7 +95,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				}
 			});
 
-			Task<ResultTypeDefenition> task = taskCompletionSource.Task;
+			Task<ResultType> task = taskCompletionSource.Task;
 
 			task.ContinueWith(task =>
 			{
@@ -100,6 +103,89 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			});
 
 			return task;
+
+		}
+
+		private void CreateBindings(DialogViewModel viewModel)
+		{
+
+			if (viewModel == null)
+			{
+				return;
+			}
+
+			if (viewModel.Width > 0)
+			{
+
+				Binding widthBinding = new Binding()
+				{
+					Source = viewModel,
+					Path = new PropertyPath(nameof(viewModel.Width)),
+					Mode = BindingMode.OneWay
+				};
+
+				BindingOperations.SetBinding(this, WidthProperty, widthBinding);
+
+			}
+
+			if (viewModel.Height > 0)
+			{
+
+				Binding heightBinding = new Binding()
+				{
+					Source = viewModel,
+					Path = new PropertyPath(nameof(viewModel.Height)),
+					Mode = BindingMode.OneWay
+				};
+
+				BindingOperations.SetBinding(this, HeightProperty, heightBinding);
+
+			}
+
+			Binding minWidthBinding = new Binding()
+			{
+				Source = viewModel,
+				Path = new PropertyPath(nameof(viewModel.MinWidth)),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(this, MinWidthProperty, minWidthBinding);
+
+			Binding minHeightBinding = new Binding()
+			{
+				Source = viewModel,
+				Path = new PropertyPath(nameof(viewModel.MinHeight)),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(this, MinHeightProperty, minHeightBinding);
+
+			Binding maxWidthBinding = new Binding()
+			{
+				Source = viewModel,
+				Path = new PropertyPath(nameof(viewModel.MaxWidth)),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(this, MaxWidthProperty, maxWidthBinding);
+
+			Binding maxHeightBinding = new Binding()
+			{
+				Source = viewModel,
+				Path = new PropertyPath(nameof(viewModel.MaxHeight)),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(this, MaxHeightProperty, maxHeightBinding);
+
+			Binding paddingBinding = new Binding()
+			{
+				Source = viewModel,
+				Path = new PropertyPath(nameof(viewModel.Padding)),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(this, PaddingProperty, paddingBinding);
 
 		}
 
