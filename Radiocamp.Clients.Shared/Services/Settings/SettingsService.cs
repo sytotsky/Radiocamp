@@ -20,54 +20,65 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			this.databaseContext = databaseContext;
 		}
 
-		public virtual void Initialize()
+		public void Initialize()
 		{
-
-			SettingsType settings = databaseContext.Set<SettingsType>().AsNoTracking().FirstOrDefault();
-
-			if (settings == null)
-			{
-				return;
-			}
-
-			Type thisType = GetType();
-			IEnumerable<FieldInfo> thisFields = thisType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetField);
-			IEnumerable<String> thisFieldsNames = thisFields.Select(field => field.Name);
-			Type settingsType = settings.GetType();
-			IEnumerable<PropertyInfo> settingsProperties = settingsType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-			foreach (PropertyInfo settingsProperty in settingsProperties)
-			{
-
-				if (Attribute.IsDefined(settingsProperty, typeof(IgnoreAttribute)))
-				{
-					continue;
-				}
-
-				String serviceFieldName = settingsProperty.Name.ToLowerCaseFirstChar();
-
-				if (!thisFieldsNames.Contains(serviceFieldName))
-				{
-					continue;
-				}
-
-				Object value = settingsProperty.GetValue(settings);
-				FieldInfo field = thisFields.Where(fieldInfo => fieldInfo.Name.Equals(serviceFieldName)).FirstOrDefault();
-
-				if (field == null)
-				{
-					continue;
-				}
-
-				field.SetValue(this, value);
-
-			}
-
+			Initialize(true);
 		}
 
-		public virtual void Reset()
+		public async Task ResetAsync()
 		{
-			throw new NotImplementedException();
+			await Task.Run(() =>
+			{
+				lock (databaseContext)
+				{
+
+					SettingsType settings = databaseContext.Set<SettingsType>().AsTracking().FirstOrDefault();
+
+					if (settings == null)
+					{
+						return;
+					}
+
+					Type thisType = GetType();
+					Type settingsType = settings.GetType();
+					PropertyInfo[] thisProperties = thisType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+					foreach (PropertyInfo thisProperty in thisProperties)
+					{
+						if (Attribute.IsDefined(thisProperty, typeof(DefaultAttribute)))
+						{
+							if (Attribute.GetCustomAttribute(thisProperty, typeof(DefaultAttribute)) is DefaultAttribute defaultAttribute)
+							{
+
+								Object value = defaultAttribute.Value;
+
+								if (Attribute.IsDefined(thisProperty, typeof(NoStorageAttribute)))
+								{
+									thisProperty.SetValue(this, value);
+								}
+								else
+								{
+									
+									PropertyInfo property = settingsType.GetProperty(thisProperty.Name);
+
+									if (property != null)
+									{
+										property.SetValue(settings, value);
+									}
+
+								}
+
+							}
+						}
+					}
+
+					databaseContext.SaveChanges();
+
+				}
+			}).ContinueWith(task =>
+			{
+				Initialize(false);
+			}, TaskContinuationOptions.ExecuteSynchronously);
 		}
 
 		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)
@@ -131,6 +142,8 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 					lock (databaseContext)
 					{
 
+						databaseContext.Set<SettingsType>().Load();
+
 						SettingsType settings = databaseContext.Set<SettingsType>().AsTracking().FirstOrDefault();
 
 						if (settings == null)
@@ -161,6 +174,79 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 				});
 
 			}
+		}
+
+		private void Initialize(Boolean isFields)
+		{
+
+			SettingsType settings = databaseContext.Set<SettingsType>().AsNoTracking().FirstOrDefault();
+
+			if (settings == null)
+			{
+				return;
+			}
+
+			Type thisType = GetType();
+			Type settingsType = settings.GetType();
+			IEnumerable<PropertyInfo> settingsProperties = settingsType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+			if (isFields)
+			{
+
+				IEnumerable<FieldInfo> thisFields = thisType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.SetField);
+				IEnumerable<String> thisFieldsNames = thisFields.Select(field => field.Name);
+
+				foreach (PropertyInfo settingsProperty in settingsProperties)
+				{
+
+					if (Attribute.IsDefined(settingsProperty, typeof(IgnoreAttribute)))
+					{
+						continue;
+					}
+
+					String serviceFieldName = settingsProperty.Name.ToLowerCaseFirstChar();
+
+					if (!thisFieldsNames.Contains(serviceFieldName))
+					{
+						continue;
+					}
+
+					Object value = settingsProperty.GetValue(settings);
+					FieldInfo field = thisFields.Where(fieldInfo => fieldInfo.Name.Equals(serviceFieldName)).FirstOrDefault();
+
+					if (field == null)
+					{
+						continue;
+					}
+
+					field.SetValue(this, value);
+
+				}
+
+			}
+			else
+			{
+				foreach (PropertyInfo settingsProperty in settingsProperties)
+				{
+
+					if (Attribute.IsDefined(settingsProperty, typeof(IgnoreAttribute)))
+					{
+						continue;
+					}
+
+					Object value = settingsProperty.GetValue(settings);
+					PropertyInfo property = thisType.GetProperty(settingsProperty.Name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty);
+
+					if (property == null)
+					{
+						continue;
+					}
+
+					property.SetValue(this, value);
+
+				}
+			}
+
 		}
 
 	}

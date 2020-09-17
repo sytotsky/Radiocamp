@@ -12,8 +12,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		public String ApplicationName => "Radiocamp";
 
-		[Default(false)]
+		[NoStorage]
 		[UserSetting]
+		[Default(false)]
 		public Boolean RunAtWindowsStart
 		{
 			get => GetAutostart();
@@ -50,6 +51,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		private void SetAutostart(Boolean launchOnWindowsStart)
 		{
+
+			if (launchOnWindowsStart == GetAutostart())
+			{
+				return;
+			}
 
 			RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 

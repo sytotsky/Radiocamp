@@ -34,6 +34,31 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Width = 360;
 			Height = 460;
 
+			InitializeProperties();
+			InitializeNavigator();
+			InitializeGeneral();
+
+			isInitialized = true;
+
+		}
+
+		public override void Dispose()
+		{
+			CurrentSection = SettingsSection.Navigator;
+		}
+
+		protected override void OnEscape()
+		{
+			
+			base.OnEscape();
+			
+			CurrentSection = SettingsSection.Navigator;
+
+		}
+
+		private void InitializeProperties()
+		{
+
 			Type settingsType = settings.GetType();
 			Type thisType = GetType();
 			PropertyInfo[] settingsProperties = settingsType.GetProperties();
@@ -56,25 +81,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 				}
 			}
-
-			InitializeNavigator();
-			InitializeGeneral();
-
-			isInitialized = true;
-
-		}
-
-		public override void Dispose()
-		{
-			CurrentSection = SettingsSection.Navigator;
-		}
-
-		protected override void OnEscape()
-		{
-			
-			base.OnEscape();
-			
-			CurrentSection = SettingsSection.Navigator;
 
 		}
 

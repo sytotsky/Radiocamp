@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Shared.Services
@@ -10,7 +11,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 		Boolean ShowOnlyCustomAtStart { get; set; }
 
 		void Initialize();
-		void Reset();
+		Task ResetAsync();
 
 	}
 }

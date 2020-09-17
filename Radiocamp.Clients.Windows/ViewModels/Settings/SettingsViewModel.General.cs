@@ -57,7 +57,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (confirmResult)
 			{
-				settings.Reset();
+				await settings.ResetAsync();
+				InitializeProperties();
 			}
 
 		}
