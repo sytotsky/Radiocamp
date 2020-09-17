@@ -28,6 +28,15 @@
 				<CheckBox IsChecked="{Binding RunAtWindowsStart, Mode=TwoWay}"
 				          Content="{DynamicResource Settings_StartWhenOSStarts}"/>
 
+				<CheckBox IsChecked="{Binding StartMinimized, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_StartMinimized}"/>
+
+				<CheckBox IsChecked="{Binding ShowFavoritesAtStart, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_OpenFavoritesAtStart}"/>
+
+				<CheckBox IsChecked="{Binding ShowOnlyCustomAtStart, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_ShowOnlyCustomAtStart}"/>
+
 			</StackPanel>
 		</ScrollViewer>
 

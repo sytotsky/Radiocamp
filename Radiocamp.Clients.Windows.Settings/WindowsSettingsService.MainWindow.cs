@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -64,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			Task.Run(() =>
 			{
 
-				WindowsSettings settings = databaseContext.Settings.FirstOrDefault();
+				WindowsSettings settings = databaseContext.Settings.AsTracking().FirstOrDefault();
 
 				if (settings == null)
 				{

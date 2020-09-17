@@ -18,6 +18,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		WindowState MainWindowState { get; set; }
 		Boolean HotkeysIsEnabled { get; set; }
 		Boolean RunAtWindowsStart { get; set; }
+		Boolean StartMinimized { get; set; }
 
 	}
 }

@@ -8,6 +8,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	public sealed partial class WindowsSettingsService
 	{
 
+		private Boolean startMinimized;
+
 		public String ApplicationName => "Radiocamp";
 
 		[Default(false)]
@@ -16,6 +18,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		{
 			get => GetAutostart();
 			set => SetAutostart(value);
+		}
+
+		[UserSetting]
+		[Default(false)]
+		public Boolean StartMinimized
+		{
+			get => startMinimized;
+			set => SetValue(value);
 		}
 
 		private Boolean GetAutostart()

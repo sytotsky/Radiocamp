@@ -4,7 +4,7 @@
     <Style TargetType="{x:Type CheckBox}">
         
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Margin" Value="0 8"/>
+        <Setter Property="Margin" Value="8"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Focusable" Value="False"/>
 

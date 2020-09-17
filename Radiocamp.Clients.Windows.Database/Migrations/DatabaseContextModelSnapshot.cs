@@ -43,7 +43,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3f554723-f57a-4ab4-9b5c-df9a8aeb7e47"),
+                            Id = new Guid("19aecc23-3a83-4b0e-bf21-4a4b6c8e314d"),
                             Command = 1,
                             IsEnabled = true,
                             Key = 62,
@@ -51,7 +51,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("df7491c5-cd12-44cb-ab74-689d7b641a09"),
+                            Id = new Guid("f3f3d001-3897-40e2-a4c5-fff8cc9506f0"),
                             Command = 2,
                             IsEnabled = true,
                             Key = 44,
@@ -59,7 +59,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("683ce175-86d9-4d46-9f73-1398cfc72374"),
+                            Id = new Guid("8ddf96c5-4991-439b-af9b-2c69e51736da"),
                             Command = 3,
                             IsEnabled = true,
                             Key = 47,
@@ -67,7 +67,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5a1a8148-5ca6-4643-9524-fa531119387c"),
+                            Id = new Guid("05962220-c9d2-4a11-b671-0b2f584a0cbf"),
                             Command = 4,
                             IsEnabled = true,
                             Key = 24,
@@ -75,7 +75,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("88432ee0-4232-4f70-869f-fda1b94479e8"),
+                            Id = new Guid("49c90cf5-aac9-44c3-96ec-ed2ef276b4d8"),
                             Command = 5,
                             IsEnabled = true,
                             Key = 26,
@@ -83,7 +83,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ef9d8acd-cead-4d07-9107-39e9a9aac2e6"),
+                            Id = new Guid("35e1d74f-1844-4b6a-9f1b-3af64502d0c3"),
                             Command = 6,
                             IsEnabled = true,
                             Key = 67,
@@ -112,6 +112,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<double>("MainWindowWidth")
                         .HasColumnType("REAL");
 
+                    b.Property<bool>("ShowFavoritesAtStart")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("ShowOnlyCustomAtStart")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("StartMinimized")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
@@ -119,12 +128,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("4802fbc1-1e06-4ef4-afd4-dc82fb22fce6"),
+                            Id = new Guid("bf4e6232-6000-4781-9978-3fd9cf1344b9"),
                             HotkeysIsEnabled = false,
                             MainWindowHeight = 0.0,
                             MainWindowLeft = 0.0,
                             MainWindowTop = 0.0,
-                            MainWindowWidth = 0.0
+                            MainWindowWidth = 0.0,
+                            ShowFavoritesAtStart = false,
+                            ShowOnlyCustomAtStart = false,
+                            StartMinimized = false
                         });
                 });
 #pragma warning restore 612, 618

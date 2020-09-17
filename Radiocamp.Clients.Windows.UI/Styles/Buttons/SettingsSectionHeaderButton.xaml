@@ -27,7 +27,7 @@
 
 							<Label Style="{DynamicResource SettingsSectionLabel}"
 							       HorizontalAlignment="Center"
-							       Margin="-15 0 0 0"
+							       Margin="-20 0 0 0"
 							       Content="{TemplateBinding Content}"/>
 
 						</Grid>
