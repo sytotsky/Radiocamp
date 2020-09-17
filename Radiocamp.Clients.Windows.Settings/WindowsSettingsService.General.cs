@@ -10,6 +10,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		public String ApplicationName => "Radiocamp";
 
+		[Default(false)]
 		[UserSetting]
 		public Boolean RunAtWindowsStart
 		{
