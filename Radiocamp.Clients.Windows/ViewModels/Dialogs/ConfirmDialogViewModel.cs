@@ -41,6 +41,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		protected override void OnEnter()
+		{
+			base.OnEnter();
+			Ok();
+		}
+
 		private void Ok()
 		{
 			

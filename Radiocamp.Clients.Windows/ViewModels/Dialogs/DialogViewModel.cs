@@ -137,6 +137,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			}
 		}
 
+		protected virtual void OnEnter()
+		{
+		}
+
 		private void OnMainWindowHide()
 		{
 			Close();
@@ -148,6 +152,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			if (args.Key == Key.Escape)
 			{
 				OnEscape();
+			}
+
+			if (args.Key == Key.Enter)
+			{
+				OnEnter();
 			}
 
 			OnDialogWindowKeyDown(args);
