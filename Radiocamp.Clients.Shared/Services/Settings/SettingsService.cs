@@ -81,13 +81,20 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			}, TaskContinuationOptions.ExecuteSynchronously);
 		}
 
-		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, String eventName = null, [CallerMemberName] String propertyName = null)
+		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, [CallerMemberName] String propertyName = null)
 		{
 			if (!propertyName.IsNullOrEmpty())
 			{
 
 				String lowerCasePropertyName = propertyName.ToLowerCaseFirstChar();
 				Type thisType = GetType();
+				PropertyInfo property = thisType.GetProperty(propertyName);
+
+				if (property == null)
+				{
+					return;
+				}
+
 				FieldInfo field = thisType.GetField(lowerCasePropertyName, BindingFlags.NonPublic | BindingFlags.Instance);
 
 				if (field == null)
@@ -104,30 +111,38 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 				field.SetValue(this, value);
 
-				if (!eventName.IsNullOrEmpty())
+				if (Attribute.IsDefined(property, typeof(EventAttribute)))
 				{
 
-					FieldInfo eventField = thisType.GetField(eventName, BindingFlags.Instance | BindingFlags.NonPublic);
+					EventAttribute eventAttribute = Attribute.GetCustomAttribute(property, typeof(EventAttribute)) as EventAttribute;
+					String eventName = eventAttribute.Name;
 
-					if (eventField != null)
+					if (!eventName.IsNullOrEmpty())
 					{
 
-						MulticastDelegate multicastDelegate = (MulticastDelegate)eventField.GetValue(this);
+						FieldInfo eventField = thisType.GetField(eventName, BindingFlags.Instance | BindingFlags.NonPublic);
 
-						if (multicastDelegate != null)
+						if (eventField != null)
 						{
 
-							Delegate[] delegates = multicastDelegate.GetInvocationList();
+							MulticastDelegate multicastDelegate = (MulticastDelegate)eventField.GetValue(this);
 
-							foreach (Delegate @delegate in delegates)
+							if (multicastDelegate != null)
 							{
 
-								Object[] parameters = new Object[]
-								{
-									value
-								};
+								Delegate[] delegates = multicastDelegate.GetInvocationList();
 
-								@delegate.Method.Invoke(@delegate.Target, parameters);
+								foreach (Delegate @delegate in delegates)
+								{
+
+									Object[] parameters = new Object[]
+									{
+										value
+									};
+
+									@delegate.Method.Invoke(@delegate.Target, parameters);
+
+								}
 
 							}
 
@@ -152,21 +167,21 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 						}
 
 						Type settingsType = settings.GetType();
-						PropertyInfo property = settingsType.GetProperty(propertyName);
+						PropertyInfo settingsProperty = settingsType.GetProperty(propertyName);
 
-						if (property == null)
+						if (settingsProperty == null)
 						{
 							return;
 						}
 
-						TypeDefinition valueFromStorage = (TypeDefinition) property.GetValue(settings, null);
+						TypeDefinition valueFromStorage = (TypeDefinition) settingsProperty.GetValue(settings, null);
 
 						if (valueFromStorage.Equals(value))
 						{
 							return;
 						}
 
-						property.SetValue(settings, value);
+						settingsProperty.SetValue(settings, value);
 						databaseContext.Set<SettingsType>().Update(settings);
 						databaseContext.SaveChanges();
 
