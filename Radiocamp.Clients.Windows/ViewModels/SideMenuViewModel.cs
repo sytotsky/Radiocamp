@@ -4,6 +4,7 @@ using Dartware.Radiocamp.Clients.Windows.Core;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -64,12 +65,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async void Settings()
 		{
-			await dialogs.Settings();
+			await dialogs.Show<SettingsDialog, SettingsViewModel>();
 		}
 
 		private async void About()
 		{
-			await dialogs.About();
+			await dialogs.Show<AboutDialog, AboutDialogViewModel>();
 		}
 
 		private void Exit()

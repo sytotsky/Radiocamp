@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Reflection;
 using Dartware.Radiocamp.Clients.Shared;
+using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.Views;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
+	[Dependency]
 	public sealed partial class SettingsViewModel : DialogViewModel
 	{
 
@@ -15,10 +17,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private Boolean isInitialized;
 
-		public SettingsViewModel(ISettings settings, IDialogs dialogs)
+		public SettingsViewModel()
 		{
-			this.settings = settings;
-			this.dialogs = dialogs;
+			settings = Dependencies.Get<ISettings>();
+			dialogs = Dependencies.Get<IDialogs>();
 		}
 
 		public override void Initialize()
