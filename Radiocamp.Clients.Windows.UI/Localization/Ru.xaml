@@ -273,7 +273,7 @@
 	<system:String x:Key="Religious">Религиозная</system:String>
 	<system:String x:Key="Retro">Ретро</system:String>
 	<system:String x:Key="Rock">Рок</system:String>
-	<system:String x:Key="Talk">Talk</system:String>
+	<system:String x:Key="Talk">Разговорное</system:String>
 	<system:String x:Key="Adult">Для взрослых</system:String>
 	<system:String x:Key="Americana">Американа</system:String>
 	<system:String x:Key="Community">Сообщества</system:String>

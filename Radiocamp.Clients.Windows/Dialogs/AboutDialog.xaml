@@ -67,17 +67,15 @@
 
 					<StackPanel Orientation="Horizontal">
 
-						<Button Style="{DynamicResource LinkButton}"
-						        Margin="0"
-						        FontSize="12"
-						        Command="{Binding TelegramCommand}"
-						        Content="Telegram"/>
+						<controls:LinkButton Margin="0"
+						                     FontSize="12"
+						                     Command="{Binding TelegramCommand}"
+						                     Content="Telegram"/>
 
-						<Button Style="{DynamicResource LinkButton}"
-						        Margin="5 0 0 0"
-						        FontSize="12"
-						        Command="{Binding YouTubeCommand}"
-						        Content="YouTube"/>
+						<controls:LinkButton Margin="5 0 0 0"
+						                     FontSize="12"
+						                     Command="{Binding YouTubeCommand}"
+						                     Content="YouTube"/>
 
 					</StackPanel>
 

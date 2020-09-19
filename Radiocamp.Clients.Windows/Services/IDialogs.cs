@@ -12,7 +12,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		Task Show<DialogType, ViewModelType>() where DialogType : Dialog, new() where ViewModelType : DialogViewModel, new();
 		Task<Boolean> Confirm(ConfirmDialogArgs args);
-		Task Selector<SelectorType>(SelectorType current) where SelectorType : struct, IConvertible;
+		Task Selector<SelectorType>(SelectorType current, Action<SelectorType> changeCallback = null) where SelectorType : struct, IConvertible;
 
 	}
 }

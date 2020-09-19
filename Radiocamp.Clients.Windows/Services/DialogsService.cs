@@ -69,7 +69,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
-		public Task Selector<SelectorType>(SelectorType current) where SelectorType : struct, IConvertible
+		public Task Selector<SelectorType>(SelectorType current, Action<SelectorType> changeCallback = null) where SelectorType : struct, IConvertible
 		{
 
 			ShowDialog?.Invoke();
@@ -86,7 +86,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				throw new ArgumentException($"{nameof(SelectorType)} should be marked as Selector.");
 			}
 
-			SelectorViewModel<SelectorType> selectorViewModel = new SelectorViewModel<SelectorType>(current);
+			SelectorViewModel<SelectorType> selectorViewModel = new SelectorViewModel<SelectorType>(current, changeCallback);
 
 			return new Selector().ShowDialog(selectorViewModel);
 

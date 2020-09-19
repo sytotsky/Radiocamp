@@ -5,6 +5,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
                     xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+					xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance vm:SettingsViewModel}">
 
@@ -37,10 +38,11 @@
 				<CheckBox IsChecked="{Binding ShowOnlyCustomAtStart, Mode=TwoWay}"
 				          Content="{DynamicResource Settings_ShowOnlyCustomAtStart}"/>
 
-				<Button Style="{DynamicResource LinkButton}"
-				        HorizontalAlignment="Left"
-				        Command="{Binding ResetCommand}"
-				        Content="{DynamicResource Settings_ResetSettings}"/>
+				<controls:LinkButton Command="{Binding ChangeSearchEngineCommand}"
+				                     LocalizedContent="{Binding SearchEngine, Mode=OneWay}"/>
+
+				<controls:LinkButton Command="{Binding ResetCommand}"
+				                     Content="{DynamicResource Settings_ResetSettings}"/>
 
 			</StackPanel>
 		</ScrollViewer>
