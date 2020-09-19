@@ -5,9 +5,104 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
                 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+                xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
                 mc:Ignorable="d"
                 d:DataContext="{d:DesignInstance vm:SelectorViewModel}">
-    
-	<Grid></Grid>
+
+	<dialogs:Dialog.Resources>
+		<Style TargetType="{x:Type dialogs:Selector}">
+
+			<Setter Property="TitleLocalizationResourceKey" Value="{Binding TitleLocalizationResourceKey, Mode=OneWay}"/>
+
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type dialogs:Selector}">
+
+						<Grid>
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<Grid Grid.Row="0">
+
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="0"
+								           Style="{DynamicResource DialogTitleTextBlock}"
+								           Text="{TemplateBinding Title}"/>
+
+								<controls:IconButton Grid.Column="1"
+								                     Command="{Binding CloseCommand}"
+								                     Style="{DynamicResource CloseDialogButtonStyle}"/>
+
+							</Grid>
+
+							<ListBox Grid.Row="1"
+							         HorizontalContentAlignment="Stretch"
+							         ScrollViewer.VerticalScrollBarVisibility="Visible"
+							         ScrollViewer.IsDeferredScrollingEnabled="False"
+							         ScrollViewer.CanContentScroll="True"
+							         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+							         VirtualizingStackPanel.IsVirtualizing="True"
+							         VirtualizingStackPanel.VirtualizationMode="Recycling"
+							         VirtualizingStackPanel.ScrollUnit="Pixel"
+							         Background="Transparent"
+							         BorderBrush="Transparent"
+							         BorderThickness="0"
+							         Padding="0"
+							         SelectionMode="Single"
+							         ItemsSource="{Binding Values, Mode=OneWay, IsAsync=True}"
+							         SelectedItem="{Binding Selected, Mode=TwoWay}">
+
+								<ListBox.Resources>
+									<Style TargetType="{x:Type ListBoxItem}">
+
+										<Setter Property="Focusable" Value="True"/>
+										<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="{x:Type ListBoxItem}">
+													<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+													                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+													                  Focusable="True"/>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+
+									</Style>
+								</ListBox.Resources>
+
+								<ListBox.ItemsPanel>
+									<ItemsPanelTemplate>
+										<VirtualizingStackPanel IsVirtualizing="True"
+										                        VirtualizationMode="Recycling"
+										                        ScrollUnit="Pixel"
+										                        Focusable="False"/>
+									</ItemsPanelTemplate>
+								</ListBox.ItemsPanel>
+
+								<ListBox.ItemTemplate>
+									<DataTemplate>
+										<views:SelectorItem/>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+
+							</ListBox>
+
+						</Grid>
+
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+
+		</Style>
+	</dialogs:Dialog.Resources>
 
 </dialogs:Dialog>

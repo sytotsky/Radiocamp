@@ -1,22 +1,31 @@
 ﻿using System;
-using System.Reactive;
+using System.Reactive.Disposables;
 using System.Windows;
 using System.Windows.Input;
-using ReactiveUI;
-using ReactiveUI.Fody.Helpers;
+using DynamicData.Binding;
+using Dartware.Radiocamp.Clients.Windows.Windows;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
-using Dartware.Radiocamp.Clients.Windows.Windows;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 
-	public abstract class DialogViewModel : ViewModel, IDialogViewModel
+	public abstract class DynamicDialogViewModel : AbstractNotifyPropertyChanged, IDialogViewModel
 	{
 
 		private Boolean isInitialized;
 		private DialogWindow dialogWindow;
+
+		private Double width;
+		private Double height;
+		private Double maxWidth;
+		private Double maxHeight;
+		private Double minWidth;
+		private Double minHeight;
+		private Thickness padding;
+
+		protected readonly CompositeDisposable disposables;
 
 		protected Boolean CloseOnEscape { get; set; }
 		protected Boolean AutoCenter { get; set; }
@@ -63,28 +72,54 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			}
 		}
 
-		[Reactive]
-		public Double Width { get; protected set; }
+		public Double Width
+		{
+			get => width;
+			protected set => SetAndRaise(ref width, value);
+		}
 
-		[Reactive]
-		public Double Height { get; protected set; }
+		public Double Height
+		{
+			get => height;
+			protected set => SetAndRaise(ref height, value);
+		}
 
-		[Reactive]
-		public Double MaxWidth { get; protected set; }
+		public Double MaxWidth
+		{
+			get => maxWidth;
+			protected set => SetAndRaise(ref maxWidth, value);
+		}
 
-		[Reactive]
-		public Double MaxHeight { get; protected set; }
+		public Double MaxHeight
+		{
+			get => maxHeight;
+			protected set => SetAndRaise(ref maxHeight, value);
+		}
 
-		[Reactive]
-		public Double MinWidth { get; protected set; }
+		public Double MinWidth
+		{
+			get => minWidth;
+			protected set => SetAndRaise(ref minWidth, value);
+		}
 
-		[Reactive]
-		public Double MinHeight { get; protected set; }
+		public Double MinHeight
+		{
+			get => minHeight;
+			protected set => SetAndRaise(ref minHeight, value);
+		}
 
-		[Reactive]
-		public Thickness Padding { get; protected set; }
+		public Thickness Padding
+		{
+			get => padding;
+			protected set => SetAndRaise(ref padding, value);
+		}
 
-		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
+		public ICommand CloseCommand { get; private set; }
+
+		public DynamicDialogViewModel()
+		{
+			disposables = new CompositeDisposable();
+		}
 
 		public virtual void Initialize()
 		{
@@ -102,9 +137,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Padding = new Thickness(0);
 
 			CloseOnEscape = true;
-			CloseCommand = ReactiveCommand.Create(Close);
-
-			disposables.Add(CloseCommand);
+			CloseCommand = new RelayCommand(Close);
 
 			Dependencies.Get<IMainWindow>().HideEvent += OnMainWindowHide;
 
@@ -114,15 +147,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		public override void Dispose()
+		public virtual void Dispose()
 		{
-
-			base.Dispose();
-
 			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
 			dialogWindow.KeyDown -= OnDialogWindowKeyDown;
 			dialogWindow.SizeChanged -= OnDialogWindowSizeChanged;
-
 		}
 
 		protected virtual void Close()
@@ -156,7 +185,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (args.Key == Key.Escape)
 			{
-				
+
 				OnEscape();
 
 				args.Handled = true;
@@ -187,10 +216,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 	}
 
-	public abstract class DialogViewModel<ResultType> : DialogViewModel, IDialogViewModel<ResultType>
+	public abstract class DynamicDialogViewModel<ResultType> : DynamicDialogViewModel, IDialogViewModel<ResultType>
 	{
-		[Reactive]
-		public ResultType Result { get; set; }
+
+		private ResultType result;
+
+		public ResultType Result
+		{
+			get => result;
+			set => SetAndRaise(ref result, value);
+		}
+
 	}
 
 }

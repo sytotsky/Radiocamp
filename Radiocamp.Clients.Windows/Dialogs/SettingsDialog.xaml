@@ -27,8 +27,7 @@
 								<RowDefinition Height="*"/>
 							</Grid.RowDefinitions>
 
-							<Grid Grid.Row="0"
-								  Margin="10">
+							<Grid Grid.Row="0">
 
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="*"/>
@@ -36,12 +35,11 @@
 								</Grid.ColumnDefinitions>
 
 								<TextBlock Grid.Row="0"
-										   Style="{StaticResource DialogTitleTextBlock}"
+										   Style="{DynamicResource DialogTitleTextBlock}"
 										   Text="{DynamicResource Settings}"/>
 
 								<controls:IconButton Grid.Column="1"
 													 Style="{DynamicResource CloseDialogButtonStyle}"
-													 Margin="0"
 													 Command="{Binding CloseCommand}"/>
 
 							</Grid>

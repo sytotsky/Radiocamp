@@ -64,21 +64,24 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 			Task.Run(() =>
 			{
-
-				WindowsSettings settings = databaseContext.Settings.AsTracking().FirstOrDefault();
-
-				if (settings == null)
+				lock (databaseContext)
 				{
-					return;
+
+					WindowsSettings settings = databaseContext.Settings.AsTracking().FirstOrDefault();
+
+					if (settings == null)
+					{
+						return;
+					}
+
+					settings.MainWindowWidth = windowState.Width;
+					settings.MainWindowHeight = windowState.Height;
+					settings.MainWindowLeft = windowState.Left;
+					settings.MainWindowTop = windowState.Top;
+
+					databaseContext.SaveChanges();
+
 				}
-
-				settings.MainWindowWidth = windowState.Width;
-				settings.MainWindowHeight = windowState.Height;
-				settings.MainWindowLeft = windowState.Left;
-				settings.MainWindowTop = windowState.Top;
-
-				databaseContext.SaveChanges();
-
 			});
 
 		}

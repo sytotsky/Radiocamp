@@ -32,7 +32,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			}
 		}
 
-		public Task ShowDialog<ViewModelType>(ViewModelType viewModel) where ViewModelType : DialogViewModel
+		public Task ShowDialog<ViewModelType>(ViewModelType viewModel) where ViewModelType : IDialogViewModel
 		{
 
 			viewModel.DialogWindow = dialogWindow;
@@ -69,7 +69,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 
 		}
 
-		public Task<ResultType> ShowDialog<ViewModelType, ResultType>(ViewModelType viewModel) where ViewModelType : DialogViewModel<ResultType>
+		public Task<ResultType> ShowDialog<ViewModelType, ResultType>(ViewModelType viewModel) where ViewModelType : IDialogViewModel<ResultType>
 		{
 
 			viewModel.DialogWindow = dialogWindow;
@@ -106,7 +106,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 
 		}
 
-		private void CreateBindings(DialogViewModel viewModel)
+		private void CreateBindings(IDialogViewModel viewModel)
 		{
 
 			if (viewModel == null)
