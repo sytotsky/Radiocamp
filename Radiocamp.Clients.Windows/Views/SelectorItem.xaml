@@ -7,7 +7,7 @@
 			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:SelectorItemViewModel}"
-			 Focusable="True">
+			 Focusable="False">
 	
 	<UserControl.Resources>
 		<Style TargetType="{x:Type views:SelectorItem}">
@@ -15,6 +15,7 @@
 			<Setter Property="IsCurrent" Value="{Binding IsCurrent, Mode=OneWay}"/>
 			<Setter Property="LocalizationResourceKey" Value="{Binding LocalizationResourceKey, Mode=OneWay}"/>
 			<Setter Property="HintLocalizationResourceKey" Value="{Binding HintLocalizationResourceKey, Mode=OneWay}"/>
+			<Setter Property="Focusable" Value="False"/>
 
 			<Setter Property="Template">
 				<Setter.Value>
@@ -22,7 +23,8 @@
 						
 						<Border x:Name="Border"
 						        Padding="16 10 20 10"
-								Background="Transparent">
+								Background="Transparent"
+						        Focusable="False">
 							<Grid>
 
 								<Grid.ColumnDefinitions>

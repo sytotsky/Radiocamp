@@ -16,13 +16,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	public sealed class SelectorViewModel<SelectorType> : DynamicDialogViewModel where SelectorType : struct, IConvertible
 	{
 
-		private readonly Action<SelectorType> changeCallback;
-		private readonly ISourceCache<SelectorValue<SelectorType>, SelectorType> list;
+		private readonly SelectorArgs<SelectorType> args;
 
+		private Action<SelectorType> changeCallback;
+		private ISourceCache<SelectorValue<SelectorType>, SelectorType> list;
 		private SelectorType current;
 		private SelectorItemViewModel<SelectorType> selected;
 		private String titleLocalizationResourceKey;
 		private String searchQuery;
+		private Boolean search;
 		private ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> values;
 
 		public ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> Values => values;
@@ -45,11 +47,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			set => SetAndRaise(ref searchQuery, value);
 		}
 
-		public SelectorViewModel(SelectorType current, Action<SelectorType> changeCallback)
+		public Boolean Search
 		{
-			this.current = current;
-			this.changeCallback = changeCallback;
-			list = new SourceCache<SelectorValue<SelectorType>, SelectorType>(value => value.Value);
+			get => search;
+			set => SetAndRaise(ref search, value);
+		}
+
+		public SelectorViewModel(SelectorArgs<SelectorType> args)
+		{
+			this.args = args;
 		}
 
 		public override void Initialize()
@@ -57,8 +63,37 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			
 			base.Initialize();
 
+			list = new SourceCache<SelectorValue<SelectorType>, SelectorType>(value => value.Value);
+
 			Width = 300;
 			MaxHeight = 420;
+			Search = true;
+
+			if (args != null)
+			{
+				
+				current = args.Current;
+				changeCallback = args.Callback;
+				Search = args.Search;
+
+				if (args.Width > 0)
+				{
+					Width = args.Width;
+				}
+
+				if (args.Height > 0)
+				{
+
+					if (args.Height > MaxHeight)
+					{
+						args.Height = MaxHeight;
+					}
+
+					Height = args.Height;
+
+				}
+
+			}
 
 			Type type = typeof(SelectorType);
 
@@ -96,7 +131,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 											   {
 												   return new SelectorItemViewModel<SelectorType>(value.Value, value.IsCurrent, value.LocalizationResourceKey)
 												   {
-													   HintLocalizationResourceKey = value.HintLocalizationResourceKey
+													   HintLocalizationResourceKey = value.HintLocalizationResourceKey,
+													   SearchText = value.SearchText
 												   };
 											   })
 											   .ObserveOnDispatcher(DispatcherPriority.Background)
@@ -132,7 +168,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			
 			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true, current.ToLocalizationResourceKey())
 			{
-				HintLocalizationResourceKey = current.ToHintLocalizationResourceKey()
+				HintLocalizationResourceKey = current.ToHintLocalizationResourceKey(),
+				SearchText = newSelected.SearchText
 			});
 
 			changeCallback?.Invoke(current);

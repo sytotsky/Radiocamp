@@ -6,6 +6,7 @@
 				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
 				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 				xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
 				mc:Ignorable="d"
 				d:DataContext="{d:DesignInstance vm:SelectorViewModel}">
@@ -18,10 +19,10 @@
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type dialogs:Selector}">
-
 						<Grid>
 
 							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
 								<RowDefinition Height="Auto"/>
 								<RowDefinition Height="*"/>
 							</Grid.RowDefinitions>
@@ -43,7 +44,13 @@
 
 							</Grid>
 
-							<ListBox Grid.Row="1"
+							<controls:DialogSearch x:Name="Search"
+							                       Grid.Row="1"
+												   Visibility="{Binding Search, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+							                       Placeholder="{DynamicResource Search}"
+							                       Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+							<ListBox Grid.Row="2"
 							         Margin="0 0 0 20"
 									 HorizontalContentAlignment="Stretch"
 									 ScrollViewer.VerticalScrollBarVisibility="Visible"
@@ -98,7 +105,6 @@
 							</ListBox>
 
 						</Grid>
-
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>

@@ -19,6 +19,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public String HintLocalizationResourceKey { get; set; }
 
+		public String SearchText { get; set; }
+
 		public SelectorItemViewModel(SelectorType value, Boolean isCurrent, String localizationResourceKey)
 		{
 			Value = value;

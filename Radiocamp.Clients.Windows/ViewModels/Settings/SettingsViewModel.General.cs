@@ -72,9 +72,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private async Task ChangeSearchEngine()
 		{
 
+			SelectorArgs<SearchEngine> selectorArgs = new SelectorArgs<SearchEngine>()
+			{
+				Current = SearchEngine,
+				Width = 300,
+				Height = 420,
+				Callback = searchEngine => SearchEngine = searchEngine,
+				Search = true
+			};
+
 			OverlayVisible = true;
 
-			await dialogs.Selector(SearchEngine, searchEngine => SearchEngine = searchEngine);
+			await dialogs.Selector(selectorArgs);
 
 			OverlayVisible = false;
 
