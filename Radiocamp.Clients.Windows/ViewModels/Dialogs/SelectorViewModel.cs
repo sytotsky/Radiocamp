@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Windows;
 using System.Windows.Threading;
 using DynamicData;
 using DynamicData.Binding;
 using Dartware.Radiocamp.Clients.Shared;
+using Dartware.Radiocamp.Clients.Shared.Extensions;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -20,6 +22,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private SelectorType current;
 		private SelectorItemViewModel<SelectorType> selected;
 		private String titleLocalizationResourceKey;
+		private String searchQuery;
 		private ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> values;
 
 		public ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> Values => values;
@@ -34,6 +37,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			get => titleLocalizationResourceKey;
 			private set => SetAndRaise(ref titleLocalizationResourceKey, value);
+		}
+
+		public String SearchQuery
+		{
+			get => searchQuery;
+			set => SetAndRaise(ref searchQuery, value);
 		}
 
 		public SelectorViewModel(SelectorType current, Action<SelectorType> changeCallback)
@@ -63,11 +72,33 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			IEnumerable<SelectorType> values = Enum.GetValues(type) as IEnumerable<SelectorType>;
 
-			list.AddOrUpdate(values.Select(value => new SelectorValue<SelectorType>(value, value.Equals(current))));
+			list.AddOrUpdate(values.Select(value =>
+			{
+
+				String localizationResourceKey = value.ToLocalizationResourceKey();
+				String searchText = Application.Current.Resources[localizationResourceKey] as String;
+
+				return new SelectorValue<SelectorType>(value, value.Equals(current), localizationResourceKey)
+				{
+					SearchText = searchText,
+					HintLocalizationResourceKey = value.ToHintLocalizationResourceKey()
+				};
+
+			}));
+
+			IObservable<Func<SelectorValue<SelectorType>, Boolean>> searchFilter = this.WhenValueChanged(viewModel => viewModel.SearchQuery, true)
+																					   .Select(BuildSearcher);
 
 			IDisposable listSubscription = list.Connect()
 											   .NotEmpty()
-											   .Transform(value => new SelectorItemViewModel<SelectorType>(value.Value, value.IsCurrent))
+											   .Filter(searchFilter)
+											   .Transform(value =>
+											   {
+												   return new SelectorItemViewModel<SelectorType>(value.Value, value.IsCurrent, value.LocalizationResourceKey)
+												   {
+													   HintLocalizationResourceKey = value.HintLocalizationResourceKey
+												   };
+											   })
 											   .ObserveOnDispatcher(DispatcherPriority.Background)
 											   .Bind(out this.values)
 											   .DisposeMany()
@@ -80,16 +111,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 												   .Subscribe(OnSelectedChanged);
 
 			disposables.Add(selectedSubscription);
-
-			IDisposable throttleSelectedSubscription = this.WhenValueChanged(viewModel => viewModel.Selected)
-														   .Where(value => value != null)
-														   .Throttle(TimeSpan.FromMilliseconds(600))
-														   .Subscribe(delegate(SelectorItemViewModel<SelectorType> value)
-														   {
-															   changeCallback?.Invoke(value.Value);
-														   });
-
-			disposables.Add(throttleSelectedSubscription);
 
 		}
 
@@ -109,7 +130,28 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			}
 			
-			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true));
+			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true, current.ToLocalizationResourceKey()));
+			changeCallback?.Invoke(current);
+
+		}
+
+		private Func<SelectorValue<SelectorType>, Boolean> BuildSearcher(String searchQuery)
+		{
+
+			if (String.IsNullOrEmpty(searchQuery))
+			{
+				return selectorValue => true;
+			}
+
+			return selectorValue =>
+			{
+
+				String preparedSearchQuery = SearchQuery.ToLower().Trim();
+				String preparedSearchText = selectorValue.SearchText.ToLower();
+
+				return preparedSearchText.Contains(preparedSearchQuery);
+
+			};
 
 		}
 

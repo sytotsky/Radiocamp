@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Core.Extensions;
 
 
@@ -10,14 +8,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 {
 	public partial class SelectorItem : UserControl
 	{
-
-		public static readonly DependencyProperty LocalizedContentProperty = DependencyProperty.Register(nameof(LocalizedContent), typeof(Object), typeof(SelectorItem), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, LocalizedContentChanged));
-
-		public Object LocalizedContent
-		{
-			get => (Object) GetValue(LocalizedContentProperty);
-			set => SetValue(LocalizedContentProperty, value);
-		}
 
 		public static readonly DependencyProperty IsCurrentProperty = DependencyProperty.Register(nameof(IsCurrent), typeof(Boolean), typeof(SelectorItem), new PropertyMetadata(default(Boolean)));
 
@@ -27,12 +17,36 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 			set => SetValue(IsCurrentProperty, value);
 		}
 
+		public static readonly DependencyProperty LocalizationResourceKeyProperty = DependencyProperty.Register(nameof(LocalizationResourceKey), typeof(String), typeof(SelectorItem), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, LocalizationResourceKeyChanged));
+
+		public String LocalizationResourceKey
+		{
+			get => (String) GetValue(LocalizationResourceKeyProperty);
+			set => SetValue(LocalizationResourceKeyProperty, value);
+		}
+
+		public static readonly DependencyProperty HintLocalizationResourceKeyProperty = DependencyProperty.Register(nameof(HintLocalizationResourceKey), typeof(String), typeof(SelectorItem), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, HintLocalizationResourceKeyChanged));
+
+		public String HintLocalizationResourceKey
+		{
+			get => (String) GetValue(HintLocalizationResourceKeyProperty);
+			set => SetValue(HintLocalizationResourceKeyProperty, value);
+		}
+
+		public static readonly DependencyProperty HintProperty = DependencyProperty.Register(nameof(Hint), typeof(String), typeof(SelectorItem), new PropertyMetadata(default(String)));
+
+		public String Hint
+		{
+			get => (String) GetValue(HintProperty);
+			set => SetValue(HintProperty, value);
+		}
+
 		public SelectorItem()
 		{
 			InitializeComponent();
 		}
 
-		private static void LocalizedContentChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
+		private static void LocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
 			if (!(dependency is SelectorItem selectorItem))
@@ -40,44 +54,29 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 				return;
 			}
 
-			Object value = args.NewValue;
+			String localizationResourceKey = args.NewValue as String;
 
-			if (value == null)
+			if (!localizationResourceKey.IsNullOrEmptyOrWhiteSpace())
+			{
+				selectorItem.SetResourceReference(SelectorItem.ContentProperty, localizationResourceKey);
+			}
+
+		}
+
+		private static void HintLocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
+		{
+
+			if (!(dependency is SelectorItem selectorItem))
 			{
 				return;
 			}
 
-			Type valueType = value.GetType();
-			LocalizationAttribute localizationAttribute = null;
+			String hintLocalizationResourceKey = args.NewValue as String;
 
-			if (valueType.IsEnum)
+			if (!hintLocalizationResourceKey.IsNullOrEmptyOrWhiteSpace())
 			{
-
-				FieldInfo field = valueType.GetField(value.ToString());
-
-				if (field != null)
-				{
-					if (Attribute.IsDefined(field, typeof(LocalizationAttribute)))
-					{
-						localizationAttribute = Attribute.GetCustomAttribute(field, typeof(LocalizationAttribute)) as LocalizationAttribute;
-					}
-				}
-
+				selectorItem.SetResourceReference(SelectorItem.HintProperty, hintLocalizationResourceKey);
 			}
-
-			if (localizationAttribute == null)
-			{
-				return;
-			}
-
-			String localizationResourceKey = localizationAttribute.Key;
-
-			if (localizationResourceKey.IsNullOrEmptyOrWhiteSpace())
-			{
-				return;
-			}
-
-			selectorItem.SetResourceReference(RadioButton.ContentProperty, localizationResourceKey);
 
 		}
 

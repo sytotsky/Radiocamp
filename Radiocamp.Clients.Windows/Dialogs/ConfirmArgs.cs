@@ -3,7 +3,7 @@ using Dartware.Radiocamp.Clients.Windows.UI.Controls;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
-	public sealed class ConfirmDialogArgs
+	public sealed class ConfirmArgs
 	{
 
 		public String Title { get; set; }
@@ -13,7 +13,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 		public TransparentButtonType FirstButtonType { get; set; }
 		public TransparentButtonType SecondButtonType { get; set; }
 
-		public ConfirmDialogArgs()
+		public ConfirmArgs()
 		{
 			FirstButtonType = TransparentButtonType.Success;
 			SecondButtonType = TransparentButtonType.Success;

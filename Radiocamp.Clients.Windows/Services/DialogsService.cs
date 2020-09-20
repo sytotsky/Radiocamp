@@ -35,7 +35,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
-		public Task<Boolean> Confirm(ConfirmDialogArgs args)
+		public Task<Boolean> Confirm(ConfirmArgs args)
 		{
 
 			ShowDialog?.Invoke();

@@ -1,6 +1,6 @@
 ﻿using System;
-using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using ReactiveUI.Fody.Helpers;
+using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -13,10 +13,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsCurrent { get; private set; }
 
-		public SelectorItemViewModel(SelectorType value, Boolean isCurrent)
+		[Reactive]
+		public String LocalizationResourceKey { get; set; }
+
+		[Reactive]
+		public String HintLocalizationResourceKey { get; set; }
+
+		public SelectorItemViewModel(SelectorType value, Boolean isCurrent, String localizationResourceKey)
 		{
 			Value = value;
 			IsCurrent = isCurrent;
+			LocalizationResourceKey = localizationResourceKey;
 		}
 
 	}

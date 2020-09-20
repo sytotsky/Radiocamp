@@ -48,7 +48,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private async Task Reset()
 		{
 
-			ConfirmDialogArgs confirmDialogArgs = new ConfirmDialogArgs()
+			ConfirmArgs confirmArgs = new ConfirmArgs()
 			{
 				Text = LocalizationResources.Settings_ResetSettingsConfirmText,
 				SecondButtonText = LocalizationResources.Settings_ResetSettingsConfirmSecondButton,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			OverlayVisible = true;
 
-			Boolean confirmResult = await dialogs.Confirm(confirmDialogArgs);
+			Boolean confirmResult = await dialogs.Confirm(confirmArgs);
 
 			OverlayVisible = false;
 

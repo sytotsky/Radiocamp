@@ -64,6 +64,19 @@
 	<system:String x:Key="LastFm">Last.fm</system:String>
 	<system:String x:Key="Beatport">Beatport</system:String>
 
+	<system:String x:Key="Google_SearchLink">google.com</system:String>
+	<system:String x:Key="Spotify_SearchLink">spotify.com</system:String>
+	<system:String x:Key="SoundCloud_SearchLink">soundcloud.com</system:String>
+	<system:String x:Key="Deezer_SearchLink">deezer.com</system:String>
+	<system:String x:Key="Tidal_SearchLink">tidal.com</system:String>
+	<system:String x:Key="Yandex_SearchLink">yandex.ru</system:String>
+	<system:String x:Key="DuckDuckGo_SearchLink">duckduckgo.com</system:String>
+	<system:String x:Key="YouTube_SearchLink">youtube.com</system:String>
+	<system:String x:Key="Bing_SearchLink">bing.com</system:String>
+	<system:String x:Key="Yahoo_SearchLink">search.yahoo.com</system:String>
+	<system:String x:Key="LastFm_SearchLink">last.fm</system:String>
+	<system:String x:Key="Beatport_SearchLink">beatport.com</system:String>
+
 	<!-- Countries -->
 
 	<system:String x:Key="Afghanistan">Afghanistan</system:String>

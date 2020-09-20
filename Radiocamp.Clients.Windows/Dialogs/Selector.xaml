@@ -1,14 +1,14 @@
 ﻿<dialogs:Dialog x:Class="Dartware.Radiocamp.Clients.Windows.Dialogs.Selector"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
-                xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
-                xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
+				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
 				xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
-                mc:Ignorable="d"
-                d:DataContext="{d:DesignInstance vm:SelectorViewModel}">
+				mc:Ignorable="d"
+				d:DataContext="{d:DesignInstance vm:SelectorViewModel}">
 
 	<dialogs:Dialog.Resources>
 		<Style TargetType="{x:Type dialogs:Selector}">
@@ -34,31 +34,31 @@
 								</Grid.ColumnDefinitions>
 
 								<TextBlock Grid.Column="0"
-								           Style="{DynamicResource DialogTitleTextBlock}"
-								           Text="{TemplateBinding Title}"/>
+										   Style="{DynamicResource DialogTitleTextBlock}"
+										   Text="{TemplateBinding Title}"/>
 
 								<controls:IconButton Grid.Column="1"
-								                     Command="{Binding CloseCommand}"
-								                     Style="{DynamicResource CloseDialogButtonStyle}"/>
+													 Command="{Binding CloseCommand}"
+													 Style="{DynamicResource CloseDialogButtonStyle}"/>
 
 							</Grid>
 
 							<ListBox Grid.Row="1"
-							         HorizontalContentAlignment="Stretch"
-							         ScrollViewer.VerticalScrollBarVisibility="Visible"
-							         ScrollViewer.IsDeferredScrollingEnabled="False"
-							         ScrollViewer.CanContentScroll="True"
-							         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-							         VirtualizingStackPanel.IsVirtualizing="True"
-							         VirtualizingStackPanel.VirtualizationMode="Recycling"
-							         VirtualizingStackPanel.ScrollUnit="Pixel"
-							         Background="Transparent"
-							         BorderBrush="Transparent"
-							         BorderThickness="0"
-							         Padding="0"
-							         SelectionMode="Single"
-							         ItemsSource="{Binding Values, Mode=OneWay, IsAsync=True}"
-							         SelectedItem="{Binding Selected, Mode=TwoWay}">
+									 HorizontalContentAlignment="Stretch"
+									 ScrollViewer.VerticalScrollBarVisibility="Visible"
+									 ScrollViewer.IsDeferredScrollingEnabled="False"
+									 ScrollViewer.CanContentScroll="True"
+									 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+									 VirtualizingStackPanel.IsVirtualizing="True"
+									 VirtualizingStackPanel.VirtualizationMode="Recycling"
+									 VirtualizingStackPanel.ScrollUnit="Pixel"
+									 Background="Transparent"
+									 BorderBrush="Transparent"
+									 BorderThickness="0"
+									 Padding="0"
+									 SelectionMode="Single"
+									 ItemsSource="{Binding Values, Mode=OneWay, IsAsync=True}"
+									 SelectedItem="{Binding Selected, Mode=TwoWay}">
 
 								<ListBox.Resources>
 									<Style TargetType="{x:Type ListBoxItem}">
@@ -70,8 +70,8 @@
 											<Setter.Value>
 												<ControlTemplate TargetType="{x:Type ListBoxItem}">
 													<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-													                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-													                  Focusable="True"/>
+																	  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+																	  Focusable="False"/>
 												</ControlTemplate>
 											</Setter.Value>
 										</Setter>
@@ -82,9 +82,9 @@
 								<ListBox.ItemsPanel>
 									<ItemsPanelTemplate>
 										<VirtualizingStackPanel IsVirtualizing="True"
-										                        VirtualizationMode="Recycling"
-										                        ScrollUnit="Pixel"
-										                        Focusable="False"/>
+																VirtualizationMode="Recycling"
+																ScrollUnit="Pixel"
+																Focusable="False"/>
 									</ItemsPanelTemplate>
 								</ListBox.ItemsPanel>
 
