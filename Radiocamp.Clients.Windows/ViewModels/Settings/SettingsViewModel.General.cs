@@ -52,16 +52,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			{
 				Text = LocalizationResources.Settings_ResetSettingsConfirmText,
 				SecondButtonText = LocalizationResources.Settings_ResetSettingsConfirmSecondButton,
-				SecondButtonType = TransparentButtonType.Danger
+				SecondButtonType = TransparentButtonType.Danger,
+				UpdatingFlag = () => OverlayVisible
 			};
 
-			OverlayVisible = true;
-
-			Boolean confirmResult = await dialogs.Confirm(confirmArgs);
-
-			OverlayVisible = false;
-
-			if (confirmResult)
+			if (await dialogs.Confirm(confirmArgs))
 			{
 				await settings.ResetAsync();
 				InitializeProperties();
@@ -71,22 +66,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ChangeSearchEngine()
 		{
-
-			SelectorArgs<SearchEngine> selectorArgs = new SelectorArgs<SearchEngine>()
+			await dialogs.Selector(new SelectorArgs<SearchEngine>()
 			{
 				Current = SearchEngine,
 				Width = 300,
 				Height = 420,
 				Callback = searchEngine => SearchEngine = searchEngine,
-				Search = true
-			};
-
-			OverlayVisible = true;
-
-			await dialogs.Selector(selectorArgs);
-
-			OverlayVisible = false;
-
+				Search = true,
+				UpdatingFlag = () => OverlayVisible
+			});
 		}
 
 	}

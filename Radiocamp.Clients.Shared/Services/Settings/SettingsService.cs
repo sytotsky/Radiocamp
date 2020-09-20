@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Shared.Services

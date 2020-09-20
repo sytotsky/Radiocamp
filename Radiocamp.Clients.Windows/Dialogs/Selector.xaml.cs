@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {

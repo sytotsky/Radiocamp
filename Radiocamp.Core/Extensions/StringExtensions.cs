@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Core.Extensions
+namespace Dartware.Radiocamp.Core
 {
 	public static class StringExtensions
 	{

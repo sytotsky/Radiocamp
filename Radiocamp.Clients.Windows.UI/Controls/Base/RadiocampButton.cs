@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Dartware.Radiocamp.Clients.Shared;
-using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 {

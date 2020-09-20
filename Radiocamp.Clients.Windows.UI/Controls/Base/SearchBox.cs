@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 {

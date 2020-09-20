@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
@@ -9,5 +10,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 		public Boolean Search { get; set; }
 		public Double Width { get; set; }
 		public Double Height { get; set; }
+		public Expression<Func<Boolean>> UpdatingFlag { get; set; }
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Dartware.Radiocamp.Core.Extensions;
+using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
@@ -14,7 +15,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public event Action ShowDialog;
 
-		public Task Show<DialogType, ViewModelType>() where DialogType : Dialog, new() where ViewModelType : DialogViewModel, new()
+		public Task Show<DialogType, ViewModelType>(Expression<Func<Boolean>> updatingFlag = null) where DialogType : Dialog, new() where ViewModelType : DialogViewModel, new()
 		{
 
 			ShowDialog?.Invoke();
@@ -31,7 +32,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				viewModel = new ViewModelType();
 			}
 
-			return new DialogType().ShowDialog(viewModel);
+			if (updatingFlag != null)
+			{
+				if (!updatingFlag.GetPropertyValue())
+				{
+					updatingFlag.SetPropertyValue(true);
+				}
+			}
+
+			Task task = new DialogType().ShowDialog(viewModel);
+
+			task.ContinueWith(_ =>
+			{
+				if (updatingFlag != null)
+				{
+					updatingFlag.SetPropertyValue(false);
+				}
+			}, TaskContinuationOptions.ExecuteSynchronously);
+
+			return task;
 
 		}
 
@@ -65,7 +84,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				confirmDialogViewModel.SecondButtonText = LocalizationResources.ConfirmDialog_SecondButton;
 			}
 
-			return new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
+			if (args.UpdatingFlag != null)
+			{
+				if (!args.UpdatingFlag.GetPropertyValue())
+				{
+					args.UpdatingFlag.SetPropertyValue(true);
+				}
+			}
+
+			Task<Boolean> task = new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
+
+			task.ContinueWith(_ =>
+			{
+				if (args.UpdatingFlag != null)
+				{
+					args.UpdatingFlag.SetPropertyValue(false);
+				}
+			}, TaskContinuationOptions.ExecuteSynchronously);
+
+			return task;
 
 		}
 
@@ -88,7 +125,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			SelectorViewModel<SelectorType> selectorViewModel = new SelectorViewModel<SelectorType>(args);
 
-			return new Selector().ShowDialog(selectorViewModel);
+			if (args?.UpdatingFlag != null)
+			{
+				if (!args.UpdatingFlag.GetPropertyValue())
+				{
+					args?.UpdatingFlag.SetPropertyValue(true);
+				}
+			}
+
+			Task task = new Selector().ShowDialog(selectorViewModel);
+
+			task.ContinueWith(_ =>
+			{
+				if (args?.UpdatingFlag != null)
+				{
+					args?.UpdatingFlag.SetPropertyValue(false);
+				}
+			}, TaskContinuationOptions.ExecuteSynchronously);
+
+			return task;
 
 		}
 
