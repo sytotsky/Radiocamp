@@ -33,7 +33,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			base.Initialize();
 
 			MaxWidth = 300;
-			Padding = new Thickness(20);
+			Padding = new Thickness(16);
 
 			OkCommand = ReactiveCommand.Create(Ok);
 

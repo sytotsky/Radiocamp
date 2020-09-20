@@ -27,7 +27,8 @@
 		<StackPanel Grid.Row="1"
 					Orientation="Horizontal"
 					HorizontalAlignment="Right"
-					VerticalAlignment="Bottom">
+					VerticalAlignment="Bottom"
+					Margin="0 16 0 0">
 
 			<controls:TransparentButton Type="{Binding FirstButtonType, Mode=OneWay}"
 										IsCancel="True"
