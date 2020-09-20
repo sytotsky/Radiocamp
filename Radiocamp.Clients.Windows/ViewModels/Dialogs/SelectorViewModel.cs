@@ -130,7 +130,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			}
 			
-			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true, current.ToLocalizationResourceKey()));
+			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true, current.ToLocalizationResourceKey())
+			{
+				HintLocalizationResourceKey = current.ToHintLocalizationResourceKey()
+			});
+
 			changeCallback?.Invoke(current);
 
 		}
