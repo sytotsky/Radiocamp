@@ -42,6 +42,7 @@
 	<system:String x:Key="Hotkeys">Горячие клавиши</system:String>
 	<system:String x:Key="About">О программе</system:String>
 	<system:String x:Key="OnlyСustom">Только пользовательские</system:String>
+	<system:String x:Key="SearchEngine">Поисковая система</system:String>
 
 	<!-- Errors -->
 
@@ -375,10 +376,6 @@
 
 	<system:String x:Key="SelectLanguageDialog_Header">Язык</system:String>
 
-	<!-- Select Search Engine Dialog -->
-
-	<system:String x:Key="SelectSearchEngineDialog_Header">Поисковые системы</system:String>
-
 	<!-- Settings -->
 
 	<system:String x:Key="Settings_AlwaysShowTrayIcon">Всегда отображать значок в трее</system:String>
@@ -408,7 +405,6 @@
 	<system:String x:Key="Settings_StopRecordIfAntiBoss">Останавливать запись в режиме анти-босс</system:String>
 	<system:String x:Key="Settings_CreateSubfoldersDuringRecording">Создавать подпапки для каждой радиостанции</system:String>
 	<system:String x:Key="Settings_RecordSplitByComposition">Разделять файлы по композициям во время записи</system:String>
-	<system:String x:Key="Settings_SearchEngine">Поисковая система</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostations">Удалить все радиостанции</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmText">Вы точно хотите удалить все радиостанции? Это действие нельзя будет отменить.</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmSecondButton">УДАЛИТЬ</system:String>

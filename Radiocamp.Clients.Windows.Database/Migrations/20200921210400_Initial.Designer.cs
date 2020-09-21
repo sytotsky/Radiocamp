@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200917181750_Initial")]
+    [Migration("20200921210400_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("19aecc23-3a83-4b0e-bf21-4a4b6c8e314d"),
+                            Id = new Guid("a3474b9a-4df6-44bb-923b-5d9935905224"),
                             Command = 1,
                             IsEnabled = true,
                             Key = 62,
@@ -53,7 +53,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f3f3d001-3897-40e2-a4c5-fff8cc9506f0"),
+                            Id = new Guid("883efdbf-21cb-43e2-959a-a138a294a987"),
                             Command = 2,
                             IsEnabled = true,
                             Key = 44,
@@ -61,7 +61,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8ddf96c5-4991-439b-af9b-2c69e51736da"),
+                            Id = new Guid("9d71dcb9-9ae2-4623-8920-b2707410c01a"),
                             Command = 3,
                             IsEnabled = true,
                             Key = 47,
@@ -69,7 +69,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("05962220-c9d2-4a11-b671-0b2f584a0cbf"),
+                            Id = new Guid("1a649e7a-0a24-4a34-bc6c-37df71abc40e"),
                             Command = 4,
                             IsEnabled = true,
                             Key = 24,
@@ -77,7 +77,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("49c90cf5-aac9-44c3-96ec-ed2ef276b4d8"),
+                            Id = new Guid("a3334e91-f816-47ff-8ec0-b82094435268"),
                             Command = 5,
                             IsEnabled = true,
                             Key = 26,
@@ -85,7 +85,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("35e1d74f-1844-4b6a-9f1b-3af64502d0c3"),
+                            Id = new Guid("a9291976-9948-4c59-933c-777d53943685"),
                             Command = 6,
                             IsEnabled = true,
                             Key = 67,
@@ -114,6 +114,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<double>("MainWindowWidth")
                         .HasColumnType("REAL");
 
+                    b.Property<int>("SearchEngine")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("ShowFavoritesAtStart")
                         .HasColumnType("INTEGER");
 
@@ -130,12 +133,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bf4e6232-6000-4781-9978-3fd9cf1344b9"),
+                            Id = new Guid("889ef244-dea0-4c94-863c-9e949b9fbb9d"),
                             HotkeysIsEnabled = false,
                             MainWindowHeight = 0.0,
                             MainWindowLeft = 0.0,
                             MainWindowTop = 0.0,
                             MainWindowWidth = 0.0,
+                            SearchEngine = 0,
                             ShowFavoritesAtStart = false,
                             ShowOnlyCustomAtStart = false,
                             StartMinimized = false

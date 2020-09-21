@@ -38,8 +38,9 @@
 				<CheckBox IsChecked="{Binding ShowOnlyCustomAtStart, Mode=TwoWay}"
 				          Content="{DynamicResource Settings_ShowOnlyCustomAtStart}"/>
 
-				<controls:LinkButton Command="{Binding ChangeSearchEngineCommand}"
-				                     LocalizedContent="{Binding SearchEngine, Mode=OneWay}"/>
+				<controls:ButtonWithDescription Description="{DynamicResource SearchEngine}"
+				                                Command="{Binding ChangeSearchEngineCommand}"
+				                                LocalizedContent="{Binding SearchEngine, Mode=OneWay}"/>
 
 				<controls:LinkButton Command="{Binding ResetCommand}"
 				                     Content="{DynamicResource Settings_ResetSettings}"/>

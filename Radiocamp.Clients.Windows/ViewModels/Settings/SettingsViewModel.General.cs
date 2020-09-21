@@ -38,10 +38,26 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			ResetCommand = ReactiveCommand.CreateFromTask(Reset);
 			ChangeSearchEngineCommand = ReactiveCommand.CreateFromTask(ChangeSearchEngine);
 
-			this.WhenAnyValue(viewModel => viewModel.RunAtWindowsStart).Skip(1).Subscribe(runAtWindowsStart => settings.RunAtWindowsStart = runAtWindowsStart);
-			this.WhenAnyValue(viewModel => viewModel.ShowFavoritesAtStart).Skip(1).Subscribe(showFavoritesAtStart => settings.ShowFavoritesAtStart = showFavoritesAtStart);
-			this.WhenAnyValue(viewModel => viewModel.ShowOnlyCustomAtStart).Skip(1).Subscribe(showOnlyCustomAtStart => settings.ShowOnlyCustomAtStart = showOnlyCustomAtStart);
-			this.WhenAnyValue(viewModel => viewModel.StartMinimized).Skip(1).Subscribe(startMinimized => settings.StartMinimized = startMinimized);
+			this.WhenAnyValue(viewModel => viewModel.RunAtWindowsStart)
+				.Skip(1)
+				.Subscribe(runAtWindowsStart => settings.RunAtWindowsStart = runAtWindowsStart);
+
+			this.WhenAnyValue(viewModel => viewModel.ShowFavoritesAtStart)
+				.Skip(1)
+				.Subscribe(showFavoritesAtStart => settings.ShowFavoritesAtStart = showFavoritesAtStart);
+
+			this.WhenAnyValue(viewModel => viewModel.ShowOnlyCustomAtStart)
+				.Skip(1)
+				.Subscribe(showOnlyCustomAtStart => settings.ShowOnlyCustomAtStart = showOnlyCustomAtStart);
+
+			this.WhenAnyValue(viewModel => viewModel.StartMinimized)
+				.Skip(1)
+				.Subscribe(startMinimized => settings.StartMinimized = startMinimized);
+
+			this.WhenAnyValue(viewModel => viewModel.SearchEngine)
+				.Skip(1)
+				.Throttle(TimeSpan.FromMilliseconds(600))
+				.Subscribe(searchEngine => settings.SearchEngine = searchEngine);
 
 		}
 

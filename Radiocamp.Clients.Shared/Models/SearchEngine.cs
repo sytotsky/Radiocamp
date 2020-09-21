@@ -3,7 +3,7 @@
 namespace Dartware.Radiocamp.Clients.Shared.Models
 {
 	[Selector]
-	[Localization("SelectSearchEngineDialog_Header")]
+	[Localization("SearchEngine")]
 	public enum SearchEngine : Int32
 	{
 		[Localization("Google")]

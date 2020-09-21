@@ -9,6 +9,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 		Boolean ShowFavoritesAtStart { get; set; }
 		Boolean ShowOnlyCustomAtStart { get; set; }
+		SearchEngine SearchEngine { get; set; }
 
 		void Initialize();
 		Task ResetAsync();

@@ -42,8 +42,9 @@
 	<system:String x:Key="Hotkeys">Hotkeys</system:String>
 	<system:String x:Key="About">About</system:String>
 	<system:String x:Key="OnlyСustom">Only custom</system:String>
+	<system:String x:Key="SearchEngine">Search engine</system:String>
 
-    <!-- Errors -->
+	<!-- Errors -->
 
 	<system:String x:Key="Errors_InvalidURL">Invalid stream URL</system:String>
 	<system:String x:Key="Errors_NoInternetConnection">No internet connection</system:String>
@@ -376,10 +377,6 @@
 
 	<system:String x:Key="SelectLanguageDialog_Header">Languages</system:String>
 
-	<!-- Select Search Engine Dialog -->
-
-	<system:String x:Key="SelectSearchEngineDialog_Header">Search engines</system:String>
-
 	<!-- Settings -->
 
 	<system:String x:Key="Settings_AlwaysShowTrayIcon">Always show tray icon</system:String>
@@ -409,7 +406,6 @@
 	<system:String x:Key="Settings_StopRecordIfAntiBoss">Stop record in anti-boss mode</system:String>
 	<system:String x:Key="Settings_CreateSubfoldersDuringRecording">Create subfolders for each radio station</system:String>
 	<system:String x:Key="Settings_RecordSplitByComposition">Split files by song while recording</system:String>
-	<system:String x:Key="Settings_SearchEngine">Search engine</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostations">Remove all radiostations</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmText">A you sure you want to remove all radiostations? This action cannot be undone.</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmSecondButton">REMOVE</system:String>

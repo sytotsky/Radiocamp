@@ -9,6 +9,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 		protected Boolean showFavoritesAtStart;
 		protected Boolean showOnlyCustomAtStart;
+		protected SearchEngine searchEngine;
 
 		[UserSetting]
 		[Default(false)]
@@ -23,6 +24,14 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 		public Boolean ShowOnlyCustomAtStart
 		{
 			get => showOnlyCustomAtStart;
+			set => SetValue(value);
+		}
+
+		[UserSetting]
+		[Default(SearchEngine.Google)]
+		public SearchEngine SearchEngine
+		{
+			get => searchEngine;
 			set => SetValue(value);
 		}
 
