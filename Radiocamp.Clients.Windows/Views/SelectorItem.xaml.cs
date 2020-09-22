@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Core;
 
 
@@ -44,6 +46,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 		public SelectorItem()
 		{
 			InitializeComponent();
+		}
+
+		protected override void OnMouseDown(MouseButtonEventArgs args)
+		{
+			base.OnMouseDown(args);
+			((SelectorValue) DataContext)?.Select();
 		}
 
 		private static void LocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)

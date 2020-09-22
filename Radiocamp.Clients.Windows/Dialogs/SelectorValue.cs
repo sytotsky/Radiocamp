@@ -1,22 +1,54 @@
 ﻿using System;
+using DynamicData.Binding;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
-	public sealed class SelectorValue<SelectorType> where SelectorType : struct, IConvertible
+
+	public abstract class SelectorValue : AbstractNotifyPropertyChanged
+	{
+		public abstract void Select();
+	}
+
+	public sealed class SelectorValue<SelectorType> : SelectorValue where SelectorType : struct, IConvertible
 	{
 
-		public SelectorType Value { get; set; }
-		public Boolean IsCurrent { get; set; }
-		public String LocalizationResourceKey { get; set; }
-		public String HintLocalizationResourceKey { get; set; }
-		public String SearchText { get; set; }
+		private SelectorType value;
+		private Boolean isCurrent;
+		private String localizationResourceKey;
+		private String hintLocalizationResourceKey;
 
-		public SelectorValue(SelectorType value, Boolean isCurrent, String localizationResourceKey)
+		public SelectorType Value
 		{
-			Value = value;
-			IsCurrent = isCurrent;
-			LocalizationResourceKey = localizationResourceKey;
+			get => value;
+			set => SetAndRaise(ref this.value, value);
+		}
+
+		public Boolean IsCurrent
+		{
+			get => isCurrent;
+			set => SetAndRaise(ref isCurrent, value);
+		}
+
+		public String LocalizationResourceKey
+		{
+			get => localizationResourceKey;
+			set => SetAndRaise(ref localizationResourceKey, value);
+		}
+
+		public String HintLocalizationResourceKey
+		{
+			get => hintLocalizationResourceKey;
+			set => SetAndRaise(ref hintLocalizationResourceKey, value);
+		}
+		
+		public String SearchText { get; set; }
+		public Action<SelectorValue<SelectorType>> SelectCallback { get; set; }
+
+		public override void Select()
+		{
+			SelectCallback?.Invoke(this);
 		}
 
 	}
+
 }

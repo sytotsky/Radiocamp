@@ -21,19 +21,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private Action<SelectorType> changeCallback;
 		private ISourceCache<SelectorValue<SelectorType>, SelectorType> list;
 		private SelectorType current;
-		private SelectorItemViewModel<SelectorType> selected;
 		private String titleLocalizationResourceKey;
 		private String searchQuery;
 		private Boolean search;
-		private ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> values;
+		private ReadOnlyObservableCollection<SelectorValue<SelectorType>> values;
 
-		public ReadOnlyObservableCollection<SelectorItemViewModel<SelectorType>> Values => values;
-
-		public SelectorItemViewModel<SelectorType> Selected
-		{
-			get => selected;
-			set => SetAndRaise(ref selected, value);
-		}
+		public ReadOnlyObservableCollection<SelectorValue<SelectorType>> Values => values;
 
 		public String TitleLocalizationResourceKey
 		{
@@ -113,10 +106,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				String localizationResourceKey = value.ToLocalizationResourceKey();
 				String searchText = Application.Current.Resources[localizationResourceKey] as String;
 
-				return new SelectorValue<SelectorType>(value, value.Equals(current), localizationResourceKey)
+				return new SelectorValue<SelectorType>()
 				{
+					Value = value,
+					IsCurrent = value.Equals(current),
+					LocalizationResourceKey = localizationResourceKey,
 					SearchText = searchText,
-					HintLocalizationResourceKey = value.ToHintLocalizationResourceKey()
+					HintLocalizationResourceKey = value.ToHintLocalizationResourceKey(),
+					SelectCallback = OnSelectedChanged
 				};
 
 			}));
@@ -127,14 +124,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			IDisposable listSubscription = list.Connect()
 											   .NotEmpty()
 											   .Filter(searchFilter)
-											   .Transform(value =>
-											   {
-												   return new SelectorItemViewModel<SelectorType>(value.Value, value.IsCurrent, value.LocalizationResourceKey)
-												   {
-													   HintLocalizationResourceKey = value.HintLocalizationResourceKey,
-													   SearchText = value.SearchText
-												   };
-											   })
+											   .Sort(SortExpressionComparer<SelectorValue<SelectorType>>.Ascending(value => value.SearchText))
 											   .ObserveOnDispatcher(DispatcherPriority.Background)
 											   .Bind(out this.values)
 											   .DisposeMany()
@@ -142,16 +132,20 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			disposables.Add(listSubscription);
 
-			IDisposable selectedSubscription = this.WhenValueChanged(viewModel => viewModel.Selected)
-												   .Where(value => value != null)
-												   .Subscribe(OnSelectedChanged);
-
-			disposables.Add(selectedSubscription);
-
 		}
 
-		private void OnSelectedChanged(SelectorItemViewModel<SelectorType> newSelected)
+		private void OnSelectedChanged(SelectorValue<SelectorType> newSelected)
 		{
+
+			if (newSelected == null)
+			{
+				return;
+			}
+
+			if (newSelected.Value.Equals(current))
+			{
+				return;
+			}
 
 			current = newSelected.Value;
 
@@ -165,13 +159,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				list.AddOrUpdate(oldSelected);
 
 			}
-			
-			list.AddOrUpdate(new SelectorValue<SelectorType>(current, true, current.ToLocalizationResourceKey())
-			{
-				HintLocalizationResourceKey = current.ToHintLocalizationResourceKey(),
-				SearchText = newSelected.SearchText
-			});
 
+			newSelected.IsCurrent = true;
+
+			list.AddOrUpdate(newSelected);
 			changeCallback?.Invoke(current);
 
 		}
