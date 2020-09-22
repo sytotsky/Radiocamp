@@ -39,6 +39,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			InitializeProperties();
 			InitializeNavigator();
 			InitializeGeneral();
+			InitializeUI();
 
 			isInitialized = true;
 

@@ -5,6 +5,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
                     xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+                    xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance vm:SettingsViewModel}">
     
@@ -23,7 +24,16 @@
 		<ScrollViewer Grid.Row="1"
 		              VerticalScrollBarVisibility="Visible"
 		              IsDeferredScrollingEnabled="False">
-			<StackPanel Orientation="Vertical"></StackPanel>
+			<StackPanel Orientation="Vertical">
+
+				<CheckBox IsChecked="{Binding IsNightMode, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_EnableNightMode}"/>
+
+				<controls:ButtonWithDescription Command="{Binding ChangeLocalizationCommand}"
+				                                Description="{DynamicResource Language}"
+				                                LocalizedContent="{Binding Localization, Mode=OneWay}"/>
+
+			</StackPanel>
 		</ScrollViewer>
 
 	</Grid>

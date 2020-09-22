@@ -1,4 +1,5 @@
 ﻿using System;
+using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Shared.Services;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
@@ -8,6 +9,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	{
 
 		event Action<Boolean> HotkeysIsEnabledChanged;
+		event Action<ApplicationLocalization> LocalizationChanged;
+		event Action<Boolean> IsNightModeChanged;
 
 		String ApplicationName { get; }
 
@@ -16,9 +19,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		Double MainWindowLeft { get; set; }
 		Double MainWindowTop { get; set; }
 		WindowState MainWindowState { get; set; }
-		Boolean HotkeysIsEnabled { get; set; }
 		Boolean RunAtWindowsStart { get; set; }
 		Boolean StartMinimized { get; set; }
+		Boolean ShowFavoritesAtStart { get; set; }
+		Boolean ShowOnlyCustomAtStart { get; set; }
+		SearchEngine SearchEngine { get; set; }
+		ApplicationLocalization Localization { get; set; }
+		Boolean IsNightMode { get; set; }
+		Boolean HotkeysIsEnabled { get; set; }
 
 	}
 }

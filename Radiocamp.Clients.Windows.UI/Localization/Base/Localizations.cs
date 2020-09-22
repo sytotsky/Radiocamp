@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using Radiocamp.Clients.Shared.Models;
+using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 {

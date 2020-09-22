@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Win32;
 using Dartware.Radiocamp.Clients.Shared;
+using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -9,6 +10,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	{
 
 		private Boolean startMinimized;
+		protected Boolean showFavoritesAtStart;
+		protected Boolean showOnlyCustomAtStart;
+		protected SearchEngine searchEngine;
 
 		public String ApplicationName => "Radiocamp";
 
@@ -23,9 +27,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		[UserSetting]
 		[Default(false)]
+		[Field(nameof(startMinimized))]
 		public Boolean StartMinimized
 		{
 			get => startMinimized;
+			set => SetValue(value);
+		}
+
+		[UserSetting]
+		[Default(false)]
+		[Field(nameof(showFavoritesAtStart))]
+		public Boolean ShowFavoritesAtStart
+		{
+			get => showFavoritesAtStart;
+			set => SetValue(value);
+		}
+
+		[UserSetting]
+		[Default(false)]
+		[Field(nameof(ShowOnlyCustomAtStart))]
+		public Boolean ShowOnlyCustomAtStart
+		{
+			get => showOnlyCustomAtStart;
+			set => SetValue(value);
+		}
+
+		[UserSetting]
+		[Default(SearchEngine.Google)]
+		[Field(nameof(searchEngine))]
+		public SearchEngine SearchEngine
+		{
+			get => searchEngine;
 			set => SetValue(value);
 		}
 

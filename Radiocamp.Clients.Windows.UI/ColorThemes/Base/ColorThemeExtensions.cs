@@ -10,8 +10,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.ColorThemes
 		{
 			switch (colorTheme)
 			{
-				case ColorTheme.Light: return new Theme("Light", "pack://application:,,,/Radiocamp.Core.Desktop;component/ColorThemes/LightTheme.xaml");
-				case ColorTheme.Dark: return new Theme("Dark", "pack://application:,,,/Radiocamp.Core.Desktop;component/ColorThemes/DarkTheme.xaml");
+				case ColorTheme.Light: return new Theme("Light", "pack://application:,,,/Radiocamp.Clients.Windows.UI;component/ColorThemes/LightTheme.xaml");
+				case ColorTheme.Dark: return new Theme("Dark", "pack://application:,,,/Radiocamp.Clients.Windows.UI;component/ColorThemes/DarkTheme.xaml");
 				default: return null;
 			}
 		}

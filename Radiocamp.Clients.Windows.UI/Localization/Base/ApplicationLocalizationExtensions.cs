@@ -1,5 +1,5 @@
 ﻿using System;
-using Radiocamp.Clients.Shared.Models;
+using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 {
@@ -20,8 +20,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 		{
 			return localization switch
 			{
-				ApplicationLocalization.En => new Localization("En", "pack://application:,,,/Radiocamp.Windows.UI;component/Localization/En.xaml"),
-				ApplicationLocalization.Ru => new Localization("Ru", "pack://application:,,,/Radiocamp.Windows.UI;component/Localization/Ru.xaml"),
+				ApplicationLocalization.En => new Localization("En", "pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Localization/En.xaml"),
+				ApplicationLocalization.Ru => new Localization("Ru", "pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Localization/Ru.xaml"),
 				_ => null,
 			};
 		}

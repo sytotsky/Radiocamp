@@ -40,18 +40,22 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			this.WhenAnyValue(viewModel => viewModel.RunAtWindowsStart)
 				.Skip(1)
+				.Throttle(TimeSpan.FromMilliseconds(200))
 				.Subscribe(runAtWindowsStart => settings.RunAtWindowsStart = runAtWindowsStart);
 
 			this.WhenAnyValue(viewModel => viewModel.ShowFavoritesAtStart)
 				.Skip(1)
+				.Throttle(TimeSpan.FromMilliseconds(200))
 				.Subscribe(showFavoritesAtStart => settings.ShowFavoritesAtStart = showFavoritesAtStart);
 
 			this.WhenAnyValue(viewModel => viewModel.ShowOnlyCustomAtStart)
 				.Skip(1)
+				.Throttle(TimeSpan.FromMilliseconds(200))
 				.Subscribe(showOnlyCustomAtStart => settings.ShowOnlyCustomAtStart = showOnlyCustomAtStart);
 
 			this.WhenAnyValue(viewModel => viewModel.StartMinimized)
 				.Skip(1)
+				.Throttle(TimeSpan.FromMilliseconds(200))
 				.Subscribe(startMinimized => settings.StartMinimized = startMinimized);
 
 			this.WhenAnyValue(viewModel => viewModel.SearchEngine)

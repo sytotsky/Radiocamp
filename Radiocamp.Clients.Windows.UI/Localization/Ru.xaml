@@ -43,6 +43,11 @@
 	<system:String x:Key="About">О программе</system:String>
 	<system:String x:Key="OnlyСustom">Только пользовательские</system:String>
 	<system:String x:Key="SearchEngine">Поисковая система</system:String>
+	<system:String x:Key="Language">Язык</system:String>
+	<system:String x:Key="Russian_RU">Русский</system:String>
+	<system:String x:Key="English_EN">English</system:String>
+	<system:String x:Key="English_EN_Code">en-US</system:String>
+	<system:String x:Key="Russian_RU_Code">ru-RU</system:String>
 
 	<!-- Errors -->
 
@@ -371,10 +376,6 @@
 	<system:String x:Key="RadiostationEditor_Title">Название</system:String>
 	<system:String x:Key="RadiostationEditor_EditTitle">Изменить радиостанцию</system:String>
 	<system:String x:Key="RadiostationEditor_Save">СОХРАНИТЬ</system:String>
-
-	<!-- Select Language Dialog -->
-
-	<system:String x:Key="SelectLanguageDialog_Header">Язык</system:String>
 
 	<!-- Settings -->
 

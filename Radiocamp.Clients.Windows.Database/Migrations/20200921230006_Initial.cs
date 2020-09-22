@@ -31,6 +31,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     ShowFavoritesAtStart = table.Column<bool>(nullable: false),
                     ShowOnlyCustomAtStart = table.Column<bool>(nullable: false),
                     SearchEngine = table.Column<int>(nullable: false),
+                    Localization = table.Column<int>(nullable: false),
+                    IsNightMode = table.Column<bool>(nullable: false),
                     MainWindowWidth = table.Column<double>(nullable: false),
                     MainWindowHeight = table.Column<double>(nullable: false),
                     MainWindowLeft = table.Column<double>(nullable: false),
@@ -46,37 +48,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("a3474b9a-4df6-44bb-923b-5d9935905224"), 1, true, 62, 1 });
+                values: new object[] { new Guid("b40cbc4d-e8f5-40c1-a66c-c88d88cffb3b"), 1, true, 62, 1 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("883efdbf-21cb-43e2-959a-a138a294a987"), 2, true, 44, 1 });
+                values: new object[] { new Guid("8aaf051b-9614-438b-be4e-a3835cb83a24"), 2, true, 44, 1 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("9d71dcb9-9ae2-4623-8920-b2707410c01a"), 3, true, 47, 1 });
+                values: new object[] { new Guid("1e32499e-00aa-4a4b-b094-2fd255b76935"), 3, true, 47, 1 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("1a649e7a-0a24-4a34-bc6c-37df71abc40e"), 4, true, 24, 1 });
+                values: new object[] { new Guid("6dfc785b-2020-4ab7-b72c-728321e9638a"), 4, true, 24, 1 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("a3334e91-f816-47ff-8ec0-b82094435268"), 5, true, 26, 1 });
+                values: new object[] { new Guid("f77d6b50-d40b-4bed-8ebf-0e3755667a05"), 5, true, 26, 1 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("a9291976-9948-4c59-933c-777d53943685"), 6, true, 67, 1 });
+                values: new object[] { new Guid("ddbd0b80-f72c-4194-8a97-5db4fc6cd26e"), 6, true, 67, 1 });
 
             migrationBuilder.InsertData(
                 table: "Settings",
-                columns: new[] { "Id", "HotkeysIsEnabled", "MainWindowHeight", "MainWindowLeft", "MainWindowTop", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized" },
-                values: new object[] { new Guid("889ef244-dea0-4c94-863c-9e949b9fbb9d"), false, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
+                columns: new[] { "Id", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowHeight", "MainWindowLeft", "MainWindowTop", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized" },
+                values: new object[] { new Guid("c3e60770-2926-4512-820b-84bf9ad5bdd1"), false, false, 0, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

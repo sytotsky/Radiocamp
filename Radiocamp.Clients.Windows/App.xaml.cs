@@ -10,6 +10,8 @@ using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Clients.Windows.UI.ColorThemes;
+using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 
 namespace Dartware.Radiocamp.Clients.Windows
 {
@@ -37,6 +39,8 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
 			Dependencies.Services.AddSingleton<IDialogs, DialogsService>();
 			Dependencies.Services.AddSingleton<IBrowser, BrowserService>();
+			Dependencies.Services.AddSingleton<ILocalization, LocalizationService>();
+			Dependencies.Services.AddSingleton<IColorThemes, ColorThemesService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
 			Dependencies.Services.AddSingleton<DialogDimmableOverlayViewModel>();
@@ -46,9 +50,15 @@ namespace Dartware.Radiocamp.Clients.Windows
 
 			Dependencies.Build();
 
-			Dependencies.Get<ISettings>().Initialize();
+			ISettings settings = Dependencies.Get<ISettings>();
+
+			settings.Initialize();
 			Dependencies.Get<IHotkeys>().Initialize();
 			Dependencies.Get<IMainWindow>().Initialize();
+
+			Dependencies.Get<ILocalization>().Apply(settings.Localization);
+
+			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
 
 		}
 	}

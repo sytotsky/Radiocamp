@@ -4,12 +4,15 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
 namespace Dartware.Radiocamp.Clients.Shared.Services
 {
+
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 	public abstract partial class SettingsService<SettingsType, DatabaseContextType> : ISettings<SettingsType> where SettingsType : Settings where DatabaseContextType : DbContext
 	{
 
@@ -86,7 +89,6 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			if (!propertyName.IsNullOrEmpty())
 			{
 
-				String lowerCasePropertyName = propertyName.ToLowerCaseFirstChar();
 				Type thisType = GetType();
 				PropertyInfo property = thisType.GetProperty(propertyName);
 
@@ -95,7 +97,22 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 					return;
 				}
 
-				FieldInfo field = thisType.GetField(lowerCasePropertyName, BindingFlags.NonPublic | BindingFlags.Instance);
+				String fieldName = null;
+
+				if (Attribute.IsDefined(property, typeof(FieldAttribute)))
+				{
+
+					FieldAttribute fieldAttribute = Attribute.GetCustomAttribute(property, typeof(FieldAttribute)) as FieldAttribute;
+
+					fieldName = fieldAttribute.Name;
+
+				}
+				else
+				{
+					fieldName = propertyName.ToLowerCaseFirstChar();
+				}
+
+				FieldInfo field = thisType.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
 
 				if (field == null)
 				{
@@ -125,7 +142,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 						if (eventField != null)
 						{
 
-							MulticastDelegate multicastDelegate = (MulticastDelegate)eventField.GetValue(this);
+							MulticastDelegate multicastDelegate = (MulticastDelegate) eventField.GetValue(this);
 
 							if (multicastDelegate != null)
 							{

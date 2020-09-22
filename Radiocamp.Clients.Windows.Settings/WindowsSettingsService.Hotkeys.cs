@@ -8,21 +8,16 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		private Boolean hotkeysIsEnabled;
 
-		private event Action<Boolean> hotkeysIsEnabledChanged;
+		public event Action<Boolean> HotkeysIsEnabledChanged;
 
 		[UserSetting]
 		[Default(false)]
-		[Event(nameof(hotkeysIsEnabledChanged))]
+		[Event(nameof(HotkeysIsEnabledChanged))]
+		[Field(nameof(hotkeysIsEnabled))]
 		public Boolean HotkeysIsEnabled
 		{
 			get => hotkeysIsEnabled;
 			set => SetValue(hotkeysIsEnabled);
-		}
-
-		public event Action<Boolean> HotkeysIsEnabledChanged
-		{
-			add => hotkeysIsEnabledChanged += value;
-			remove => hotkeysIsEnabledChanged -= value;
 		}
 
 	}

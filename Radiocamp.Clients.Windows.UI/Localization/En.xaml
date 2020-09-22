@@ -43,6 +43,11 @@
 	<system:String x:Key="About">About</system:String>
 	<system:String x:Key="OnlyСustom">Only custom</system:String>
 	<system:String x:Key="SearchEngine">Search engine</system:String>
+	<system:String x:Key="Language">Language</system:String>
+	<system:String x:Key="English_EN">English</system:String>
+	<system:String x:Key="Russian_RU">Русский</system:String>
+	<system:String x:Key="English_EN_Code">en-US</system:String>
+	<system:String x:Key="Russian_RU_Code">ru-RU</system:String>
 
 	<!-- Errors -->
 
@@ -372,10 +377,6 @@
 	<system:String x:Key="RadiostationEditor_Title">Title</system:String>
 	<system:String x:Key="RadiostationEditor_EditTitle">Edit radiostation</system:String>
 	<system:String x:Key="RadiostationEditor_Save">SAVE</system:String>
-
-	<!-- Select Language Dialog -->
-
-	<system:String x:Key="SelectLanguageDialog_Header">Languages</system:String>
 
 	<!-- Settings -->
 
