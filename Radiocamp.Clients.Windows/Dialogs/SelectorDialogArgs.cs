@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
-	public sealed class SelectorArgs<SelectorType> where SelectorType : struct, IConvertible
+	public sealed class SelectorDialogArgs<SelectorType> : DialogArgs where SelectorType : struct, IConvertible
 	{
 
 		public SelectorType Current { get; set; }
@@ -13,7 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 		public Double Height { get; set; }
 		public Expression<Func<Boolean>> UpdatingFlag { get; set; }
 
-		public SelectorArgs()
+		public SelectorDialogArgs(BaseWindow owner) : base(owner)
 		{
 			Search = true;
 		}

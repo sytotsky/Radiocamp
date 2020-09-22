@@ -27,7 +27,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 					Owner = Application.Current.MainWindow,
 					WindowStartupLocation = WindowStartupLocation.CenterOwner
 				};
-				dialogWindow.ViewModel = new DialogWindowViewModel();
 				CloseCommand = new RelayCommand(() => dialogWindow.Close());
 			}
 		}
@@ -44,7 +43,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				try
 				{
 
-					dialogWindow.ViewModel.Content = this;
+					dialogWindow.Content = this;
 					DataContext = viewModel;
 
 					viewModel.Initialize();
@@ -63,7 +62,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			task.ContinueWith(task =>
 			{
 				viewModel.Dispose();
-			});
+			}, TaskContinuationOptions.ExecuteSynchronously);
 
 			return task;
 
@@ -81,7 +80,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				try
 				{
 
-					dialogWindow.ViewModel.Content = this;
+					dialogWindow.Content = this;
 					DataContext = viewModel;
 
 					viewModel.Initialize();
@@ -100,7 +99,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			task.ContinueWith(task =>
 			{
 				viewModel.Dispose();
-			});
+			}, TaskContinuationOptions.ExecuteSynchronously);
 
 			return task;
 

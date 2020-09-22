@@ -16,6 +16,7 @@
 		<Setter Property="HorizontalAlignment" Value="Left"/>
 		<Setter Property="FontWeight" Value="Normal"/>
 		<Setter Property="Margin" Value="16 8"/>
+		<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
 	</Style>
 
 </ResourceDictionary>

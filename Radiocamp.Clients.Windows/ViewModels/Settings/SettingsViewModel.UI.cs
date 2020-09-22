@@ -37,11 +37,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ChangeLocalization()
 		{
-			await dialogs.Selector(new SelectorArgs<Localization>()
+			await dialogs.Selector(new SelectorDialogArgs<Localization>(DialogWindow)
 			{
 				Current = Localization,
 				Callback = localization => Localization = localization,
-				UpdatingFlag = () => OverlayVisible,
 				Height = 222
 			});
 		}

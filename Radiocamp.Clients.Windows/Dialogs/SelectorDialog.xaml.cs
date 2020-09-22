@@ -4,10 +4,10 @@ using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
-	public partial class Selector : Dialog
+	public partial class SelectorDialog : Dialog
 	{
 
-		public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(String), typeof(Selector), new PropertyMetadata(default(String)));
+		public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(String), typeof(SelectorDialog), new PropertyMetadata(default(String)));
 
 		public String Title
 		{
@@ -15,7 +15,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			set => SetValue(TitleProperty, value);
 		}
 
-		public static readonly DependencyProperty TitleLocalizationResourceKeyProperty = DependencyProperty.Register(nameof(TitleLocalizationResourceKey), typeof(String), typeof(Selector), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, TitleLocalizationResourceKeyChanged));
+		public static readonly DependencyProperty TitleLocalizationResourceKeyProperty = DependencyProperty.Register(nameof(TitleLocalizationResourceKey), typeof(String), typeof(SelectorDialog), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, TitleLocalizationResourceKeyChanged));
 
 		public String TitleLocalizationResourceKey
 		{
@@ -23,7 +23,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			set => SetValue(TitleLocalizationResourceKeyProperty, value);
 		}
 
-		public Selector()
+		public SelectorDialog()
 		{
 			InitializeComponent();
 		}
@@ -31,13 +31,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 		private static void TitleLocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
-			Selector selector = dependency as Selector;
+			SelectorDialog selectorDialog = dependency as SelectorDialog;
 
 			if (args.NewValue is String titleLocalizationResourceKey)
 			{
 				if (!titleLocalizationResourceKey.IsNullOrEmptyOrWhiteSpace())
 				{
-					selector.SetResourceReference(Selector.TitleProperty, titleLocalizationResourceKey);
+					selectorDialog.SetResourceReference(SelectorDialog.TitleProperty, titleLocalizationResourceKey);
 				}
 			}
 

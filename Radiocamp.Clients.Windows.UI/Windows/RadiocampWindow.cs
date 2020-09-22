@@ -12,11 +12,8 @@ using Dartware.Radiocamp.Clients.Windows.UI.Native;
 namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 {
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public abstract partial class RadiocampWindow : Window
+	public abstract partial class RadiocampWindow : BaseWindow
 	{
-
-		private const Int32 SC_KEYMENU = 0xf100;
-		private const Int32 WM_SYSCOMMAND = 0x112;
 
 		private Boolean isMouseButtonDown;
 		private Boolean isManualDrag;
@@ -201,18 +198,6 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 		}
 
-		protected override void OnSourceInitialized(EventArgs args)
-		{
-
-			base.OnSourceInitialized(args);
-
-			if (HwndSource.FromVisual(this) is HwndSource source)
-			{
-				source.AddHook(new HwndSourceHook(WinProc));
-			}
-
-		}
-
 		protected void ToggleWindowState()
 		{
 			if (base.WindowState != WindowState.Maximized)
@@ -335,29 +320,6 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			}
 
 		}
-
-		private IntPtr WinProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, ref Boolean handled)
-		{
-
-			switch (msg)
-			{
-				case WM_SYSCOMMAND:
-				{
-
-					Int32 sc = (LOWORD(wParam.ToInt32()) & 0xFFF0);
-
-					handled = sc == SC_KEYMENU;
-
-					break;
-
-				}
-			}
-
-			return new IntPtr(1);
-
-		}
-
-		private Int32 LOWORD(Int32 value) => (value & 0xffff);
 
 		private void OnLoaded(Object sender, RoutedEventArgs args)
 		{

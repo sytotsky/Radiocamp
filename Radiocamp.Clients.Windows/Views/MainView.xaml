@@ -35,8 +35,6 @@
 
 		</Grid>
 
-		<views:DialogDimmableOverlay/>
-
 	</Grid>
 
 </UserControl>

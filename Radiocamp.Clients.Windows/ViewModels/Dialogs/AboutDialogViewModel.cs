@@ -6,6 +6,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Shared.Services;
 using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -20,6 +21,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> TelegramCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> YouTubeCommand { get; private set; }
+
+		public AboutDialogViewModel(DialogArgs args) : base(args)
+		{
+		}
 
 		public override void Initialize()
 		{

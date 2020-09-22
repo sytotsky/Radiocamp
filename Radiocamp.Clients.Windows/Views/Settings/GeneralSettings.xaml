@@ -42,6 +42,15 @@
 				                                Description="{DynamicResource SearchEngine}"
 				                                LocalizedContent="{Binding SearchEngine, Mode=OneWay}"/>
 
+				<controls:LinkButton Command="{Binding ExportRadiostationsCommand}"
+				                     Content="{DynamicResource ExportRadiostations}"/>
+
+				<controls:LinkButton Command="{Binding ImportRadiostationsCommand}"
+				                     Content="{DynamicResource ImportRadiostations}"/>
+
+				<controls:LinkButton Command="{Binding RemoveAllRadiostationsCommand}"
+				                     Content="{DynamicResource Settings_RemoveAllRadiostations}"/>
+
 				<controls:LinkButton Command="{Binding ResetCommand}"
 				                     Content="{DynamicResource Settings_ResetSettings}"/>
 

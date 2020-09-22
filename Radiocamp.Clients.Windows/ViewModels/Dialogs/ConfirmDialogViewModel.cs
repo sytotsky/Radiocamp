@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive;
 using System.Windows;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.UI.Controls;
@@ -26,6 +27,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public TransparentButtonType SecondButtonType { get; set; }
 
 		public ReactiveCommand<Unit, Unit> OkCommand { get; private set; }
+
+		public ConfirmDialogViewModel(DialogArgs args) : base(args)
+		{
+		}
 
 		public override void Initialize()
 		{

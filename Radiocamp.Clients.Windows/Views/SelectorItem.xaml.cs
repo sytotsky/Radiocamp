@@ -51,7 +51,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 		protected override void OnMouseDown(MouseButtonEventArgs args)
 		{
 			base.OnMouseDown(args);
-			((SelectorValue) DataContext)?.Select();
+			((SelectorDialogValue) DataContext)?.Select();
 		}
 
 		private static void LocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)

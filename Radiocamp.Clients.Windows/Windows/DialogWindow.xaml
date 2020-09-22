@@ -1,25 +1,24 @@
-﻿<Window x:Class="Dartware.Radiocamp.Clients.Windows.Windows.DialogWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
-		xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.Windows"
-        xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance vm:DialogWindowViewModel}"
-        ShowInTaskbar="False"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        WindowState="Normal"
-        AllowsTransparency="True"
-        SizeToContent="WidthAndHeight"
-        SnapsToDevicePixels="True"
-        UseLayoutRounding="True"
-        Focusable="True"
-        x:Name="DialogWindowControl">
+﻿<corewindows:BaseWindow x:Class="Dartware.Radiocamp.Clients.Windows.Windows.DialogWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.Windows"
+                        xmlns:corewindows="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Windows;assembly=Radiocamp.Clients.Windows.UI"
+                        xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
+                        mc:Ignorable="d"
+                        ShowInTaskbar="False"
+                        ResizeMode="NoResize"
+                        WindowStyle="None"
+                        WindowState="Normal"
+                        AllowsTransparency="True"
+                        SizeToContent="WidthAndHeight"
+                        SnapsToDevicePixels="True"
+                        UseLayoutRounding="True"
+                        Focusable="True"
+                        Foreground="{DynamicResource MainFg}">
 
-    <Window.Resources>
+    <corewindows:BaseWindow.Resources>
         <Style TargetType="{x:Type windows:DialogWindow}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -38,11 +37,10 @@
 
 		                        <Grid>
 
-			                        <ContentPresenter Content="{Binding Content}"/>
+			                        <ContentPresenter Content="{TemplateBinding Content}"/>
 
-			                        <Border x:Name="OVerlay"
-			                                Panel.ZIndex="1"
-			                                ap:AnimateFadeIn.Value="{Binding OverlayVisible, ElementName=DialogWindowControl, Mode=OneWay}"
+			                        <Border Panel.ZIndex="1"
+			                                ap:AnimateFadeIn.Value="{Binding OverlayVisible, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
 			                                Background="{DynamicResource DimmableOverlay}"/>
 
 		                        </Grid>
@@ -53,9 +51,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
-    
-	<ContentControl Foreground="{DynamicResource MainFg}"
-	                Content="{Binding Content}"/>
+    </corewindows:BaseWindow.Resources>
 
-</Window>
+</corewindows:BaseWindow>

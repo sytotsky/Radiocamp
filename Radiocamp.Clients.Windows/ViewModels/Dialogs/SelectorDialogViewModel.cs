@@ -13,20 +13,20 @@ using Dartware.Radiocamp.Clients.Windows.Dialogs;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
-	public sealed class SelectorViewModel<SelectorType> : DynamicDialogViewModel where SelectorType : struct, IConvertible
+	public sealed class SelectorDialogViewModel<SelectorType> : DynamicDialogViewModel where SelectorType : struct, IConvertible
 	{
 
-		private readonly SelectorArgs<SelectorType> args;
+		private readonly SelectorDialogArgs<SelectorType> args;
 
 		private Action<SelectorType> changeCallback;
-		private ISourceCache<SelectorValue<SelectorType>, SelectorType> list;
+		private ISourceCache<SelectorDialogValue<SelectorType>, SelectorType> list;
 		private SelectorType current;
 		private String titleLocalizationResourceKey;
 		private String searchQuery;
 		private Boolean search;
-		private ReadOnlyObservableCollection<SelectorValue<SelectorType>> values;
+		private ReadOnlyObservableCollection<SelectorDialogValue<SelectorType>> values;
 
-		public ReadOnlyObservableCollection<SelectorValue<SelectorType>> Values => values;
+		public ReadOnlyObservableCollection<SelectorDialogValue<SelectorType>> Values => values;
 
 		public String TitleLocalizationResourceKey
 		{
@@ -46,7 +46,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			set => SetAndRaise(ref search, value);
 		}
 
-		public SelectorViewModel(SelectorArgs<SelectorType> args)
+		public SelectorDialogViewModel(SelectorDialogArgs<SelectorType> args) : base(args)
 		{
 			this.args = args;
 		}
@@ -56,7 +56,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			
 			base.Initialize();
 
-			list = new SourceCache<SelectorValue<SelectorType>, SelectorType>(value => value.Value);
+			list = new SourceCache<SelectorDialogValue<SelectorType>, SelectorType>(value => value.Value);
 
 			Width = 300;
 			MaxHeight = 420;
@@ -106,7 +106,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				String localizationResourceKey = value.ToLocalizationResourceKey();
 				String searchText = Application.Current.Resources[localizationResourceKey] as String;
 
-				return new SelectorValue<SelectorType>()
+				return new SelectorDialogValue<SelectorType>()
 				{
 					Value = value,
 					IsCurrent = value.Equals(current),
@@ -118,13 +118,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			}));
 
-			IObservable<Func<SelectorValue<SelectorType>, Boolean>> searchFilter = this.WhenValueChanged(viewModel => viewModel.SearchQuery, true)
+			IObservable<Func<SelectorDialogValue<SelectorType>, Boolean>> searchFilter = this.WhenValueChanged(viewModel => viewModel.SearchQuery, true)
 																					   .Select(BuildSearcher);
 
 			IDisposable listSubscription = list.Connect()
 											   .NotEmpty()
 											   .Filter(searchFilter)
-											   .Sort(SortExpressionComparer<SelectorValue<SelectorType>>.Ascending(value => value.SearchText))
+											   .Sort(SortExpressionComparer<SelectorDialogValue<SelectorType>>.Ascending(value => value.SearchText))
 											   .ObserveOnDispatcher(DispatcherPriority.Background)
 											   .Bind(out this.values)
 											   .DisposeMany()
@@ -134,7 +134,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		private void OnSelectedChanged(SelectorValue<SelectorType> newSelected)
+		private void OnSelectedChanged(SelectorDialogValue<SelectorType> newSelected)
 		{
 
 			if (newSelected == null)
@@ -149,7 +149,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			current = newSelected.Value;
 
-			SelectorValue<SelectorType> oldSelected = list.Items.FirstOrDefault(value => value.IsCurrent);
+			SelectorDialogValue<SelectorType> oldSelected = list.Items.FirstOrDefault(value => value.IsCurrent);
 
 			if (oldSelected != null)
 			{
@@ -167,7 +167,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		private Func<SelectorValue<SelectorType>, Boolean> BuildSearcher(String searchQuery)
+		private Func<SelectorDialogValue<SelectorType>, Boolean> BuildSearcher(String searchQuery)
 		{
 
 			if (String.IsNullOrEmpty(searchQuery))

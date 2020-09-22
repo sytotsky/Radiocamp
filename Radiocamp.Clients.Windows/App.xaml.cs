@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Database;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
@@ -43,10 +44,9 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IColorThemes, ColorThemesService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
-			Dependencies.Services.AddSingleton<DialogDimmableOverlayViewModel>();
 			Dependencies.Services.AddSingleton<SideMenuDimmableOverlayViewModel>();
 			Dependencies.Services.AddSingleton<SideMenuViewModel>();
-			Dependencies.Services.AddSingleton<SettingsViewModel>();
+			Dependencies.Services.AddSingleton<SettingsViewModel>(provider => new SettingsViewModel(new DialogArgs(Dependencies.Get<IMainWindow>().Window)));
 
 			Dependencies.Build();
 
@@ -61,5 +61,6 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
 
 		}
+
 	}
 }

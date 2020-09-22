@@ -2,6 +2,7 @@
 using System.Reflection;
 using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.Views;
@@ -17,7 +18,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private Boolean isInitialized;
 
-		public SettingsViewModel()
+		public SettingsViewModel(DialogArgs args) : base(args)
 		{
 			settings = Dependencies.Get<ISettings>();
 			dialogs = Dependencies.Get<IDialogs>();
@@ -48,6 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public override void Dispose()
 		{
 			CurrentSection = SettingsSection.Navigator;
+			owner.OverlayVisible = false;
 		}
 
 		protected override void OnEscape()

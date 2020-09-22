@@ -4,12 +4,12 @@ using DynamicData.Binding;
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
 
-	public abstract class SelectorValue : AbstractNotifyPropertyChanged
+	public abstract class SelectorDialogValue : AbstractNotifyPropertyChanged
 	{
 		public abstract void Select();
 	}
 
-	public sealed class SelectorValue<SelectorType> : SelectorValue where SelectorType : struct, IConvertible
+	public sealed class SelectorDialogValue<SelectorType> : SelectorDialogValue where SelectorType : struct, IConvertible
 	{
 
 		private SelectorType value;
@@ -42,7 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 		}
 		
 		public String SearchText { get; set; }
-		public Action<SelectorValue<SelectorType>> SelectCallback { get; set; }
+		public Action<SelectorDialogValue<SelectorType>> SelectCallback { get; set; }
 
 		public override void Select()
 		{

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Shared;
@@ -15,7 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public event Action ShowDialog;
 
-		public Task Show<DialogType, ViewModelType>(Expression<Func<Boolean>> updatingFlag = null) where DialogType : Dialog, new() where ViewModelType : DialogViewModel, new()
+		public Task Show<DialogType, ViewModelType>(DialogArgs args) where DialogType : Dialog, new() where ViewModelType : DialogViewModel
 		{
 
 			ShowDialog?.Invoke();
@@ -29,37 +28,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 			else
 			{
-				viewModel = new ViewModelType();
+				viewModel = Activator.CreateInstance(typeof(ViewModelType), new Object[]
+				{
+					args
+				}) as ViewModelType;
 			}
 
-			if (updatingFlag != null)
-			{
-				if (!updatingFlag.GetPropertyValue())
-				{
-					updatingFlag.SetPropertyValue(true);
-				}
-			}
-
-			Task task = new DialogType().ShowDialog(viewModel);
-
-			task.ContinueWith(_ =>
-			{
-				if (updatingFlag != null)
-				{
-					updatingFlag.SetPropertyValue(false);
-				}
-			}, TaskContinuationOptions.ExecuteSynchronously);
-
-			return task;
+			return new DialogType().ShowDialog(viewModel);
 
 		}
 
-		public Task<Boolean> Confirm(ConfirmArgs args)
+		public Task<Boolean> Confirm(ConfirmDialogArgs args)
 		{
 
 			ShowDialog?.Invoke();
 
-			ConfirmDialogViewModel confirmDialogViewModel = new ConfirmDialogViewModel()
+			ConfirmDialogViewModel confirmDialogViewModel = new ConfirmDialogViewModel(args)
 			{
 				Text = args.Text,
 				FirstButtonType = args.FirstButtonType,
@@ -84,29 +68,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				confirmDialogViewModel.SecondButtonText = LocalizationResources.ConfirmDialog_SecondButton;
 			}
 
-			if (args.UpdatingFlag != null)
-			{
-				if (!args.UpdatingFlag.GetPropertyValue())
-				{
-					args.UpdatingFlag.SetPropertyValue(true);
-				}
-			}
-
-			Task<Boolean> task = new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
-
-			task.ContinueWith(_ =>
-			{
-				if (args.UpdatingFlag != null)
-				{
-					args.UpdatingFlag.SetPropertyValue(false);
-				}
-			}, TaskContinuationOptions.ExecuteSynchronously);
-
-			return task;
+			return new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
 
 		}
 
-		public Task Selector<SelectorType>(SelectorArgs<SelectorType> args = null) where SelectorType : struct, IConvertible
+		public Task Selector<SelectorType>(SelectorDialogArgs<SelectorType> args = null) where SelectorType : struct, IConvertible
 		{
 
 			ShowDialog?.Invoke();
@@ -123,7 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				throw new ArgumentException($"{nameof(SelectorType)} should be marked as Selector.");
 			}
 
-			SelectorViewModel<SelectorType> selectorViewModel = new SelectorViewModel<SelectorType>(args);
+			SelectorDialogViewModel<SelectorType> selectorDialogViewModel = new SelectorDialogViewModel<SelectorType>(args);
 
 			if (args?.UpdatingFlag != null)
 			{
@@ -133,7 +99,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				}
 			}
 
-			Task task = new Selector().ShowDialog(selectorViewModel);
+			Task task = new SelectorDialog().ShowDialog(selectorDialogViewModel);
 
 			task.ContinueWith(_ =>
 			{

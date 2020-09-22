@@ -7,12 +7,16 @@ using Dartware.Radiocamp.Clients.Windows.Windows;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Clients.Windows.UI.Windows;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 
 	public abstract class DynamicDialogViewModel : AbstractNotifyPropertyChanged, IDialogViewModel
 	{
+
+		protected readonly BaseWindow owner;
 
 		private Boolean isInitialized;
 		private DialogWindow dialogWindow;
@@ -42,32 +46,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				{
 					dialogWindow.KeyDown += OnDialogWindowKeyDown;
 				}
-
-			}
-		}
-
-		public Boolean OverlayVisible
-		{
-			get
-			{
-
-				if (DialogWindow is null)
-				{
-					return false;
-				}
-
-				return DialogWindow.OverlayVisible;
-
-			}
-			set
-			{
-
-				if (DialogWindow is null)
-				{
-					return;
-				}
-
-				DialogWindow.OverlayVisible = value;
 
 			}
 		}
@@ -116,9 +94,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ICommand CloseCommand { get; private set; }
 
-		public DynamicDialogViewModel()
+		public DynamicDialogViewModel(DialogArgs args)
 		{
 			disposables = new CompositeDisposable();
+			owner = args.Owner ?? Application.Current.MainWindow as BaseWindow;
 		}
 
 		public virtual void Initialize()
@@ -129,6 +108,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				return;
 			}
 
+			owner.OverlayVisible = true;
 			AutoCenter = true;
 			MaxWidth = Double.MaxValue;
 			MaxHeight = Double.MaxValue;
@@ -149,9 +129,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public virtual void Dispose()
 		{
+			
 			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
 			dialogWindow.KeyDown -= OnDialogWindowKeyDown;
 			dialogWindow.SizeChanged -= OnDialogWindowSizeChanged;
+
+			owner.OverlayVisible = false;
+
 		}
 
 		protected virtual void Close()
@@ -205,12 +189,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			if (AutoCenter)
 			{
-
-				Window ownerWindow = DialogWindow.Owner;
-
-				dialogWindow.Left = ownerWindow.Left + (ownerWindow.Width - dialogWindow.ActualWidth) / 2;
-				dialogWindow.Top = ownerWindow.Top + (ownerWindow.Height - dialogWindow.ActualHeight) / 2;
-
+				dialogWindow.Left = owner.Left + (owner.Width - dialogWindow.ActualWidth) / 2;
+				dialogWindow.Top = owner.Top + (owner.Height - dialogWindow.ActualHeight) / 2;
 			}
 		}
 
@@ -225,6 +205,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			get => result;
 			set => SetAndRaise(ref result, value);
+		}
+
+		protected DynamicDialogViewModel(DialogArgs args) : base(args)
+		{
 		}
 
 	}

@@ -14,6 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly IApplication application;
 		private readonly IDialogs dialogs;
+		private readonly IMainWindow mainWindow;
 
 		[Reactive]
 		public Boolean Visible { get; set; }
@@ -29,6 +30,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			this.application = application;
 			this.dialogs = dialogs;
+			this.mainWindow = mainWindow;
 
 			ToggleCommand = ReactiveCommand.Create(Toggle);
 			CreateCommand = ReactiveCommand.Create(Create);
@@ -65,12 +67,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async void Settings()
 		{
-			await dialogs.Show<SettingsDialog, SettingsViewModel>();
+			await dialogs.Show<SettingsDialog, SettingsViewModel>(null);
 		}
 
 		private async void About()
 		{
-			await dialogs.Show<AboutDialog, AboutDialogViewModel>();
+			await dialogs.Show<AboutDialog, AboutDialogViewModel>(new DialogArgs(mainWindow.Window));
 		}
 
 		private void Exit()

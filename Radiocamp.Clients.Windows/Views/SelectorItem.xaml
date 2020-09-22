@@ -6,7 +6,7 @@
 			 xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
 			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
 			 mc:Ignorable="d"
-			 d:DataContext="{d:DesignInstance dialogs:SelectorValue}"
+			 d:DataContext="{d:DesignInstance dialogs:SelectorDialogValue}"
 			 Focusable="False">
 	
 	<UserControl.Resources>

@@ -31,12 +31,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> ResetCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> ChangeSearchEngineCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> ExportRadiostationsCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> ImportRadiostationsCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> RemoveAllRadiostationsCommand { get; private set; }
 
 		private void InitializeGeneral()
 		{
 
-			ResetCommand = ReactiveCommand.CreateFromTask(Reset);
 			ChangeSearchEngineCommand = ReactiveCommand.CreateFromTask(ChangeSearchEngine);
+			ExportRadiostationsCommand = ReactiveCommand.CreateFromTask(ExportRadiostations);
+			ImportRadiostationsCommand = ReactiveCommand.CreateFromTask(ImportRadiostations);
+			RemoveAllRadiostationsCommand = ReactiveCommand.CreateFromTask(RemoveAllRadiostations);
+			ResetCommand = ReactiveCommand.CreateFromTask(Reset);
 
 			this.WhenAnyValue(viewModel => viewModel.RunAtWindowsStart)
 				.Skip(1)
@@ -65,15 +71,39 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		private async Task ChangeSearchEngine()
+		{
+			await dialogs.Selector(new SelectorDialogArgs<SearchEngine>(DialogWindow)
+			{
+				Current = SearchEngine,
+				Height = 420,
+				Callback = searchEngine => SearchEngine = searchEngine,
+			});
+		}
+
+		private async Task ExportRadiostations()
+		{
+			await dialogs.Show<ExportRadiostationsDialog, ExportRadiostationsDialogViewModel>(new DialogArgs(DialogWindow));
+		}
+
+		private async Task ImportRadiostations()
+		{
+			throw new NotImplementedException();
+		}
+
+		private async Task RemoveAllRadiostations()
+		{
+			throw new NotImplementedException();
+		}
+
 		private async Task Reset()
 		{
 
-			ConfirmArgs confirmArgs = new ConfirmArgs()
+			ConfirmDialogArgs confirmArgs = new ConfirmDialogArgs(DialogWindow)
 			{
 				Text = LocalizationResources.Settings_ResetSettingsConfirmText,
 				SecondButtonText = LocalizationResources.Settings_ResetSettingsConfirmSecondButton,
-				SecondButtonType = TransparentButtonType.Danger,
-				UpdatingFlag = () => OverlayVisible
+				SecondButtonType = TransparentButtonType.Danger
 			};
 
 			if (await dialogs.Confirm(confirmArgs))
@@ -82,17 +112,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				InitializeProperties();
 			}
 
-		}
-
-		private async Task ChangeSearchEngine()
-		{
-			await dialogs.Selector(new SelectorArgs<SearchEngine>()
-			{
-				Current = SearchEngine,
-				Height = 420,
-				Callback = searchEngine => SearchEngine = searchEngine,
-				UpdatingFlag = () => OverlayVisible
-			});
 		}
 
 	}

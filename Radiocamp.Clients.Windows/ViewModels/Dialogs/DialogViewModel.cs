@@ -6,7 +6,9 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -14,6 +16,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 	public abstract class DialogViewModel : ViewModel, IDialogViewModel
 	{
+
+		protected readonly BaseWindow owner;
 
 		private Boolean isInitialized;
 		private DialogWindow dialogWindow;
@@ -33,32 +37,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				{
 					dialogWindow.KeyDown += OnDialogWindowKeyDown;
 				}
-
-			}
-		}
-
-		public Boolean OverlayVisible
-		{
-			get
-			{
-
-				if (DialogWindow is null)
-				{
-					return false;
-				}
-
-				return DialogWindow.OverlayVisible;
-
-			}
-			set
-			{
-
-				if (DialogWindow is null)
-				{
-					return;
-				}
-
-				DialogWindow.OverlayVisible = value;
 
 			}
 		}
@@ -86,8 +64,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
 
+		public DialogViewModel(DialogArgs args)
+		{
+			owner = args.Owner ?? Application.Current.MainWindow as BaseWindow;
+		}
+
 		public virtual void Initialize()
 		{
+
+			owner.OverlayVisible = true;
 
 			if (isInitialized)
 			{
@@ -122,6 +107,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
 			dialogWindow.KeyDown -= OnDialogWindowKeyDown;
 			dialogWindow.SizeChanged -= OnDialogWindowSizeChanged;
+
+			owner.OverlayVisible = false;
 
 		}
 
@@ -176,12 +163,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			if (AutoCenter)
 			{
-
-				Window ownerWindow = DialogWindow.Owner;
-
-				dialogWindow.Left = ownerWindow.Left + (ownerWindow.Width - dialogWindow.ActualWidth) / 2;
-				dialogWindow.Top = ownerWindow.Top + (ownerWindow.Height - dialogWindow.ActualHeight) / 2;
-
+				dialogWindow.Left = owner.Left + (owner.Width - dialogWindow.ActualWidth) / 2;
+				dialogWindow.Top = owner.Top + (owner.Height - dialogWindow.ActualHeight) / 2;
 			}
 		}
 
@@ -189,8 +172,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 	public abstract class DialogViewModel<ResultType> : DialogViewModel, IDialogViewModel<ResultType>
 	{
+
 		[Reactive]
 		public ResultType Result { get; set; }
+
+		public DialogViewModel(DialogArgs args) : base(args)
+		{
+		}
+
 	}
 
 }
