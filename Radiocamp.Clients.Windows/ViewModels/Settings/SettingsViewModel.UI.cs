@@ -40,7 +40,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			await dialogs.Selector(new SelectorArgs<ApplicationLocalization>()
 			{
 				Current = Localization,
-				Search = true,
 				Callback = localization => Localization = localization,
 				UpdatingFlag = () => OverlayVisible,
 				Height = 222

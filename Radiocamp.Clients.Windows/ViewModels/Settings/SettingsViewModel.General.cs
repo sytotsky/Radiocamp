@@ -89,10 +89,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			await dialogs.Selector(new SelectorArgs<SearchEngine>()
 			{
 				Current = SearchEngine,
-				Width = 300,
 				Height = 420,
 				Callback = searchEngine => SearchEngine = searchEngine,
-				Search = true,
 				UpdatingFlag = () => OverlayVisible
 			});
 		}
