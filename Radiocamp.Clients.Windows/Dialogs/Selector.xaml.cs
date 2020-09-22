@@ -23,6 +23,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			set => SetValue(TitleLocalizationResourceKeyProperty, value);
 		}
 
+		public Selector()
+		{
+			InitializeComponent();
+		}
+
 		private static void TitleLocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
@@ -36,11 +41,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 				}
 			}
 
-		}
-
-		public Selector()
-		{
-			InitializeComponent();
 		}
 
 	}
