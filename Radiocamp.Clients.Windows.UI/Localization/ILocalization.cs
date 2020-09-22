@@ -4,6 +4,6 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 {
 	public interface ILocalization
 	{
-		void Apply(ApplicationLocalization localization);
+		void Apply(Shared.Models.Localization localization);
 	}
 }

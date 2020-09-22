@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
+using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Settings;
-using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.ColorThemes
 {

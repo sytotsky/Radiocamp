@@ -7,17 +7,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	public sealed partial class WindowsSettingsService
 	{
 
-		private ApplicationLocalization localization;
+		private Localization localization;
 		private Boolean isNightMode;
 
-		public event Action<ApplicationLocalization> LocalizationChanged;
+		public event Action<Localization> LocalizationChanged;
 		public event Action<Boolean> IsNightModeChanged;
 
 		[UserSetting]
 		[Field(nameof(localization))]
 		[Event(nameof(LocalizationChanged))]
-		[Default(ApplicationLocalization.En)]
-		public ApplicationLocalization Localization
+		[Default(Shared.Models.Localization.En)]
+		public Localization Localization
 		{
 			get => localization;
 			set => SetValue(value);

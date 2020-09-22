@@ -13,7 +13,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	{
 
 		[Reactive]
-		public ApplicationLocalization Localization { get; private set; }
+		public Localization Localization { get; private set; }
 
 		[Reactive]
 		public Boolean IsNightMode { get; set; }
@@ -37,7 +37,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ChangeLocalization()
 		{
-			await dialogs.Selector(new SelectorArgs<ApplicationLocalization>()
+			await dialogs.Selector(new SelectorArgs<Localization>()
 			{
 				Current = Localization,
 				Callback = localization => Localization = localization,

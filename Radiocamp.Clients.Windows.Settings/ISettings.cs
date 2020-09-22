@@ -9,7 +9,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	{
 
 		event Action<Boolean> HotkeysIsEnabledChanged;
-		event Action<ApplicationLocalization> LocalizationChanged;
+		event Action<Localization> LocalizationChanged;
 		event Action<Boolean> IsNightModeChanged;
 
 		String ApplicationName { get; }
@@ -24,7 +24,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		Boolean ShowFavoritesAtStart { get; set; }
 		Boolean ShowOnlyCustomAtStart { get; set; }
 		SearchEngine SearchEngine { get; set; }
-		ApplicationLocalization Localization { get; set; }
+		Localization Localization { get; set; }
 		Boolean IsNightMode { get; set; }
 		Boolean HotkeysIsEnabled { get; set; }
 

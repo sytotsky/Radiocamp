@@ -8,7 +8,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Models
 		public Boolean ShowFavoritesAtStart { get; set; }
 		public Boolean ShowOnlyCustomAtStart { get; set; }
 		public SearchEngine SearchEngine { get; set; }
-		public ApplicationLocalization Localization { get; set; }
+		public Localization Localization { get; set; }
 		public Boolean IsNightMode { get; set; }
 
 	}

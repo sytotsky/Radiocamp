@@ -4,7 +4,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Models
 {
 	[Selector]
 	[Localization("Language")]
-	public enum ApplicationLocalization : Int32
+	public enum Localization : Int32
 	{
 		[Localization("English_EN")]
 		[HintLocalization("English_EN_Code")]
