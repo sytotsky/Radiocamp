@@ -17,8 +17,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public Task Show<DialogType, ViewModelType>(DialogArgs args) where DialogType : Dialog, new() where ViewModelType : DialogViewModel
 		{
 
-			ShowDialog?.Invoke();
-
 			ViewModelType viewModel;
 			Type viewModelType = typeof(ViewModelType);
 
@@ -34,14 +32,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				}) as ViewModelType;
 			}
 
-			return new DialogType().ShowDialog(viewModel);
+			return Show<DialogType>(viewModel);
 
 		}
 
 		public Task<Boolean> Confirm(ConfirmDialogArgs args)
 		{
-
-			ShowDialog?.Invoke();
 
 			ConfirmDialogViewModel confirmDialogViewModel = new ConfirmDialogViewModel(args)
 			{
@@ -68,14 +64,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				confirmDialogViewModel.SecondButtonText = LocalizationResources.ConfirmDialog_SecondButton;
 			}
 
-			return new ConfirmDialog().ShowDialog<ConfirmDialogViewModel, Boolean>(confirmDialogViewModel);
+			return Show<ConfirmDialog, Boolean>(confirmDialogViewModel);
 
 		}
 
 		public Task Selector<SelectorType>(SelectorDialogArgs<SelectorType> args = null) where SelectorType : struct, IConvertible
 		{
-
-			ShowDialog?.Invoke();
 
 			Type selectorType = typeof(SelectorType);
 
@@ -91,25 +85,26 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			SelectorDialogViewModel<SelectorType> selectorDialogViewModel = new SelectorDialogViewModel<SelectorType>(args);
 
-			if (args?.UpdatingFlag != null)
-			{
-				if (!args.UpdatingFlag.GetPropertyValue())
-				{
-					args?.UpdatingFlag.SetPropertyValue(true);
-				}
-			}
+			return Show<SelectorDialog>(selectorDialogViewModel);
 
-			Task task = new SelectorDialog().ShowDialog(selectorDialogViewModel);
+		}
 
-			task.ContinueWith(_ =>
-			{
-				if (args?.UpdatingFlag != null)
-				{
-					args?.UpdatingFlag.SetPropertyValue(false);
-				}
-			}, TaskContinuationOptions.ExecuteSynchronously);
+		private Task Show<DialogType>(IDialogViewModel viewModel) where DialogType : Dialog, new()
+		{
 
-			return task;
+			ShowDialog?.Invoke();
+
+			return new DialogType().ShowDialog(viewModel);
+
+		}
+
+		private Task<ResultType> Show<DialogType, ResultType>(IDialogViewModel<ResultType> viewModel) where DialogType : Dialog, new()
+		{
+
+			ShowDialog?.Invoke();
+
+			return new DialogType().ShowDialog<IDialogViewModel<ResultType>, ResultType>(viewModel);
+
 
 		}
 
