@@ -36,6 +36,28 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
+		public Task<ResultType> Show<ResultType, DialogType, ViewModelType>(DialogArgs args) where DialogType : Dialog, new() where ViewModelType : DialogViewModel<ResultType>
+		{
+
+			ViewModelType viewModel;
+			Type viewModelType = typeof(ViewModelType);
+
+			if (Attribute.IsDefined(viewModelType, typeof(DependencyAttribute)))
+			{
+				viewModel = Dependencies.Get<ViewModelType>();
+			}
+			else
+			{
+				viewModel = Activator.CreateInstance(typeof(ViewModelType), new Object[]
+				{
+					args
+				}) as ViewModelType;
+			}
+
+			return Show<DialogType, ResultType>(viewModel);
+
+		}
+
 		public Task<Boolean> Confirm(ConfirmDialogArgs args)
 		{
 

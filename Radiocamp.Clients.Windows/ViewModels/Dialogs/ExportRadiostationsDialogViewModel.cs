@@ -15,11 +15,10 @@ using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
-	public sealed class ExportRadiostationsDialogViewModel : DialogViewModel
+	public sealed class ExportRadiostationsDialogViewModel : DialogViewModel<ExportArgs>
 	{
 
 		private readonly IDialogs dialogs;
-		private readonly IRadiostations radiostations;
 		private readonly ISettings settings;
 
 		[Reactive]
@@ -56,7 +55,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ExportRadiostationsDialogViewModel(DialogArgs args) : base(args)
 		{
 			dialogs = Dependencies.Get<IDialogs>();
-			radiostations = Dependencies.Get<IRadiostations>();
 			settings = Dependencies.Get<ISettings>();
 		}
 
@@ -83,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Path = settings.ExportRadiostationsPath;
 			FilePath = System.IO.Path.Combine(Path, $"{DateTime.Now:MMMM dd yyyy}.{settings.ExportRadiostationsFileFormat}");
 
-			ExportCommand = ReactiveCommand.CreateFromTask(Export);
+			ExportCommand = ReactiveCommand.Create(Export);
 			ChangeExportFormatCommand = ReactiveCommand.CreateFromTask(ChangeExportFormat);
 			ChangeFilePathCommand = ReactiveCommand.Create(ChangeFilePath);
 
@@ -143,9 +141,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		private async Task Export()
+		private void Export()
 		{
-			await radiostations.ExportAsync(new ExportArgs()
+			
+			Result = new ExportArgs()
 			{
 				All = All,
 				OnlyFavoritesOrCustom = OnlyFavoritesOrCustom,
@@ -154,7 +153,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				SaveSoundSettings = SaveSoundSettings,
 				SaveFavoritesTags = SaveSoundSettings,
 				FilePath = FilePath
-			});
+			};
+
+			Close();
+
 		}
 
 		private async Task ChangeExportFormat()

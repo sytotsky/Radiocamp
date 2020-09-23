@@ -83,7 +83,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ExportRadiostations()
 		{
-			await dialogs.Show<ExportRadiostationsDialog, ExportRadiostationsDialogViewModel>(new DialogArgs(DialogWindow));
+			
+			ExportArgs exportArgs = await dialogs.Show<ExportArgs, ExportRadiostationsDialog, ExportRadiostationsDialogViewModel>(new DialogArgs(DialogWindow));
+
+			if (exportArgs != null)
+			{
+				await radiostations.ExportAsync(exportArgs);
+			}
+
 		}
 
 		private async Task ImportRadiostations()

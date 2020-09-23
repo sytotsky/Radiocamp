@@ -15,6 +15,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly ISettings settings;
 		private readonly IDialogs dialogs;
+		private readonly IRadiostations radiostations;
 
 		private Boolean isInitialized;
 
@@ -22,6 +23,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			settings = Dependencies.Get<ISettings>();
 			dialogs = Dependencies.Get<IDialogs>();
+			radiostations = Dependencies.Get<IRadiostations>();
 		}
 
 		public override void Initialize()
