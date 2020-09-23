@@ -42,6 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IBrowser, BrowserService>();
 			Dependencies.Services.AddSingleton<ILocalization, LocalizationService>();
 			Dependencies.Services.AddSingleton<IColorThemes, ColorThemesService>();
+			Dependencies.Services.AddSingleton<IRadiostations, RadiostationsService>();
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
 			Dependencies.Services.AddSingleton<SideMenuDimmableOverlayViewModel>();

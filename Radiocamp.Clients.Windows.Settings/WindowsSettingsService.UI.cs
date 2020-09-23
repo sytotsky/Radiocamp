@@ -16,7 +16,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		[UserSetting]
 		[Field(nameof(localization))]
 		[Event(nameof(LocalizationChanged))]
-		[Default(Shared.Models.Localization.En)]
+		[Default(Localization.En)]
 		public Localization Localization
 		{
 			get => localization;

@@ -6,6 +6,7 @@
 				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
 				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 				mc:Ignorable="d"
 				d:DataContext="{d:DesignInstance vm:ExportRadiostationsDialogViewModel}">
 
@@ -25,27 +26,76 @@
 			</Grid.ColumnDefinitions>
 
 			<TextBlock Grid.Column="0"
-			           Style="{DynamicResource DialogTitleTextBlock}"
-			           Text="{DynamicResource ExportRadiostations}"/>
+					   Style="{DynamicResource DialogTitleTextBlock}"
+					   Text="{DynamicResource ExportRadiostations}"/>
 
 			<controls:IconButton Grid.Column="1"
-			                     Style="{DynamicResource CloseDialogButtonStyle}"
-			                     Command="{Binding CloseCommand}"/>
+								 Style="{DynamicResource CloseDialogButtonStyle}"
+								 Command="{Binding CloseCommand}"/>
 
 		</Grid>
 
+		<ScrollViewer Grid.Row="1"
+					  VerticalScrollBarVisibility="Visible"
+					  IsDeferredScrollingEnabled="False">
+			<StackPanel Orientation="Vertical">
+
+				<CheckBox IsChecked="{Binding All, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_All}"/>
+
+				<CheckBox IsEnabled="{Binding All, Mode=OneWay, Converter={converters:BooleanInvertConverter}}"
+				          IsChecked="{Binding OnlyFavoritesOrCustom, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_OnlyFavoritesOrCustom}"/>
+
+				<CheckBox IsChecked="{Binding FavoritesOnly, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_FavoritesOnly}">
+					<CheckBox.IsEnabled>
+						<MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="OneWay">
+							<Binding Path="All" Mode="OneWay"/>
+							<Binding Path="OnlyFavoritesOrCustom" Mode="OneWay"/>
+						</MultiBinding>
+					</CheckBox.IsEnabled>
+				</CheckBox>
+
+				<CheckBox IsChecked="{Binding CustomOnly, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_CustomOnly}">
+					<CheckBox.IsEnabled>
+						<MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="OneWay">
+							<Binding Path="All" Mode="OneWay"/>
+							<Binding Path="OnlyFavoritesOrCustom" Mode="OneWay"/>
+						</MultiBinding>
+					</CheckBox.IsEnabled>
+				</CheckBox>
+
+				<CheckBox IsChecked="{Binding SaveSoundSettings, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_SaveSoundSettings}"/>
+
+				<CheckBox IsChecked="{Binding SaveFavoriteTags, Mode=TwoWay}"
+				          Content="{DynamicResource ImportExport_SaveFavoritesTags}"/>
+
+				<controls:ButtonWithDescription Command="{Binding ChangeExportFormatCommand}"
+				                                Description="{DynamicResource ImportExport_ExportFormat}"
+				                                LocalizedContent="{Binding ExportFormat, Mode=OneWay}"/>
+
+				<controls:LinkButton Command="{Binding ChangeFilePathCommand}"
+				                     ToolTip="{Binding FilePath, Mode=OneWay}"
+				                     Content="{Binding FilePath, Mode=OneWay}"/>
+
+			</StackPanel>
+		</ScrollViewer>
+
 		<StackPanel Grid.Row="2"
-		            Orientation="Horizontal"
-		            HorizontalAlignment="Right"
-		            Margin="16">
+					Orientation="Horizontal"
+					HorizontalAlignment="Right"
+					Margin="16 8 16 16">
 
 			<controls:TransparentButton IsCancel="True"
-			                            Command="{Binding CloseCommand}"
-			                            Content="{DynamicResource Dialog_Cancel}"/>
+										Command="{Binding CloseCommand}"
+										Content="{DynamicResource Dialog_Cancel}"/>
 
 			<controls:TransparentButton IsDefault="True"
-			                            Command="{Binding ExportCommand}"
-			                            Content="{DynamicResource Dialog_Export}"/>
+										Command="{Binding ExportCommand}"
+										Content="{DynamicResource Dialog_Export}"/>
 
 		</StackPanel>
 

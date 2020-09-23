@@ -121,9 +121,12 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 				TypeDefinition thisValue = (TypeDefinition) field.GetValue(this);
 
-				if (thisValue.Equals(value))
+				if (thisValue != null)
 				{
-					return;
+					if (thisValue.Equals(value))
+					{
+						return;
+					}
 				}
 
 				field.SetValue(this, value);
@@ -193,9 +196,12 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 
 						TypeDefinition valueFromStorage = (TypeDefinition) settingsProperty.GetValue(settings, null);
 
-						if (valueFromStorage.Equals(value))
+						if (valueFromStorage != null)
 						{
-							return;
+							if (valueFromStorage.Equals(value))
+							{
+								return;
+							}
 						}
 
 						settingsProperty.SetValue(settings, value);

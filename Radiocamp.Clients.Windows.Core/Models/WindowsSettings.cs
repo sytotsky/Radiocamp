@@ -11,5 +11,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Core.Models
 		public Double MainWindowTop { get; set; }
 		public Boolean HotkeysIsEnabled { get; set; }
 		public Boolean StartMinimized { get; set; }
+		public Boolean ExportRadiostationsAll { get; set; }
+		public Boolean ExportRadiostationsOnlyFavoritesOrCustom { get; set; }
+		public Boolean ExportRadiostationsFavoritesOnly { get; set; }
+		public Boolean ExportRadiostationsCustomOnly { get; set; }
+		public Boolean ExportRadiostationsSaveSoundSettings { get; set; }
+		public Boolean ExportRadiostationsSaveFavoritesTags { get; set; }
+		public ExportFormat ExportRadiostationsFormat { get; set; }
+		public String ExportRadiostationsPath { get; set; }
 	}
 }

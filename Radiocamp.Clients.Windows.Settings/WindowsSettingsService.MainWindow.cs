@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,24 +15,28 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		private Double mainWindowLeft;
 		private Double mainWindowTop;
 
+		[Field(nameof(mainWindowWidth))]
 		public Double MainWindowWidth
 		{
 			get => mainWindowWidth;
 			set => SetValue(value);
 		}
 
+		[Field(nameof(mainWindowHeight))]
 		public Double MainWindowHeight
 		{
 			get => mainWindowHeight;
 			set => SetValue(value);
 		}
 
+		[Field(nameof(mainWindowLeft))]
 		public Double MainWindowLeft
 		{
 			get => mainWindowLeft;
 			set => SetValue(value);
 		}
 
+		[Field(nameof(mainWindowTop))]
 		public Double MainWindowTop
 		{
 			get => mainWindowTop;

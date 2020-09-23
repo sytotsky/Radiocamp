@@ -360,16 +360,8 @@
 	<!-- Radiostation Editor -->
 
 	<system:String x:Key="RadiostationEditor_AddToFavorites">Добавить в «Избранные»</system:String>
-	<system:String x:Key="RadiostationEditor_CoverColorMode">Цветовой режим: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverFormat">Формат: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverImageURL">URL-адрес изображения</system:String>
-	<system:String x:Key="RadiostationEditor_CoverOriginalResolution">Исходное разрешение: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverPlaceholderText">Перетащите изображение обложки в модальное окно или нажмите кнопку «Обзор».</system:String>
-	<system:String x:Key="RadiostationEditor_CoverResolution">Разрешение: </system:String>
 	<system:String x:Key="RadiostationEditor_Create">СОЗДАТЬ</system:String>
 	<system:String x:Key="RadiostationEditor_CreateTitle">Создать радиостанцию</system:String>
-	<system:String x:Key="RadiostationEditor_ImageProcessingLoader">Обработка...</system:String>
-	<system:String x:Key="RadiostationEditor_RemoveCoverButton">Удалить</system:String>
 	<system:String x:Key="RadiostationEditor_StartPlayback">Начать воспроизведение</system:String>
 	<system:String x:Key="RadiostationEditor_StreamURL">Ссылка на поток</system:String>
 	<system:String x:Key="RadiostationEditor_SupportedFormats">Поддерживаемые форматы: PNG, JPEG, GIF</system:String>
@@ -532,7 +524,6 @@
 	<system:String x:Key="ImportExport_CustomOnly">Только пользовательские</system:String>
 	<system:String x:Key="ImportExport_SaveSoundSettings">Сохранить настройки звука</system:String>
 	<system:String x:Key="ImportExport_SaveFavoritesTags">Сохранить метки «Избранное»</system:String>
-	<system:String x:Key="ImportExport_SaveCovers">Сохранить обложки</system:String>
 	<system:String x:Key="ImportExport_Format">Формат</system:String>
 	<system:String x:Key="ImportExport_ExportFormat">Формат экспорта</system:String>
 	<system:String x:Key="ImportExport_BinaryFormat">Бинарный</system:String>

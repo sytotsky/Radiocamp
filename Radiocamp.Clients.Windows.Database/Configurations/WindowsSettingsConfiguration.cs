@@ -14,7 +14,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 
 			builder.HasData(new WindowsSettings()
 			{
-				Id = Guid.NewGuid()
+				Id = Guid.NewGuid(),
+				ExportRadiostationsAll = true,
+				ExportRadiostationsSaveSoundSettings = true,
+				ExportRadiostationsSaveFavoritesTags = true
 			});
 
 		}

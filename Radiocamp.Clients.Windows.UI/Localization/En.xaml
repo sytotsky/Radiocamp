@@ -361,16 +361,8 @@
 	<!-- Radiostation Editor -->
 
 	<system:String x:Key="RadiostationEditor_AddToFavorites">Add to favorites</system:String>
-	<system:String x:Key="RadiostationEditor_CoverColorMode">Color mode: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverFormat">Format: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverImageURL">Image URL</system:String>
-	<system:String x:Key="RadiostationEditor_CoverOriginalResolution">Original resolution: </system:String>
-	<system:String x:Key="RadiostationEditor_CoverPlaceholderText">Drag the cover image into the modal window, or click the «Browse» button.</system:String>
-	<system:String x:Key="RadiostationEditor_CoverResolution">Resolution: </system:String>
 	<system:String x:Key="RadiostationEditor_Create">CREATE</system:String>
 	<system:String x:Key="RadiostationEditor_CreateTitle">Create radiostation</system:String>
-	<system:String x:Key="RadiostationEditor_ImageProcessingLoader">Processing...</system:String>
-	<system:String x:Key="RadiostationEditor_RemoveCoverButton">Remove</system:String>
 	<system:String x:Key="RadiostationEditor_StartPlayback">Start playback</system:String>
 	<system:String x:Key="RadiostationEditor_StreamURL">Stream URL</system:String>
 	<system:String x:Key="RadiostationEditor_SupportedFormats">Supported formats: PNG, JPEG, GIF</system:String>
@@ -533,7 +525,6 @@
 	<system:String x:Key="ImportExport_CustomOnly">Custom only</system:String>
 	<system:String x:Key="ImportExport_SaveSoundSettings">Save sound settings</system:String>
 	<system:String x:Key="ImportExport_SaveFavoritesTags">Save favorites tags</system:String>
-	<system:String x:Key="ImportExport_SaveCovers">Save covers</system:String>
 	<system:String x:Key="ImportExport_Format">Format</system:String>
 	<system:String x:Key="ImportExport_ExportFormat">Export format</system:String>
 	<system:String x:Key="ImportExport_BinaryFormat">Binary</system:String>

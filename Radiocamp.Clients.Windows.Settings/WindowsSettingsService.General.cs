@@ -10,9 +10,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 	{
 
 		private Boolean startMinimized;
-		protected Boolean showFavoritesAtStart;
-		protected Boolean showOnlyCustomAtStart;
-		protected SearchEngine searchEngine;
+		private Boolean showFavoritesAtStart;
+		private Boolean showOnlyCustomAtStart;
+		private SearchEngine searchEngine;
 
 		public String ApplicationName => "Radiocamp";
 
