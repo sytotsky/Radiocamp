@@ -372,7 +372,6 @@
 	<!-- Settings -->
 
 	<system:String x:Key="Settings_AlwaysShowTrayIcon">Всегда отображать значок в трее</system:String>
-	<system:String x:Key="Settings_ChangeLanguage">Сменить язык</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistory">Очистить историю воспроизведения</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmSecondButton">ОЧИСТИТЬ</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmText">Вы точно хотите очистить всю историю воспроизведения? Это действие нельзя будет отменить.</system:String>

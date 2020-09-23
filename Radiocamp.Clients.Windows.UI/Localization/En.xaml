@@ -373,7 +373,6 @@
 	<!-- Settings -->
 
 	<system:String x:Key="Settings_AlwaysShowTrayIcon">Always show tray icon</system:String>
-	<system:String x:Key="Settings_ChangeLanguage">Change language</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistory">Clear playback history</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmSecondButton">CLEAR</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmText">A you sure you want to clear playback history? This action cannot be undone.</system:String>
