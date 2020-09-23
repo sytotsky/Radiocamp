@@ -16,7 +16,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			throw new System.NotImplementedException();
 		}
 
-		public Task RemoveAllAsync()
+		public Task ClearAsync()
 		{
 			throw new System.NotImplementedException();
 		}

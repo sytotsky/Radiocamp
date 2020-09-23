@@ -5,7 +5,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 {
 	public interface IRadiostations
 	{
-		Task RemoveAllAsync();
+		Task ClearAsync();
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);
 	}

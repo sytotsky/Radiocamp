@@ -95,12 +95,24 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ImportRadiostations()
 		{
-			throw new NotImplementedException();
+			await radiostations.ImportAsync();
 		}
 
 		private async Task RemoveAllRadiostations()
 		{
-			throw new NotImplementedException();
+
+			ConfirmDialogArgs confirmDialogArgs = new ConfirmDialogArgs(DialogWindow)
+			{
+				Text = LocalizationResources.Settings_RemoveAllRadiostationsConfirmText,
+				SecondButtonText = LocalizationResources.Settings_RemoveAllRadiostationsConfirmSecondButton,
+				SecondButtonType = TransparentButtonType.Danger
+			};
+
+			if (await dialogs.Confirm(confirmDialogArgs))
+			{
+				await radiostations.ClearAsync();
+			}
+
 		}
 
 		private async Task Reset()
