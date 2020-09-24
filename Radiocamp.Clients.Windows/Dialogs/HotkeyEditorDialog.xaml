@@ -78,7 +78,7 @@
 		<StackPanel Grid.Row="2"
 		            Orientation="Horizontal"
 		            HorizontalAlignment="Right"
-		            Margin="8">
+		            Margin="16 8 16 16">
 
 			<controls:TransparentButton Type="Success"
 			                            IsCancel="True"
