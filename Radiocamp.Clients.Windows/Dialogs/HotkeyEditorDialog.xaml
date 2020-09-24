@@ -85,7 +85,7 @@
 			                            Command="{Binding CloseCommand}"
 			                            Content="{DynamicResource Cancel_UPPERCASE}"/>
 
-			<controls:TransparentButton Type="Danger"
+			<controls:TransparentButton Type="Success"
 										Command="{Binding RemoveCommand}"
 			                            Content="{DynamicResource Remove_UPPERCASE}"/>
 
