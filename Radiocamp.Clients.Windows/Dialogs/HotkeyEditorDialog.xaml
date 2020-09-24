@@ -46,11 +46,11 @@
 			           Text="{DynamicResource HotkeyEditorDialog_Text}"/>
 
 			<controls:HotkeyLabel Margin="16 8"
-			                      Key="{Binding Key, Mode=OneWay}"
 								  FontSize="18"
 								  BorderBrush="DarkGray"
 								  Padding="0 4"
 								  BorderThickness="0 0 0 2"
+								  Key="{Binding Key, Mode=OneWay}"
 			                      ModifierKey="{Binding ModifierKey, Mode=OneWay}"/>
 
 			<StackPanel Orientation="Horizontal"
