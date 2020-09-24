@@ -3,6 +3,7 @@ using System.Reactive.Disposables;
 using System.Windows;
 using System.Windows.Input;
 using DynamicData.Binding;
+using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Windows.Windows;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
@@ -13,7 +14,7 @@ using Dartware.Radiocamp.Clients.Windows.Dialogs;
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 
-	public abstract class DynamicDialogViewModel : AbstractNotifyPropertyChanged, IDialogViewModel
+	public abstract class DynamicDialogViewModel : AbstractNotifyPropertyChanged, IDialogViewModel, IInitializable
 	{
 
 		protected readonly BaseWindow owner;
@@ -44,7 +45,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 				if (dialogWindow != null)
 				{
-					dialogWindow.KeyDown += OnDialogWindowKeyDown;
+					dialogWindow.KeyDown += OnKeyDown;
 				}
 
 			}
@@ -131,7 +132,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			
 			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
-			dialogWindow.KeyDown -= OnDialogWindowKeyDown;
+			dialogWindow.KeyDown -= OnKeyDown;
 			dialogWindow.SizeChanged -= OnDialogWindowSizeChanged;
 
 			owner.OverlayVisible = false;
@@ -143,7 +144,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			DialogWindow?.Close();
 		}
 
-		protected virtual void OnDialogWindowKeyDown(KeyEventArgs args)
+		protected virtual void OnKeyDown(KeyEventArgs args)
 		{
 		}
 
@@ -164,7 +165,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Close();
 		}
 
-		private void OnDialogWindowKeyDown(Object sender, KeyEventArgs args)
+		private void OnKeyDown(Object sender, KeyEventArgs args)
 		{
 
 			if (args.Key == Key.Escape)
@@ -181,7 +182,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				OnEnter();
 			}
 
-			OnDialogWindowKeyDown(args);
+			OnKeyDown(args);
 
 		}
 

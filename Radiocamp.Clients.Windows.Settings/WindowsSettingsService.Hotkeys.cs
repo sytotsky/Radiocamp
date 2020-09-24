@@ -17,7 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Boolean HotkeysIsEnabled
 		{
 			get => hotkeysIsEnabled;
-			set => SetValue(hotkeysIsEnabled);
+			set => SetValue(value);
 		}
 
 	}

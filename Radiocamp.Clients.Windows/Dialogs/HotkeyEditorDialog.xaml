@@ -1,0 +1,101 @@
+﻿<dialogs:Dialog x:Class="Dartware.Radiocamp.Clients.Windows.Dialogs.HotkeyEditorDialog"
+				xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+				xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
+				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				mc:Ignorable="d"
+				d:DataContext="{d:DesignInstance vm:HotkeyEditorDialogViewModel}">
+	
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Grid.Row="0"
+					   Style="{DynamicResource DialogTitleTextBlock}"
+					   Text="{DynamicResource HotkeyEditorDialog_Header}"/>
+
+			<controls:IconButton Grid.Column="1"
+								 Style="{DynamicResource CloseDialogButtonStyle}"
+								 Command="{Binding CloseCommand}"/>
+
+		</Grid>
+
+		<StackPanel Grid.Row="1" Orientation="Vertical">
+
+			<controls:LocalizationTextBlock Margin="16 8"
+			                                FontSize="15"
+			                                LocalizationContent="{Binding Command, Mode=OneWay}"/>
+
+			<TextBlock Margin="16 8"
+			           FontSize="14"
+			           FontStyle="Italic"
+			           Text="{DynamicResource HotkeyEditorDialog_Text}"/>
+
+			<controls:HotkeyLabel Margin="16 8"
+			                      Key="{Binding Key, Mode=OneWay}"
+								  FontSize="18"
+								  BorderBrush="DarkGray"
+								  Padding="0 4"
+								  BorderThickness="0 0 0 2"
+			                      ModifierKey="{Binding ModifierKey, Mode=OneWay}"/>
+
+			<StackPanel Orientation="Horizontal"
+			            Margin="16 -6 16 8">
+
+				<TextBlock FontSize="11"
+				           Foreground="{DynamicResource DimFg}"
+						   FontStyle="Italic"
+				           Text="{DynamicResource HotkeyEditorDialog_CurrentHotkey}"/>
+
+				<controls:HotkeyLabel Margin="5 0 0 0"
+									  FontSize="11"
+				                      Foreground="{DynamicResource DimFg}"
+									  FontStyle="Italic"
+				                      Key="{Binding CurrentKey}"
+				                      ModifierKey="{Binding CurrentModifierKey}"/>
+
+			</StackPanel>
+
+			<CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+			          Content="{DynamicResource HotkeyEditorDialog_IsEnabled}"/>
+
+		</StackPanel>
+
+		<StackPanel Grid.Row="2"
+		            Orientation="Horizontal"
+		            HorizontalAlignment="Right"
+		            Margin="8">
+
+			<controls:TransparentButton Type="Success"
+			                            IsCancel="True"
+			                            Command="{Binding CloseCommand}"
+			                            Content="{DynamicResource Cancel_UPPERCASE}"/>
+
+			<controls:TransparentButton Type="Danger"
+										Command="{Binding RemoveCommand}"
+			                            Content="{DynamicResource Remove_UPPERCASE}"/>
+
+			<controls:TransparentButton Type="Success"
+										IsDefault="True"
+										Command="{Binding SaveCommand}"
+										Content="{DynamicResource Save_UPPERCASE}"/>
+
+		</StackPanel>
+
+	</Grid>
+
+</dialogs:Dialog>

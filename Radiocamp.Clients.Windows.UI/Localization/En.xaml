@@ -10,14 +10,16 @@
 	<system:String x:Key="Country">Country</system:String>
 	<system:String x:Key="Genre">Genre</system:String>
 	<system:String x:Key="Unknown">Unknown</system:String>
-	<system:String x:Key="OK">OK</system:String>
 	<system:String x:Key="Search">Search</system:String>
 	<system:String x:Key="Buffering">Buffering</system:String>
 	<system:String x:Key="Connecting">Connecting</system:String>
 	<system:String x:Key="Clear">Clear</system:String>
+	<system:String x:Key="Create">Create</system:String>
+	<system:String x:Key="Create_UPPERCASE">CREATE</system:String>
     <system:String x:Key="Edit">Edit</system:String>
-    <system:String x:Key="Remove">Remove</system:String>
-    <system:String x:Key="AddToFavorites">Add to favorites</system:String>
+	<system:String x:Key="Remove">Remove</system:String>
+	<system:String x:Key="Remove_UPPERCASE">REMOVE</system:String>
+	<system:String x:Key="AddToFavorites">Add to favorites</system:String>
     <system:String x:Key="RemoveFromFavorites">Remove from favorites</system:String>
     <system:String x:Key="StartPlayback">Start playback</system:String>
     <system:String x:Key="StopPlayback">Stop playback</system:String>
@@ -35,7 +37,6 @@
 	<system:String x:Key="HideList">Hide list</system:String>
 	<system:String x:Key="CompactMode">Compact mode</system:String>
 	<system:String x:Key="Exit">Exit</system:String>
-	<system:String x:Key="Create">Create</system:String>
 	<system:String x:Key="CreateRadiostation">Create radiostation</system:String>
 	<system:String x:Key="Settings">Settings</system:String>
 	<system:String x:Key="Radiostations">Radiostations</system:String>
@@ -48,6 +49,10 @@
 	<system:String x:Key="Russian_RU">Русский</system:String>
 	<system:String x:Key="English_EN_Code">en-US</system:String>
 	<system:String x:Key="Russian_RU_Code">ru-RU</system:String>
+	<system:String x:Key="Save_UPPERCASE">SAVE</system:String>
+	<system:String x:Key="Cancel_UPPERCASE">CANCEL</system:String>
+	<system:String x:Key="Ok_UPPERCASE">OK</system:String>
+	<system:String x:Key="Reset_UPPERCASE">RESET</system:String>
 
 	<!-- Errors -->
 
@@ -323,17 +328,6 @@
 
     <system:String x:Key="Radiostations_NotFound">Radiostations not found</system:String>
 
-	<!-- Confirm Dialog -->
-
-	<system:String x:Key="ConfirmDialog_FirstButton">CANCEL</system:String>
-	<system:String x:Key="ConfirmDialog_SecondButton">OK</system:String>
-
-	<!-- Dialog -->
-
-	<system:String x:Key="Dialog_Cancel">CANCEL</system:String>
-	<system:String x:Key="Dialog_Ok">OK</system:String>
-	<system:String x:Key="Dialog_Create">CREATE</system:String>
-
 	<!-- Hotkey Editor Dialog -->
 
 	<system:String x:Key="HotkeyEditorDialog_Activate">Activate</system:String>
@@ -341,11 +335,9 @@
 	<system:String x:Key="HotkeyEditorDialog_Header">Keyboard shortcut</system:String>
 	<system:String x:Key="HotkeyEditorDialog_Text">Press shortcut keys</system:String>
 	<system:String x:Key="HotkeyEditorDialog_IsEnabled">Enable</system:String>
-	<system:String x:Key="HotkeyEditorDialog_Save">SAVE</system:String>
 
 	<!-- Hotkeys -->
 
-	<system:String x:Key="Hotkeys_AntiBossSwitch">Anti-boss</system:String>
 	<system:String x:Key="Hotkeys_EditButton">Edit</system:String>
 	<system:String x:Key="Hotkeys_MuteUnmute">Mute/Unmute</system:String>
 	<system:String x:Key="Hotkeys_PlayPause">Play/Pause</system:String>
@@ -368,7 +360,6 @@
 	<system:String x:Key="RadiostationEditor_SupportedFormats">Supported formats: PNG, JPEG, GIF</system:String>
 	<system:String x:Key="RadiostationEditor_Title">Title</system:String>
 	<system:String x:Key="RadiostationEditor_EditTitle">Edit radiostation</system:String>
-	<system:String x:Key="RadiostationEditor_Save">SAVE</system:String>
 
 	<!-- Settings -->
 
@@ -377,25 +368,20 @@
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmSecondButton">CLEAR</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmText">A you sure you want to clear playback history? This action cannot be undone.</system:String>
 	<system:String x:Key="Settings_CloseButtonHideToTray">Close button hide Radiocamp to tray</system:String>
-	<system:String x:Key="Settings_ContinuePlaybackAfterExitFromAntiBossMode">Continue playback after exiting anti-boss mode</system:String>
-	<system:String x:Key="Settings_EditHotkeys">Edit hotkeys</system:String>
 	<system:String x:Key="Settings_EnableNightMode">Enable night mode</system:String>
 	<system:String x:Key="Settings_General">General</system:String>
-	<system:String x:Key="Settings_HideTaskbarIconInAntiBossMode">Hide tray icon in anti-boss mode</system:String>
 	<system:String x:Key="Settings_Hotkeys">Hotkeys</system:String>
 	<system:String x:Key="Settings_HotkeysIsEnable">Hotkeys support is enabled</system:String>
 	<system:String x:Key="Settings_MinimizeButtonHideToTray">Minimize button hide Radiocamp to tray</system:String>
 	<system:String x:Key="Settings_OpenFavoritesAtStart">Show favorites at application startup</system:String>
 	<system:String x:Key="Settings_PlayLastStationAtStart">Begin playback the last radio station on application start</system:String>
 	<system:String x:Key="Settings_ResetSettings">Reset settings</system:String>
-	<system:String x:Key="Settings_ResetSettingsConfirmSecondButton">RESET</system:String>
 	<system:String x:Key="Settings_ResetSettingsConfirmText">A you sure you want to reset allication settings? This action cannot be undone.</system:String>
 	<system:String x:Key="Settings_StartMinimized">Start minimized</system:String>
 	<system:String x:Key="Settings_StartWhenOSStarts">Start Radiocamp when Windows starts</system:String>
 	<system:String x:Key="Settings_Tray">Tray</system:String>
 	<system:String x:Key="Settings_UI">User interface</system:String>
 	<system:String x:Key="Settings_RecordPath">Path</system:String>
-	<system:String x:Key="Settings_StopRecordIfAntiBoss">Stop record in anti-boss mode</system:String>
 	<system:String x:Key="Settings_CreateSubfoldersDuringRecording">Create subfolders for each radio station</system:String>
 	<system:String x:Key="Settings_RecordSplitByComposition">Split files by song while recording</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostations">Remove all radiostations</system:String>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Dartware.Radiocamp.Core;
 
@@ -8,12 +9,12 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 	public abstract class SearchBox : RadiocampTextBox
 	{
 
+		private Button clearButton;
+
 		public SearchBox()
 		{
 			Loaded += OnLoaded;
 		}
-
-
 
 		protected override void OnKeyDown(KeyEventArgs args)
 		{
@@ -27,6 +28,20 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 
 				args.Handled = true;
 
+			}
+
+		}
+
+		public override void OnApplyTemplate()
+		{
+			
+			base.OnApplyTemplate();
+
+			clearButton = GetTemplateChild("ClearButton") as Button;
+
+			if (clearButton != null)
+			{
+				clearButton.Click += ClearButton_OnClick;
 			}
 
 		}

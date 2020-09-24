@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.EntityFrameworkCore;
@@ -59,7 +60,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		}
 
-		public void Update(Hotkey hotkey)
+		public async Task UpdateAsync(Hotkey hotkey)
 		{
 
 			if (hotkey == null)
@@ -71,7 +72,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			Register(hotkey);
 			All.AddOrUpdate(hotkey);
 			databaseContext.Hotkeys.Attach(hotkey);
-			databaseContext.SaveChanges();
+			await databaseContext.SaveChangesAsync();
+
+			databaseContext.Entry(hotkey).State = EntityState.Detached;
 
 		}
 
@@ -83,6 +86,35 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		public void Disable(HotkeyCommand command)
 		{
 			Disable(Get(command));
+		}
+
+		public void RegisterAll()
+		{
+
+			if (!settings.HotkeysIsEnabled)
+			{
+				return;
+			}
+
+			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+			{
+				foreach (Hotkey hotkey in All.Items)
+				{
+					Register(hotkey);
+				}
+			}));
+
+		}
+
+		public void UnregisterAll()
+		{
+			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+			{
+				foreach (Hotkey hotkey in All.Items)
+				{
+					Unregister(hotkey.Command);
+				}
+			}));
 		}
 
 		private void Enable(Hotkey hotkey)
@@ -121,38 +153,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		private Hotkey Get(HotkeyCommand command) => All.Items.FirstOrDefault(hotkey => hotkey.Command == command);
 
-		public void RegisterAll()
-		{
-
-			if (!settings.HotkeysIsEnabled)
-			{
-				return;
-			}
-
-			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-			{
-				foreach (Hotkey hotkey in All.Items)
-				{
-					if (hotkey.IsEnabled)
-					{
-						Register(hotkey);
-					}
-				}
-			}));
-
-		}
-
-		private void UnregisterAll()
-		{
-			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-			{
-				foreach (Hotkey hotkey in All.Items)
-				{
-					Unregister(hotkey.Command);
-				}
-			}));
-		}
-
 		private void Register(Hotkey hotkey)
 		{
 
@@ -164,6 +164,16 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			if (hotkey == null)
 			{
 				throw new ArgumentNullException(nameof(hotkey), "Hotkey cannot be null.");
+			}
+
+			if (!hotkey.IsEnabled)
+			{
+				return;
+			}
+
+			if (hotkey.Key == null || hotkey.ModifierKey == null)
+			{
+				return;
 			}
 
 			EventHandler<HotkeyEventArgs> handler = null;
@@ -183,7 +193,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			if (handler != null && !isRegistered)
 			{
 				
-				HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key, hotkey.ModifierKey, handler);
+				HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key.Value, hotkey.ModifierKey.Value, handler);
 				
 				registered[hotkey.Command] = true;
 

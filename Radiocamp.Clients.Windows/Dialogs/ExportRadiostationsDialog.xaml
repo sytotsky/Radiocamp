@@ -91,7 +91,7 @@
 
 			<controls:TransparentButton IsCancel="True"
 										Command="{Binding CloseCommand}"
-										Content="{DynamicResource Dialog_Cancel}"/>
+										Content="{DynamicResource Cancel_UPPERCASE}"/>
 
 			<controls:TransparentButton IsDefault="True"
 										Command="{Binding ExportCommand}"

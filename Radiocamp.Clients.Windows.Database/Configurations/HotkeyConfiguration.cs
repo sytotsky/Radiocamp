@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,14 +12,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 		{
 
 			builder.ToTable("Hotkeys");
-			builder.HasKey(hotkey => hotkey.Id);
-			builder.HasAlternateKey(hotkey => hotkey.Command);
+			builder.HasKey(hotkey => hotkey.Command);
 
 			IEnumerable<Hotkey> defaultHotkeys = new List<Hotkey>()
 			{
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.PlayPause,
 					IsEnabled = true,
 					Key = Key.S,
@@ -28,7 +25,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				},
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.StartStopRecord,
 					IsEnabled = true,
 					Key = Key.A,
@@ -36,7 +32,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				},
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.MuteUnmute,
 					IsEnabled = true,
 					Key = Key.D,
@@ -44,7 +39,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				},
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.VolumeUp,
 					IsEnabled = true,
 					Key = Key.Up,
@@ -52,7 +46,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				},
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.VolumeDown,
 					IsEnabled = true,
 					Key = Key.Down,
@@ -60,7 +53,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				},
 				new Hotkey()
 				{
-					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.ShowHideSwitch,
 					IsEnabled = true,
 					Key = Key.X,

@@ -103,8 +103,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			ConfirmDialogArgs confirmDialogArgs = new ConfirmDialogArgs(DialogWindow)
 			{
-				Text = LocalizationResources.Settings_RemoveAllRadiostationsConfirmText,
-				SecondButtonText = LocalizationResources.Settings_RemoveAllRadiostationsConfirmSecondButton,
+				Text = LocalizationResources.GetLocalizationString("Settings_RemoveAllRadiostationsConfirmText"),
+				SecondButtonText = LocalizationResources.GetLocalizationString("Remove_UPPERCASE"),
 				SecondButtonType = TransparentButtonType.Danger
 			};
 
@@ -120,8 +120,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			ConfirmDialogArgs confirmArgs = new ConfirmDialogArgs(DialogWindow)
 			{
-				Text = LocalizationResources.Settings_ResetSettingsConfirmText,
-				SecondButtonText = LocalizationResources.Settings_ResetSettingsConfirmSecondButton,
+				Text = LocalizationResources.GetLocalizationString("Settings_ResetSettingsConfirmText"),
+				SecondButtonText = LocalizationResources.GetLocalizationString("Reset_UPPERCASE"),
 				SecondButtonType = TransparentButtonType.Danger
 			};
 

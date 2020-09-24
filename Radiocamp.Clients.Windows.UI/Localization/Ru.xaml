@@ -10,14 +10,16 @@
 	<system:String x:Key="Country">Страна</system:String>
 	<system:String x:Key="Genre">Жанр</system:String>
 	<system:String x:Key="Unknown">Неизвестно</system:String>
-	<system:String x:Key="OK">ОК</system:String>
 	<system:String x:Key="Search">Поиск</system:String>
 	<system:String x:Key="Buffering">Буферизация</system:String>
     <system:String x:Key="Connecting">Соединение</system:String>
-    <system:String x:Key="Clear">Очистить</system:String>
-    <system:String x:Key="Edit">Изменить</system:String>
-    <system:String x:Key="Remove">Удалить</system:String>
-    <system:String x:Key="AddToFavorites">Добавить в избранное</system:String>
+	<system:String x:Key="Clear">Очистить</system:String>
+	<system:String x:Key="Create">Создать</system:String>
+	<system:String x:Key="Create_UPPERCASE">СОЗДАТЬ</system:String>
+	<system:String x:Key="Edit">Изменить</system:String>
+	<system:String x:Key="Remove">Удалить</system:String>
+	<system:String x:Key="Remove_UPPERCASE">УДАЛИТЬ</system:String>
+	<system:String x:Key="AddToFavorites">Добавить в избранное</system:String>
     <system:String x:Key="RemoveFromFavorites">Удалить из избранного</system:String>
     <system:String x:Key="StartPlayback">Начать воспроизведение</system:String>
     <system:String x:Key="StopPlayback">Остановить воспроизведение</system:String>
@@ -35,7 +37,6 @@
 	<system:String x:Key="HideList">Скрыть список</system:String>
 	<system:String x:Key="CompactMode">Компактный режим</system:String>
 	<system:String x:Key="Exit">Выход</system:String>
-	<system:String x:Key="Create">Создать</system:String>
 	<system:String x:Key="CreateRadiostation">Создать радиостанцию</system:String>
 	<system:String x:Key="Settings">Настройки</system:String>
 	<system:String x:Key="Radiostations">Радиостанции</system:String>
@@ -48,6 +49,10 @@
 	<system:String x:Key="English_EN">English</system:String>
 	<system:String x:Key="English_EN_Code">en-US</system:String>
 	<system:String x:Key="Russian_RU_Code">ru-RU</system:String>
+	<system:String x:Key="Save_UPPERCASE">СОХРАНИТЬ</system:String>
+	<system:String x:Key="Cancel_UPPERCASE">ОТМЕНА</system:String>
+	<system:String x:Key="Ok_UPPERCASE">ОК</system:String>
+	<system:String x:Key="Reset_UPPERCASE">СБРОСИТЬ</system:String>
 
 	<!-- Errors -->
 
@@ -322,17 +327,6 @@
 
     <system:String x:Key="Radiostations_NotFound">Радиостанции не найдены</system:String>
 
-    <!-- Confirm Dialog -->
-
-	<system:String x:Key="ConfirmDialog_FirstButton">ОТМЕНА</system:String>
-	<system:String x:Key="ConfirmDialog_SecondButton">ОК</system:String>
-
-	<!-- Dialog -->
-
-	<system:String x:Key="Dialog_Cancel">ОТМЕНА</system:String>
-	<system:String x:Key="Dialog_Ok">ОК</system:String>
-	<system:String x:Key="Dialog_Create">СОЗДАТЬ</system:String>
-
 	<!-- Hotkey Editor Dialog -->
 
 	<system:String x:Key="HotkeyEditorDialog_Activate">Активировать</system:String>
@@ -340,11 +334,9 @@
 	<system:String x:Key="HotkeyEditorDialog_Header">Сочетание клавиш</system:String>
 	<system:String x:Key="HotkeyEditorDialog_Text">Нажмите сочетание клавиш</system:String>
 	<system:String x:Key="HotkeyEditorDialog_IsEnabled">Активировать</system:String>
-	<system:String x:Key="HotkeyEditorDialog_Save">СОХРАНИТЬ</system:String>
 
 	<!-- Hotkeys -->
 
-	<system:String x:Key="Hotkeys_AntiBossSwitch">Анти-босс</system:String>
 	<system:String x:Key="Hotkeys_EditButton">Изменить</system:String>
 	<system:String x:Key="Hotkeys_MuteUnmute">Вкл/Выкл звук</system:String>
 	<system:String x:Key="Hotkeys_PlayPause">Воспроизведение/Пауза</system:String>
@@ -367,7 +359,6 @@
 	<system:String x:Key="RadiostationEditor_SupportedFormats">Поддерживаемые форматы: PNG, JPEG, GIF</system:String>
 	<system:String x:Key="RadiostationEditor_Title">Название</system:String>
 	<system:String x:Key="RadiostationEditor_EditTitle">Изменить радиостанцию</system:String>
-	<system:String x:Key="RadiostationEditor_Save">СОХРАНИТЬ</system:String>
 
 	<!-- Settings -->
 
@@ -376,30 +367,24 @@
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmSecondButton">ОЧИСТИТЬ</system:String>
 	<system:String x:Key="Settings_ClearPlaybackHistoryConfirmText">Вы точно хотите очистить всю историю воспроизведения? Это действие нельзя будет отменить.</system:String>
 	<system:String x:Key="Settings_CloseButtonHideToTray">Скрывать приложение в трей по нажатию кнопки «Закрыть»</system:String>
-	<system:String x:Key="Settings_ContinuePlaybackAfterExitFromAntiBossMode">Продолжить воспроизведение после выхода из режима анти-босс</system:String>
-	<system:String x:Key="Settings_EditHotkeys">Изменить горячие клавиши</system:String>
 	<system:String x:Key="Settings_EnableNightMode">Активировать «Ночной режим»</system:String>
 	<system:String x:Key="Settings_General">Общие</system:String>
-	<system:String x:Key="Settings_HideTaskbarIconInAntiBossMode">Скрывать иконку в трее в режиме анти-босс</system:String>
 	<system:String x:Key="Settings_Hotkeys">Горячие клавиши</system:String>
 	<system:String x:Key="Settings_HotkeysIsEnable">Включить поддержку горячих клавиш</system:String>
 	<system:String x:Key="Settings_MinimizeButtonHideToTray">Скрывать приложение в трей по нажатию кнопки «Свернуть»</system:String>
 	<system:String x:Key="Settings_OpenFavoritesAtStart">Показывать избранные при старте приложения</system:String>
 	<system:String x:Key="Settings_PlayLastStationAtStart">Начать воспроизведение последней радиостанции при старте приложения</system:String>
 	<system:String x:Key="Settings_ResetSettings">Сбросить настройки</system:String>
-	<system:String x:Key="Settings_ResetSettingsConfirmSecondButton">СБРОСИТЬ</system:String>
 	<system:String x:Key="Settings_ResetSettingsConfirmText">Вы точно хотите сбросить все настройки приложения? Это действие нельзя будет отменить.</system:String>
 	<system:String x:Key="Settings_StartMinimized">Сворачивать в трей при запуске</system:String>
 	<system:String x:Key="Settings_StartWhenOSStarts">Запускать Radiocamp вместе с Windows</system:String>
 	<system:String x:Key="Settings_Tray">Трей</system:String>
 	<system:String x:Key="Settings_UI">Интерфейс</system:String>
 	<system:String x:Key="Settings_RecordPath">Путь</system:String>
-	<system:String x:Key="Settings_StopRecordIfAntiBoss">Останавливать запись в режиме анти-босс</system:String>
 	<system:String x:Key="Settings_CreateSubfoldersDuringRecording">Создавать подпапки для каждой радиостанции</system:String>
 	<system:String x:Key="Settings_RecordSplitByComposition">Разделять файлы по композициям во время записи</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostations">Удалить все радиостанции</system:String>
 	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmText">Вы точно хотите удалить все радиостанции? Это действие нельзя будет отменить.</system:String>
-	<system:String x:Key="Settings_RemoveAllRadiostationsConfirmSecondButton">УДАЛИТЬ</system:String>
 	<system:String x:Key="Settings_AudioDevice">Аудио устройство</system:String>
 	<system:String x:Key="Settings_AutoDetectAudioDevice">Включить автоопределение аудио устройства</system:String>
 	<system:String x:Key="Settings_AutoRadiostationsViewType">Автоматически определять тип отображения списка радиостанций</system:String>

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reactive.Disposables;
+using Dartware.Radiocamp.Core;
 using ReactiveUI;
 
 namespace Dartware.Radiocamp.Clients.Windows.Core.MVVM
 {
-	public abstract class ViewModel : ReactiveObject, IDisposable
+	public abstract class ViewModel : ReactiveObject, IDisposable, IInitializable
 	{
 
 		protected readonly CompositeDisposable disposables;
@@ -17,6 +18,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Core.MVVM
 		public virtual void Dispose()
 		{
 			disposables.Dispose();
+		}
+
+		public virtual void Initialize()
+		{
 		}
 
 	}

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200923014337_Initial")]
+    [Migration("20200924083043_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,32 +20,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
 
             modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Core.Models.Hotkey", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("Command")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Key")
+                    b.Property<int?>("Key")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ModifierKey")
+                    b.Property<int?>("ModifierKey")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("Command");
+                    b.HasKey("Command");
 
                     b.ToTable("Hotkeys");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d0e28a7d-193a-40c1-bf0a-26e16840c198"),
                             Command = 1,
                             IsEnabled = true,
                             Key = 62,
@@ -53,7 +46,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2268b086-fffb-423f-a86a-f7657cdc2e6b"),
                             Command = 2,
                             IsEnabled = true,
                             Key = 44,
@@ -61,7 +53,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8626d389-8c1e-48ce-ab1d-6296dba58b3d"),
                             Command = 3,
                             IsEnabled = true,
                             Key = 47,
@@ -69,7 +60,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c21b1b88-4c01-4cc9-a127-054614c79df4"),
                             Command = 4,
                             IsEnabled = true,
                             Key = 24,
@@ -77,7 +67,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fe674c8e-8f15-4f88-b24f-4b91d1b19879"),
                             Command = 5,
                             IsEnabled = true,
                             Key = 26,
@@ -85,7 +74,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2d2bb85b-21f8-45c5-ba0b-bc27134f4fca"),
                             Command = 6,
                             IsEnabled = true,
                             Key = 67,
@@ -163,7 +151,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("86a5bed0-5bd1-4bf9-99ab-68450eadbb6e"),
+                            Id = new Guid("1cf133f0-a9ff-4648-857c-30deb86edbf1"),
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
                             ExportRadiostationsFavoritesOnly = false,

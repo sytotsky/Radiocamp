@@ -74,7 +74,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 			else
 			{
-				confirmDialogViewModel.FirstButtonText = LocalizationResources.ConfirmDialog_FirstButton;
+				confirmDialogViewModel.FirstButtonText = LocalizationResources.GetLocalizationString("Cancel_UPPERCASE");
 			}
 
 			if (!args.SecondButtonText.IsNullOrEmptyOrWhiteSpace())
@@ -83,7 +83,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 			else
 			{
-				confirmDialogViewModel.SecondButtonText = LocalizationResources.ConfirmDialog_SecondButton;
+				confirmDialogViewModel.SecondButtonText = LocalizationResources.GetLocalizationString("Ok_UPPERCASE");
 			}
 
 			return Show<ConfirmDialog, Boolean>(confirmDialogViewModel);

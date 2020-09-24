@@ -3,6 +3,7 @@ using System.Reflection;
 using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
+using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.Views;
@@ -16,6 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IDialogs dialogs;
 		private readonly IRadiostations radiostations;
+		private IHotkeys hotkeys;
 
 		private Boolean isInitialized;
 
@@ -24,6 +26,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			settings = Dependencies.Get<ISettings>();
 			dialogs = Dependencies.Get<IDialogs>();
 			radiostations = Dependencies.Get<IRadiostations>();
+			hotkeys = Dependencies.Get<IHotkeys>();
 		}
 
 		public override void Initialize()
@@ -43,6 +46,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			InitializeNavigator();
 			InitializeGeneral();
 			InitializeUI();
+			InitializeHotkeys();
 
 			isInitialized = true;
 
