@@ -27,7 +27,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 					   .NotEmpty()
 					   .Transform(hotkey =>
 					   {
-						   return new HotkeyItemViewModel(DialogWindow)
+						   return new HotkeyItemViewModel()
 						   {
 							   Command = hotkey.Command,
 							   Key = hotkey.Key,

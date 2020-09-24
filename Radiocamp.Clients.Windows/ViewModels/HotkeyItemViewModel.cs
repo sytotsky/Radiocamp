@@ -2,9 +2,9 @@
 using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Dartware.Radiocamp.Clients.Windows.Core;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
@@ -17,7 +17,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	public sealed class HotkeyItemViewModel : ViewModel
 	{
 
-		private readonly BaseWindow ownerWindow;
 		private readonly IHotkeys hotkeys;
 		private readonly IDialogs dialogs;
 
@@ -35,10 +34,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> EditCommand { get; private set; }
 
-		public HotkeyItemViewModel(BaseWindow ownerWindow)
+		public HotkeyItemViewModel()
 		{
 
-			this.ownerWindow = ownerWindow;
 			hotkeys = Dependencies.Get<IHotkeys>();
 			dialogs = Dependencies.Get<IDialogs>();
 
@@ -58,24 +56,28 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private async Task Edit()
 		{
 
-			Hotkey hotkey = await dialogs.Show<Hotkey, HotkeyEditorDialog, HotkeyEditorDialogViewModel>(new DialogArgs(ownerWindow, new Hotkey()
+			BaseWindow ownerWindow = Dependencies.Get<SettingsViewModel>().DialogWindow;
+
+			Hotkey currentHotkey = new Hotkey()
 			{
 				Command = Command,
 				Key = Key,
 				ModifierKey = ModifierKey,
 				IsEnabled = IsEnabled
-			}));
+			};
 
-			if (hotkey == null)
+			Hotkey newHotkey = await dialogs.Show<Hotkey, HotkeyEditorDialog, HotkeyEditorDialogViewModel>(new DialogArgs(ownerWindow, currentHotkey));
+
+			if (newHotkey == null)
 			{
 				return;
 			}
 
-			Key = hotkey.Key;
-			ModifierKey = hotkey.ModifierKey;
-			IsEnabled = hotkey.IsEnabled;
+			Key = newHotkey.Key;
+			ModifierKey = newHotkey.ModifierKey;
+			IsEnabled = newHotkey.IsEnabled;
 
-			await hotkeys.UpdateAsync(hotkey);
+			await hotkeys.UpdateAsync(newHotkey);
 
 		}
 
