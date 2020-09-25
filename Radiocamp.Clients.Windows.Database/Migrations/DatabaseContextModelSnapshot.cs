@@ -24,10 +24,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Key")
+                    b.Property<int>("Key")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ModifierKey")
+                    b.Property<int>("ModifierKey")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Command");
@@ -149,7 +149,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1cf133f0-a9ff-4648-857c-30deb86edbf1"),
+                            Id = new Guid("b68eeacc-d3f1-4dda-a0d9-dabca36598be"),
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
                             ExportRadiostationsFavoritesOnly = false,

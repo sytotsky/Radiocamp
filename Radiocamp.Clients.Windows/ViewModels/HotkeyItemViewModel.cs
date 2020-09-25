@@ -24,10 +24,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public HotkeyCommand Command { get; set; }
 
 		[Reactive]
-		public Key? Key { get; set; }
+		public Key Key { get; set; }
 
 		[Reactive]
-		public ModifierKeys? ModifierKey { get; set; }
+		public ModifierKeys ModifierKey { get; set; }
 
 		[Reactive]
 		public Boolean IsEnabled { get; set; }

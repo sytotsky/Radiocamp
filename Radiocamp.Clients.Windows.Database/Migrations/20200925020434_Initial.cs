@@ -12,8 +12,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                 columns: table => new
                 {
                     Command = table.Column<int>(nullable: false),
-                    Key = table.Column<int>(nullable: true),
-                    ModifierKey = table.Column<int>(nullable: true),
+                    Key = table.Column<int>(nullable: false),
+                    ModifierKey = table.Column<int>(nullable: false),
                     IsEnabled = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -84,7 +84,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Settings",
                 columns: new[] { "Id", "ExportRadiostationsAll", "ExportRadiostationsCustomOnly", "ExportRadiostationsFavoritesOnly", "ExportRadiostationsFormat", "ExportRadiostationsOnlyFavoritesOrCustom", "ExportRadiostationsPath", "ExportRadiostationsSaveFavoritesTags", "ExportRadiostationsSaveSoundSettings", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowHeight", "MainWindowLeft", "MainWindowTop", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized" },
-                values: new object[] { new Guid("1cf133f0-a9ff-4648-857c-30deb86edbf1"), true, false, false, 0, false, null, true, true, false, false, 0, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
+                values: new object[] { new Guid("b68eeacc-d3f1-4dda-a0d9-dabca36598be"), true, false, false, 0, false, null, true, true, false, false, 0, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

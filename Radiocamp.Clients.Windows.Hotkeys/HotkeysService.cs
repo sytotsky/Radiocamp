@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.EntityFrameworkCore;
 using DynamicData;
@@ -171,7 +172,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 				return;
 			}
 
-			if (hotkey.Key == null || hotkey.ModifierKey == null)
+			if (hotkey.Key == Key.None || hotkey.ModifierKey == ModifierKeys.None)
 			{
 				return;
 			}
@@ -193,7 +194,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			if (handler != null && !isRegistered)
 			{
 				
-				HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key.Value, hotkey.ModifierKey.Value, handler);
+				HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key, hotkey.ModifierKey, handler);
 				
 				registered[hotkey.Command] = true;
 
