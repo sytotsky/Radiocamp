@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Clients.Shared
+namespace Dartware.Radiocamp.Desktop.Settings
 {
 	[AttributeUsage(AttributeTargets.Property, Inherited = true)]
-	public sealed class EventAttribute : Attribute
+	internal sealed class EventAttribute : Attribute
 	{
 
 		public String Name { get; set; }

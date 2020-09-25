@@ -1,9 +1,9 @@
 ﻿using System;
-using Dartware.Radiocamp.Clients.Shared;
+using Microsoft.EntityFrameworkCore;
 
-namespace Dartware.Radiocamp.Clients.Windows.Settings
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-	public sealed partial class WindowsSettingsService
+	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
 		private Boolean hotkeysIsEnabled;

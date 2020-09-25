@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Dartware.Radiocamp.Clients.Shared;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dartware.Radiocamp.Clients.Windows.Settings
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-	public sealed partial class WindowsSettingsService
+	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
 		private Double mainWindowWidth;
@@ -72,7 +70,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 				lock (databaseContext)
 				{
 
-					WindowsSettings settings = databaseContext.Settings.AsTracking().FirstOrDefault();
+					Settings settings = databaseContext.Set<Settings>().AsTracking().FirstOrDefault();
 
 					if (settings == null)
 					{

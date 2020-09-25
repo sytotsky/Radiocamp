@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Clients.Shared
+namespace Dartware.Radiocamp.Desktop.Settings
 {
 	[AttributeUsage(AttributeTargets.Property, Inherited = true)]
 	public sealed class UserSettingAttribute : Attribute

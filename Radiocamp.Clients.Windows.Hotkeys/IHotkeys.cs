@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DynamicData;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 {
@@ -19,10 +19,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		
 		void Initialize();
 		Task UpdateAsync(Hotkey hotkey);
-		void Enable(HotkeyCommand command);
-		void Disable(HotkeyCommand command);
+		Task EnableAsync(HotkeyCommand command);
+		Task DisableAsync(HotkeyCommand command);
 		void RegisterAll();
 		void UnregisterAll();
+		Boolean Any(Key key, ModifierKeys modifierKey);
 
 	}
 }

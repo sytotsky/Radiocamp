@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -35,6 +36,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsEnabled { get; set; }
 
+		[Reactive]
+		public Boolean IsValid { get; private set; }
+
 		public ReactiveCommand<Unit, Unit> SaveCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> RemoveCommand { get; private set; }
 
@@ -59,8 +63,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				IsEnabled = hotkey.IsEnabled;
 			}
 
-			SaveCommand = ReactiveCommand.Create(Save);
+			SaveCommand = ReactiveCommand.Create(Save, this.WhenAnyValue(viewModel => viewModel.IsValid));
 			RemoveCommand = ReactiveCommand.Create(Remove);
+
+			disposables.Add(SaveCommand);
+			disposables.Add(RemoveCommand);
+
+			IDisposable validateSubscription = this.WhenAnyValue(viewModel => viewModel.Key, viewModel => viewModel.ModifierKey).Subscribe(tuple => IsValid = Validate(tuple));
+
+			disposables.Add(validateSubscription);
 
 		}
 
@@ -84,6 +95,23 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			base.Dispose();
 			hotkeys.RegisterAll();
+		}
+
+		private Boolean Validate((KeyType Key, ModifierKeys ModifierKey) tuple)
+		{
+
+			if (tuple.Key == Key.None || tuple.ModifierKey == ModifierKeys.None)
+			{
+				return false;
+			}
+
+			if (tuple.Key == CurrentKey && tuple.ModifierKey == CurrentModifierKey)
+			{
+				return true;
+			}
+
+			return !hotkeys.Any(tuple.Key, tuple.ModifierKey);
+
 		}
 
 		private void Save()

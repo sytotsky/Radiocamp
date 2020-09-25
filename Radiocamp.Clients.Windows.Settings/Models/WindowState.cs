@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Clients.Windows.Core.Models
+namespace Dartware.Radiocamp.Desktop.Settings
 {
 	public sealed class WindowState
 	{

@@ -2,11 +2,11 @@
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 
 namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 {
-	public sealed class HotkeyConfiguration : IEntityTypeConfiguration<Hotkey>
+	internal sealed class HotkeyConfiguration : IEntityTypeConfiguration<Hotkey>
 	{
 		public void Configure(EntityTypeBuilder<Hotkey> builder)
 		{

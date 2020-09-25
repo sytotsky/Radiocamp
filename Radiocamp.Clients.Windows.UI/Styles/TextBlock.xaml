@@ -22,6 +22,7 @@
 
 	<Style TargetType="{x:Type controls:LocalizationTextBlock}">
 		<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
+		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 	</Style>
 
 </ResourceDictionary>

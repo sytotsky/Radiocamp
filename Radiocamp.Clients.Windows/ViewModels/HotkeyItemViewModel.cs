@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
@@ -36,12 +37,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public HotkeyItemViewModel()
 		{
-
 			hotkeys = Dependencies.Get<IHotkeys>();
 			dialogs = Dependencies.Get<IDialogs>();
-
-			Initialize();
-
 		}
 
 		public override void Initialize()
@@ -50,6 +47,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			base.Initialize();
 
 			EditCommand = ReactiveCommand.CreateFromTask(Edit);
+
+			this.WhenAnyValue(viewModel => viewModel.IsEnabled)
+				.Skip(1)
+				.Subscribe(OnIsEnabledChanged);
 
 		}
 
@@ -79,6 +80,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			await hotkeys.UpdateAsync(newHotkey);
 
+		}
+
+		private async void OnIsEnabledChanged(Boolean isEnabled)
+		{
+			if (isEnabled)
+			{
+				await hotkeys.EnableAsync(Command);
+			}
+			else
+			{
+				await hotkeys.DisableAsync(Command);
+			}
 		}
 
 	}

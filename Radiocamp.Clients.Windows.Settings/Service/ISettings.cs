@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Shared.Models;
-using Dartware.Radiocamp.Clients.Shared.Services;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
-namespace Dartware.Radiocamp.Clients.Windows.Settings
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-	public interface ISettings : ISettings<WindowsSettings>
+	public interface ISettings
 	{
+
+		// Core
+
+		void Initialize();
+		Task ResetAsync();
 
 		// Main window
 

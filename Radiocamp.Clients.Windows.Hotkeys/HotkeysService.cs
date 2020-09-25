@@ -10,18 +10,14 @@ using Microsoft.EntityFrameworkCore;
 using DynamicData;
 using NHotkey;
 using NHotkey.Wpf;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
-using Dartware.Radiocamp.Clients.Windows.Database;
-using Dartware.Radiocamp.Clients.Windows.Settings;
-
-using Hotkey = Dartware.Radiocamp.Clients.Windows.Core.Models.Hotkey;
+using Dartware.Radiocamp.Desktop.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 {
-	public sealed class HotkeysService : IHotkeys
+	public sealed class HotkeysService<DatabaseContextType> : IHotkeys where DatabaseContextType : DbContext
 	{
 
-		private readonly DatabaseContext databaseContext;
+		private readonly DatabaseContextType databaseContext;
 		private readonly ISettings settings;
 		private readonly IDictionary<HotkeyCommand, Boolean> registered;
 
@@ -34,7 +30,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		public event Action VolumeDownHotkeyPressed;
 		public event Action ShowHideSwitchHotkeyPressed;
 
-		public HotkeysService(DatabaseContext databaseContext, ISettings settings)
+		public HotkeysService(DatabaseContextType databaseContext, ISettings settings)
 		{
 			this.databaseContext = databaseContext;
 			this.settings = settings;
@@ -45,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		public void Initialize()
 		{
 
-			All.AddOrUpdate(databaseContext.Hotkeys.AsNoTracking().ToList());
+			All.AddOrUpdate(databaseContext.Set<Hotkey>().AsNoTracking().ToList());
 
 			foreach (Hotkey hotkey in All.Items)
 			{
@@ -72,21 +68,30 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			Unregister(hotkey.Command);
 			Register(hotkey);
 			All.AddOrUpdate(hotkey);
-			databaseContext.Hotkeys.Attach(hotkey);
-			await databaseContext.SaveChangesAsync();
 
-			databaseContext.Entry(hotkey).State = EntityState.Detached;
+			Hotkey hotkeyFromStorage = await databaseContext.Set<Hotkey>().AsTracking().FirstOrDefaultAsync(hotkeyItem => hotkeyItem.Command.Equals(hotkey.Command));
+
+			if (hotkeyFromStorage != null)
+			{
+
+				hotkeyFromStorage.Key = hotkey.Key;
+				hotkeyFromStorage.ModifierKey = hotkey.ModifierKey;
+				hotkeyFromStorage.IsEnabled = hotkey.IsEnabled;
+
+				await databaseContext.SaveChangesAsync();
+
+			}
 
 		}
 
-		public void Enable(HotkeyCommand command)
+		public async Task EnableAsync(HotkeyCommand command)
 		{
-			Enable(Get(command));
+			await EnableAsync(Get(command));
 		}
 
-		public void Disable(HotkeyCommand command)
+		public async Task DisableAsync(HotkeyCommand command)
 		{
-			Disable(Get(command));
+			await DisableAsync(Get(command));
 		}
 
 		public void RegisterAll()
@@ -118,7 +123,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			}));
 		}
 
-		private void Enable(Hotkey hotkey)
+		public Boolean Any(Key key, ModifierKeys modifierKey) => All.Items.Any(hotkey => hotkey.Key == key && hotkey.ModifierKey == modifierKey);
+
+		private async Task EnableAsync(Hotkey hotkey)
 		{
 
 			if (hotkey == null)
@@ -128,14 +135,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			hotkey.IsEnabled = true;
 
-			Register(hotkey);
-			All.AddOrUpdate(hotkey);
-			databaseContext.Hotkeys.Attach(hotkey);
-			databaseContext.SaveChanges();
+			await UpdateAsync(hotkey);
 
 		}
 
-		private void Disable(Hotkey hotkey)
+		private async Task DisableAsync(Hotkey hotkey)
 		{
 
 			if (hotkey == null)
@@ -145,10 +149,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			hotkey.IsEnabled = false;
 
-			Unregister(hotkey.Command);
-			All.AddOrUpdate(hotkey);
-			databaseContext.Hotkeys.Attach(hotkey);
-			databaseContext.SaveChanges();
+			await UpdateAsync(hotkey);
 
 		}
 

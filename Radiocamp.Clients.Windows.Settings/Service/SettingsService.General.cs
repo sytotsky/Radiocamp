@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using Microsoft.Win32;
-using Dartware.Radiocamp.Clients.Shared;
+using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
-namespace Dartware.Radiocamp.Clients.Windows.Settings
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-	public sealed partial class WindowsSettingsService
+	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
 		private Boolean startMinimized;

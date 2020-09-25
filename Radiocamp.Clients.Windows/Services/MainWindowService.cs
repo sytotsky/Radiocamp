@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
-using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Desktop.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;

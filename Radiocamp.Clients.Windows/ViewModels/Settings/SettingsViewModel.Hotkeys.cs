@@ -27,13 +27,19 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 					   .NotEmpty()
 					   .Transform(hotkey =>
 					   {
-						   return new HotkeyItemViewModel()
+
+						   HotkeyItemViewModel hotkeyItemViewModel = new HotkeyItemViewModel()
 						   {
 							   Command = hotkey.Command,
 							   Key = hotkey.Key,
 							   ModifierKey = hotkey.ModifierKey,
 							   IsEnabled = hotkey.IsEnabled
 						   };
+
+						   hotkeyItemViewModel.Initialize();
+
+						   return hotkeyItemViewModel;
+
 					   })
 					   .ObserveOnDispatcher(DispatcherPriority.Background)
 					   .Bind(out hotkeysItems)

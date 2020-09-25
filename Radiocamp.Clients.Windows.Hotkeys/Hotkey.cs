@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Dartware.Radiocamp.Clients.Windows.Core.Models
+namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 {
 	public sealed class Hotkey
 	{

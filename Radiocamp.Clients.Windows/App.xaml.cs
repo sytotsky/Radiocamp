@@ -10,7 +10,7 @@ using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
-using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Desktop.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.ColorThemes;
 using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 
@@ -40,9 +40,9 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<SettingsViewModel>(provider => new SettingsViewModel(new DialogArgs(Dependencies.Get<IMainWindow>().Window)));
 
 			Dependencies.Services.AddSingleton<IApplication, ApplicationService>();
-			Dependencies.Services.AddSingleton<ISettings, WindowsSettingsService>();
+			Dependencies.Services.AddSingleton<ISettings, SettingsService<DatabaseContext>>();
 			Dependencies.Services.AddSingleton<IMainWindow, MainWindowService>();
-			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService>();
+			Dependencies.Services.AddSingleton<IHotkeys, HotkeysService<DatabaseContext>>();
 			Dependencies.Services.AddSingleton<IDialogs, DialogsService>();
 			Dependencies.Services.AddSingleton<IBrowser, BrowserService>();
 			Dependencies.Services.AddSingleton<ILocalization, LocalizationService>();

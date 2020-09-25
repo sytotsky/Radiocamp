@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Core;
-using Dartware.Radiocamp.Clients.Shared.Models;
+using System.Collections.Generic;
 
-namespace Dartware.Radiocamp.Clients.Shared.Services
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-
-	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
-	public abstract partial class SettingsService<SettingsType, DatabaseContextType> : ISettings<SettingsType> where SettingsType : Settings where DatabaseContextType : DbContext
+	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
-
-		protected readonly DatabaseContextType databaseContext;
-
-		protected SettingsService(DatabaseContextType databaseContext)
-		{
-			this.databaseContext = databaseContext;
-		}
 
 		public void Initialize()
 		{
@@ -35,7 +24,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 				lock (databaseContext)
 				{
 
-					SettingsType settings = databaseContext.Set<SettingsType>().AsTracking().FirstOrDefault();
+					Settings settings = databaseContext.Set<Settings>().AsTracking().FirstOrDefault();
 
 					if (settings == null)
 					{
@@ -61,7 +50,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 								}
 								else
 								{
-									
+
 									PropertyInfo property = settingsType.GetProperty(thisProperty.Name);
 
 									if (property != null)
@@ -84,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 			}, TaskContinuationOptions.ExecuteSynchronously);
 		}
 
-		protected virtual void SetValue<TypeDefinition>(TypeDefinition value, [CallerMemberName] String propertyName = null)
+		private void SetValue<TypeDefinition>(TypeDefinition value, [CallerMemberName] String propertyName = null)
 		{
 			if (!propertyName.IsNullOrEmpty())
 			{
@@ -119,7 +108,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 					return;
 				}
 
-				TypeDefinition thisValue = (TypeDefinition) field.GetValue(this);
+				TypeDefinition thisValue = (TypeDefinition)field.GetValue(this);
 
 				if (thisValue != null)
 				{
@@ -145,7 +134,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 						if (eventField != null)
 						{
 
-							MulticastDelegate multicastDelegate = (MulticastDelegate) eventField.GetValue(this);
+							MulticastDelegate multicastDelegate = (MulticastDelegate)eventField.GetValue(this);
 
 							if (multicastDelegate != null)
 							{
@@ -177,9 +166,9 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 					lock (databaseContext)
 					{
 
-						databaseContext.Set<SettingsType>().Load();
+						databaseContext.Set<Settings>().Load();
 
-						SettingsType settings = databaseContext.Set<SettingsType>().AsTracking().FirstOrDefault();
+						Settings settings = databaseContext.Set<Settings>().AsTracking().FirstOrDefault();
 
 						if (settings == null)
 						{
@@ -194,7 +183,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 							return;
 						}
 
-						TypeDefinition valueFromStorage = (TypeDefinition) settingsProperty.GetValue(settings, null);
+						TypeDefinition valueFromStorage = (TypeDefinition)settingsProperty.GetValue(settings, null);
 
 						if (valueFromStorage != null)
 						{
@@ -205,7 +194,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 						}
 
 						settingsProperty.SetValue(settings, value);
-						databaseContext.Set<SettingsType>().Update(settings);
+						databaseContext.Set<Settings>().Update(settings);
 						databaseContext.SaveChanges();
 
 					}
@@ -217,7 +206,7 @@ namespace Dartware.Radiocamp.Clients.Shared.Services
 		private void Initialize(Boolean isFields)
 		{
 
-			SettingsType settings = databaseContext.Set<SettingsType>().AsNoTracking().FirstOrDefault();
+			Settings settings = databaseContext.Set<Settings>().AsNoTracking().FirstOrDefault();
 
 			if (settings == null)
 			{

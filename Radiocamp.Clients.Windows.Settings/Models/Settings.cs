@@ -1,10 +1,16 @@
 ﻿using System;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
-namespace Dartware.Radiocamp.Clients.Windows.Core.Models
+namespace Dartware.Radiocamp.Desktop.Settings
 {
-	public sealed class WindowsSettings : Settings
+	public sealed class Settings
 	{
+		public Guid Id { get; set; }
+		public Boolean ShowFavoritesAtStart { get; set; }
+		public Boolean ShowOnlyCustomAtStart { get; set; }
+		public SearchEngine SearchEngine { get; set; }
+		public Localization Localization { get; set; }
+		public Boolean IsNightMode { get; set; }
 		public Double MainWindowWidth { get; set; }
 		public Double MainWindowHeight { get; set; }
 		public Double MainWindowLeft { get; set; }

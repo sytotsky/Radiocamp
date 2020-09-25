@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
-  </ItemGroup>
-
 </Project>

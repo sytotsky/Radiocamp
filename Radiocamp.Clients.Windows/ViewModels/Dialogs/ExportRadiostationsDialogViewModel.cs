@@ -10,7 +10,7 @@ using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
-using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Desktop.Settings;
 using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -84,6 +84,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			ExportCommand = ReactiveCommand.Create(Export);
 			ChangeExportFormatCommand = ReactiveCommand.CreateFromTask(ChangeExportFormat);
 			ChangeFilePathCommand = ReactiveCommand.Create(ChangeFilePath);
+
+			disposables.Add(ExportCommand);
+			disposables.Add(ChangeExportFormatCommand);
+			disposables.Add(ChangeFilePathCommand);
 
 			IDisposable allSubscription = this.WhenAnyValue(viewModel => viewModel.All)
 											  .Skip(1)

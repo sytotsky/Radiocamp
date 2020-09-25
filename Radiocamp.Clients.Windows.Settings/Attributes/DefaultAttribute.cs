@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Clients.Shared
+namespace Dartware.Radiocamp.Desktop.Settings
 {
 	[AttributeUsage(AttributeTargets.Property, Inherited = true)]
-	public sealed class DefaultAttribute : Attribute
+	internal sealed class DefaultAttribute : Attribute
 	{
 		
 		public Object Value { get; }
