@@ -3,7 +3,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 
-using WindowState = Dartware.Radiocamp.Desktop.Settings.WindowState;
+using WindowState = Dartware.Radiocamp.Clients.Windows.Settings.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 {

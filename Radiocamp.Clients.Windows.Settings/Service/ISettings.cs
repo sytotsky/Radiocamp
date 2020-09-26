@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
-namespace Dartware.Radiocamp.Desktop.Settings
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	public interface ISettings
 	{

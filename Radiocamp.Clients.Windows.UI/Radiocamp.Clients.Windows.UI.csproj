@@ -19,8 +19,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Radiocamp.Clients.Shared\Radiocamp.Clients.Shared.csproj" />
 		<ProjectReference Include="..\Radiocamp.Clients.Windows.Core\Radiocamp.Clients.Windows.Core.csproj" />
+		<ProjectReference Include="..\Radiocamp.Clients.Windows.Settings\Radiocamp.Clients.Windows.Settings.csproj" />
 		<ProjectReference Include="..\Radiocamp.Core\Radiocamp.Core.csproj" />
-		<ProjectReference Include="..\Radiocamp.Desktop.Settings\Radiocamp.Desktop.Settings.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

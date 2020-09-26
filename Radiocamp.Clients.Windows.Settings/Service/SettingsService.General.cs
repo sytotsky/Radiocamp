@@ -4,7 +4,7 @@ using Microsoft.Win32;
 using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Clients.Shared.Models;
 
-namespace Dartware.Radiocamp.Desktop.Settings
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{

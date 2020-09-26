@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
-using Dartware.Radiocamp.Desktop.Settings;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dartware.Radiocamp.Desktop.Settings
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	[AttributeUsage(AttributeTargets.Property, Inherited = true)]
 	internal sealed class NoStorageAttribute : Attribute

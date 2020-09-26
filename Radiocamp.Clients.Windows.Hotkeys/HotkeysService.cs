@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using DynamicData;
 using NHotkey;
 using NHotkey.Wpf;
-using Dartware.Radiocamp.Desktop.Settings;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 {

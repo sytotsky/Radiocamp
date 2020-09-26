@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Clients.Windows.Database.Configurations;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
-using Dartware.Radiocamp.Desktop.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.Database
 {
 	public sealed class DatabaseContext : DbContext
 	{
 
-		public DbSet<Settings> Settings { get; set; }
+		public DbSet<Settings.Settings> Settings { get; set; }
 		public DbSet<Hotkey> Hotkeys { get; set; }
 
 		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)

@@ -10,7 +10,7 @@ using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
-using Dartware.Radiocamp.Desktop.Settings;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.ColorThemes;
 using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 

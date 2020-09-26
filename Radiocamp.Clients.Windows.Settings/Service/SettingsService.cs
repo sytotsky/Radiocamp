@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dartware.Radiocamp.Desktop.Settings
+namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
 	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]

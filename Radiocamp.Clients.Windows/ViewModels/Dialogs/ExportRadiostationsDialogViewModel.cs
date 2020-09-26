@@ -10,7 +10,7 @@ using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
-using Dartware.Radiocamp.Desktop.Settings;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels

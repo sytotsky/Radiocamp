@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Dartware.Radiocamp.Core;
-using Dartware.Radiocamp.Desktop.Settings;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 {
