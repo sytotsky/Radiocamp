@@ -84,14 +84,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		}
 
-		public async Task EnableAsync(HotkeyCommand command)
+		public async Task EnableAsync(Guid id)
 		{
-			await EnableAsync(Get(command));
+			await EnableAsync(Get(id));
 		}
 
-		public async Task DisableAsync(HotkeyCommand command)
+		public async Task DisableAsync(Guid id)
 		{
-			await DisableAsync(Get(command));
+			await DisableAsync(Get(id));
 		}
 
 		public void RegisterAll()
@@ -153,7 +153,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 		}
 
-		private Hotkey Get(HotkeyCommand command) => All.Items.FirstOrDefault(hotkey => hotkey.Command == command);
+		private Hotkey Get(Guid id) => All.Items.FirstOrDefault(hotkey => hotkey.Id == id);
 
 		private void Register(Hotkey hotkey)
 		{

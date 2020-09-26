@@ -5,7 +5,6 @@ using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 
@@ -17,6 +16,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	{
 
 		private readonly IHotkeys hotkeys;
+
+		private Guid id;
 
 		[Reactive]
 		public Key CurrentKey { get; private set; }
@@ -57,6 +58,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (parameter is Hotkey hotkey)
 			{
+				id = hotkey.Id;
 				Command = hotkey.Command;
 				Key = CurrentKey = hotkey.Key;
 				ModifierKey = CurrentModifierKey = hotkey.ModifierKey;
@@ -119,6 +121,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			Result = new Hotkey()
 			{
+				Id = id,
 				Command = Command,
 				Key = Key,
 				ModifierKey = ModifierKey,
@@ -134,6 +137,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			Result = new Hotkey()
 			{
+				Id = id,
 				Command = Command,
 				Key = Key.None,
 				ModifierKey = ModifierKeys.None,

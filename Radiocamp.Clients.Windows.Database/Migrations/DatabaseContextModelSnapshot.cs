@@ -16,8 +16,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8");
 
-            modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Core.Models.Hotkey", b =>
+            modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Hotkeys.Hotkey", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Command")
                         .HasColumnType("INTEGER");
 
@@ -30,13 +34,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<int>("ModifierKey")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Command");
+                    b.HasKey("Id");
 
                     b.ToTable("Hotkeys");
 
                     b.HasData(
                         new
                         {
+                            Id = new Guid("b593d039-cf72-4af7-b8f2-93cc7ebaf941"),
                             Command = 1,
                             IsEnabled = true,
                             Key = 62,
@@ -44,6 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("f4943c4c-eb13-4976-88ac-b901a112f150"),
                             Command = 2,
                             IsEnabled = true,
                             Key = 44,
@@ -51,6 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("6b38543b-e12c-4614-85cc-9aeda390d494"),
                             Command = 3,
                             IsEnabled = true,
                             Key = 47,
@@ -58,6 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("a9f6e87f-43d9-4899-a016-8d04e0774ebf"),
                             Command = 4,
                             IsEnabled = true,
                             Key = 24,
@@ -65,6 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("dab968eb-65f5-4564-bf79-d00603a1ff08"),
                             Command = 5,
                             IsEnabled = true,
                             Key = 26,
@@ -72,6 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
+                            Id = new Guid("d136b3a5-1d24-4626-8f21-0563d541c304"),
                             Command = 6,
                             IsEnabled = true,
                             Key = 67,
@@ -79,7 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Core.Models.WindowsSettings", b =>
+            modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Settings.Settings", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,7 +159,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b68eeacc-d3f1-4dda-a0d9-dabca36598be"),
+                            Id = new Guid("be1e91d8-c72b-42a6-a891-e45fd3e937d9"),
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
                             ExportRadiostationsFavoritesOnly = false,

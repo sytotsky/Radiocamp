@@ -5,6 +5,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 {
 	public sealed class Hotkey
 	{
+		public Guid Id { get; set; }
 		public HotkeyCommand Command { get; set; }
 		public Key Key { get; set; }
 		public ModifierKeys ModifierKey { get; set; }

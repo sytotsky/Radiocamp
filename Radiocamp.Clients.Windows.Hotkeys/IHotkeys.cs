@@ -19,8 +19,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		
 		void Initialize();
 		Task UpdateAsync(Hotkey hotkey);
-		Task EnableAsync(HotkeyCommand command);
-		Task DisableAsync(HotkeyCommand command);
+		Task EnableAsync(Guid id);
+		Task DisableAsync(Guid id);
 		void RegisterAll();
 		void UnregisterAll();
 		Boolean Any(Key key, ModifierKeys modifierKey);

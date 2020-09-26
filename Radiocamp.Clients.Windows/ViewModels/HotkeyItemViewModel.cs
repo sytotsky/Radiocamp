@@ -6,7 +6,6 @@ using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
@@ -20,6 +19,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly IHotkeys hotkeys;
 		private readonly IDialogs dialogs;
+		private readonly Guid id;
 
 		[Reactive]
 		public HotkeyCommand Command { get; set; }
@@ -35,10 +35,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> EditCommand { get; private set; }
 
-		public HotkeyItemViewModel()
+		public HotkeyItemViewModel(Hotkey hotkey)
 		{
+
 			hotkeys = Dependencies.Get<IHotkeys>();
 			dialogs = Dependencies.Get<IDialogs>();
+
+			id = hotkey.Id;
+			Command = hotkey.Command;
+			Key = hotkey.Key;
+			ModifierKey = hotkey.ModifierKey;
+			IsEnabled = hotkey.IsEnabled;
+
 		}
 
 		public override void Initialize()
@@ -61,6 +69,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			Hotkey currentHotkey = new Hotkey()
 			{
+				Id = id,
 				Command = Command,
 				Key = Key,
 				ModifierKey = ModifierKey,
@@ -86,11 +95,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			if (isEnabled)
 			{
-				await hotkeys.EnableAsync(Command);
+				await hotkeys.EnableAsync(id);
 			}
 			else
 			{
-				await hotkeys.DisableAsync(Command);
+				await hotkeys.DisableAsync(id);
 			}
 		}
 
