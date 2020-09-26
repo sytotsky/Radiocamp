@@ -7,11 +7,19 @@ namespace Dartware.Radiocamp.Desktop.Settings
 	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
+#pragma warning disable 0649
+
 		private Localization localization;
 		private Boolean isNightMode;
 
+#pragma warning restore 0649
+
+#pragma warning disable 0067
+
 		public event Action<Localization> LocalizationChanged;
 		public event Action<Boolean> IsNightModeChanged;
+
+#pragma warning restore 0067
 
 		[UserSetting]
 		[Field(nameof(localization))]

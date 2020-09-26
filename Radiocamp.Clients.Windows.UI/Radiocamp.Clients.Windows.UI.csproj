@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<UseWPF>true</UseWPF>
-		<UseWindowsForms>true</UseWindowsForms>
 		<AssemblyName>Radiocamp.Clients.Windows.UI</AssemblyName>
 		<RootNamespace>Dartware.Radiocamp.Clients.Windows.UI</RootNamespace>
 		<Platforms>AnyCPU;x86</Platforms>

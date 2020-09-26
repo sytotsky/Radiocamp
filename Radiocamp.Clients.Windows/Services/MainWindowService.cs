@@ -16,8 +16,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		private readonly ISettings settings;
 
+#pragma warning disable 0067
+
 		public event Action EscapeEvent;
 		public event Action HideEvent;
+
+#pragma warning restore 0067
 
 		public RadiocampWindow Window
 		{

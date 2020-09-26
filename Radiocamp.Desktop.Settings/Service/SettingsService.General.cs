@@ -9,10 +9,14 @@ namespace Dartware.Radiocamp.Desktop.Settings
 	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
+#pragma warning disable 0649
+
 		private Boolean startMinimized;
 		private Boolean showFavoritesAtStart;
 		private Boolean showOnlyCustomAtStart;
 		private SearchEngine searchEngine;
+
+#pragma warning restore 0649
 
 		public String ApplicationName => "Radiocamp";
 

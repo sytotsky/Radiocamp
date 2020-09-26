@@ -7,6 +7,8 @@ namespace Dartware.Radiocamp.Desktop.Settings
 	public sealed partial class SettingsService<DatabaseContextType> where DatabaseContextType : DbContext
 	{
 
+#pragma warning disable 0649
+
 		private Boolean exportRadiostationsAll;
 		private Boolean exportRadiostationsOnlyFavoritesOrCustom;
 		private Boolean exportRadiostationsFavoritesOnly;
@@ -15,6 +17,8 @@ namespace Dartware.Radiocamp.Desktop.Settings
 		private Boolean exportRadiostationsSaveFavoritesTags;
 		private ExportFormat exportRadiostationsFormat;
 		private String exportRadiostationsPath;
+
+#pragma warning restore 0649
 
 		public String ExportRadiostationsFileFormat => ExportRadiostationsFormat switch
 		{
