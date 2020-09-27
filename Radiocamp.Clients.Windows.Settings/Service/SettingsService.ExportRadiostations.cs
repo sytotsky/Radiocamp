@@ -27,6 +27,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			_ => "radcampback"
 		};
 
+		[Default(true)]
 		[Field(nameof(exportRadiostationsAll))]
 		public Boolean ExportRadiostationsAll
 		{
@@ -34,6 +35,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(false)]
 		[Field(nameof(exportRadiostationsOnlyFavoritesOrCustom))]
 		public Boolean ExportRadiostationsOnlyFavoritesOrCustom
 		{
@@ -41,6 +43,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(false)]
 		[Field(nameof(exportRadiostationsFavoritesOnly))]
 		public Boolean ExportRadiostationsFavoritesOnly
 		{
@@ -48,6 +51,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(false)]
 		[Field(nameof(exportRadiostationsCustomOnly))]
 		public Boolean ExportRadiostationsCustomOnly
 		{
@@ -55,6 +59,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(true)]
 		[Field(nameof(exportRadiostationsSaveSoundSettings))]
 		public Boolean ExportRadiostationsSaveSoundSettings
 		{
@@ -62,6 +67,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(true)]
 		[Field(nameof(exportRadiostationsSaveFavoritesTags))]
 		public Boolean ExportRadiostationsSaveFavoritesTags
 		{
@@ -69,6 +75,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default(ExportFormat.Binary)]
 		[Field(nameof(exportRadiostationsFormat))]
 		public ExportFormat ExportRadiostationsFormat
 		{
@@ -76,6 +83,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Default("")]
 		[Field(nameof(exportRadiostationsPath))]
 		public String ExportRadiostationsPath
 		{
