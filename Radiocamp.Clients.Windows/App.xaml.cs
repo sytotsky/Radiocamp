@@ -61,6 +61,16 @@ namespace Dartware.Radiocamp.Clients.Windows
 
 			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
 
+			Dependencies.Get<IHotkeys>().PlayPauseHotkeyPressed += () =>
+			{
+				MessageBox.Show("PlayPauseHotkeyPressed");
+			};
+
+			Dependencies.Get<IHotkeys>().ShowHideSwitchHotkeyPressed += () =>
+			{
+				MessageBox.Show("ShowHideSwitchHotkeyPressed");
+			};
+
 		}
 
 	}

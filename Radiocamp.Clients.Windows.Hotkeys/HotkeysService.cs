@@ -207,11 +207,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			if (handler != null && !isRegistered)
 			{
-				
-				HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key, hotkey.ModifierKey, handler);
-				
-				registered[hotkey.Command] = true;
+				try 
+				{
+					
+					HotkeyManager.Current.AddOrReplace(Enum.GetName(typeof(HotkeyCommand), hotkey.Command), hotkey.Key, hotkey.ModifierKey, handler);
 
+					registered[hotkey.Command] = true;
+
+				}
+				catch
+				{
+				}
 			}
 
 		}
