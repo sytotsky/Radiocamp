@@ -41,51 +41,51 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b593d039-cf72-4af7-b8f2-93cc7ebaf941"),
+                            Id = new Guid("5be3a5a0-c206-4c4b-9aed-e6d8da2c5410"),
                             Command = 1,
-                            IsEnabled = true,
-                            Key = 62,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         },
                         new
                         {
-                            Id = new Guid("f4943c4c-eb13-4976-88ac-b901a112f150"),
+                            Id = new Guid("133a28b8-e471-4d57-abc8-95874fbde9a6"),
                             Command = 2,
-                            IsEnabled = true,
-                            Key = 44,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         },
                         new
                         {
-                            Id = new Guid("6b38543b-e12c-4614-85cc-9aeda390d494"),
+                            Id = new Guid("98e86efd-8ce1-4cfe-88ce-83875123da04"),
                             Command = 3,
-                            IsEnabled = true,
-                            Key = 47,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         },
                         new
                         {
-                            Id = new Guid("a9f6e87f-43d9-4899-a016-8d04e0774ebf"),
+                            Id = new Guid("cc40fd76-8aa1-48cc-85cb-94defb12ca1b"),
                             Command = 4,
-                            IsEnabled = true,
-                            Key = 24,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         },
                         new
                         {
-                            Id = new Guid("dab968eb-65f5-4564-bf79-d00603a1ff08"),
+                            Id = new Guid("2751d8c2-9af9-48b8-81bb-73cdf2d6b17f"),
                             Command = 5,
-                            IsEnabled = true,
-                            Key = 26,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         },
                         new
                         {
-                            Id = new Guid("d136b3a5-1d24-4626-8f21-0563d541c304"),
+                            Id = new Guid("1f8feb51-354d-49ef-a7f3-8667e6bf65c7"),
                             Command = 6,
-                            IsEnabled = true,
-                            Key = 67,
-                            ModifierKey = 1
+                            IsEnabled = false,
+                            Key = 0,
+                            ModifierKey = 0
                         });
                 });
 
@@ -159,7 +159,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("be1e91d8-c72b-42a6-a891-e45fd3e937d9"),
+                            Id = new Guid("07def7df-e32b-49e3-9b0f-20df64832810"),
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
                             ExportRadiostationsFavoritesOnly = false,

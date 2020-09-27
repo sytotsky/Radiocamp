@@ -55,37 +55,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("b593d039-cf72-4af7-b8f2-93cc7ebaf941"), 1, true, 62, 1 });
+                values: new object[] { new Guid("5be3a5a0-c206-4c4b-9aed-e6d8da2c5410"), 1, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("f4943c4c-eb13-4976-88ac-b901a112f150"), 2, true, 44, 1 });
+                values: new object[] { new Guid("133a28b8-e471-4d57-abc8-95874fbde9a6"), 2, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("6b38543b-e12c-4614-85cc-9aeda390d494"), 3, true, 47, 1 });
+                values: new object[] { new Guid("98e86efd-8ce1-4cfe-88ce-83875123da04"), 3, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("a9f6e87f-43d9-4899-a016-8d04e0774ebf"), 4, true, 24, 1 });
+                values: new object[] { new Guid("cc40fd76-8aa1-48cc-85cb-94defb12ca1b"), 4, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("dab968eb-65f5-4564-bf79-d00603a1ff08"), 5, true, 26, 1 });
+                values: new object[] { new Guid("2751d8c2-9af9-48b8-81bb-73cdf2d6b17f"), 5, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("d136b3a5-1d24-4626-8f21-0563d541c304"), 6, true, 67, 1 });
+                values: new object[] { new Guid("1f8feb51-354d-49ef-a7f3-8667e6bf65c7"), 6, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Settings",
                 columns: new[] { "Id", "ExportRadiostationsAll", "ExportRadiostationsCustomOnly", "ExportRadiostationsFavoritesOnly", "ExportRadiostationsFormat", "ExportRadiostationsOnlyFavoritesOrCustom", "ExportRadiostationsPath", "ExportRadiostationsSaveFavoritesTags", "ExportRadiostationsSaveSoundSettings", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowHeight", "MainWindowLeft", "MainWindowTop", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized" },
-                values: new object[] { new Guid("be1e91d8-c72b-42a6-a891-e45fd3e937d9"), true, false, false, 0, false, null, true, true, false, false, 0, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
+                values: new object[] { new Guid("07def7df-e32b-49e3-9b0f-20df64832810"), true, false, false, 0, false, null, true, true, false, false, 0, 0.0, 0.0, 0.0, 0.0, 0, false, false, false });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

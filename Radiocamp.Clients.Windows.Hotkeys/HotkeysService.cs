@@ -76,7 +76,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 				hotkeyFromStorage.Key = hotkey.Key;
 				hotkeyFromStorage.ModifierKey = hotkey.ModifierKey;
-				hotkeyFromStorage.IsEnabled = hotkey.IsEnabled;
+				
+				if (hotkey.Key == Key.None && hotkey.ModifierKey == ModifierKeys.None)
+				{
+					hotkeyFromStorage.IsEnabled = false;
+				}
+				else
+				{
+					hotkeyFromStorage.IsEnabled = hotkey.IsEnabled;
+				}
 
 				await databaseContext.SaveChangesAsync();
 
@@ -131,6 +139,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			if (hotkey == null)
 			{
 				throw new ArgumentNullException(nameof(hotkey), "Hotkey cannot be null.");
+			}
+
+			if (hotkey.Key == Key.None && hotkey.ModifierKey == ModifierKeys.None)
+			{
+				return;
 			}
 
 			hotkey.IsEnabled = true;

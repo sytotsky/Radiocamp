@@ -30,12 +30,13 @@
 								<CheckBox Grid.Column="0"
 								          VerticalAlignment="Center"
 										  Margin="0"
+										  IsEnabled="{Binding IsEnabledCheckBoxEnabled, Mode=OneWay}"
 										  IsChecked="{Binding IsEnabled, Mode=TwoWay}"/>
 
 								<controls:LocalizationTextBlock Grid.Column="1"
 																VerticalAlignment="Center"
 																Margin="0 0 0 0"
-								                                LocalizationContent="{Binding Command, Mode=OneWay}"/>
+								                                LocalizationText="{Binding Command, Mode=OneWay}"/>
 
 								<controls:HotkeyLabel Grid.Column="2"
 								                      Margin="0"

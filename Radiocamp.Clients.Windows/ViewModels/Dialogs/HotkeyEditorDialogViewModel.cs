@@ -40,6 +40,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsValid { get; private set; }
 
+		[Reactive]
+		public Boolean IsEnabledCheckBoxEnabled { get; private set; }
+
 		public ReactiveCommand<Unit, Unit> SaveCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> RemoveCommand { get; private set; }
 
@@ -71,7 +74,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			disposables.Add(SaveCommand);
 			disposables.Add(RemoveCommand);
 
-			IDisposable validateSubscription = this.WhenAnyValue(viewModel => viewModel.Key, viewModel => viewModel.ModifierKey).Subscribe(tuple => IsValid = Validate(tuple));
+			IDisposable validateSubscription = this.WhenAnyValue(viewModel => viewModel.Key, viewModel => viewModel.ModifierKey).Subscribe(((KeyType Key, ModifierKeys ModifierKey) tuple) =>
+			{
+				IsEnabledCheckBoxEnabled = !(tuple.ModifierKey == ModifierKeys.None && tuple.Key == Key.None);
+				IsValid = Validate(tuple);
+			});
 
 			disposables.Add(validateSubscription);
 

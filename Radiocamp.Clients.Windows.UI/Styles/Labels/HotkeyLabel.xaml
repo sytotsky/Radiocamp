@@ -31,42 +31,60 @@
                                        FontStyle="{Binding FontStyle, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 	                                   Text="{Binding ModifierKey, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={converters:ToStringConverter}}"/>
 
-                            <TextBlock x:Name="Plus"
+							<TextBlock x:Name="Plus"
                                        VerticalAlignment="Center"
                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                        FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                        FontStyle="{Binding FontStyle, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                        Text=" + "/>
 
-	                        <TextBlock x:Name="Key"
+							<TextBlock x:Name="Key"
 	                                   VerticalAlignment="Center"
                                        Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 	                                   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 	                                   FontStyle="{Binding FontStyle, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 	                                   Text="{Binding Key, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={converters:ToStringConverter}}"/>
 
+                            <TextBlock x:Name="NotAssigned"
+                                       VerticalAlignment="Center"
+                                       Visibility="Collapsed"
+                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       FontStyle="{Binding FontStyle, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       Text="{DynamicResource NotAssigned}"/>
+
                         </StackPanel>
                     </Border>
 
                     <ControlTemplate.Triggers>
 
-	                    <Trigger SourceName="ModifierKey" Property="Text" Value="">
+	                    <Trigger Property="Key" Value="None">
+                            <Setter TargetName="Key" Property="Visibility" Value="Collapsed"/>
                             <Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
 	                    </Trigger>
 
-	                    <Trigger SourceName="ModifierKey" Property="Text" Value="{x:Null}">
-		                    <Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
-	                    </Trigger>
+                        <Trigger SourceName="ModifierKey" Property="Text" Value="None">
+	                        <Setter TargetName="ModifierKey" Property="Visibility" Value="Collapsed"/>
+	                        <Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
+						</Trigger>
 
-	                    <Trigger SourceName="Key" Property="Text" Value="">
-		                    <Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
-	                    </Trigger>
+                        <MultiTrigger>
 
-	                    <Trigger SourceName="Key" Property="Text" Value="{x:Null}">
-		                    <Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
-	                    </Trigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Key" Value="None"/>
+                                <Condition SourceName="ModifierKey" Property="Text" Value="None"/>
+                            </MultiTrigger.Conditions>
 
-					</ControlTemplate.Triggers>
+                            <MultiTrigger.Setters>
+								<Setter TargetName="Key" Property="Visibility" Value="Collapsed"/>
+								<Setter TargetName="ModifierKey" Property="Visibility" Value="Collapsed"/>
+								<Setter TargetName="Plus" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="NotAssigned" Property="Visibility" Value="Visible"/>
+							</MultiTrigger.Setters>
+
+                        </MultiTrigger>
+
+                    </ControlTemplate.Triggers>
 
                 </ControlTemplate>
             </Setter.Value>

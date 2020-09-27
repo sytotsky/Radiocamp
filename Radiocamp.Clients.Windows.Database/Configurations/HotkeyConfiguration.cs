@@ -21,49 +21,49 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.PlayPause,
-					IsEnabled = true,
-					Key = Key.S,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				},
 				new Hotkey()
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.StartStopRecord,
-					IsEnabled = true,
-					Key = Key.A,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				},
 				new Hotkey()
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.MuteUnmute,
-					IsEnabled = true,
-					Key = Key.D,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				},
 				new Hotkey()
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.VolumeUp,
-					IsEnabled = true,
-					Key = Key.Up,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				},
 				new Hotkey()
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.VolumeDown,
-					IsEnabled = true,
-					Key = Key.Down,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				},
 				new Hotkey()
 				{
 					Id = Guid.NewGuid(),
 					Command = HotkeyCommand.ShowHideSwitch,
-					IsEnabled = true,
-					Key = Key.X,
-					ModifierKey = ModifierKeys.Alt
+					IsEnabled = false,
+					Key = Key.None,
+					ModifierKey = ModifierKeys.None
 				}
 			};
 

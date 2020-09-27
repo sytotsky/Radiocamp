@@ -53,6 +53,7 @@
 	<system:String x:Key="Cancel_UPPERCASE">CANCEL</system:String>
 	<system:String x:Key="Ok_UPPERCASE">OK</system:String>
 	<system:String x:Key="Reset_UPPERCASE">RESET</system:String>
+	<system:String x:Key="NotAssigned">Not assigned</system:String>
 
 	<!-- Errors -->
 

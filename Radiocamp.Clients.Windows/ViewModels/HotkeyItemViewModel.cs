@@ -33,6 +33,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsEnabled { get; set; }
 
+		[Reactive]
+		public Boolean IsEnabledCheckBoxEnabled { get; private set; }
+
 		public ReactiveCommand<Unit, Unit> EditCommand { get; private set; }
 
 		public HotkeyItemViewModel(Hotkey hotkey)
@@ -46,6 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Key = hotkey.Key;
 			ModifierKey = hotkey.ModifierKey;
 			IsEnabled = hotkey.IsEnabled;
+			IsEnabledCheckBoxEnabled = !(hotkey.ModifierKey == ModifierKeys.None && hotkey.Key == Key.None);
 
 		}
 

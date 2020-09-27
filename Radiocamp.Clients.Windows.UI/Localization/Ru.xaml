@@ -53,6 +53,7 @@
 	<system:String x:Key="Cancel_UPPERCASE">ОТМЕНА</system:String>
 	<system:String x:Key="Ok_UPPERCASE">ОК</system:String>
 	<system:String x:Key="Reset_UPPERCASE">СБРОСИТЬ</system:String>
+	<system:String x:Key="NotAssigned">Не назначено</system:String>
 
 	<!-- Errors -->
 

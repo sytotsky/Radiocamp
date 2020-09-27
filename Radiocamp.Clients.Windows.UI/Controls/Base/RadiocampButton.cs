@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Dartware.Radiocamp.Clients.Shared;
+using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
@@ -52,30 +53,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 			}
 
 			Object value = args.NewValue;
-			Type valueType = value.GetType();
-			LocalizationAttribute localizationAttribute = null;
-
-			if (valueType.IsEnum)
-			{
-
-				FieldInfo field = valueType.GetField(value.ToString());
-
-				if (field != null)
-				{
-					if (Attribute.IsDefined(field, typeof(LocalizationAttribute)))
-					{
-						localizationAttribute = Attribute.GetCustomAttribute(field, typeof(LocalizationAttribute)) as LocalizationAttribute;
-					}
-				}
-
-			}
-
-			if (localizationAttribute == null)
-			{
-				return;
-			}
-
-			String localizationResourceKey = localizationAttribute.Key;
+			String localizationResourceKey = value.GetLocalizationResourceKey();
 
 			if (localizationResourceKey.IsNullOrEmptyOrWhiteSpace())
 			{
