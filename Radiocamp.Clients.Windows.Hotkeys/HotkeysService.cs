@@ -67,24 +67,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 
 			Unregister(hotkey.Command);
 			Register(hotkey);
+
+			if (hotkey.Key == Key.None && hotkey.ModifierKey == ModifierKeys.None)
+			{
+				hotkey.IsEnabled = false;
+			}
+
 			All.AddOrUpdate(hotkey);
 
-			Hotkey hotkeyFromStorage = await databaseContext.Set<Hotkey>().AsTracking().FirstOrDefaultAsync(hotkeyItem => hotkeyItem.Command.Equals(hotkey.Command));
+			Hotkey hotkeyFromStorage = await databaseContext.Set<Hotkey>().FindAsync(hotkey.Id);
 
 			if (hotkeyFromStorage != null)
 			{
 
 				hotkeyFromStorage.Key = hotkey.Key;
 				hotkeyFromStorage.ModifierKey = hotkey.ModifierKey;
-				
-				if (hotkey.Key == Key.None && hotkey.ModifierKey == ModifierKeys.None)
-				{
-					hotkeyFromStorage.IsEnabled = false;
-				}
-				else
-				{
-					hotkeyFromStorage.IsEnabled = hotkey.IsEnabled;
-				}
+				hotkeyFromStorage.IsEnabled = hotkey.IsEnabled;
 
 				await databaseContext.SaveChangesAsync();
 
