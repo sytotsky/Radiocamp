@@ -34,14 +34,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		String ExportRadiostationsFileFormat { get; }
 
-		public Boolean ExportRadiostationsAll { get; set; }
-		public Boolean ExportRadiostationsOnlyFavoritesOrCustom { get; set; }
-		public Boolean ExportRadiostationsFavoritesOnly { get; set; }
-		public Boolean ExportRadiostationsCustomOnly { get; set; }
-		public Boolean ExportRadiostationsSaveSoundSettings { get; set; }
-		public Boolean ExportRadiostationsSaveFavoritesTags { get; set; }
-		public ExportFormat ExportRadiostationsFormat { get; set; }
-		public String ExportRadiostationsPath { get; set; }
+		Boolean ExportRadiostationsAll { get; set; }
+		Boolean ExportRadiostationsOnlyFavoritesOrCustom { get; set; }
+		Boolean ExportRadiostationsFavoritesOnly { get; set; }
+		Boolean ExportRadiostationsCustomOnly { get; set; }
+		Boolean ExportRadiostationsSaveSoundSettings { get; set; }
+		Boolean ExportRadiostationsSaveFavoritesTags { get; set; }
+		ExportFormat ExportRadiostationsFormat { get; set; }
+		String ExportRadiostationsPath { get; set; }
+		
+		// Tray
+
+		event Action<Boolean> AlwaysShowTrayIconChanged;
+
+		Boolean AlwaysShowTrayIcon { get; set; }
+		Boolean HideApplicationOnCloseButtonClick { get; set; }
+		Boolean HideApplicationOnMinimizeButtonClick { get; set; }
 
 		// UI
 

@@ -45,6 +45,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			InitializeProperties();
 			InitializeNavigator();
 			InitializeGeneral();
+			InitializeTray();
 			InitializeUI();
 			InitializeHotkeys();
 

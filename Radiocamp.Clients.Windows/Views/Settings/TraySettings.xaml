@@ -22,7 +22,25 @@
 		<ScrollViewer Grid.Row="1"
 		              VerticalScrollBarVisibility="Visible"
 		              IsDeferredScrollingEnabled="False">
-			<StackPanel Orientation="Vertical"></StackPanel>
+			<StackPanel Orientation="Vertical">
+
+				<CheckBox IsChecked="{Binding AlwaysShowTrayIcon, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_AlwaysShowTrayIcon}"/>
+
+				<StackPanel Orientation="Vertical"
+				            Margin="20 0 0 0">
+
+					<CheckBox IsChecked="{Binding HideApplicationOnCloseButtonClick, Mode=TwoWay}"
+					          IsEnabled="{Binding AlwaysShowTrayIcon, Mode=OneWay}"
+					          Content="{DynamicResource Settings_CloseButtonHideToTray}"/>
+
+					<CheckBox IsChecked="{Binding HideApplicationOnMinimizeButtonClick, Mode=TwoWay}"
+					          IsEnabled="{Binding AlwaysShowTrayIcon, Mode=OneWay}"
+					          Content="{DynamicResource Settings_MinimizeButtonHideToTray}"/>
+
+				</StackPanel>
+
+			</StackPanel>
 		</ScrollViewer>
 
 	</Grid>
