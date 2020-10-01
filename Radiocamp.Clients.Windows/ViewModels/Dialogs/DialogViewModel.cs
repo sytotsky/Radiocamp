@@ -93,7 +93,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			disposables.Add(CloseCommand);
 
-			Dependencies.Get<IMainWindow>().HideEvent += OnMainWindowHide;
+			Dependencies.Get<IMainWindow>().HideEvent += Close;
 
 			dialogWindow.SizeChanged += OnDialogWindowSizeChanged;
 
@@ -106,7 +106,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			base.Dispose();
 
-			Dependencies.Get<IMainWindow>().HideEvent -= OnMainWindowHide;
+			Dependencies.Get<IMainWindow>().HideEvent -= Close;
 			dialogWindow.KeyDown -= OnKeyDown;
 			dialogWindow.SizeChanged -= OnDialogWindowSizeChanged;
 
@@ -133,11 +133,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		protected virtual void OnEnter()
 		{
-		}
-
-		private void OnMainWindowHide()
-		{
-			Close();
 		}
 
 		private void OnKeyDown(Object sender, KeyEventArgs args)

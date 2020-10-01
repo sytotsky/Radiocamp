@@ -40,6 +40,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Click += Hide;
 			mainWindow.EscapeEvent += Hide;
+			mainWindow.HideEvent += Hide;
 			dialogs.ShowDialog += Hide;
 
 			this.WhenAnyValue(viewModel => viewModel.Visible).Subscribe(OnVisibleChanged);

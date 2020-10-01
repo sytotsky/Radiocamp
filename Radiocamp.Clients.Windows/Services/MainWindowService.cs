@@ -4,10 +4,12 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
+
 using WindowState = System.Windows.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
@@ -17,6 +19,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		private readonly ISettings settings;
 		private readonly IApplication application;
+		protected readonly IHotkeys hotkeys;
 
 		private Boolean visible;
 
@@ -33,10 +36,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 #pragma warning restore 0067
 
-		public MainWindowService(ISettings settings, IApplication application)
+		public MainWindowService(ISettings settings, IApplication application, IHotkeys hotkeys)
 		{
 			this.settings = settings;
 			this.application = application;
+			this.hotkeys = hotkeys;
 		}
 
 		public void Initialize()
@@ -57,6 +61,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 					Gesture = new KeyGesture(Key.Escape)
 				}
 			});
+
+			hotkeys.ShowHideSwitchHotkeyPressed += OnShowHideSwitchHotkey;
 
 		}
 
@@ -113,6 +119,14 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private void OnEscape()
 		{
 			EscapeEvent?.Invoke();
+		}
+
+		private void OnShowHideSwitchHotkey()
+		{
+			if (settings.AlwaysShowTrayIcon)
+			{
+				Toggle();
+			}
 		}
 
 		private IntPtr WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, ref Boolean handled)
