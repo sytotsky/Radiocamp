@@ -14,6 +14,7 @@
 							 Height="{Binding Height, Mode=OneWay}"
 							 Left="{Binding Left, Mode=OneWay}"
 							 Top="{Binding Top, Mode=OneWay}"
+							 Visibility="Hidden"
 							 MinimizeCommand="{Binding MinimizeCommand}"
 							 CloseCommand="{Binding CloseCommand}">
 

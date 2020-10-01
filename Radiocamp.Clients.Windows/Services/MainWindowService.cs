@@ -19,7 +19,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		private readonly ISettings settings;
 		private readonly IApplication application;
-		protected readonly IHotkeys hotkeys;
+		private readonly IHotkeys hotkeys;
 
 		private Boolean visible;
 
@@ -49,6 +49,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			Window = new MainWindow();
 
 			Show();
+
+			if (settings.AlwaysShowTrayIcon && settings.StartMinimized)
+			{
+				Hide();
+			}
+
 			HwndSource.FromHwnd(new WindowInteropHelper(Window).Handle).AddHook(WndProc);
 
 			Window.WindowStateChanged += windowState => settings.MainWindowState = windowState;
