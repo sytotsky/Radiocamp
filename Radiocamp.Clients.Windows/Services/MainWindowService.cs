@@ -18,6 +18,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly ISettings settings;
 		private readonly IApplication application;
 
+		private Boolean visible;
+
 		public RadiocampWindow Window
 		{
 			get => Application.Current.MainWindow as RadiocampWindow;
@@ -71,24 +73,41 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Window.Topmost = true;
 			Window.Topmost = top;
+			visible = true;
 
 		}
 
 		public void Hide()
 		{
+
+			visible = false;
+
 			HideEvent?.Invoke();
 			Window?.Hide();
+
+		}
+
+		public void Minimize()
+		{
+			Window.WindowState = WindowState.Minimized;
+		}
+
+		public void Toggle()
+		{
+			if (visible)
+			{
+				Hide();
+			}
+			else
+			{
+				Show();
+			}
 		}
 
 		public void Close()
 		{
 			Hide();
 			application.Shutdown();
-		}
-
-		public void Minimize()
-		{
-			Window.WindowState = WindowState.Minimized;
 		}
 
 		private void OnEscape()

@@ -1,7 +1,10 @@
 ﻿using System;
-using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
-using Dartware.Radiocamp.Clients.Windows.Settings;
+using System.Reactive;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -14,12 +17,21 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public String IconSource { get; set; }
 
-		public TaskbarIconViewModel(ISettings settings)
+		public ReactiveCommand<Unit, Unit> OpenCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> QuitCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> ToggleMainWindowCommand { get; private set; }
+
+		public TaskbarIconViewModel(ISettings settings, IMainWindow mainWindow, IApplication application)
 		{
 
 			Visible = settings.AlwaysShowTrayIcon;
 
 			settings.AlwaysShowTrayIconChanged += alwaysShowTrayIcon => Visible = alwaysShowTrayIcon;
+			application.ShutdownFast += () => Visible = false;
+
+			OpenCommand = ReactiveCommand.Create(mainWindow.Show);
+			QuitCommand = ReactiveCommand.Create(application.Shutdown);
+			ToggleMainWindowCommand = ReactiveCommand.Create(mainWindow.Toggle);
 
 			#if DEBUG
 			IconSource = "../../Resources/Icons/TaskbarIcon_Debug.ico";

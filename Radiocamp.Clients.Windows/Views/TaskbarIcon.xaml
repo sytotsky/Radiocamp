@@ -10,7 +10,21 @@
              d:DataContext="{d:DesignInstance vm:TaskbarIconViewModel}">
     
 	<tb:TaskbarIcon IconSource="{Binding IconSource, Mode=OneWay}"
+                    LeftClickCommand="{Binding ToggleMainWindowCommand}"
+                    NoLeftClickDelay="True"
 	                Visibility="{Binding Visible, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
-	                ToolTipText="Radiocamp Desktop"></tb:TaskbarIcon>
+	                ToolTipText="Radiocamp Desktop">
+        <tb:TaskbarIcon.ContextMenu>
+            <ContextMenu>
+
+				<MenuItem Command="{Binding OpenCommand}"
+				          Header="{DynamicResource Tray_OpenRadiocamp}"/>
+
+				<MenuItem Command="{Binding QuitCommand}"
+				          Header="{DynamicResource Tray_QuitRadiocamp}"/>
+
+			</ContextMenu>
+        </tb:TaskbarIcon.ContextMenu>
+	</tb:TaskbarIcon>
 
 </UserControl>
