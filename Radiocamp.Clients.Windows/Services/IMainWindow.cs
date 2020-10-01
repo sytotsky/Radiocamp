@@ -12,6 +12,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		event Action HideEvent;
 
 		void Initialize();
+		void Show();
+		void Hide();
+		void Close();
+		void Minimize();
 
 	}
 }

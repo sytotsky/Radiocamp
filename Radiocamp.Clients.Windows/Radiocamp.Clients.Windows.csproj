@@ -9,6 +9,7 @@
 		<Platforms>AnyCPU;x86</Platforms>
 		<StartupObject>Dartware.Radiocamp.Clients.Windows.Program</StartupObject>
 		<AssemblyVersion>0.1.24.0</AssemblyVersion>
+		<ApplicationIcon>Resources\Icons\Icon.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,6 +21,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Resources\Icons\Icon.ico" />
+		<None Remove="Resources\Icons\TaskbarIcon.ico" />
+		<None Remove="Resources\Icons\TaskbarIcon_Debug.ico" />
 		<None Remove="Resources\Images\Dartware_Logotype.png" />
 		<None Remove="Resources\Images\Logotype_About.png" />
 	</ItemGroup>
@@ -42,6 +46,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Resource Include="Resources\Icons\Icon.ico" />
+		<Resource Include="Resources\Icons\TaskbarIcon.ico" />
+		<Resource Include="Resources\Icons\TaskbarIcon_Debug.ico" />
 		<Resource Include="Resources\Images\Dartware_Logotype.png" />
 		<Resource Include="Resources\Images\Logotype_About.png" />
 	</ItemGroup>

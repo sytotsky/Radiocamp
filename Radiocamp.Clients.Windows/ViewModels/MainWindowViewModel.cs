@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using System.Reactive;
 using System.Windows.Forms;
+using System.Windows.Input;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 
@@ -10,6 +14,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 	public sealed class MainWindowViewModel : ViewModel
 	{
+
+		private readonly ISettings settings;
+		private readonly IMainWindow mainWindow;
 
 		[Reactive]
 		public Double Width { get; private set; }
@@ -26,8 +33,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public String Title { get; private set; }
 
-		public MainWindowViewModel(ISettings settings)
+		public ReactiveCommand<Unit, Unit> MinimizeCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
+
+		public MainWindowViewModel(ISettings settings, IMainWindow mainWindow)
 		{
+
+			this.settings = settings;
+			this.mainWindow = mainWindow;
+
+			MinimizeCommand = ReactiveCommand.Create(Minimize);
+			CloseCommand = ReactiveCommand.Create(Close);
 
 			if (settings.MainWindowState.IsZero)
 			{
@@ -40,6 +56,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Top = settings.MainWindowTop;
 			Title = "Radiocamp";
 
+			mainWindow.Window.InputBindings.Add(new KeyBinding()
+			{
+				Command = new RelayCommand(Close),
+				Gesture = new KeyGesture(Key.F4, ModifierKeys.Alt)
+			});
+
 		}
 
 		private WindowState GetDefaultWindowState()
@@ -50,11 +72,35 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			ScreenHelper screenHelper = new ScreenHelper();
 			Screen primaryScreen = screenHelper.PrimaryScreen;
 			Rectangle workingArea = primaryScreen.WorkingArea;
-			Double top = (workingArea.Height - height) / 2;
 			Double left = (workingArea.Width - width) / 2;
+			Double top = (workingArea.Height - height) / 2;
 
 			return new WindowState(width, height, left, top);
 
+		}
+
+		private void Minimize()
+		{
+			if (settings.AlwaysShowTrayIcon && settings.HideApplicationOnMinimizeButtonClick)
+			{
+				mainWindow.Hide();
+			}
+			else
+			{
+				mainWindow.Minimize();
+			}
+		}
+
+		private void Close()
+		{
+			if (settings.AlwaysShowTrayIcon && settings.HideApplicationOnCloseButtonClick)
+			{
+				mainWindow.Hide();
+			}
+			else
+			{
+				mainWindow.Close();
+			}
 		}
 
 	}

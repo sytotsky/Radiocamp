@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.TaskbarIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Radiocamp.Clients.Windows.UI"
+             xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+             xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance vm:TaskbarIconViewModel}">
+    
+	<tb:TaskbarIcon IconSource="{Binding IconSource, Mode=OneWay}"
+	                Visibility="{Binding Visible, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+	                ToolTipText="Radiocamp Desktop"></tb:TaskbarIcon>
+
+</UserControl>

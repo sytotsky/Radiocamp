@@ -8,6 +8,7 @@ using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
+using WindowState = System.Windows.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -15,6 +16,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly ISettings settings;
+		private readonly IApplication application;
+
+		public RadiocampWindow Window
+		{
+			get => Application.Current.MainWindow as RadiocampWindow;
+			private set => Application.Current.MainWindow = value;
+		}
 
 #pragma warning disable 0067
 
@@ -23,15 +31,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 #pragma warning restore 0067
 
-		public RadiocampWindow Window
-		{
-			get => Application.Current.MainWindow as RadiocampWindow;
-			private set => Application.Current.MainWindow = value;
-		}
-
-		public MainWindowService(ISettings settings)
+		public MainWindowService(ISettings settings, IApplication application)
 		{
 			this.settings = settings;
+			this.application = application;
 		}
 
 		public void Initialize()
@@ -62,11 +65,30 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			Window.Activate();
 			Window.Focus();
 
+			Window.WindowState = WindowState.Normal;
+
 			Boolean top = Window.Topmost;
 
 			Window.Topmost = true;
 			Window.Topmost = top;
 
+		}
+
+		public void Hide()
+		{
+			HideEvent?.Invoke();
+			Window?.Hide();
+		}
+
+		public void Close()
+		{
+			Hide();
+			application.Shutdown();
+		}
+
+		public void Minimize()
+		{
+			Window.WindowState = WindowState.Minimized;
 		}
 
 		private void OnEscape()
