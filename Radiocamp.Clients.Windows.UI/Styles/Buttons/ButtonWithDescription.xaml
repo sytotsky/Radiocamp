@@ -6,12 +6,12 @@
 
 		<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
 		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="Margin" Value="16 8"/>
 
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type controls:ButtonWithDescription}">
-					<StackPanel Orientation="Horizontal"
-					            Margin="16 8">
+					<StackPanel Orientation="Horizontal">
 
 						<TextBlock VerticalAlignment="Center"
 						           FontSize="{TemplateBinding FontSize}"
