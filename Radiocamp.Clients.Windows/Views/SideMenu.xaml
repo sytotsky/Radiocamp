@@ -11,7 +11,8 @@
 			 Width="200"
 			 d:DesignHeight="450"
 			 Background="{DynamicResource WindowBg}"
-			 ap:AnimateSlideInFromLeft.Value="{Binding Visible}">
+			 ap:AnimateSlideInFromLeft.Value="{Binding Visible}"
+			 Panel.ZIndex="2">
 
 	<UserControl.Effect>
 		<DropShadowEffect Color="{DynamicResource ShadowColor}"

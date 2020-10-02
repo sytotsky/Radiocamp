@@ -10,6 +10,7 @@
 		<ResourceDictionary Source="Buttons/SettingsSectionHeaderButton.xaml"/>
 		<ResourceDictionary Source="Buttons/TransparentButton.xaml"/>
 		<ResourceDictionary Source="Buttons/ButtonWithDescription.xaml"/>
+		<ResourceDictionary Source="Buttons/TextButton.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

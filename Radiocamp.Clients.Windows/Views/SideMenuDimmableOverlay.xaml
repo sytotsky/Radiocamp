@@ -7,7 +7,8 @@
              xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance vm:SideMenuDimmableOverlayViewModel}"
-             MouseDown="SideMenuDimmableOverlay_OnMouseDown">
+             MouseDown="SideMenuDimmableOverlay_OnMouseDown"
+             Panel.ZIndex="1">
 
 	<Border Background="{DynamicResource DimmableOverlay}"
 	        ap:AnimateFadeIn.Value="{Binding Visible, Mode=OneWay, IsAsync=True}"/>

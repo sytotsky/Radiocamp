@@ -3,6 +3,7 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="Labels/Label.xaml"/>
 		<ResourceDictionary Source="Labels/HotkeyLabel.xaml"/>
+		<ResourceDictionary Source="Labels/FormatBitrate.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
