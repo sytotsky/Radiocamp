@@ -1,0 +1,102 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<ControlTemplate x:Key="RegularVerticalSlider" TargetType="{x:Type Slider}">
+		<Grid>
+
+			<Border x:Name="TrackBackground"
+					Margin="0"
+					Width="4"
+					Grid.Column="1"
+					BorderThickness="1"
+					Background="{DynamicResource Blue}"/>
+
+			<Track x:Name="PART_Track"
+				   Grid.Column="1">
+
+				<Track.DecreaseRepeatButton>
+					<RepeatButton Style="{StaticResource RegularVerticalDecreaseRepeatButton}"
+								  Command="Slider.DecreaseLarge"/>
+				</Track.DecreaseRepeatButton>
+
+				<Track.Thumb>
+					<Thumb Style="{StaticResource SliderThumb}"
+						   IsEnabled="{TemplateBinding IsEnabled}"/>
+				</Track.Thumb>
+
+				<Track.IncreaseRepeatButton>
+					<RepeatButton Style="{StaticResource RegularVerticalIncreaseRepeatButton}"
+								  Command="Slider.IncreaseLarge"/>
+				</Track.IncreaseRepeatButton>
+
+			</Track>
+
+		</Grid>
+	</ControlTemplate>
+
+	<ControlTemplate x:Key="RegularHorizontalSlider" TargetType="{x:Type Slider}">
+		<Grid>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<Border x:Name="TrackBackground"
+					Margin="0"
+					Height="4"
+					Grid.Row="1"
+					BorderThickness="1"
+					Background="{DynamicResource Blue}"/>
+
+			<Track Grid.Row="1"
+				   x:Name="PART_Track">
+
+				<Track.DecreaseRepeatButton>
+					<RepeatButton Style="{StaticResource RegularHorizontalDecreaseRepeatButton}"
+								  Command="Slider.DecreaseLarge"/>
+				</Track.DecreaseRepeatButton>
+
+				<Track.Thumb>
+					<Thumb Style="{StaticResource SliderThumb}"/>
+				</Track.Thumb>
+
+				<Track.IncreaseRepeatButton>
+					<RepeatButton Style="{StaticResource RegularHorizontalIncreaseRepeatButton}"
+								  Command="Slider.IncreaseLarge"/>
+				</Track.IncreaseRepeatButton>
+
+			</Track>
+
+		</Grid>
+	</ControlTemplate>
+
+	<Style TargetType="{x:Type Slider}">
+
+		<Setter Property="SnapsToDevicePixels" Value="True"/>
+		<Setter Property="OverridesDefaultStyle" Value="True"/>
+		<Setter Property="Focusable" Value="False"/>
+		<Setter Property="IsMoveToPointEnabled" Value="True"/>
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="IsMoveToPointEnabled" Value="True"/>
+
+		<Style.Triggers>
+
+			<Trigger Property="Orientation" Value="Horizontal">
+				<Setter Property="MinWidth" Value="104"/>
+				<Setter Property="MinHeight" Value="21"/>
+				<Setter Property="Template" Value="{StaticResource RegularHorizontalSlider}"/>
+			</Trigger>
+
+			<Trigger Property="Orientation" Value="Vertical">
+				<Setter Property="MinWidth" Value="21"/>
+				<Setter Property="MinHeight" Value="104"/>
+				<Setter Property="Template" Value="{StaticResource RegularVerticalSlider}"/>
+			</Trigger>
+
+		</Style.Triggers>
+
+	</Style>
+
+</ResourceDictionary>

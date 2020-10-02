@@ -36,13 +36,20 @@
 					   Foreground="{DynamicResource MainFg}"
 					   Text="{Binding Title, Mode=OneWay}"/>
 
-			<controls:TextButton Command="{Binding SearchSongCommand}"
+			<controls:TextButton HorizontalAlignment="Left"
+			                     Command="{Binding SearchSongCommand}"
 			                     Content="{Binding SongName, Mode=OneWay}"/>
 
 			<controls:FormatBitrate Format="{Binding Format, Mode=OneWay}"
 			                        Bitrate="{Binding Bitrate, Mode=OneWay}"/>
 
 		</StackPanel>
+
+		<controls:Volume Grid.Column="1"
+		                 Margin="0 -82 35 0"
+						 VerticalAlignment="Center"
+						 Step="{Binding VolumeStep, Mode=OneWay}"
+		                 Value="{Binding Volume, Mode=TwoWay}"/>
 
 	</Grid>
 

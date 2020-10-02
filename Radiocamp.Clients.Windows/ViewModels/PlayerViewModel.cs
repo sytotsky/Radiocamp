@@ -27,6 +27,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Int32 Bitrate { get; private set; }
 
+		[Reactive]
+		public Double Volume { get; set; }
+
+		[Reactive]
+		public Int32 VolumeStep { get; private set; }
+
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
 
 		public PlayerViewModel(IBrowser browser, ISettings settings)
@@ -41,6 +47,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			SongName = "Alan Walker - Faded";
 			Format = Format.MP3;
 			Bitrate = 256;
+			Volume = 50;
+			VolumeStep = 4;
 
 		}
 
