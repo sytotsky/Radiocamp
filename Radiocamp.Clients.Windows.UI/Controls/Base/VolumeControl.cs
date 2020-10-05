@@ -28,12 +28,12 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 			set => SetValue(IsMutedProperty, value);
 		}
 
-		public static readonly DependencyProperty MuteCommandProperty = DependencyProperty.Register(nameof(MuteCommand), typeof(ICommand), typeof(UserControl), new PropertyMetadata(default(ICommand)));
+		public static readonly DependencyProperty MuteUnmuteCommandProperty = DependencyProperty.Register(nameof(MuteUnmuteCommand), typeof(ICommand), typeof(UserControl), new PropertyMetadata(default(ICommand)));
 
-		public ICommand MuteCommand
+		public ICommand MuteUnmuteCommand
 		{
-			get => (ICommand) GetValue(MuteCommandProperty);
-			set => SetValue(MuteCommandProperty, value);
+			get => (ICommand) GetValue(MuteUnmuteCommandProperty);
+			set => SetValue(MuteUnmuteCommandProperty, value);
 		}
 
 		public static readonly DependencyProperty StepProperty = DependencyProperty.Register(nameof(Step), typeof(Int32), typeof(UserControl), new PropertyMetadata(4));
@@ -157,7 +157,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 
 		private void SoundValue_OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs args)
 		{
-			MuteCommand?.Execute(null);
+			MuteUnmuteCommand?.Execute(null);
 		}
 
 	}

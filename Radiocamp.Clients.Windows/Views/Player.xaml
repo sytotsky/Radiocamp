@@ -25,6 +25,7 @@
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 
 		<StackPanel Grid.Column="0"
@@ -48,18 +49,39 @@
 		<controls:Volume Grid.Column="1"
 		                 Margin="8 -84 -3 0"
 						 VerticalAlignment="Center"
+						 MuteUnmuteCommand="{Binding MuteUnmuteCommand}"
 						 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
 
 		<StackPanel Grid.Column="2"
-					Margin="8 0"
+					Margin="8 0 0 0"
 		            Orientation="Horizontal"
 		            VerticalAlignment="Center">
 
 			<controls:RecordButton Margin="0 0 -9 0"
-			                       VerticalAlignment="Center"/>
+			                       VerticalAlignment="Center"
+			                       StartCommand="{Binding StartRecordingCommand}"
+			                       StopCommand="{Binding StopRecordingCommand}"/>
 
-			<controls:PlayPauseButton VerticalAlignment="Center"/>
+			<controls:PlayPauseButton VerticalAlignment="Center"
+			                          PlayCommand="{Binding PlayCommand}"
+			                          PauseCommand="{Binding PauseCommand}"/>
+
+		</StackPanel>
+
+		<StackPanel Grid.Column="3"
+		            Orientation="Vertical"
+		            VerticalAlignment="Center"
+		            Margin="0 0 8 0">
+
+			<controls:IconButton Margin="0 0 0 4"
+			                     FontSize="16"
+								 Command="{Binding AudioSettingsCommand}"
+			                     Content="{StaticResource AudioSettingsIcon}"/>
+			
+			<controls:IconButton FontSize="16"
+								 Command="{Binding PlaybackHistoryCommand}"
+			                     Content="{StaticResource HistoryIcon}"/>
 
 		</StackPanel>
 

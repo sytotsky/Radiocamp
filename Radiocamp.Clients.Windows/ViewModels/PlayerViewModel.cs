@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -35,6 +36,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Int32 VolumeStep { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
+		public ReactiveCommand<Unit, Unit> MuteUnmuteCommand { get; }
+		public ReactiveCommand<Unit, Unit> PlayCommand { get; }
+		public ReactiveCommand<Unit, Unit> PauseCommand { get; }
+		public ReactiveCommand<Unit, Unit> StartRecordingCommand { get; }
+		public ReactiveCommand<Unit, Unit> StopRecordingCommand { get; }
+		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
+		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
 
 		public PlayerViewModel(IBrowser browser, ISettings settings)
 		{
@@ -42,14 +50,24 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.browser = browser;
 			this.settings = settings;
 
+			VolumeStep = settings.VolumeStep;
+
+			settings.VolumeStepChanged += volumeStep => VolumeStep = volumeStep;
+
 			SearchSongCommand = ReactiveCommand.Create(SearchSong);
+			MuteUnmuteCommand = ReactiveCommand.Create(MuteUnmute);
+			PlayCommand = ReactiveCommand.Create(Play);
+			PauseCommand = ReactiveCommand.Create(Pause);
+			StartRecordingCommand = ReactiveCommand.Create(StartRecording);
+			StopRecordingCommand = ReactiveCommand.Create(StopRecording);
+			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
+			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 
 			Title = "NRK MP3 97.0 FM Oslo";
 			SongName = "Alan Walker - Faded";
 			Format = Format.MP3;
 			Bitrate = 256;
 			Volume = 50;
-			VolumeStep = 4;
 
 		}
 
@@ -58,7 +76,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			if (args.Delta > 0)
 			{
 
-				Double newVolume = Volume + settings.VolumeStep;
+				Double newVolume = Volume + VolumeStep;
 
 				if (newVolume > 100)
 				{
@@ -71,7 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			else
 			{
 
-				Double newVolume = Volume - settings.VolumeStep;
+				Double newVolume = Volume - VolumeStep;
 
 				if (newVolume < 0)
 				{
@@ -86,6 +104,41 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private void SearchSong()
 		{
 			browser.Search(SongName, settings.SearchEngine);
+		}
+
+		private void MuteUnmute()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void Play()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void Pause()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void StartRecording()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void StopRecording()
+		{
+			throw new NotImplementedException();
+		}
+
+		private async Task AudioSettingsAsync()
+		{
+			throw new NotImplementedException();
+		}
+
+		private async Task PlaybackHistoryAsync()
+		{
+			throw new NotImplementedException();
 		}
 
 	}

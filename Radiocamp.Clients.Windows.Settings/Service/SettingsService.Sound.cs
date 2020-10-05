@@ -10,12 +10,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		[UserSetting]
 		[Field(nameof(volumeStep))]
+		[Event(nameof(VolumeStepChanged))]
 		[Default(4)]
 		public Int32 VolumeStep
 		{
 			get => volumeStep;
 			set => SetValue(value);
 		}
+
+		public event Action<Int32> VolumeStepChanged;
 
 	}
 }
