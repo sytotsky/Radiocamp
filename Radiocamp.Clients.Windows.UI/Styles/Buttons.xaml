@@ -11,6 +11,7 @@
 		<ResourceDictionary Source="Buttons/TransparentButton.xaml"/>
 		<ResourceDictionary Source="Buttons/ButtonWithDescription.xaml"/>
 		<ResourceDictionary Source="Buttons/TextButton.xaml"/>
+		<ResourceDictionary Source="Buttons/PlayPauseButton.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

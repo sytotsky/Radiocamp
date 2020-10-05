@@ -51,6 +51,15 @@
 						 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
 
+		<StackPanel Grid.Column="2"
+					Margin="8 0"
+		            Orientation="Horizontal"
+		            VerticalAlignment="Center">
+
+			<controls:PlayPauseButton/>
+
+		</StackPanel>
+
 	</Grid>
 
 </UserControl>
