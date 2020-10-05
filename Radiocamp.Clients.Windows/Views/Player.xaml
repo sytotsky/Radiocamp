@@ -46,7 +46,7 @@
 		</StackPanel>
 
 		<controls:Volume Grid.Column="1"
-		                 Margin="0 -82 35 0"
+		                 Margin="8 -82 8 0"
 						 VerticalAlignment="Center"
 						 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
