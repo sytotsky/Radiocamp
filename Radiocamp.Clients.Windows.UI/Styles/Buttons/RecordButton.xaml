@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls">
+
+	<Color x:Key="RecordStaticColor">#773A3E</Color>
+	<SolidColorBrush x:Key="RecordStaticBrush" Color="{StaticResource RecordStaticColor}"/>
+
+	<Color x:Key="RecordHoverColor">#883D41</Color>
+	<SolidColorBrush x:Key="RecordHoverBrush" Color="{StaticResource RecordHoverColor}"/>
+
+	<Style TargetType="{x:Type controls:RecordButton}">
+
+		<Setter Property="Cursor" Value="Hand"/>
+		<Setter Property="Focusable" Value="False"/>
+		
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:RecordButton}">
+
+					<Grid>
+
+						<Ellipse x:Name="Substrate"
+								 Width="35"
+								 Height="35"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Center"
+								 Fill="{DynamicResource PlayerBg}"/>
+
+						<Ellipse x:Name="Ellipse"
+								 Width="35"
+								 Height="35"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Center"
+								 Stroke="{DynamicResource DimFg}"
+								 StrokeThickness="3"/>
+
+						<TextBlock x:Name="ButtonContent"
+								   FontFamily="{StaticResource RadiocampIcons}"
+								   Foreground="{DynamicResource DimFg}"
+								   FontSize="18"
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   UseLayoutRounding="True"
+								   SnapsToDevicePixels="True"
+								   TextOptions.TextFormattingMode="Ideal"
+								   TextOptions.TextRenderingMode="Auto"
+								   Text="{StaticResource RecordIcon}"/>
+
+					</Grid>
+
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource MainFg}"/>
+							<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource MainFg}"/>
+						</Trigger>
+
+						<MultiTrigger>
+
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="False"/>
+								<Condition Property="IsRecord" Value="True"/>
+							</MultiTrigger.Conditions>
+
+							<MultiTrigger.Setters>
+								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource DimRed}"/>
+								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource DimRed}"/>
+							</MultiTrigger.Setters>
+
+						</MultiTrigger>
+
+						<MultiTrigger>
+
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="True"/>
+								<Condition Property="IsRecord" Value="True"/>
+							</MultiTrigger.Conditions>
+
+							<MultiTrigger.Setters>
+								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource Red}"/>
+								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource Red}"/>
+							</MultiTrigger.Setters>
+
+						</MultiTrigger>
+
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
+	</Style>
+	
+</ResourceDictionary>

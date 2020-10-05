@@ -46,7 +46,7 @@
 		</StackPanel>
 
 		<controls:Volume Grid.Column="1"
-		                 Margin="8 -82 8 0"
+		                 Margin="8 -84 -3 0"
 						 VerticalAlignment="Center"
 						 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
@@ -56,7 +56,10 @@
 		            Orientation="Horizontal"
 		            VerticalAlignment="Center">
 
-			<controls:PlayPauseButton/>
+			<controls:RecordButton Margin="0 0 -9 0"
+			                       VerticalAlignment="Center"/>
+
+			<controls:PlayPauseButton VerticalAlignment="Center"/>
 
 		</StackPanel>
 
