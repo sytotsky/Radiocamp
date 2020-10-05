@@ -41,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d1bd91bf-2f19-4733-8d94-d19626507e73"),
+                            Id = new Guid("0ed9d805-f792-4ba4-9045-28bce3eef7ba"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -49,7 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("b8a20328-11ec-4506-a638-2abaa9b15221"),
+                            Id = new Guid("447ea216-fb30-4321-a999-4e62893bf913"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a49c9629-703a-41df-8506-8b3f84335e23"),
+                            Id = new Guid("56143d36-21c1-4243-a824-335051f16a62"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e23997ae-275d-4533-996b-2eb9706be67d"),
+                            Id = new Guid("246632bd-7d4b-4561-a3a6-ebf9c371fde2"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -73,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("611d90e8-edfa-4e42-8218-3c9112541530"),
+                            Id = new Guid("eb718113-e5b0-468d-855b-f5df95ca10c7"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("edf83f0e-42f3-46ee-aae0-1e306171fc97"),
+                            Id = new Guid("9ac07f03-971b-48ae-affa-a90a0db99351"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -161,6 +161,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<bool>("StartMinimized")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("VolumeStep")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Settings");
@@ -168,7 +171,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9243018c-9cd8-41dd-aa78-adca2ba0b74b"),
+                            Id = new Guid("33c88bf9-4e46-4038-b2df-07b76f20a857"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -189,7 +192,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             SearchEngine = 0,
                             ShowFavoritesAtStart = false,
                             ShowOnlyCustomAtStart = false,
-                            StartMinimized = false
+                            StartMinimized = false,
+                            VolumeStep = 4
                         });
                 });
 #pragma warning restore 612, 618

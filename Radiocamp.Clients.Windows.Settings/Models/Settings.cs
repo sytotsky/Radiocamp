@@ -44,6 +44,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Localization Localization { get; set; }
 		public Boolean IsNightMode { get; set; }
 
+		// Sound
+
+		public Int32 VolumeStep { get; set; }
+
 		// Hotkeys
 
 		public Boolean HotkeysIsEnabled { get; set; }

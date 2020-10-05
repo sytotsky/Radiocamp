@@ -19,7 +19,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				ExportRadiostationsSaveSoundSettings = true,
 				ExportRadiostationsSaveFavoritesTags = true,
 				AlwaysShowTrayIcon = true,
-				HideApplicationOnCloseButtonClick = true
+				HideApplicationOnCloseButtonClick = true,
+				VolumeStep = 4
 			});
 
 		}

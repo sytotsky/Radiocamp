@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.NRadio.Meta;
@@ -50,6 +51,36 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Volume = 50;
 			VolumeStep = 4;
 
+		}
+
+		public void OnMouseWheel(MouseWheelEventArgs args)
+		{
+			if (args.Delta > 0)
+			{
+
+				Double newVolume = Volume + settings.VolumeStep;
+
+				if (newVolume > 100)
+				{
+					newVolume = 100;
+				}
+
+				Volume = newVolume;
+
+			}
+			else
+			{
+
+				Double newVolume = Volume - settings.VolumeStep;
+
+				if (newVolume < 0)
+				{
+					newVolume = 0;
+				}
+
+				Volume = newVolume;
+
+			}
 		}
 
 		private void SearchSong()
