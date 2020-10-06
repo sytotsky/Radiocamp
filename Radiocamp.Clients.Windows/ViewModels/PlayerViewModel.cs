@@ -63,8 +63,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 
-			Title = "NRK MP3 97.0 FM Oslo";
-			SongName = "Alan Walker - Faded";
+			Title = "Vocal Trance Radio";
+			SongName = "Stargazers & Katty Heath - Be Here With Me (Extended Mix) Amsterdam Trance";
 			Format = Format.MP3;
 			Bitrate = 256;
 			Volume = 50;
