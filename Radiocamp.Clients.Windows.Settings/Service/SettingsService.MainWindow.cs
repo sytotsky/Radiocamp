@@ -15,7 +15,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		private Double mainWindowHeight;
 		private Double mainWindowLeft;
 		private Double mainWindowTop;
-		private Double mainWindowCompactAdvancedHeight;
 		private WindowMode mainWindowMode;
 
 #pragma warning restore 0649
@@ -45,13 +44,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Double MainWindowTop
 		{
 			get => mainWindowTop;
-			set => SetValue(value);
-		}
-
-		[Field(nameof(mainWindowCompactAdvancedHeight))]
-		public Double MainWindowCompactAdvancedHeight
-		{
-			get => mainWindowCompactAdvancedHeight;
 			set => SetValue(value);
 		}
 

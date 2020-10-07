@@ -41,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9dd2d805-05fd-4ef2-82d3-84c2cca25b87"),
+                            Id = new Guid("6af883e7-6545-4448-a678-c3b9529e26d7"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -49,7 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8b3cfb20-2e4c-4876-8cc1-eb2e62ceaa63"),
+                            Id = new Guid("1a248e7c-e081-4492-9e10-05b796cbecf6"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("58630aab-5c6a-44d1-b7f7-50ba66bdb6a9"),
+                            Id = new Guid("7be864d7-2054-4860-9616-7af5a3120569"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("0f58f832-3e97-4b99-9788-38573274ed16"),
+                            Id = new Guid("38536884-b316-430e-8a7d-d00b0b5f23d9"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -73,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4fa187f2-2dad-49ca-9ba4-792313ca573d"),
+                            Id = new Guid("90900511-7d2b-4873-9bc8-ebfb9649f8f1"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3d908afa-3c03-4744-8b9b-264ba0fd3e1d"),
+                            Id = new Guid("1ffc73e4-ae6d-4644-832b-93c0fc460372"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -137,9 +137,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<int>("Localization")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("MainWindowCompactAdvancedHeight")
-                        .HasColumnType("REAL");
-
                     b.Property<double>("MainWindowHeight")
                         .HasColumnType("REAL");
 
@@ -177,7 +174,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6344adc9-7e7e-4474-be03-80dbeea1fbe6"),
+                            Id = new Guid("1412f312-2ec7-432c-aba7-a3904f3cb7eb"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -191,7 +188,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             HotkeysIsEnabled = false,
                             IsNightMode = false,
                             Localization = 0,
-                            MainWindowCompactAdvancedHeight = 0.0,
                             MainWindowHeight = 0.0,
                             MainWindowLeft = 0.0,
                             MainWindowMode = 0,

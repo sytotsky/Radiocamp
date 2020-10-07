@@ -1,11 +1,14 @@
-﻿using System.Reactive;
+﻿using System;
+using System.Reactive;
 using System.Windows;
+using System.Windows.Forms;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
+using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -15,8 +18,22 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IMainWindow mainWindow;
 
+		private Boolean advancedIsTop;
+
 		[Reactive]
 		public Visibility Visibility { get; private set; }
+
+		[Reactive]
+		public Int32 AdvancedRow { get; private set; }
+
+		[Reactive]
+		public GridLength TopRowHeight { get; private set; }
+
+		[Reactive]
+		public GridLength BottomRowHeight { get; private set; }
+
+		[Reactive]
+		public Visibility AdvancedVisibility { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> RegularModeCommand { get; private set; }
@@ -57,11 +74,62 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private void AdvancedMode()
 		{
+			if (settings.MainWindowMode == WindowMode.Compact)
+			{
+				settings.MainWindowMode = WindowMode.CompactAdvanced;
+			}
+			else if (settings.MainWindowMode == WindowMode.CompactAdvanced)
+			{
+				settings.MainWindowMode = WindowMode.Compact;
+			}
 		}
 
 		private void OnMainWindowModeChanged(WindowMode mode)
 		{
+			
 			Visibility = mode == WindowMode.Regular ? Visibility.Collapsed : Visibility.Visible;
+			AdvancedVisibility = mode == WindowMode.CompactAdvanced ? Visibility.Visible : Visibility.Collapsed;
+
+			if (mode == WindowMode.CompactAdvanced)
+			{
+
+				Double compactAdvancedHeight = mainWindow.Window.CompactAdvancedHeight;
+				Double advancedRowHeight = compactAdvancedHeight - mainWindow.Window.CompactHeight;
+				WPFScreen wpfScreen = WPFScreen.GetScreenFrom(mainWindow.Window);
+				Screen currentScreen = wpfScreen.Screen;
+				System.Drawing.Rectangle currentWorkingArea = currentScreen.WorkingArea;
+				Int32 workingHeight = currentWorkingArea.Height;
+				Double windowTop = mainWindow.Window.Top;
+				advancedIsTop = workingHeight - (windowTop + compactAdvancedHeight) < 0;
+
+				if (advancedIsTop)
+				{
+					AdvancedRow = 0;
+					TopRowHeight = new GridLength(advancedRowHeight, GridUnitType.Star);
+					BottomRowHeight = new GridLength(0);
+					mainWindow.Window.Top -= advancedRowHeight;
+				}
+				else
+				{
+					AdvancedRow = 2;
+					TopRowHeight = new GridLength(0);
+					BottomRowHeight = new GridLength(advancedRowHeight, GridUnitType.Star);
+				}
+
+			}
+			else
+			{
+				
+				TopRowHeight = new GridLength(0);
+				BottomRowHeight = new GridLength(0);
+
+				if (advancedIsTop)
+				{
+					mainWindow.Window.Top += mainWindow.Window.CompactAdvancedHeight - mainWindow.Window.CompactHeight;
+				}
+
+			}
+
 		}
 
 	}

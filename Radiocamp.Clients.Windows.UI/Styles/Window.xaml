@@ -5,8 +5,9 @@
 					xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties"
 					xmlns:system="clr-namespace:System;assembly=System.Runtime">
 
-	<system:Double x:Key="CompactWidth">400.0</system:Double>
-	<system:Double x:Key="CompactHeight">50.0</system:Double>
+	<system:Double x:Key="CompactWidth">400</system:Double>
+	<system:Double x:Key="CompactHeight">50</system:Double>
+	<system:Double x:Key="AdvancedCompactHeight">400</system:Double>
 
 	<Style x:Key="RadiocampWindowStyle" TargetType="{x:Type windows:RadiocampWindow}">
 
@@ -23,6 +24,9 @@
 		<Setter Property="SizeToContent" Value="Manual"/>
 		<Setter Property="SnapsToDevicePixels" Value="True"/>
 		<Setter Property="UseLayoutRounding" Value="True"/>
+		<Setter Property="CompactWidth" Value="400"/>
+		<Setter Property="CompactHeight" Value="50"/>
+		<Setter Property="CompactAdvancedHeight" Value="400"/>
 
 		<Setter Property="WindowChrome.WindowChrome">
 			<Setter.Value>
@@ -143,15 +147,25 @@
 							<Setter TargetName="PART_HeaderBar" Property="Visibility" Value="Collapsed"/>
 							<Setter Property="ResizeMode" Value="NoResize"/>
 							<Setter Property="SizeToContent" Value="WidthAndHeight"/>
-							<Setter Property="Width" Value="{StaticResource CompactWidth}"/>
-							<Setter Property="Height" Value="{StaticResource CompactHeight}"/>
-							<Setter Property="MinWidth" Value="{StaticResource CompactWidth}"/>
-							<Setter Property="MinHeight" Value="{StaticResource CompactHeight}"/>
-							<Setter Property="MaxWidth" Value="{StaticResource CompactWidth}"/>
-							<Setter Property="MaxHeight" Value="{StaticResource CompactHeight}"/>
+							<Setter Property="Width" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="Height" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MinWidth" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MinHeight" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MaxWidth" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MaxHeight" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
 						</Trigger>
 						
-						<Trigger Property="Mode" Value="CompactAdvanced"></Trigger>
+						<Trigger Property="Mode" Value="CompactAdvanced">
+							<Setter TargetName="PART_HeaderBar" Property="Visibility" Value="Collapsed"/>
+							<Setter Property="ResizeMode" Value="NoResize"/>
+							<Setter Property="SizeToContent" Value="WidthAndHeight"/>
+							<Setter Property="Width" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="Height" Value="{Binding CompactAdvancedHeight, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MinWidth" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MinHeight" Value="{Binding CompactAdvancedHeight, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MaxWidth" Value="{Binding CompactWidth, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="MaxHeight" Value="{Binding CompactAdvancedHeight, RelativeSource={RelativeSource Self}}"/>
+						</Trigger>
 
 					</ControlTemplate.Triggers>
 
