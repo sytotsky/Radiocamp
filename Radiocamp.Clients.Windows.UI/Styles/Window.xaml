@@ -1,8 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Windows"
-                    xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls"
-                    xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties">
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:windows="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Windows"
+					xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls"
+					xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties"
+					xmlns:system="clr-namespace:System;assembly=System.Runtime">
+
+	<system:Double x:Key="CompactWidth">400.0</system:Double>
+	<system:Double x:Key="CompactHeight">50.0</system:Double>
 
 	<Style x:Key="RadiocampWindowStyle" TargetType="{x:Type windows:RadiocampWindow}">
 
@@ -23,8 +27,8 @@
 		<Setter Property="WindowChrome.WindowChrome">
 			<Setter.Value>
 				<WindowChrome GlassFrameThickness="1"
-				              ResizeBorderThickness="6"
-				              CaptionHeight="0"/>
+							  ResizeBorderThickness="6"
+							  CaptionHeight="0"/>
 			</Setter.Value>
 		</Setter>
 
@@ -34,12 +38,18 @@
 
 					<Grid Background="Transparent" x:Name="WindowRoot">
 						<Grid x:Name="LayoutRoot"
-                              Background="{TemplateBinding Background}">
+							  Background="{TemplateBinding Background}">
+
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
 
 							<Grid x:Name="PART_HeaderBar"
-								  VerticalAlignment="Top"
-								  Height="22"
-								  ZIndex="100"
+								  Grid.Row="0"
+							      VerticalAlignment="Top"
+							      Height="22"
+							      ZIndex="100"
 							      Background="{DynamicResource WindowCaption}">
 
 								<Grid.ColumnDefinitions>
@@ -49,75 +59,74 @@
 								</Grid.ColumnDefinitions>
 
 								<TextBlock Grid.Column="0"
-								           Grid.ColumnSpan="3"
-								           TextTrimming="CharacterEllipsis"
-								           HorizontalAlignment="Stretch"
-								           FontSize="12"
-								           TextAlignment="Center"
-								           VerticalAlignment="Center"
-								           Width="Auto"
-								           Padding="92 0"
-								           Foreground="{DynamicResource DimFg}"
-								           Panel.ZIndex="0"
-								           Focusable="False"
-								           IsEnabled="{TemplateBinding IsActive}"
-								           Text="{TemplateBinding Title}"/>
+										   Grid.ColumnSpan="3"
+										   TextTrimming="CharacterEllipsis"
+										   HorizontalAlignment="Stretch"
+										   FontSize="12"
+										   TextAlignment="Center"
+										   VerticalAlignment="Center"
+										   Width="Auto"
+										   Padding="92 0"
+										   Foreground="{DynamicResource DimFg}"
+										   Panel.ZIndex="0"
+										   Focusable="False"
+										   IsEnabled="{TemplateBinding IsActive}"
+										   Text="{TemplateBinding Title}"/>
 
 
 								<StackPanel x:Name="WindowControlsGrid"
-								            Grid.Column="2"
-								            Orientation="Horizontal">
+											Grid.Column="2"
+											Orientation="Horizontal">
 
 									<controls:WindowButton x:Name="CompactModeButton"
-									                       Grid.Column="0"
-									                       Visibility="Collapsed"
+														   Grid.Column="0"
 														   FontSize="16"
-									                       ToolTip="{DynamicResource CompactMode}"
-									                       Icon="{StaticResource WindowModeIcon}"
-									                       IconMargin="0 0 1 0"
-									                       IconRotateAngle="180"/>
+														   ToolTip="{DynamicResource CompactMode}"
+														   Icon="{StaticResource WindowModeIcon}"
+														   IconMargin="0 0 1 0"
+														   IconRotateAngle="180"/>
 
 									<controls:WindowButton x:Name="MinimizeButton"
-									                       Grid.Column="0"
-									                       FontSize="16"
-									                       Icon="{StaticResource MinimizeIcon}"
-									                       IconMargin="0 9 0 0"/>
+														   Grid.Column="0"
+														   FontSize="16"
+														   Icon="{StaticResource MinimizeIcon}"
+														   IconMargin="0 9 0 0"/>
 
 									<controls:WindowButton x:Name="MaximizeButton"
-									                       Grid.Column="1"
+														   Grid.Column="1"
 														   FontSize="14"
-									                       Icon="{StaticResource MaximizeIcon}"
-									                       IconMargin="0 0 1 1"/>
+														   Icon="{StaticResource MaximizeIcon}"
+														   IconMargin="0 0 1 1"/>
 
 									<controls:WindowButton x:Name="RestoreButton"
-									                       Grid.Column="1"
+														   Grid.Column="1"
 														   FontSize="14"
 														   Visibility="Collapsed"
-									                       Icon="{StaticResource MaximizeIcon}"
-									                       IconMargin="0 0 1 1"/>
+														   Icon="{StaticResource MaximizeIcon}"
+														   IconMargin="0 0 1 1"/>
 
 									<controls:WindowButton x:Name="CloseButton"
-									                       Grid.Column="2"
+														   Grid.Column="2"
 														   OverBackground="{DynamicResource Red}"
 														   OverForeground="White"
 														   FontSize="11"
-									                       Icon="{StaticResource CloseIcon}"
-									                       IconMargin="0 1 1 0"/>
+														   Icon="{StaticResource CloseIcon}"
+														   IconMargin="0 1 1 0"/>
 
 								</StackPanel>
 
 							</Grid>
 
 							<Grid x:Name="PART_MainContentGrid"
-								  Margin="0 22 0 0"
-                                  Panel.ZIndex="10">
+								  Grid.Row="1"
+								  Panel.ZIndex="10">
 
 								<ContentPresenter x:Name="PART_MainContentPresenter"
-								                  Grid.Row="1"/>
+												  Grid.Row="1"/>
 
 								<Border Panel.ZIndex="1"
-								        ap:AnimateFadeIn.Value="{Binding OverlayVisible, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-								        Background="{DynamicResource DimmableOverlay}"/>
+										ap:AnimateFadeIn.Value="{Binding OverlayVisible, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+										Background="{DynamicResource DimmableOverlay}"/>
 
 							</Grid>
 
@@ -130,14 +139,19 @@
 							<Setter TargetName="PART_HeaderBar" Property="Background" Value="{DynamicResource PlayerBg}"/>
 						</Trigger>
 
-						<Trigger Property="IsCompact" Value="True">
+						<Trigger Property="Mode" Value="Compact">
 							<Setter TargetName="PART_HeaderBar" Property="Visibility" Value="Collapsed"/>
-							<Setter TargetName="PART_MainContentGrid" Property="Margin" Value="0"/>
+							<Setter Property="ResizeMode" Value="NoResize"/>
+							<Setter Property="SizeToContent" Value="WidthAndHeight"/>
+							<Setter Property="Width" Value="{StaticResource CompactWidth}"/>
+							<Setter Property="Height" Value="{StaticResource CompactHeight}"/>
+							<Setter Property="MinWidth" Value="{StaticResource CompactWidth}"/>
+							<Setter Property="MinHeight" Value="{StaticResource CompactHeight}"/>
+							<Setter Property="MaxWidth" Value="{StaticResource CompactWidth}"/>
+							<Setter Property="MaxHeight" Value="{StaticResource CompactHeight}"/>
 						</Trigger>
-
-						<Trigger Property="CompactButtonVisible" Value="True">
-							<Setter TargetName="CompactModeButton" Property="Visibility" Value="Visible"/>
-						</Trigger>
+						
+						<Trigger Property="Mode" Value="CompactAdvanced"></Trigger>
 
 					</ControlTemplate.Triggers>
 

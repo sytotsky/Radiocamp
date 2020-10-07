@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Dartware.Radiocamp.Clients.Shared;
 using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 using Dartware.Radiocamp.Core;
 

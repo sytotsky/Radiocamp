@@ -14,13 +14,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 #pragma warning restore 0649
 
-#pragma warning disable 0067
-
-		public event Action<Localization> LocalizationChanged;
-		public event Action<Boolean> IsNightModeChanged;
-
-#pragma warning restore 0067
-
 		[UserSetting]
 		[Field(nameof(localization))]
 		[Event(nameof(LocalizationChanged))]
@@ -40,6 +33,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			get => isNightMode;
 			set => SetValue(value);
 		}
+
+#pragma warning disable 0067
+
+		public event Action<Localization> LocalizationChanged;
+		public event Action<Boolean> IsNightModeChanged;
+
+#pragma warning restore 0067
 
 	}
 }

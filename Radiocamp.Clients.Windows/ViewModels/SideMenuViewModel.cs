@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
-using Dartware.Radiocamp.Clients.Windows.Core;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ICommand AboutCommand { get; }
 		public ICommand ExitCommand { get; }
 
-		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs)
+		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs, ISettings settings)
 		{
 
 			this.application = application;
@@ -42,6 +43,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			mainWindow.EscapeEvent += Hide;
 			mainWindow.HideEvent += Hide;
 			dialogs.ShowDialog += Hide;
+			settings.MainWindowModeChanged += mode => Hide();
 
 			this.WhenAnyValue(viewModel => viewModel.Visible).Subscribe(OnVisibleChanged);
 			

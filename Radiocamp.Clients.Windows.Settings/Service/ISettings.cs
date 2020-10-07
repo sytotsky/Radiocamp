@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Shared.Models;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -14,11 +15,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		// Main window
 
+		event Action<WindowMode> MainWindowModeChanged;
+
 		Double MainWindowWidth { get; set; }
 		Double MainWindowHeight { get; set; }
 		Double MainWindowLeft { get; set; }
 		Double MainWindowTop { get; set; }
-		WindowState MainWindowState { get; set; }
+		Double MainWindowCompactAdvancedHeight { get; set; }
+		WindowMode MainWindowMode { get; set; }
+
+		WindowState GetSetMainWindowState();
+		void SetMainWindowState(WindowState windowState);
 
 		// General
 

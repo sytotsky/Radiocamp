@@ -131,12 +131,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			throw new NotImplementedException();
 		}
 
-		private async Task AudioSettingsAsync()
+		private Task AudioSettingsAsync()
 		{
 			throw new NotImplementedException();
 		}
 
-		private async Task PlaybackHistoryAsync()
+		private Task PlaybackHistoryAsync()
 		{
 			throw new NotImplementedException();
 		}

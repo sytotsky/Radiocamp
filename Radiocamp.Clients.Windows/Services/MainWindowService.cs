@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Settings;
@@ -48,7 +49,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Window = new MainWindow();
 
+			settings.MainWindowModeChanged += OnMainWindowModeChanged;
+
 			Show();
+			OnMainWindowModeChanged(settings.MainWindowMode);
 
 			if (settings.AlwaysShowTrayIcon && settings.StartMinimized)
 			{
@@ -57,7 +61,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			HwndSource.FromHwnd(new WindowInteropHelper(Window).Handle).AddHook(WndProc);
 
-			Window.WindowStateChanged += windowState => settings.MainWindowState = windowState;
+			Window.WindowStateChanged += windowState => settings.SetMainWindowState(windowState);
 
 			Window.InputBindings.AddRange(new List<InputBinding>()
 			{
@@ -133,6 +137,39 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			{
 				Toggle();
 			}
+		}
+
+		private void OnMainWindowModeChanged(WindowMode mode)
+		{
+
+			Window.Mode = mode;
+
+			if (mode == WindowMode.Regular)
+			{
+
+				Window.Height = settings.MainWindowHeight;
+				Window.Width = settings.MainWindowWidth;
+
+				Window.MouseDown -= OnWindowMouseDown;
+
+			}
+			else
+			{
+				Window.MouseDown += OnWindowMouseDown;
+			}
+
+		}
+
+		private void OnWindowMouseDown(Object sender, MouseButtonEventArgs args)
+		{
+
+			if (args.ChangedButton == MouseButton.Left)
+			{
+				Window.DragMove();
+			}
+
+			args.Handled = true;
+
 		}
 
 		private IntPtr WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, ref Boolean handled)

@@ -3,12 +3,15 @@ using System.Drawing;
 using System.Reactive;
 using System.Windows.Forms;
 using System.Windows.Input;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
 using Dartware.Radiocamp.Clients.Windows.Settings;
+
+using WindowState = Dartware.Radiocamp.Clients.Windows.Settings.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -35,25 +38,33 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public ReactiveCommand<Unit, Unit> MinimizeCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> CompactCommand { get; private set; }
 
 		public MainWindowViewModel(ISettings settings, IMainWindow mainWindow)
 		{
-
+			
 			this.settings = settings;
 			this.mainWindow = mainWindow;
 
 			MinimizeCommand = ReactiveCommand.Create(Minimize);
 			CloseCommand = ReactiveCommand.Create(Close);
+			CompactCommand = ReactiveCommand.Create(Compact);
 
-			if (settings.MainWindowState.IsZero)
+			WindowState windowState = settings.GetSetMainWindowState();
+
+			if (windowState.IsZero)
 			{
-				settings.MainWindowState = GetDefaultWindowState();
+
+				windowState = GetDefaultWindowState();
+
+				settings.SetMainWindowState(windowState);
+
 			}
 
-			Width = settings.MainWindowWidth;
-			Height = settings.MainWindowHeight;
-			Left = settings.MainWindowLeft;
-			Top = settings.MainWindowTop;
+			Width = windowState.Width;
+			Height = windowState.Height;
+			Left = windowState.Left;
+			Top = windowState.Top;
 			Title = "Radiocamp";
 
 			mainWindow.Window.InputBindings.Add(new KeyBinding()
@@ -101,6 +112,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			{
 				mainWindow.Close();
 			}
+		}
+
+		private void Compact()
+		{
+			settings.MainWindowMode = WindowMode.Compact;
 		}
 
 	}

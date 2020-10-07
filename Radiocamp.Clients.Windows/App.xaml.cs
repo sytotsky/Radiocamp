@@ -40,6 +40,8 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<SettingsViewModel>(provider => new SettingsViewModel(new DialogArgs(Dependencies.Get<IMainWindow>().Window)));
 			Dependencies.Services.AddSingleton<TaskbarIconViewModel>();
 			Dependencies.Services.AddSingleton<PlayerViewModel>();
+			Dependencies.Services.AddSingleton<RegularViewViewModel>();
+			Dependencies.Services.AddSingleton<CompactViewViewModel>();
 
 			Dependencies.Services.AddSingleton<IApplication, ApplicationService>();
 			Dependencies.Services.AddSingleton<ISettings, SettingsService<DatabaseContext>>();

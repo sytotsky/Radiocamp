@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 using WindowState = Dartware.Radiocamp.Clients.Windows.Settings.WindowState;
 
@@ -18,6 +19,11 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 		private void OnStateSizeChanged(Object sender, SizeChangedEventArgs args)
 		{
+
+			if (Mode == WindowMode.Compact)
+			{
+				return;
+			}
 
 			stateChangedTimer?.Dispose();
 
