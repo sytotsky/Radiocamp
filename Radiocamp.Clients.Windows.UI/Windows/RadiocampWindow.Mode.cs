@@ -34,14 +34,6 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			set => SetValue(CompactHeightProperty, value);
 		}
 
-		public static readonly DependencyProperty CompactAdvancedHeightProperty = DependencyProperty.Register(nameof(CompactAdvancedHeight), typeof(Double), typeof(RadiocampWindow), new PropertyMetadata(default(Double)));
-
-		public Double CompactAdvancedHeight
-		{
-			get => (Double) GetValue(CompactAdvancedHeightProperty);
-			set => SetValue(CompactAdvancedHeightProperty, value);
-		}
-
 		private void CompactModeButton_Click(Object sender, RoutedEventArgs args)
 		{
 			CompactCommand?.Execute(null);

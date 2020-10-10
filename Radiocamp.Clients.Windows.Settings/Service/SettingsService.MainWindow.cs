@@ -77,7 +77,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 #pragma warning restore 0067
 
-		public WindowState GetSetMainWindowState() => new WindowState(MainWindowWidth, MainWindowHeight, MainWindowLeft, MainWindowTop, MainWindowCompactAdvancedHeight);
+		public WindowState GetSetMainWindowState() => new WindowState(MainWindowWidth, MainWindowHeight, MainWindowLeft, MainWindowTop);
 
 		public void SetMainWindowState(WindowState windowState)
 		{
@@ -96,9 +96,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			{
 				mainWindowHeight = windowState.Height;
 			}
+			else if (MainWindowMode == WindowMode.CompactAdvanced)
+			{
+				mainWindowCompactAdvancedHeight = windowState.Height;
+			}
 
 			mainWindowWidth = windowState.Width;
-			mainWindowCompactAdvancedHeight = windowState.CompactAdvancedHeight;
 			mainWindowLeft = windowState.Left;
 			mainWindowTop = windowState.Top;
 
@@ -118,9 +121,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 					{
 						settings.MainWindowHeight = windowState.Height;
 					}
+					else
+					{
+						settings.MainWindowCompactAdvancedHeight = windowState.Height;
+					}
 
 					settings.MainWindowWidth = windowState.Width;
-					settings.MainWindowCompactAdvancedHeight = windowState.CompactAdvancedHeight;
 					settings.MainWindowLeft = windowState.Left;
 					settings.MainWindowTop = windowState.Top;
 

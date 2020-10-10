@@ -20,18 +20,9 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 		private void OnStateSizeChanged(Object sender, SizeChangedEventArgs args)
 		{
 
-			if (Mode == WindowMode.Compact)
-			{
-				return;
-			}
-			else if (Mode == WindowMode.CompactAdvanced)
-			{
-				CompactAdvancedHeight = args.NewSize.Height;
-			}
-
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(args.NewSize.Width, args.NewSize.Height, Left, Top, CompactAdvancedHeight);
+			WindowState windowState = new WindowState(args.NewSize.Width, args.NewSize.Height, Left, Top);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 
@@ -42,7 +33,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(ActualWidth, ActualHeight, Left, Top, CompactAdvancedHeight);
+			WindowState windowState = new WindowState(ActualWidth, ActualHeight, Left, Top);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 

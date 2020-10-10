@@ -34,9 +34,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Double Top { get; private set; }
 
 		[Reactive]
-		public Double CompactAdvancedHeight { get; set; }
-
-		[Reactive]
 		public String Title { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> MinimizeCommand { get; private set; }
@@ -66,7 +63,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			Width = windowState.Width;
 			Height = windowState.Height;
-			CompactAdvancedHeight = windowState.CompactAdvancedHeight;
 			Left = windowState.Left;
 			Top = windowState.Top;
 			Title = "Radiocamp";
@@ -90,7 +86,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Double left = (workingArea.Width - width) / 2;
 			Double top = (workingArea.Height - height) / 2;
 
-			return new WindowState(width, height, left, top, settings.MainWindowCompactAdvancedHeight);
+			return new WindowState(width, height, left, top);
 
 		}
 

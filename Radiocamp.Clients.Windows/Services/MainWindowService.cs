@@ -147,7 +147,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			if (mode == WindowMode.Regular)
 			{
 				Window.Height = settings.MainWindowHeight;
-				Window.Width = settings.MainWindowWidth;
+			}
+			else if (mode == WindowMode.CompactAdvanced)
+			{
+				Window.Height = settings.MainWindowCompactAdvancedHeight;
 			}
 
 		}

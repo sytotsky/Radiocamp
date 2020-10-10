@@ -147,7 +147,6 @@
 						<Trigger Property="Mode" Value="CompactAdvanced">
 							<Setter TargetName="PART_HeaderBar" Property="Visibility" Value="Collapsed"/>
 							<Setter Property="ResizeMode" Value="CanResize"/>
-							<Setter Property="Height" Value="{Binding CompactAdvancedHeight, RelativeSource={RelativeSource Self}}"/>
 						</Trigger>
 
 					</ControlTemplate.Triggers>

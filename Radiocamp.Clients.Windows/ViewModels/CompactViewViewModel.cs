@@ -91,7 +91,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			if (mode == WindowMode.CompactAdvanced)
 			{
 
-				Double compactAdvancedHeight = mainWindow.Window.CompactAdvancedHeight;
+				Double compactAdvancedHeight = settings.MainWindowCompactAdvancedHeight;
 				Double advancedRowHeight = compactAdvancedHeight - mainWindow.Window.CompactHeight;
 				WPFScreen wpfScreen = WPFScreen.GetScreenFrom(mainWindow.Window);
 				Screen currentScreen = wpfScreen.Screen;
@@ -124,7 +124,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 				if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Top)
 				{
-					mainWindow.Window.Top += mainWindow.Window.CompactAdvancedHeight - mainWindow.Window.CompactHeight;
+					mainWindow.Window.Top += settings.MainWindowCompactAdvancedHeight - mainWindow.Window.CompactHeight;
 				}
 
 				settings.MainWindowAdvancedCompactPosition = AdvancedCompactPosition.None;

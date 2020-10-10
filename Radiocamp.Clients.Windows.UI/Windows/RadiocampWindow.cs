@@ -218,7 +218,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			
 			base.OnMouseDown(args);
 
-			if (Mode != WindowMode.Regular)
+			if (Mode != WindowMode.Regular && args.ChangedButton == MouseButton.Left)
 			{
 				DragMove();
 			}
