@@ -8,6 +8,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 	public partial class RadiocampWindow
 	{
 
+		public const Double COMPACT_HEIGHT = 50;
+
 		public static readonly DependencyProperty ModeProperty = DependencyProperty.Register(nameof(Mode), typeof(WindowMode), typeof(RadiocampWindow), new PropertyMetadata(default(WindowMode)));
 
 		public WindowMode Mode
@@ -22,14 +24,6 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 		{
 			get => (ICommand) GetValue(CompactCommandProperty);
 			set => SetValue(CompactCommandProperty, value);
-		}
-
-		public static readonly DependencyProperty CompactWidthProperty = DependencyProperty.Register(nameof(CompactWidth), typeof(Double), typeof(RadiocampWindow), new PropertyMetadata(default(Double)));
-
-		public Double CompactWidth
-		{
-			get => (Double) GetValue(CompactWidthProperty);
-			set => SetValue(CompactWidthProperty, value);
 		}
 
 		public static readonly DependencyProperty CompactHeightProperty = DependencyProperty.Register(nameof(CompactHeight), typeof(Double), typeof(RadiocampWindow), new PropertyMetadata(default(Double)));

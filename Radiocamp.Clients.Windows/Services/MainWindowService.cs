@@ -49,10 +49,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Window = new MainWindow();
 
-			settings.MainWindowModeChanged += OnMainWindowModeChanged;
+			settings.MainWindowModeChanged += OnModeChanged;
 
 			Show();
-			OnMainWindowModeChanged(settings.MainWindowMode);
+			OnModeChanged(settings.MainWindowMode);
 
 			if (settings.AlwaysShowTrayIcon && settings.StartMinimized)
 			{
@@ -139,36 +139,16 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 		}
 
-		private void OnMainWindowModeChanged(WindowMode mode)
+		private void OnModeChanged(WindowMode mode)
 		{
 
 			Window.Mode = mode;
 
 			if (mode == WindowMode.Regular)
 			{
-
 				Window.Height = settings.MainWindowHeight;
 				Window.Width = settings.MainWindowWidth;
-
-				Window.MouseDown -= OnWindowMouseDown;
-
 			}
-			else
-			{
-				Window.MouseDown += OnWindowMouseDown;
-			}
-
-		}
-
-		private void OnWindowMouseDown(Object sender, MouseButtonEventArgs args)
-		{
-
-			if (args.ChangedButton == MouseButton.Left)
-			{
-				Window.DragMove();
-			}
-
-			args.Handled = true;
 
 		}
 

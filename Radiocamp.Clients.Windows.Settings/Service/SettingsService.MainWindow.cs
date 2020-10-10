@@ -15,7 +15,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		private Double mainWindowHeight;
 		private Double mainWindowLeft;
 		private Double mainWindowTop;
+		private Double mainWindowCompactAdvancedHeight;
 		private WindowMode mainWindowMode;
+		private AdvancedCompactPosition mainWindowAdvancedCompactPosition;
 
 #pragma warning restore 0649
 
@@ -47,11 +49,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 			set => SetValue(value);
 		}
 
+		[Field(nameof(mainWindowCompactAdvancedHeight))]
+		public Double MainWindowCompactAdvancedHeight
+		{
+			get => mainWindowCompactAdvancedHeight;
+			set => SetValue(value);
+		}
+
 		[Field(nameof(mainWindowMode))]
 		[Event(nameof(MainWindowModeChanged))]
 		public WindowMode MainWindowMode
 		{
 			get => mainWindowMode;
+			set => SetValue(value);
+		}
+
+		[Field(nameof(mainWindowAdvancedCompactPosition))]
+		public AdvancedCompactPosition MainWindowAdvancedCompactPosition
+		{
+			get => mainWindowAdvancedCompactPosition;
 			set => SetValue(value);
 		}
 
@@ -61,7 +77,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 #pragma warning restore 0067
 
-		public WindowState GetSetMainWindowState() => new WindowState(MainWindowWidth, MainWindowHeight, MainWindowLeft, MainWindowTop);
+		public WindowState GetSetMainWindowState() => new WindowState(MainWindowWidth, MainWindowHeight, MainWindowLeft, MainWindowTop, MainWindowCompactAdvancedHeight);
 
 		public void SetMainWindowState(WindowState windowState)
 		{
@@ -78,10 +94,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 			if (MainWindowMode == WindowMode.Regular)
 			{
-				mainWindowWidth = windowState.Width;
 				mainWindowHeight = windowState.Height;
 			}
 
+			mainWindowWidth = windowState.Width;
+			mainWindowCompactAdvancedHeight = windowState.CompactAdvancedHeight;
 			mainWindowLeft = windowState.Left;
 			mainWindowTop = windowState.Top;
 
@@ -99,10 +116,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 					if (MainWindowMode == WindowMode.Regular)
 					{
-						settings.MainWindowWidth = windowState.Width;
 						settings.MainWindowHeight = windowState.Height;
 					}
 
+					settings.MainWindowWidth = windowState.Width;
+					settings.MainWindowCompactAdvancedHeight = windowState.CompactAdvancedHeight;
 					settings.MainWindowLeft = windowState.Left;
 					settings.MainWindowTop = windowState.Top;
 

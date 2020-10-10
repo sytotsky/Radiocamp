@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Diagnostics.CodeAnalysis;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Microsoft.Win32;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 
@@ -59,6 +60,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 		public RadiocampWindow()
 		{
+
+			CompactHeight = COMPACT_HEIGHT;
 
 			Double currentDPIScaleFactor = (Double) SystemHelper.GetCurrentDPIScaleFactor();
 			Screen screen = Screen.FromHandle((new WindowInteropHelper(this)).Handle);
@@ -208,6 +211,18 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			{
 				base.WindowState = WindowState.Normal;
 			}
+		}
+
+		protected override void OnMouseDown(MouseButtonEventArgs args)
+		{
+			
+			base.OnMouseDown(args);
+
+			if (Mode != WindowMode.Regular)
+			{
+				DragMove();
+			}
+
 		}
 
 		protected virtual Thickness GetDefaultMarginForDPI()

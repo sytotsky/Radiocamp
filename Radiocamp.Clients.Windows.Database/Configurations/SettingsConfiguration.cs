@@ -20,7 +20,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				ExportRadiostationsSaveFavoritesTags = true,
 				AlwaysShowTrayIcon = true,
 				HideApplicationOnCloseButtonClick = true,
-				VolumeStep = 4
+				VolumeStep = 4,
+				MainWindowCompactAdvancedHeight = 400
 			});
 
 		}

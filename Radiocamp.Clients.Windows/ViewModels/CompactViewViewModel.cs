@@ -18,8 +18,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IMainWindow mainWindow;
 
-		private Boolean advancedIsTop;
-
 		[Reactive]
 		public Visibility Visibility { get; private set; }
 
@@ -100,16 +98,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				System.Drawing.Rectangle currentWorkingArea = currentScreen.WorkingArea;
 				Int32 workingHeight = currentWorkingArea.Height;
 				Double windowTop = mainWindow.Window.Top;
-				advancedIsTop = workingHeight - (windowTop + compactAdvancedHeight) < 0;
 
-				if (advancedIsTop)
+				settings.MainWindowAdvancedCompactPosition = workingHeight - (windowTop + compactAdvancedHeight) < 0 ? AdvancedCompactPosition.Top : AdvancedCompactPosition.Bottom;
+
+				if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Top)
 				{
 					AdvancedRow = 0;
 					TopRowHeight = new GridLength(advancedRowHeight, GridUnitType.Star);
 					BottomRowHeight = new GridLength(0);
 					mainWindow.Window.Top -= advancedRowHeight;
 				}
-				else
+				else if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Bottom)
 				{
 					AdvancedRow = 2;
 					TopRowHeight = new GridLength(0);
@@ -123,10 +122,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				TopRowHeight = new GridLength(0);
 				BottomRowHeight = new GridLength(0);
 
-				if (advancedIsTop)
+				if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Top)
 				{
 					mainWindow.Window.Top += mainWindow.Window.CompactAdvancedHeight - mainWindow.Window.CompactHeight;
 				}
+
+				settings.MainWindowAdvancedCompactPosition = AdvancedCompactPosition.None;
 
 			}
 

@@ -14,6 +14,7 @@
 							 Height="{Binding Height, Mode=OneWay}"
 							 Left="{Binding Left, Mode=OneWay}"
 							 Top="{Binding Top, Mode=OneWay}"
+							 CompactAdvancedHeight="{Binding CompactAdvancedHeight}"
 							 MinimizeCommand="{Binding MinimizeCommand}"
 							 CloseCommand="{Binding CloseCommand}"
 							 CompactCommand="{Binding CompactCommand}">

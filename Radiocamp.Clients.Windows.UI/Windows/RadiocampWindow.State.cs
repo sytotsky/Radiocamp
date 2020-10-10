@@ -24,10 +24,14 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 			{
 				return;
 			}
+			else if (Mode == WindowMode.CompactAdvanced)
+			{
+				CompactAdvancedHeight = args.NewSize.Height;
+			}
 
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(args.NewSize.Width, args.NewSize.Height, Left, Top);
+			WindowState windowState = new WindowState(args.NewSize.Width, args.NewSize.Height, Left, Top, CompactAdvancedHeight);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 
@@ -38,7 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(ActualWidth, ActualHeight, Left, Top);
+			WindowState windowState = new WindowState(ActualWidth, ActualHeight, Left, Top, CompactAdvancedHeight);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 

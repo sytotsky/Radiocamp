@@ -15,7 +15,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Double MainWindowHeight { get; set; }
 		public Double MainWindowLeft { get; set; }
 		public Double MainWindowTop { get; set; }
+		public Double MainWindowCompactAdvancedHeight { get; set; }
 		public WindowMode MainWindowMode { get; set; }
+		public AdvancedCompactPosition MainWindowAdvancedCompactPosition { get; set; }
 
 		//General
 
