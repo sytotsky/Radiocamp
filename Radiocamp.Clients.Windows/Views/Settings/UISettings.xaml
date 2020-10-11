@@ -33,6 +33,22 @@
 				                                Description="{DynamicResource Language}"
 				                                LocalizedContent="{Binding Localization, Mode=OneWay}"/>
 
+				<CheckBox IsChecked="{Binding MainWindowTopmost, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_MainWindowTopmost}"/>
+
+				<CheckBox Margin="35 5 35 10"
+				          IsChecked="{Binding MainWindowTopmostOnlyCompact, Mode=TwoWay}"
+				          IsEnabled="{Binding MainWindowTopmost, Mode=OneWay}"
+				          Content="{DynamicResource Settings_CompactModeOnly}"/>
+
+				<CheckBox IsChecked="{Binding HideInTaskbar, Mode=TwoWay}"
+				          Content="{DynamicResource Settings_HideInTaskbar}"/>
+
+				<CheckBox Margin="35 5 35 0"
+				          IsChecked="{Binding HideInTaskbarOnlyCompact, Mode=TwoWay}"
+				          IsEnabled="{Binding HideInTaskbar, Mode=OneWay}"
+				          Content="{DynamicResource Settings_CompactModeOnly}"/>
+
 			</StackPanel>
 		</ScrollViewer>
 

@@ -41,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("70993896-f891-4894-a49f-99ae0554f601"),
+                            Id = new Guid("bebdc2e1-469c-46af-b38c-333aa3ba51a6"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -49,7 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3599ab2c-eb28-41f6-925e-a9cc8d6cba82"),
+                            Id = new Guid("f15ac773-4f59-4c40-a7f9-3bdc086a2444"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("967e906d-1c75-4da7-a4b0-e1e98d14e55a"),
+                            Id = new Guid("27ab451c-7cfc-4a20-92de-5385a37a5017"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("74aed97f-130c-42e7-a1d7-fc4ff10e905f"),
+                            Id = new Guid("cce8b33f-1134-4eef-b4b2-ba2913bde69e"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -73,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ae97e5c0-12dd-4156-a01b-49009b4602cd"),
+                            Id = new Guid("73fa0182-a91e-4084-ac46-c8dd619f0498"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bf368d83-6465-45b2-8587-2ec74614a97a"),
+                            Id = new Guid("715553a1-3595-4533-a17a-081910a326ae"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -128,6 +128,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<bool>("HideApplicationOnMinimizeButtonClick")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("HideInTaskbar")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("HideInTaskbarOnlyCompact")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("HotkeysIsEnabled")
                         .HasColumnType("INTEGER");
 
@@ -155,6 +161,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<double>("MainWindowTop")
                         .HasColumnType("REAL");
 
+                    b.Property<bool>("MainWindowTopmost")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("MainWindowTopmostOnlyCompact")
+                        .HasColumnType("INTEGER");
+
                     b.Property<double>("MainWindowWidth")
                         .HasColumnType("REAL");
 
@@ -180,7 +192,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("188c3bca-f481-4f73-a954-9e77d38c6a64"),
+                            Id = new Guid("010e8bcb-39d5-4570-a591-ca24061cfb60"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -191,6 +203,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             ExportRadiostationsSaveSoundSettings = true,
                             HideApplicationOnCloseButtonClick = true,
                             HideApplicationOnMinimizeButtonClick = false,
+                            HideInTaskbar = false,
+                            HideInTaskbarOnlyCompact = false,
                             HotkeysIsEnabled = false,
                             IsNightMode = false,
                             Localization = 0,
@@ -200,6 +214,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             MainWindowLeft = 0.0,
                             MainWindowMode = 0,
                             MainWindowTop = 0.0,
+                            MainWindowTopmost = false,
+                            MainWindowTopmostOnlyCompact = false,
                             MainWindowWidth = 0.0,
                             SearchEngine = 0,
                             ShowFavoritesAtStart = false,

@@ -63,9 +63,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		event Action<Localization> LocalizationChanged;
 		event Action<Boolean> IsNightModeChanged;
+		event Action<Boolean> MainWindowTopmostChanged;
+		event Action<Boolean> MainWindowTopmostOnlyCompactChanged;
+		event Action<Boolean> HideInTaskbarChanged;
+		event Action<Boolean> HideInTaskbarOnlyCompactChanged;
 
 		Localization Localization { get; set; }
 		Boolean IsNightMode { get; set; }
+		Boolean MainWindowTopmost { get; set; }
+		Boolean MainWindowTopmostOnlyCompact { get; set; }
+		Boolean HideInTaskbar { get; set; }
+		Boolean HideInTaskbarOnlyCompact { get; set; }
 
 		// Sound
 

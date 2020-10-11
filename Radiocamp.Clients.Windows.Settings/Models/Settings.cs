@@ -47,6 +47,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		public Localization Localization { get; set; }
 		public Boolean IsNightMode { get; set; }
+		public Boolean MainWindowTopmost { get; set; }
+		public Boolean MainWindowTopmostOnlyCompact { get; set; }
+		public Boolean HideInTaskbar { get; set; }
+		public Boolean HideInTaskbarOnlyCompact { get; set; }
 
 		// Sound
 

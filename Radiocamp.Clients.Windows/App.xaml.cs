@@ -24,9 +24,9 @@ namespace Dartware.Radiocamp.Clients.Windows
 			base.OnStartup(args);
 
 			#if DEBUG
-			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.DEBUG.db")}";
+			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.DEBUG.V1.db")}";
 			#else
-			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.db")}";
+			String databaseConnectionSting = $"Data Source={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Radiocamp", "Data.V1.db")}";
 			#endif
 
 			Dependencies.Services.AddDbContext<DatabaseContext>(builder =>
