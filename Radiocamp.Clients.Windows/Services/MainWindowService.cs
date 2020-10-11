@@ -53,6 +53,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Show();
 			OnModeChanged(settings.MainWindowMode);
+			OnTopmostChanged(settings.MainWindowTopmost, settings.MainWindowTopmostOnlyCompact);
+			OnHideInTaskbarChanged(settings.HideInTaskbar, settings.HideInTaskbarOnlyCompact);
 
 			if (settings.AlwaysShowTrayIcon && settings.StartMinimized)
 			{
@@ -73,6 +75,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			});
 
 			hotkeys.ShowHideSwitchHotkeyPressed += OnShowHideSwitchHotkey;
+			settings.MainWindowTopmostChanged += topmost => OnTopmostChanged(topmost, settings.MainWindowTopmostOnlyCompact);
+			settings.MainWindowTopmostOnlyCompactChanged += onlyCompact => OnTopmostChanged(settings.MainWindowTopmost, onlyCompact);
+			settings.HideInTaskbarChanged += hideInTaskbar => OnHideInTaskbarChanged(hideInTaskbar, settings.HideInTaskbarOnlyCompact);
+			settings.HideInTaskbarOnlyCompactChanged += hideInTaskbarOnlyCompact => OnHideInTaskbarChanged(settings.HideInTaskbar, hideInTaskbarOnlyCompact);
 
 		}
 
@@ -156,6 +162,65 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			else if (mode == WindowMode.CompactAdvanced)
 			{
 				Window.Height = settings.MainWindowCompactAdvancedHeight;
+			}
+
+			OnTopmostChanged(settings.MainWindowTopmost, settings.MainWindowTopmostOnlyCompact);
+			OnHideInTaskbarChanged(settings.HideInTaskbar, settings.HideInTaskbarOnlyCompact);
+
+		}
+
+		private void OnTopmostChanged(Boolean topmost, Boolean onlyCompact)
+		{
+			if (onlyCompact)
+			{
+				if (topmost)
+				{
+					if (settings.MainWindowMode != WindowMode.Regular)
+					{
+						Window.Topmost = topmost;
+					}
+					else
+					{
+						Window.Topmost = false;
+					}
+				}
+				else
+				{
+					Window.Topmost = topmost;
+				}
+			}
+			else
+			{
+				Window.Topmost = topmost;
+			}
+		}
+
+		private void OnHideInTaskbarChanged(Boolean hideInTaskbar, Boolean onlyCompact)
+		{
+
+			Boolean showInTaskbar = !hideInTaskbar;
+
+			if (onlyCompact)
+			{
+				if (hideInTaskbar)
+				{
+					if (settings.MainWindowMode != WindowMode.Regular)
+					{
+						Window.ShowInTaskbar = showInTaskbar;
+					}
+					else
+					{
+						Window.ShowInTaskbar = true;
+					}
+				}
+				else
+				{
+					Window.ShowInTaskbar = showInTaskbar;
+				}
+			}
+			else
+			{
+				Window.ShowInTaskbar = showInTaskbar;
 			}
 
 		}
