@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 using WindowState = Dartware.Radiocamp.Clients.Windows.Settings.WindowState;
 
@@ -22,7 +21,27 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(args.NewSize.Width, args.NewSize.Height, Left, Top);
+			Double width = 0;
+			Double height = 0;
+			Double top = 0;
+			Double left = 0;
+
+			if (WindowState == System.Windows.WindowState.Maximized)
+			{
+				width = WidthBeforeMaximize;
+				height = HeightBeforeMaximize;
+				top = TopBeforeMaximize;
+				left = LeftBeforeMaximize;
+			}
+			else
+			{
+				width = args.NewSize.Width;
+				height = args.NewSize.Height;
+				top = Top;
+				left = Left;
+			}
+
+			WindowState windowState = new WindowState(width, height, left, top);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 
@@ -33,7 +52,27 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 			stateChangedTimer?.Dispose();
 
-			WindowState windowState = new WindowState(ActualWidth, ActualHeight, Left, Top);
+			Double width = 0;
+			Double height = 0;
+			Double top = 0;
+			Double left = 0;
+
+			if (WindowState == System.Windows.WindowState.Maximized)
+			{
+				width = WidthBeforeMaximize;
+				height = HeightBeforeMaximize;
+				top = TopBeforeMaximize;
+				left = LeftBeforeMaximize;
+			}
+			else
+			{
+				width = ActualWidth;
+				height = ActualHeight;
+				top = Top;
+				left = Left;
+			}
+
+			WindowState windowState = new WindowState(width, height, left, top);
 
 			stateChangedTimer = new Timer(ChangeState, windowState, STATE_CHANGED_TIMER_DUE_TIME, Timeout.Infinite);
 

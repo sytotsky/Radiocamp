@@ -142,11 +142,13 @@
 							<Setter Property="Height" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
 							<Setter Property="MinHeight" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
 							<Setter Property="MaxHeight" Value="{Binding CompactHeight, RelativeSource={RelativeSource Self}}"/>
+							<Setter Property="WindowState" Value="Normal"/>
 						</Trigger>
 						
 						<Trigger Property="Mode" Value="CompactAdvanced">
 							<Setter TargetName="PART_HeaderBar" Property="Visibility" Value="Collapsed"/>
 							<Setter Property="ResizeMode" Value="CanResize"/>
+							<Setter Property="WindowState" Value="Normal"/>
 						</Trigger>
 
 					</ControlTemplate.Triggers>

@@ -142,6 +142,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private void OnModeChanged(WindowMode mode)
 		{
 
+			if (mode == WindowMode.Compact || mode == WindowMode.CompactAdvanced)
+			{
+				Window.WindowState = WindowState.Normal;
+			}
+
 			Window.Mode = mode;
 
 			if (mode == WindowMode.Regular)

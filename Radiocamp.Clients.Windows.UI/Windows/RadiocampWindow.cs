@@ -32,6 +32,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 		public Grid HeaderBar { get; private set; }
 		public Double HeightBeforeMaximize { get; private set; }
 		public Double WidthBeforeMaximize { get; private set; }
+		public Double TopBeforeMaximize { get; private set; }
+		public Double LeftBeforeMaximize { get; private set; }
 		public WindowState PreviousState { get; private set; }
 
 		public Boolean IsMaximized => WindowState == WindowState.Maximized;
@@ -368,6 +370,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Windows
 
 				this.HeightBeforeMaximize = base.ActualHeight;
 				this.WidthBeforeMaximize = base.ActualWidth;
+				this.TopBeforeMaximize = Top;
+				this.LeftBeforeMaximize = Left;
 
 				return;
 
