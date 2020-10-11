@@ -10,7 +10,7 @@ using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Native;
 using Dartware.Radiocamp.Clients.Windows.UI.Windows;
 using Dartware.Radiocamp.Clients.Windows.Windows;
-
+using DispatcherPriority = System.Windows.Threading.DispatcherPriority;
 using WindowState = System.Windows.WindowState;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
@@ -171,28 +171,31 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		private void OnTopmostChanged(Boolean topmost, Boolean onlyCompact)
 		{
-			if (onlyCompact)
+			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
 			{
-				if (topmost)
+				if (onlyCompact)
 				{
-					if (settings.MainWindowMode != WindowMode.Regular)
+					if (topmost)
 					{
-						Window.Topmost = topmost;
+						if (settings.MainWindowMode != WindowMode.Regular)
+						{
+							Window.Topmost = topmost;
+						}
+						else
+						{
+							Window.Topmost = false;
+						}
 					}
 					else
 					{
-						Window.Topmost = false;
+						Window.Topmost = topmost;
 					}
 				}
 				else
 				{
 					Window.Topmost = topmost;
 				}
-			}
-			else
-			{
-				Window.Topmost = topmost;
-			}
+			}));
 		}
 
 		private void OnHideInTaskbarChanged(Boolean hideInTaskbar, Boolean onlyCompact)
@@ -200,28 +203,31 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			Boolean showInTaskbar = !hideInTaskbar;
 
-			if (onlyCompact)
+			Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
 			{
-				if (hideInTaskbar)
+				if (onlyCompact)
 				{
-					if (settings.MainWindowMode != WindowMode.Regular)
+					if (hideInTaskbar)
 					{
-						Window.ShowInTaskbar = showInTaskbar;
+						if (settings.MainWindowMode != WindowMode.Regular)
+						{
+							Window.ShowInTaskbar = showInTaskbar;
+						}
+						else
+						{
+							Window.ShowInTaskbar = true;
+						}
 					}
 					else
 					{
-						Window.ShowInTaskbar = true;
+						Window.ShowInTaskbar = showInTaskbar;
 					}
 				}
 				else
 				{
 					Window.ShowInTaskbar = showInTaskbar;
 				}
-			}
-			else
-			{
-				Window.ShowInTaskbar = showInTaskbar;
-			}
+			}));
 
 		}
 
