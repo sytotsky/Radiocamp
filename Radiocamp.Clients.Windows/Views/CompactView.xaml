@@ -54,7 +54,8 @@
 		</Grid>
 
 		<Grid Grid.Row="{Binding AdvancedRow, Mode=OneWay}"
-		      Visibility="{Binding AdvancedVisibility, Mode=OneWay}"></Grid>
+		      Visibility="{Binding AdvancedVisibility, Mode=OneWay}"
+		      Background="Blue"></Grid>
 
 	</Grid>
 

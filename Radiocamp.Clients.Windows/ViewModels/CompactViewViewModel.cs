@@ -18,6 +18,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IMainWindow mainWindow;
 
+		private Boolean isImmediatelyAfterLaunch;
+
 		[Reactive]
 		public Visibility Visibility { get; private set; }
 
@@ -43,6 +45,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.settings = settings;
 			this.mainWindow = mainWindow;
 
+			isImmediatelyAfterLaunch = true;
+
 			CloseCommand = ReactiveCommand.Create(Close);
 			RegularModeCommand = ReactiveCommand.Create(RegularMode);
 			AdvancedModeCommand = ReactiveCommand.Create(AdvancedMode);
@@ -50,6 +54,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Visibility = settings.MainWindowMode == WindowMode.Regular ? Visibility.Collapsed : Visibility.Visible;
 
 			this.settings.MainWindowModeChanged += OnMainWindowModeChanged;
+
+			OnMainWindowModeChanged(settings.MainWindowMode);
+
+			isImmediatelyAfterLaunch = false;
 
 		}
 
@@ -99,14 +107,23 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				Int32 workingHeight = currentWorkingArea.Height;
 				Double windowTop = mainWindow.Window.Top;
 
-				settings.MainWindowAdvancedCompactPosition = workingHeight - (windowTop + compactAdvancedHeight) < 0 ? AdvancedCompactPosition.Top : AdvancedCompactPosition.Bottom;
+				if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.None)
+				{
+					settings.MainWindowAdvancedCompactPosition = workingHeight - (windowTop + compactAdvancedHeight) < 0 ? AdvancedCompactPosition.Top : AdvancedCompactPosition.Bottom;
+				}
 
 				if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Top)
 				{
+					
 					AdvancedRow = 0;
 					TopRowHeight = new GridLength(advancedRowHeight, GridUnitType.Star);
 					BottomRowHeight = new GridLength(0);
-					mainWindow.Window.Top -= advancedRowHeight;
+					
+					if (!isImmediatelyAfterLaunch)
+					{
+						mainWindow.Window.Top -= advancedRowHeight;
+					}
+
 				}
 				else if (settings.MainWindowAdvancedCompactPosition == AdvancedCompactPosition.Bottom)
 				{
