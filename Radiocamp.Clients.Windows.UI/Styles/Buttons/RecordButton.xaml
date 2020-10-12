@@ -90,5 +90,62 @@
 		</Setter>
 
 	</Style>
-	
+
+	<Style x:Key="CompactRecordButtonStyle" TargetType="{x:Type controls:RecordButton}">
+
+		<Setter Property="Cursor" Value="Hand"/>
+		<Setter Property="Focusable" Value="False"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:RecordButton}">
+
+					<TextBlock x:Name="ButtonContent"
+					           FontFamily="{StaticResource RadiocampIcons}"
+					           Foreground="{DynamicResource DimFg}"
+					           FontSize="24"
+					           VerticalAlignment="Center"
+					           HorizontalAlignment="Center"
+					           UseLayoutRounding="True"
+					           SnapsToDevicePixels="True"
+					           TextOptions.TextFormattingMode="Ideal"
+					           TextOptions.TextRenderingMode="Auto"
+					           Text="{StaticResource RecordIcon}"/>
+
+					<ControlTemplate.Triggers>
+
+						<MultiTrigger>
+
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="False"/>
+								<Condition Property="IsRecord" Value="True"/>
+							</MultiTrigger.Conditions>
+
+							<MultiTrigger.Setters>
+								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource DimRed}"/>
+							</MultiTrigger.Setters>
+
+						</MultiTrigger>
+
+						<MultiTrigger>
+
+							<MultiTrigger.Conditions>
+								<Condition Property="IsMouseOver" Value="True"/>
+								<Condition Property="IsRecord" Value="True"/>
+							</MultiTrigger.Conditions>
+
+							<MultiTrigger.Setters>
+								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource Red}"/>
+							</MultiTrigger.Setters>
+
+						</MultiTrigger>
+
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
+	</Style>
+
 </ResourceDictionary>

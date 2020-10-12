@@ -17,8 +17,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly ISettings settings;
 		private readonly IMainWindow mainWindow;
+		private readonly Boolean isImmediatelyAfterLaunch;
 
-		private Boolean isImmediatelyAfterLaunch;
+		[Reactive]
+		public Double CompactHeight { get; private set; }
 
 		[Reactive]
 		public Visibility Visibility { get; private set; }
@@ -44,6 +46,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			this.settings = settings;
 			this.mainWindow = mainWindow;
+
+			CompactHeight = this.mainWindow.Window.CompactHeight;
 
 			isImmediatelyAfterLaunch = true;
 

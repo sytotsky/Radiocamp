@@ -19,7 +19,7 @@
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="1"
-		      Height="50">
+		      Height="{Binding CompactHeight, Mode=OneWay}">
 
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
@@ -34,7 +34,8 @@
 			                     Command="{Binding AdvancedModeCommand}"
 			                     Content="{StaticResource RadiostationsListIcon}"/>
 
-			<views:CompactPlayer Grid.Column="1"/>
+			<views:CompactPlayer Grid.Column="1"
+			                     Margin="6 0"/>
 
 			<StackPanel Grid.Column="2"
 			            Orientation="Vertical"

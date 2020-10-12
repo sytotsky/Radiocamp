@@ -62,5 +62,45 @@
 		</Setter>
 
 	</Style>
+
+	<Style x:Key="CompactPlayPauseButtonStyle" TargetType="{x:Type controls:PlayPauseButton}">
+
+		<Setter Property="Cursor" Value="Hand"/>
+		<Setter Property="Focusable" Value="False"/>
+		<Setter Property="Foreground" Value="{DynamicResource DimFg}"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="Background" Value="Transparent"/>
+
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:PlayPauseButton}">
+
+					<TextBlock x:Name="Icon"
+					           FontFamily="{StaticResource RadiocampIcons}"
+					           Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+					           FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+					           UseLayoutRounding="True"
+					           SnapsToDevicePixels="True"
+					           TextOptions.TextFormattingMode="Ideal"
+					           TextOptions.TextRenderingMode="Auto"
+					           Text="{StaticResource PlayIcon}"/>
+
+					<ControlTemplate.Triggers>
+
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
+						</Trigger>
+
+						<Trigger Property="IsPlay" Value="True">
+							<Setter TargetName="Icon" Property="Text" Value="{StaticResource PauseIcon}"/>
+						</Trigger>
+
+					</ControlTemplate.Triggers>
+
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+
+	</Style>
 	
 </ResourceDictionary>
