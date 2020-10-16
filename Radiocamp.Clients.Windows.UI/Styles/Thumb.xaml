@@ -12,8 +12,8 @@
 
 					<Border x:Name="Rectangle"
 					        SnapsToDevicePixels="True"
-					        Background="{DynamicResource Thumb}"
-					        BorderBrush="{DynamicResource Thumb}"
+					        Background="{DynamicResource Disabled}"
+					        BorderBrush="{DynamicResource Disabled}"
 					        BorderThickness="1"
 					        CornerRadius="0"
 					        Opacity="0.5"
@@ -46,8 +46,8 @@
 				<ControlTemplate TargetType="{x:Type Thumb}">
 
 					<Border x:Name="Border"
-                            Background="{DynamicResource Blue}"
-					        BorderBrush="{DynamicResource Blue}"
+                            Background="{DynamicResource Primary}"
+					        BorderBrush="{DynamicResource Primary}"
 					        Width="{TemplateBinding Width}"
 					        Height="{TemplateBinding Height}"
 					        Opacity="{TemplateBinding Opacity}"

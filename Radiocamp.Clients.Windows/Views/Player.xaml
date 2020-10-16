@@ -8,7 +8,7 @@
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:PlayerViewModel}"
 			 Height="70"
-			 Background="{DynamicResource PlayerBg}">
+			 Background="{DynamicResource Secondary}">
 
 	<UserControl.Effect>
 		<DropShadowEffect Color="{DynamicResource ShadowColor}"

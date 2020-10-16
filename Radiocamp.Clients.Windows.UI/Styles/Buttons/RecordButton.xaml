@@ -2,12 +2,6 @@
 					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls">
 
-	<Color x:Key="RecordStaticColor">#773A3E</Color>
-	<SolidColorBrush x:Key="RecordStaticBrush" Color="{StaticResource RecordStaticColor}"/>
-
-	<Color x:Key="RecordHoverColor">#883D41</Color>
-	<SolidColorBrush x:Key="RecordHoverBrush" Color="{StaticResource RecordHoverColor}"/>
-
 	<Style TargetType="{x:Type controls:RecordButton}">
 
 		<Setter Property="Cursor" Value="Hand"/>
@@ -24,7 +18,7 @@
 								 Height="35"
 								 HorizontalAlignment="Center"
 								 VerticalAlignment="Center"
-								 Fill="{DynamicResource PlayerBg}"/>
+								 Fill="{DynamicResource Secondary}"/>
 
 						<Ellipse x:Name="Ellipse"
 								 Width="35"
@@ -63,8 +57,8 @@
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
-								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource DimRed}"/>
-								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource DimRed}"/>
+								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource DangerDim}"/>
+								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource DangerDim}"/>
 							</MultiTrigger.Setters>
 
 						</MultiTrigger>
@@ -77,8 +71,8 @@
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
-								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource Red}"/>
-								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource Red}"/>
+								<Setter Property="Foreground" TargetName="ButtonContent" Value="{DynamicResource Danger}"/>
+								<Setter Property="Stroke" TargetName="Ellipse" Value="{DynamicResource Danger}"/>
 							</MultiTrigger.Setters>
 
 						</MultiTrigger>
@@ -122,7 +116,7 @@
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
-								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource DimRed}"/>
+								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource DangerDim}"/>
 							</MultiTrigger.Setters>
 
 						</MultiTrigger>
@@ -135,7 +129,7 @@
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
-								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource Red}"/>
+								<Setter TargetName="ButtonContent" Property="Foreground" Value="{DynamicResource Danger}"/>
 							</MultiTrigger.Setters>
 
 						</MultiTrigger>

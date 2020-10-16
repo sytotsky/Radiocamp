@@ -42,7 +42,7 @@
 								<controls:HotkeyLabel Grid.Column="2"
 								                      Margin="0"
 								                      VerticalAlignment="Center"
-													  Background="{DynamicResource Gold}"
+													  Background="{DynamicResource Warning}"
 													  Padding="10 5"
 													  Foreground="Black"
 								                      Key="{Binding Key, Mode=OneWay}"

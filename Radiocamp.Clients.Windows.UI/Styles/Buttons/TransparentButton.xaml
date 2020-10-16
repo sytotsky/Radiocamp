@@ -5,7 +5,7 @@
 	<Style TargetType="{x:Type controls:TransparentButton}">
 
 		<Setter Property="Padding" Value="10 5"/>
-		<Setter Property="Foreground" Value="{DynamicResource BlueFg}"/>
+		<Setter Property="Foreground" Value="{DynamicResource PrimaryFg}"/>
 		<Setter Property="FontSize" Value="14"/>
 		<Setter Property="Cursor" Value="Hand"/>
 		<Setter Property="Type" Value="Success"/>
@@ -37,13 +37,13 @@
 					<ControlTemplate.Triggers>
 
 						<Trigger Property="Type" Value="Success">
-							<Setter Property="RegularForeground" Value="{DynamicResource BlueFg}"/>
-							<Setter Property="OverBackground" Value="{DynamicResource TransparentBlue}"/>
+							<Setter Property="RegularForeground" Value="{DynamicResource PrimaryFg}"/>
+							<Setter Property="OverBackground" Value="{DynamicResource PrimaryTransparent}"/>
 						</Trigger>
 
 						<Trigger Property="Type" Value="Danger">
-							<Setter Property="RegularForeground" Value="{DynamicResource RedFg}"/>
-							<Setter Property="OverBackground" Value="{DynamicResource TransparentRed}"/>
+							<Setter Property="RegularForeground" Value="{DynamicResource DangerFg}"/>
+							<Setter Property="OverBackground" Value="{DynamicResource DangerTransparent}"/>
 						</Trigger>
 
 						<Trigger Property="IsMouseOver" Value="True">

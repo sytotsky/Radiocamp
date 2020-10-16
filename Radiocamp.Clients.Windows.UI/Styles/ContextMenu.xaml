@@ -7,7 +7,7 @@
 		<Setter Property="BorderThickness" Value="0"/>
 		<Setter Property="SnapsToDevicePixels" Value="True"/>
 		<Setter Property="UseLayoutRounding" Value="True"/>
-		<Setter Property="Background" Value="{DynamicResource ContextMenuBg}"/>
+		<Setter Property="Background" Value="{DynamicResource WindowBg}"/>
 		<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
 
 		<Setter Property="Template">

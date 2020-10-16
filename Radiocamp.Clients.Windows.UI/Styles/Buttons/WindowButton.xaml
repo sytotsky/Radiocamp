@@ -52,7 +52,7 @@
 	<Style TargetType="{x:Type controls:WindowButton}" BasedOn="{StaticResource DefaultWindowButtonStyle}">
 		<Setter Property="RegularBackground" Value="Transparent"/>
 		<Setter Property="RegularForeground" Value="{DynamicResource DimFg}"/>
-		<Setter Property="OverBackground" Value="{DynamicResource WindowCaptionOver}"/>
+		<Setter Property="OverBackground" Value="{DynamicResource SecondaryOver}"/>
 		<Setter Property="OverForeground" Value="{DynamicResource MainFg}"/>
 		<Setter Property="Size" Value="22"/>
 	</Style>

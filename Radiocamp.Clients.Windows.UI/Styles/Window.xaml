@@ -46,7 +46,7 @@
 							      VerticalAlignment="Top"
 							      Height="22"
 							      ZIndex="100"
-							      Background="{DynamicResource WindowCaption}">
+							      Background="{DynamicResource Secondary}">
 
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto"/>
@@ -103,7 +103,7 @@
 
 									<controls:WindowButton x:Name="CloseButton"
 														   Grid.Column="2"
-														   OverBackground="{DynamicResource Red}"
+														   OverBackground="{DynamicResource Danger}"
 														   OverForeground="White"
 														   FontSize="11"
 														   Icon="{StaticResource CloseIcon}"
@@ -132,7 +132,7 @@
 					<ControlTemplate.Triggers>
 
 						<Trigger Property="IsActive" Value="False">
-							<Setter TargetName="PART_HeaderBar" Property="Background" Value="{DynamicResource PlayerBg}"/>
+							<Setter TargetName="PART_HeaderBar" Property="Background" Value="{DynamicResource SecondaryInActive}"/>
 						</Trigger>
 
 						<Trigger Property="Mode" Value="Compact">

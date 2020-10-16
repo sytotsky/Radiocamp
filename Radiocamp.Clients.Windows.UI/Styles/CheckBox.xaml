@@ -22,7 +22,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Border x:Name="CheckBoxBorder"
-                                BorderBrush="{DynamicResource Blue}"
+                                BorderBrush="{DynamicResource Primary}"
                                 BorderThickness="1"
                                 Background="Transparent"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -61,8 +61,8 @@
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="CheckBoxInner" Property="Background" Value="{DynamicResource Blue}"/>
-                            <Setter TargetName="CheckBoxBorder" Property="BorderBrush" Value="{DynamicResource Blue}"/>
+                            <Setter TargetName="CheckBoxInner" Property="Background" Value="{DynamicResource Primary}"/>
+                            <Setter TargetName="CheckBoxBorder" Property="BorderBrush" Value="{DynamicResource Primary}"/>
                             <Setter TargetName="OptionMark" Property="Visibility" Value="Visible"/>
                         </Trigger>
 

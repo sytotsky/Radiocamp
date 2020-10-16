@@ -9,7 +9,7 @@
 					Width="4"
 					Grid.Column="1"
 					BorderThickness="1"
-					Background="{DynamicResource Blue}"/>
+					Background="{DynamicResource Primary}"/>
 
 			<Track x:Name="PART_Track"
 				   Grid.Column="1">
@@ -48,7 +48,7 @@
 					Height="4"
 					Grid.Row="1"
 					BorderThickness="1"
-					Background="{DynamicResource Blue}"/>
+					Background="{DynamicResource Primary}"/>
 
 			<Track Grid.Row="1"
 				   x:Name="PART_Track">

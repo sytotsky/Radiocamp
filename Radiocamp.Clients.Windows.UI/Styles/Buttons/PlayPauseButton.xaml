@@ -18,7 +18,7 @@
 						<Ellipse x:Name="OuterEllipse"
 								 Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 								 Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-								 Fill="{DynamicResource PlayerBg}"/>
+								 Fill="{DynamicResource Secondary}"/>
 
 						<Ellipse x:Name="InnerEllipse"
 								 Width="50"

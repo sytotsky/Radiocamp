@@ -10,7 +10,7 @@
 		<Setter Property="UseLayoutRounding" Value="True"/>
 		<Setter Property="SnapsToDevicePixels" Value="True"/>
 		<Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource BlueFg}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryFg}"/>
         <Setter Property="FontSize" Value="17"/>
         <Setter Property="Margin" Value="-5 20 0 0"/>
     </Style>

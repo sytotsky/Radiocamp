@@ -50,7 +50,7 @@
 
                     <Border x:Name="Border"
                             Width="3"
-					        Background="{DynamicResource Blue}"/>
+					        Background="{DynamicResource Primary}"/>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -95,7 +95,7 @@
 
                     <Border x:Name="Border"
                             Height="3"
-                            Background="{DynamicResource Blue}"/>
+                            Background="{DynamicResource Primary}"/>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">

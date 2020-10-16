@@ -44,7 +44,7 @@
 									<Grid x:Name="MarkGrid"
 									      Margin="5">
 										<Ellipse x:Name="OptionMark"
-										         Fill="{DynamicResource Blue}"
+										         Fill="{DynamicResource Primary}"
 										         MinWidth="10"
 										         MinHeight="10"
 										         Visibility="Hidden"/>
@@ -80,7 +80,7 @@
 
 							<Trigger Property="IsCurrent" Value="True">
 								<Setter TargetName="OptionMark" Property="Visibility" Value="Visible"/>
-								<Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource Blue}"/>
+								<Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource Primary}"/>
 							</Trigger>
 
 							<Trigger Property="Hint" Value="">
