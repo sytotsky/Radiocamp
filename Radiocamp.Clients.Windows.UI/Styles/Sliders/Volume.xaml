@@ -82,7 +82,7 @@
 					<Grid>
 
 						<Border x:Name="Border"
-								Background="{DynamicResource Secondary}"
+								Background="{DynamicResource SecondaryInActive}"
 								Visibility="Collapsed"/>
 
 						<Border Padding="5 10 5 7">
