@@ -37,6 +37,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Boolean IsEnabledCheckBoxEnabled { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> EditCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> RemoveCommand { get; private set; }
 
 		public HotkeyItemViewModel(Hotkey hotkey)
 		{
@@ -59,6 +60,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			base.Initialize();
 
 			EditCommand = ReactiveCommand.CreateFromTask(Edit);
+			RemoveCommand = ReactiveCommand.CreateFromTask(Remove);
 
 			this.WhenAnyValue(viewModel => viewModel.IsEnabled)
 				.Skip(1)
@@ -92,6 +94,26 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			IsEnabled = newHotkey.IsEnabled;
 
 			await hotkeys.UpdateAsync(newHotkey);
+
+		}
+
+		private async Task Remove()
+		{
+
+			Key = Key.None;
+			ModifierKey = ModifierKeys.None;
+			IsEnabled = false;
+
+			Hotkey hotkey = new Hotkey()
+			{
+				Id = id,
+				Command = Command,
+				Key = Key,
+				ModifierKey = ModifierKey,
+				IsEnabled = IsEnabled
+			};
+
+			await hotkeys.UpdateAsync(hotkey);
 
 		}
 

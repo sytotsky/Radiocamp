@@ -16,7 +16,6 @@
 	<system:String x:Key="ExitIcon">&#x0045;</system:String>
 	<system:String x:Key="SettingsIcon">&#x0046;</system:String>
 	<system:String x:Key="AudioSettingsIcon">&#x0047;</system:String>
-	<system:String x:Key="CoverLineIcon">&#x0048;</system:String>
 	<system:String x:Key="SortingIcon">&#x0050;</system:String>
 	<system:String x:Key="SortingDescendingIcon">&#x0051;</system:String>
 	<system:String x:Key="SortingAscendingIcon">&#x0052;</system:String>
@@ -41,11 +40,12 @@
 	<system:String x:Key="UpIcon">&#x006C;</system:String>
 	<system:String x:Key="MaximizeIcon">&#x0071;</system:String>
 	<system:String x:Key="AddIcon">&#x0072;</system:String>
-	<system:String x:Key="CoverFlowIcon">&#x0073;</system:String>
 	<system:String x:Key="HistoryIcon">&#x0074;</system:String>
 	<system:String x:Key="PlayIcon">&#x0075;</system:String>
 	<system:String x:Key="MinimizeIcon">&#x0077;</system:String>
 	<system:String x:Key="FillStarIcon">&#x0079;</system:String>
 	<system:String x:Key="EmptyStarIcon">&#x007A;</system:String>
+	<system:String x:Key="EditIcon">&#x006D;</system:String>
+	<system:String x:Key="RemoveIcon">&#x006E;</system:String>
 
 </ResourceDictionary>

@@ -7,7 +7,6 @@
 		<Setter Property="Cursor" Value="Hand"/>
 		<Setter Property="HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
-		<Setter Property="FontFamily" Value="{StaticResource RadiocampIcons}"/>
 		<Setter Property="FontSize" Value="18"/>
 		<Setter Property="RegularBackground" Value="Transparent"/>
 		<Setter Property="RegularForeground" Value="{DynamicResource DimFg}"/>
@@ -24,17 +23,17 @@
 					<Border x:Name="Border"
 							Cursor="{TemplateBinding Cursor}"
 							Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-							Margin="{TemplateBinding Margin}"
-							Padding="{TemplateBinding Padding}"
-							Width="{TemplateBinding Width}"
-							Height="{TemplateBinding Height}">
+							Margin="{Binding Margin, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+							Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+							Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+							Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
 						<TextBlock x:Name="Icon"
-								   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-								   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-								   FontFamily="{TemplateBinding FontFamily}"
+								   HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+								   VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+								   FontFamily="{StaticResource RadiocampIcons}"
 								   Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-								   FontSize="{TemplateBinding FontSize}"
-								   Text="{TemplateBinding Content}"/>
+								   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+								   Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
 					</Border>
 
 					<ControlTemplate.Triggers>
