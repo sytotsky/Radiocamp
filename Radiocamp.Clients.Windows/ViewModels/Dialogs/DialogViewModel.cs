@@ -67,8 +67,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public DialogViewModel(DialogArgs args)
 		{
-			owner = args.Owner ?? Application.Current.MainWindow as BaseWindow;
-			parameter = args.Parameter;
+			owner = args?.Owner ?? Application.Current.MainWindow as BaseWindow;
+			parameter = args?.Parameter;
 		}
 
 		public override void Initialize()

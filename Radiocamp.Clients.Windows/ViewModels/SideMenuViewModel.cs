@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -16,6 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly IApplication application;
 		private readonly IDialogs dialogs;
 		private readonly IMainWindow mainWindow;
+		private readonly IRadiostations radiostations;
 
 		[Reactive]
 		public Boolean Visible { get; set; }
@@ -26,17 +28,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ICommand AboutCommand { get; }
 		public ICommand ExitCommand { get; }
 
-		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs, ISettings settings)
+		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs, ISettings settings, IRadiostations radiostations)
 		{
 
 			this.application = application;
 			this.dialogs = dialogs;
 			this.mainWindow = mainWindow;
+			this.radiostations = radiostations;
 
 			ToggleCommand = ReactiveCommand.Create(Toggle);
-			CreateCommand = ReactiveCommand.Create(Create);
-			SettingsCommand = ReactiveCommand.Create(Settings);
-			AboutCommand = ReactiveCommand.Create(About);
+			CreateCommand = ReactiveCommand.CreateFromTask(Create);
+			SettingsCommand = ReactiveCommand.CreateFromTask(Settings);
+			AboutCommand = ReactiveCommand.CreateFromTask(About);
 			ExitCommand = ReactiveCommand.Create(Exit);
 
 			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Click += Hide;
@@ -64,16 +67,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Visible = !Visible;
 		}
 
-		private void Create()
+		private async Task Create()
 		{
+			await radiostations.CreateAsync();
 		}
 
-		private async void Settings()
+		private async Task Settings()
 		{
 			await dialogs.Show<SettingsDialog, SettingsViewModel>(null);
 		}
 
-		private async void About()
+		private async Task About()
 		{
 			await dialogs.Show<AboutDialog, AboutDialogViewModel>(new DialogArgs(mainWindow.Window));
 		}

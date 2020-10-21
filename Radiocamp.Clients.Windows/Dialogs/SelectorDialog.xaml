@@ -44,7 +44,7 @@
 
 							</Grid>
 
-							<controls:DialogSearch x:Name="Search"
+							<controls:DialogSearchBox x:Name="Search"
 							                       Grid.Row="1"
 												   Visibility="{Binding Search, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
 							                       Placeholder="{DynamicResource Search}"

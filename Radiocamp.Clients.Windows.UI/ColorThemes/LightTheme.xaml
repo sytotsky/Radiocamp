@@ -31,6 +31,9 @@
 	<Color x:Key="SecondaryOverColor">#e5e5e5</Color>
 	<SolidColorBrush x:Key="SecondaryOver" Color="{StaticResource SecondaryOverColor}"/>
 
+	<Color x:Key="SecondaryInActiveColor">#e8e8e8</Color>
+	<SolidColorBrush x:Key="SecondaryInActive" Color="{StaticResource SecondaryInActiveColor}"/>
+
 	<Color x:Key="WindowBgColor">#ffffff</Color>
 	<SolidColorBrush x:Key="WindowBg" Color="{StaticResource WindowBgColor}"/>
 
