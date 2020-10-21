@@ -2,7 +2,6 @@
 
 namespace Dartware.Radiocamp.Clients.Shared.Models
 {
-	[Selector]
 	[Localization("ImportExport_ExportFormat")]
 	public enum ExportFormat : Int32
 	{

@@ -97,6 +97,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 					TitleLocalizationResourceKey = localizationAttribute.Key;
 				}
 			}
+			else
+			{
+				TitleLocalizationResourceKey = type.Name;
+			}
 
 			IEnumerable<SelectorType> values = Enum.GetValues(type) as IEnumerable<SelectorType>;
 

@@ -100,11 +100,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				throw new ArgumentException($"{nameof(SelectorType)} must be an enumerated type.");
 			}
 
-			if (!Attribute.IsDefined(selectorType, typeof(SelectorAttribute)))
-			{
-				throw new ArgumentException($"{nameof(SelectorType)} should be marked as Selector.");
-			}
-
 			SelectorDialogViewModel<SelectorType> selectorDialogViewModel = new SelectorDialogViewModel<SelectorType>(args);
 
 			return Show<SelectorDialog>(selectorDialogViewModel);

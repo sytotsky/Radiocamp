@@ -2,7 +2,6 @@
 
 namespace Dartware.Radiocamp.Clients.Shared.Models
 {
-	[Selector]
 	[Localization("SearchEngine")]
 	public enum SearchEngine : Int32
 	{

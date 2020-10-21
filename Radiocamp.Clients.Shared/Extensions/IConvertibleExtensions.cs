@@ -23,6 +23,10 @@ namespace Dartware.Radiocamp.Clients.Shared.Extensions
 					{
 						localizationAttribute = Attribute.GetCustomAttribute(field, typeof(LocalizationAttribute)) as LocalizationAttribute;
 					}
+					else
+					{
+						return Enum.GetName(convertibleType, convertible);
+					}
 				}
 
 			}
