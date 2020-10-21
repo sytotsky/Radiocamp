@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Dartware.Radiocamp.Clients.Windows.Database.Configurations;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
+using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Database
 {
@@ -9,6 +10,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 
 		public DbSet<Settings.Settings> Settings { get; set; }
 		public DbSet<Hotkey> Hotkeys { get; set; }
+		public DbSet<Radiostation> Radiostations { get; set; }
 
 		public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
 		{
@@ -20,6 +22,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.ApplyConfiguration(new SettingsConfiguration());
 			modelBuilder.ApplyConfiguration(new HotkeyConfiguration());
+			modelBuilder.ApplyConfiguration(new RadiostationConfiguration());
 		}
 
 	}

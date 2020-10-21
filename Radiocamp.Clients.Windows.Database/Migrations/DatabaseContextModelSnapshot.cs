@@ -41,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bebdc2e1-469c-46af-b38c-333aa3ba51a6"),
+                            Id = new Guid("e8d20d28-5149-47dc-94b9-f01e950193c4"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -49,7 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f15ac773-4f59-4c40-a7f9-3bdc086a2444"),
+                            Id = new Guid("1089ebfd-da22-4eb9-90e0-b33649e80b94"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("27ab451c-7cfc-4a20-92de-5385a37a5017"),
+                            Id = new Guid("aae24729-b45d-4b11-820e-d1f3166f39b6"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cce8b33f-1134-4eef-b4b2-ba2913bde69e"),
+                            Id = new Guid("bec46260-ab7d-4c72-9d6c-0d16478fd7bd"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -73,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("73fa0182-a91e-4084-ac46-c8dd619f0498"),
+                            Id = new Guid("a2dd329b-0746-44df-9471-12a5defda4ea"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("715553a1-3595-4533-a17a-081910a326ae"),
+                            Id = new Guid("e49b507f-b99c-41b2-9ee9-07c09276b237"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -192,7 +192,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("010e8bcb-39d5-4570-a591-ca24061cfb60"),
+                            Id = new Guid("300a50e2-9829-44aa-aca5-3570e6261b57"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -223,6 +223,40 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             StartMinimized = false,
                             VolumeStep = 4
                         });
+                });
+
+            modelBuilder.Entity("Dartware.Radiocamp.Core.Models.Radiostation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Country")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("datetime('now')");
+
+                    b.Property<int>("Genre")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsCustom")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsFavorite")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StreamURL")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Radiostations");
                 });
 #pragma warning restore 612, 618
         }
