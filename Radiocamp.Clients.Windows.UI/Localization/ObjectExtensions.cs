@@ -30,7 +30,14 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Localization
 
 			if (localizationAttribute == null)
 			{
+				
+				if (@object is IConvertible)
+				{
+					return Enum.GetName(objectType, @object);
+				}
+
 				return null;
+
 			}
 
 			return localizationAttribute.Key;

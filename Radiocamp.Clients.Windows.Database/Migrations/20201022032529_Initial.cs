@@ -32,6 +32,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     DateOfCreation = table.Column<DateTime>(nullable: false, defaultValueSql: "datetime('now')"),
                     IsFavorite = table.Column<bool>(nullable: false),
                     IsCustom = table.Column<bool>(nullable: false),
+                    IsCurrent = table.Column<bool>(nullable: false),
                     Genre = table.Column<int>(nullable: false),
                     Country = table.Column<int>(nullable: false)
                 },
@@ -84,37 +85,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("e8d20d28-5149-47dc-94b9-f01e950193c4"), 1, false, 0, 0 });
+                values: new object[] { new Guid("f90cc288-598f-4f73-a7d2-703489feacd1"), 1, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("1089ebfd-da22-4eb9-90e0-b33649e80b94"), 2, false, 0, 0 });
+                values: new object[] { new Guid("e400baba-8ec8-48b5-82b6-640e29fe2625"), 2, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("aae24729-b45d-4b11-820e-d1f3166f39b6"), 3, false, 0, 0 });
+                values: new object[] { new Guid("027174f5-9841-464c-98ce-6c9ec4c0f048"), 3, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("bec46260-ab7d-4c72-9d6c-0d16478fd7bd"), 4, false, 0, 0 });
+                values: new object[] { new Guid("2fe4ea56-793d-4bbe-9422-9f2c7782b362"), 4, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("a2dd329b-0746-44df-9471-12a5defda4ea"), 5, false, 0, 0 });
+                values: new object[] { new Guid("47b676af-7d73-4578-a076-a25f78506a4d"), 5, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("e49b507f-b99c-41b2-9ee9-07c09276b237"), 6, false, 0, 0 });
+                values: new object[] { new Guid("c7e9b2a0-3d47-4932-8507-95f442e30693"), 6, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Settings",
                 columns: new[] { "Id", "AlwaysShowTrayIcon", "ExportRadiostationsAll", "ExportRadiostationsCustomOnly", "ExportRadiostationsFavoritesOnly", "ExportRadiostationsFormat", "ExportRadiostationsOnlyFavoritesOrCustom", "ExportRadiostationsPath", "ExportRadiostationsSaveFavoritesTags", "ExportRadiostationsSaveSoundSettings", "HideApplicationOnCloseButtonClick", "HideApplicationOnMinimizeButtonClick", "HideInTaskbar", "HideInTaskbarOnlyCompact", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowAdvancedCompactPosition", "MainWindowCompactAdvancedHeight", "MainWindowHeight", "MainWindowLeft", "MainWindowMode", "MainWindowTop", "MainWindowTopmost", "MainWindowTopmostOnlyCompact", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized", "VolumeStep" },
-                values: new object[] { new Guid("300a50e2-9829-44aa-aca5-3570e6261b57"), true, true, false, false, 0, false, null, true, true, true, false, false, false, false, false, 0, 0, 400.0, 0.0, 0.0, 0, 0.0, false, false, 0.0, 0, false, false, false, 4 });
+                values: new object[] { new Guid("ec71bc50-c6ad-4611-b8e9-4b29b58fe0a6"), true, true, false, false, 0, false, null, true, true, true, false, false, false, false, false, 0, 0, 400.0, 0.0, 0.0, 0, 0.0, false, false, 0.0, 0, false, false, false, 4 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

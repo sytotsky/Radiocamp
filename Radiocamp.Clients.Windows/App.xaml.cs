@@ -58,12 +58,13 @@ namespace Dartware.Radiocamp.Clients.Windows
 			ISettings settings = Dependencies.Get<ISettings>();
 
 			settings.Initialize();
-			Dependencies.Get<IHotkeys>().Initialize();
 			Dependencies.Get<IMainWindow>().Initialize();
-
+			Dependencies.Get<IHotkeys>().Initialize();
 			Dependencies.Get<ILocalization>().Apply(settings.Localization);
 
 			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
+
+			Dependencies.Get<IRadiostations>().Initialize();
 
 		}
 

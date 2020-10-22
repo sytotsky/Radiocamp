@@ -5,6 +5,7 @@
 		public RadiostationEditorDialog()
 		{
 			InitializeComponent();
+			Title.Focus();
 		}
 	}
 }

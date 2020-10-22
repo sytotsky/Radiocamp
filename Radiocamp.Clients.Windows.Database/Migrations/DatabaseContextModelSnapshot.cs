@@ -41,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e8d20d28-5149-47dc-94b9-f01e950193c4"),
+                            Id = new Guid("f90cc288-598f-4f73-a7d2-703489feacd1"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -49,7 +49,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("1089ebfd-da22-4eb9-90e0-b33649e80b94"),
+                            Id = new Guid("e400baba-8ec8-48b5-82b6-640e29fe2625"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("aae24729-b45d-4b11-820e-d1f3166f39b6"),
+                            Id = new Guid("027174f5-9841-464c-98ce-6c9ec4c0f048"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("bec46260-ab7d-4c72-9d6c-0d16478fd7bd"),
+                            Id = new Guid("2fe4ea56-793d-4bbe-9422-9f2c7782b362"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -73,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a2dd329b-0746-44df-9471-12a5defda4ea"),
+                            Id = new Guid("47b676af-7d73-4578-a076-a25f78506a4d"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e49b507f-b99c-41b2-9ee9-07c09276b237"),
+                            Id = new Guid("c7e9b2a0-3d47-4932-8507-95f442e30693"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -192,7 +192,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("300a50e2-9829-44aa-aca5-3570e6261b57"),
+                            Id = new Guid("ec71bc50-c6ad-4611-b8e9-4b29b58fe0a6"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -240,6 +240,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         .HasDefaultValueSql("datetime('now')");
 
                     b.Property<int>("Genre")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsCurrent")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsCustom")

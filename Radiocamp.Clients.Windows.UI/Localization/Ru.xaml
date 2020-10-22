@@ -1,18 +1,18 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:system="clr-namespace:System;assembly=System.Runtime">
 
 	<!-- Shared -->
 
-    <system:String x:Key="Dartware">Dartware</system:String>
-    <system:String x:Key="Radiocamp">Radiocamp</system:String>
+	<system:String x:Key="Dartware">Dartware</system:String>
+	<system:String x:Key="Radiocamp">Radiocamp</system:String>
 	<system:String x:Key="Browse">Обзор</system:String>
 	<system:String x:Key="Country">Страна</system:String>
 	<system:String x:Key="Genre">Жанр</system:String>
 	<system:String x:Key="Unknown">Неизвестно</system:String>
 	<system:String x:Key="Search">Поиск</system:String>
 	<system:String x:Key="Buffering">Буферизация</system:String>
-    <system:String x:Key="Connecting">Соединение</system:String>
+	<system:String x:Key="Connecting">Соединение</system:String>
 	<system:String x:Key="Clear">Очистить</system:String>
 	<system:String x:Key="Create">Создать</system:String>
 	<system:String x:Key="Create_UPPERCASE">СОЗДАТЬ</system:String>
@@ -20,16 +20,16 @@
 	<system:String x:Key="Remove">Удалить</system:String>
 	<system:String x:Key="Remove_UPPERCASE">УДАЛИТЬ</system:String>
 	<system:String x:Key="AddToFavorites">Добавить в избранное</system:String>
-    <system:String x:Key="RemoveFromFavorites">Удалить из избранного</system:String>
-    <system:String x:Key="StartPlayback">Начать воспроизведение</system:String>
-    <system:String x:Key="StopPlayback">Остановить воспроизведение</system:String>
-    <system:String x:Key="ShowOnlyFavorites">Показать только избранные</system:String>
-    <system:String x:Key="ShowAll">Показать все</system:String>
-    <system:String x:Key="RadiostationSettings">Настройки радиостанции</system:String>
-    <system:String x:Key="Filters">Фильтры</system:String>
-    <system:String x:Key="ResetFilters">Сбросить фильтры</system:String>
-    <system:String x:Key="Loading">Загрузка</system:String>
-    <system:String x:Key="Playback">Воспроизведение</system:String>
+	<system:String x:Key="RemoveFromFavorites">Удалить из избранного</system:String>
+	<system:String x:Key="StartPlayback">Начать воспроизведение</system:String>
+	<system:String x:Key="StopPlayback">Остановить воспроизведение</system:String>
+	<system:String x:Key="ShowOnlyFavorites">Показать только избранные</system:String>
+	<system:String x:Key="ShowAll">Показать все</system:String>
+	<system:String x:Key="RadiostationSettings">Настройки радиостанции</system:String>
+	<system:String x:Key="Filters">Фильтры</system:String>
+	<system:String x:Key="ResetFilters">Сбросить фильтры</system:String>
+	<system:String x:Key="Loading">Загрузка</system:String>
+	<system:String x:Key="Playback">Воспроизведение</system:String>
 	<system:String x:Key="Record">Запись</system:String>
 	<system:String x:Key="CopySongName">Копировать название композиции</system:String>
 	<system:String x:Key="ExitCompactMode">Выйти из компактного режима</system:String>
@@ -54,6 +54,8 @@
 	<system:String x:Key="Ok_UPPERCASE">ОК</system:String>
 	<system:String x:Key="Reset_UPPERCASE">СБРОСИТЬ</system:String>
 	<system:String x:Key="NotAssigned">Не назначено</system:String>
+	<system:String x:Key="Title">Название</system:String>
+	<system:String x:Key="StreamURL">Ссылка на поток</system:String>
 
 	<!-- Errors -->
 
@@ -324,9 +326,9 @@
 	<system:String x:Key="Soul">Соул</system:String>
 	<system:String x:Key="OST">Саундтреки</system:String>
 
-    <!-- Radiostations -->
+	<!-- Radiostations -->
 
-    <system:String x:Key="Radiostations_NotFound">Радиостанции не найдены</system:String>
+	<system:String x:Key="Radiostations_NotFound">Радиостанции не найдены</system:String>
 
 	<!-- Hotkey Editor Dialog -->
 
@@ -352,14 +354,10 @@
 
 	<!-- Radiostation Editor -->
 
-	<system:String x:Key="RadiostationEditor_AddToFavorites">Добавить в «Избранные»</system:String>
-	<system:String x:Key="RadiostationEditor_Create">СОЗДАТЬ</system:String>
 	<system:String x:Key="RadiostationEditor_CreateTitle">Создать радиостанцию</system:String>
-	<system:String x:Key="RadiostationEditor_StartPlayback">Начать воспроизведение</system:String>
-	<system:String x:Key="RadiostationEditor_StreamURL">Ссылка на поток</system:String>
-	<system:String x:Key="RadiostationEditor_SupportedFormats">Поддерживаемые форматы: PNG, JPEG, GIF</system:String>
-	<system:String x:Key="RadiostationEditor_Title">Название</system:String>
 	<system:String x:Key="RadiostationEditor_EditTitle">Изменить радиостанцию</system:String>
+	<system:String x:Key="RadiostationEditor_AddToFavorites">Добавить в «Избранные»</system:String>
+	<system:String x:Key="RadiostationEditor_StartPlayback">Начать воспроизведение</system:String>
 
 	<!-- Settings -->
 
@@ -391,8 +389,8 @@
 	<system:String x:Key="Settings_AutoRadiostationsViewType">Автоматически определять тип отображения списка радиостанций</system:String>
 	<system:String x:Key="Settings_UseFuzzySearch">Использовать нечеткий поиск</system:String>
 	<system:String x:Key="Settings_Sound">Звук</system:String>
-    <system:String x:Key="Settings_ShowCurrentSongInWindowTitle">Показывать название текущей композиции в заголовке окна</system:String>
-    <system:String x:Key="Settings_SaveVolume">Сохранять уровень громкости для каждой радиостанции</system:String>
+	<system:String x:Key="Settings_ShowCurrentSongInWindowTitle">Показывать название текущей композиции в заголовке окна</system:String>
+	<system:String x:Key="Settings_SaveVolume">Сохранять уровень громкости для каждой радиостанции</system:String>
 	<system:String x:Key="Settings_VolumeStep">Шаг изменения громкости:</system:String>
 	<system:String x:Key="Settings_MainWindowTopmost">Закрепить поверх других окон</system:String>
 	<system:String x:Key="Settings_Opacity">Прозрачность:</system:String>
@@ -434,44 +432,44 @@
 
 	<system:String x:Key="Equalizer">Эквалайзер</system:String>
 	<system:String x:Key="Equalizer_IsEnabled">Активировать эквалайзер</system:String>
-    <system:String x:Key="Equalizer_Reset">Сбросить эквалайзер</system:String>
+	<system:String x:Key="Equalizer_Reset">Сбросить эквалайзер</system:String>
 
-    <!-- Audio Settings Dialog -->
+	<!-- Audio Settings Dialog -->
 
-    <system:String x:Key="AudioSettingsDialog_StationSettings">Настройки радиостанции</system:String>
-    <system:String x:Key="AudioSettingsDialog_ReplaceEqSettings">Заменить глобальные настройки эквалайзера</system:String>
-    <system:String x:Key="AudioSettingsDialog_SaveVolumeLevel">Сохранять уровень громкости</system:String>
-    <system:String x:Key="AudioSettingsDialog_Audio">Звук</system:String>
-    <system:String x:Key="AudioSettingsDialog_Record">Запись</system:String>
-    <system:String x:Key="AudioSettingsDialog_ReplaceGlobalRecordSettings">Заменить глобальные настройки записи</system:String>
-    <system:String x:Key="AudioSettingsDialog_CreateSubfolder">Создавать подпапку</system:String>
+	<system:String x:Key="AudioSettingsDialog_StationSettings">Настройки радиостанции</system:String>
+	<system:String x:Key="AudioSettingsDialog_ReplaceEqSettings">Заменить глобальные настройки эквалайзера</system:String>
+	<system:String x:Key="AudioSettingsDialog_SaveVolumeLevel">Сохранять уровень громкости</system:String>
+	<system:String x:Key="AudioSettingsDialog_Audio">Звук</system:String>
+	<system:String x:Key="AudioSettingsDialog_Record">Запись</system:String>
+	<system:String x:Key="AudioSettingsDialog_ReplaceGlobalRecordSettings">Заменить глобальные настройки записи</system:String>
+	<system:String x:Key="AudioSettingsDialog_CreateSubfolder">Создавать подпапку</system:String>
 
-    <!-- Playback History -->
+	<!-- Playback History -->
 
-    <system:String x:Key="PlaybackHistory">История воспроизведения</system:String>
-    <system:String x:Key="PlaybackHistory_HistoryNotFound">История не найдена</system:String>
+	<system:String x:Key="PlaybackHistory">История воспроизведения</system:String>
+	<system:String x:Key="PlaybackHistory_HistoryNotFound">История не найдена</system:String>
 
-    <!-- About -->
+	<!-- About -->
 
-    <system:String x:Key="About_Description">Современный интернет-радио проигрыватель для Windows.</system:String>
+	<system:String x:Key="About_Description">Современный интернет-радио проигрыватель для Windows.</system:String>
 
-    <!-- Sorting -->
+	<!-- Sorting -->
 
-    <system:String x:Key="Sorting">Сортировка</system:String>
-    <system:String x:Key="Sorting_None">Не сортировать</system:String>
-    <system:String x:Key="Sorting_NameAscending">По названию (По возрастанию)</system:String>
-    <system:String x:Key="Sorting_NameDescending">По названию (По убыванию)</system:String>
-    <system:String x:Key="Sorting_FavoritesFirst">Сначала избранные</system:String>
-    <system:String x:Key="Sorting_PopularFirst">Сначала популярные</system:String>
-    <system:String x:Key="Sorting_DateAddedAscending">По дате добавления (Сначала старые)</system:String>
+	<system:String x:Key="Sorting">Сортировка</system:String>
+	<system:String x:Key="Sorting_None">Не сортировать</system:String>
+	<system:String x:Key="Sorting_NameAscending">По названию (По возрастанию)</system:String>
+	<system:String x:Key="Sorting_NameDescending">По названию (По убыванию)</system:String>
+	<system:String x:Key="Sorting_FavoritesFirst">Сначала избранные</system:String>
+	<system:String x:Key="Sorting_PopularFirst">Сначала популярные</system:String>
+	<system:String x:Key="Sorting_DateAddedAscending">По дате добавления (Сначала старые)</system:String>
 	<system:String x:Key="Sorting_DateAddedDescending">По дате добавления (Сначала новые)</system:String>
 	<system:String x:Key="Sorting_PlaybackOrder">По порядку воспроизведения</system:String>
 	<system:String x:Key="Sorting_CustomFirst">Сначала пользовательские</system:String>
 
 	<!-- Pin -->
 
-    <system:String x:Key="Pin_PinToTop">Закрепить</system:String>
-    <system:String x:Key="Pin_UnpinFromTop">Открепить</system:String>
+	<system:String x:Key="Pin_PinToTop">Закрепить</system:String>
+	<system:String x:Key="Pin_UnpinFromTop">Открепить</system:String>
 
 	<!-- Equalizer Presets -->
 

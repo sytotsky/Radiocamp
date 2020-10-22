@@ -8,7 +8,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 	public interface IHotkeys
 	{
 
-		ISourceCache<Hotkey, HotkeyCommand> All { get; }
+		ISourceCache<Hotkey, Guid> All { get; }
 
 		event Action PlayPauseHotkeyPressed;
 		event Action StartStopRecordHotkeyPressed;

@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using DynamicData;
+using Dartware.Radiocamp.Core.Models;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Database;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
-using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -13,10 +15,21 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly DatabaseContext databaseContext;
 		private readonly IDialogs dialogs;
 
+		public ISourceCache<Radiostation, Guid> All { get; private set; }
+
 		public RadiostationsService(DatabaseContext databaseContext, IDialogs dialogs)
 		{
 			this.databaseContext = databaseContext;
 			this.dialogs = dialogs;
+		}
+
+		public void Initialize()
+		{
+
+			All = new SourceCache<Radiostation, Guid>(radiostation => radiostation.Id);
+
+			All.AddOrUpdate(databaseContext.Radiostations);
+
 		}
 
 		public async Task CreateAsync()
@@ -31,23 +44,32 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			if (radiostation != null)
 			{
+
+				radiostation.Id = Guid.NewGuid();
+				radiostation.IsCustom = true;
+				radiostation.DateOfCreation = DateTime.Now;
+
+				All.AddOrUpdate(radiostation);
+				await databaseContext.Radiostations.AddAsync(radiostation);
+				await databaseContext.SaveChangesAsync();
+
 			}
 
 		}
 
 		public Task ExportAsync(ExportArgs exportArgs)
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 		public Task ImportAsync()
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 		public Task ClearAsync()
 		{
-			throw new System.NotImplementedException();
+			throw new NotImplementedException();
 		}
 
 	}

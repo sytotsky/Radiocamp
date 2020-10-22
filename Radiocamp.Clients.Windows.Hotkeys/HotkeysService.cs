@@ -21,7 +21,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 		private readonly ISettings settings;
 		private readonly IDictionary<HotkeyCommand, Boolean> registered;
 
-		public ISourceCache<Hotkey, HotkeyCommand> All { get; private set; }
+		public ISourceCache<Hotkey, Guid> All { get; private set; }
 
 		public event Action PlayPauseHotkeyPressed;
 		public event Action StartStopRecordHotkeyPressed;
@@ -35,7 +35,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Hotkeys
 			this.databaseContext = databaseContext;
 			this.settings = settings;
 			registered = new ConcurrentDictionary<HotkeyCommand, Boolean>();
-			All = new SourceCache<Hotkey, HotkeyCommand>(hotkey => hotkey.Command);
+			All = new SourceCache<Hotkey, Guid>(hotkey => hotkey.Id);
 		}
 
 		public void Initialize()

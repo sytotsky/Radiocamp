@@ -6,12 +6,14 @@
 				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
 				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+				xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 				mc:Ignorable="d"
 				d:DataContext="{d:DesignInstance vm:RadiostationEditorDialogViewModel}">
 	
 	<Grid>
 
 		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
@@ -23,9 +25,9 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 
-			<TextBlock Grid.Row="0"
-			           Style="{DynamicResource DialogTitleTextBlock}"
-			           Text="{DynamicResource CreateRadiostation}"/>
+			<controls:LocalizationTextBlock Grid.Row="0"
+			                                Style="{DynamicResource DialogTitleTextBlock}"
+			                                LocalizationText="{Binding Mode, Mode=OneWay}"/>
 
 			<controls:IconButton Grid.Column="1"
 			                     Style="{DynamicResource CloseDialogButtonStyle}"
@@ -36,9 +38,47 @@
 		<StackPanel Grid.Row="1"
 		            Orientation="Vertical">
 
-			<controls:RegularTextBox Placeholder="Title"/>
+			<controls:RegularTextBox x:Name="Title"
+			                         Placeholder="{DynamicResource Title}"
+			                         Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 			
-			<controls:RegularTextBox Placeholder="Stream URL"/>
+			<controls:RegularTextBox Placeholder="{DynamicResource StreamURL}"
+			                         Text="{Binding StreamURL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+			<controls:ButtonWithDescription Command="{Binding SelectGenreCommand}"
+			                                Description="{DynamicResource Genre}"
+			                                LocalizedContent="{Binding Genre, Mode=OneWay}"/>
+
+			<controls:ButtonWithDescription Command="{Binding SelectCountryCommand}"
+			                                Description="{DynamicResource Country}"
+			                                LocalizedContent="{Binding Country, Mode=OneWay}"/>
+
+			<CheckBox IsChecked="{Binding StartPlayback, Mode=TwoWay}"
+			          Content="{DynamicResource RadiostationEditor_StartPlayback}"/>
+
+			<CheckBox IsChecked="{Binding AddToFavorites, Mode=TwoWay}"
+			          Content="{DynamicResource RadiostationEditor_AddToFavorites}"/>
+
+		</StackPanel>
+
+		<StackPanel Grid.Row="2"
+		            Orientation="Horizontal"
+		            HorizontalAlignment="Right"
+		            Margin="16 8 16 16">
+
+			<controls:TransparentButton IsCancel="True"
+			                            Command="{Binding CloseCommand}"
+			                            Content="{DynamicResource Cancel_UPPERCASE}"/>
+
+			<controls:TransparentButton IsDefault="{Binding CreateIsDefault, Mode=OneWay}"
+										Visibility="{Binding SaveVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+										Command="{Binding CreateCommand}"
+			                            Content="{DynamicResource Save_UPPERCASE}"/>
+
+			<controls:TransparentButton IsDefault="{Binding SaveIsDefault, Mode=OneWay}"
+			                            Visibility="{Binding CreateVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+			                            Command="{Binding CreateCommand}"
+			                            Content="{DynamicResource Create_UPPERCASE}"/>
 
 		</StackPanel>
 

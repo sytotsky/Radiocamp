@@ -6,7 +6,7 @@
 
 		<Setter Property="Foreground" Value="{DynamicResource MainFg}"/>
 		<Setter Property="FontSize" Value="14"/>
-		<Setter Property="Margin" Value="16 8"/>
+		<Setter Property="Margin" Value="16 4"/>
 
 		<Setter Property="Template">
 			<Setter.Value>
