@@ -8,14 +8,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 {
 	public interface IRadiostations
 	{
-
-		ISourceCache<Radiostation, Guid> All { get; }
-
-		void Initialize();
+		Task<IObservable<IChangeSet<Radiostation, Guid>>> ConnectAsync();
 		Task CreateAsync();
 		Task ClearAsync();
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);
-
 	}
 }

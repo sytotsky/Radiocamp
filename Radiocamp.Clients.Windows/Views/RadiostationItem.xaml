@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.RadiostationItem"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
+			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance vm:RadiostationItemViewModel}">
+
+	<UserControl.Resources>
+		<Style TargetType="{x:Type views:RadiostationItem}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type views:RadiostationItem}">
+
+						<Grid>
+							<TextBlock Foreground="White"
+							           Text="{Binding Title, Mode=OneWay}"/>
+						</Grid>
+
+						<ControlTemplate.Triggers></ControlTemplate.Triggers>
+
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+
+</UserControl>

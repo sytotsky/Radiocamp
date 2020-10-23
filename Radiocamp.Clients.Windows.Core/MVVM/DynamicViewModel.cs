@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Reactive.Disposables;
+using DynamicData.Binding;
 using Dartware.Radiocamp.Core;
-using ReactiveUI;
 
 namespace Dartware.Radiocamp.Clients.Windows.Core.MVVM
 {
-	public abstract class ViewModel : ReactiveObject, IInitializable, IDisposable
+	public abstract class DynamicViewModel : AbstractNotifyPropertyChanged, IInitializable, IDisposable
 	{
 
 		protected readonly CompositeDisposable disposables;
 
-		public ViewModel()
+		public DynamicViewModel()
 		{
 			disposables = new CompositeDisposable();
 		}

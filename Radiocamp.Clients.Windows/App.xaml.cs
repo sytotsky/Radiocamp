@@ -42,6 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<PlayerViewModel>();
 			Dependencies.Services.AddSingleton<RegularViewViewModel>();
 			Dependencies.Services.AddSingleton<CompactViewViewModel>();
+			Dependencies.Services.AddSingleton<RadiostationsListViewModel>();
 
 			Dependencies.Services.AddSingleton<IApplication, ApplicationService>();
 			Dependencies.Services.AddSingleton<ISettings, SettingsService<DatabaseContext>>();
@@ -63,8 +64,6 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Get<ILocalization>().Apply(settings.Localization);
 
 			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
-
-			Dependencies.Get<IRadiostations>().Initialize();
 
 		}
 

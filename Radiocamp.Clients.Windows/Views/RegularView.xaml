@@ -26,18 +26,22 @@
 		              Grid.Column="0"
 		              Grid.ColumnSpan="2"/>
 
+		<views:RadiostationsList Grid.Row="1"
+		                         Grid.Column="0"
+		                         Grid.ColumnSpan="2"/>
+
 		<views:Player Grid.Row="2"
 		              Grid.Column="0"
 		              Grid.ColumnSpan="2"/>
 
 		<views:NavigationDrawerDimmableOverlay Grid.Row="0"
-									   Grid.RowSpan="3"
-		                               Grid.Column="0"
-		                               Grid.ColumnSpan="2"/>
+		                                       Grid.RowSpan="3"
+		                                       Grid.Column="0"
+		                                       Grid.ColumnSpan="2"/>
 
 		<views:NavigationDrawer Grid.Row="0"
-		                Grid.RowSpan="3"
-		                Grid.Column="0"/>
+		                        Grid.RowSpan="3"
+		                        Grid.Column="0"/>
 
 	</Grid>
 

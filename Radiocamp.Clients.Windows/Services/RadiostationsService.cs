@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using DynamicData;
 using Dartware.Radiocamp.Core.Models;
 using Dartware.Radiocamp.Clients.Shared.Models;
@@ -15,7 +16,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly DatabaseContext databaseContext;
 		private readonly IDialogs dialogs;
 
-		public ISourceCache<Radiostation, Guid> All { get; private set; }
+		private ISourceCache<Radiostation, Guid> all;
+		private Boolean isInitialized;
 
 		public RadiostationsService(DatabaseContext databaseContext, IDialogs dialogs)
 		{
@@ -23,12 +25,21 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			this.dialogs = dialogs;
 		}
 
-		public void Initialize()
+		public async Task<IObservable<IChangeSet<Radiostation, Guid>>> ConnectAsync()
 		{
 
-			All = new SourceCache<Radiostation, Guid>(radiostation => radiostation.Id);
+			if (!isInitialized)
+			{
 
-			All.AddOrUpdate(databaseContext.Radiostations);
+				all = new SourceCache<Radiostation, Guid>(radiostation => radiostation.Id);
+
+				all.AddOrUpdate(await databaseContext.Radiostations.ToListAsync());
+
+				isInitialized = true;
+
+			}
+
+			return all?.Connect();
 
 		}
 
@@ -49,7 +60,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				radiostation.IsCustom = true;
 				radiostation.DateOfCreation = DateTime.Now;
 
-				All.AddOrUpdate(radiostation);
+				all.AddOrUpdate(radiostation);
 				await databaseContext.Radiostations.AddAsync(radiostation);
 				await databaseContext.SaveChangesAsync();
 

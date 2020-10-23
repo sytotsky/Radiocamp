@@ -14,7 +14,7 @@ using Dartware.Radiocamp.Clients.Windows.Dialogs;
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
 
-	public abstract class DynamicDialogViewModel : AbstractNotifyPropertyChanged, IDialogViewModel, IInitializable
+	public abstract class DynamicDialogViewModel : DynamicViewModel, IDialogViewModel
 	{
 
 		protected readonly BaseWindow owner;
@@ -29,8 +29,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private Double minWidth;
 		private Double minHeight;
 		private Thickness padding;
-
-		protected readonly CompositeDisposable disposables;
 
 		protected Boolean CloseOnEscape { get; set; }
 		protected Boolean AutoCenter { get; set; }
@@ -97,11 +95,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public DynamicDialogViewModel(DialogArgs args)
 		{
-			disposables = new CompositeDisposable();
 			owner = args.Owner ?? Application.Current.MainWindow as BaseWindow;
 		}
 
-		public virtual void Initialize()
+		public override void Initialize()
 		{
 
 			if (isInitialized)
@@ -128,7 +125,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		public virtual void Dispose()
+		public override void Dispose()
 		{
 			
 			Dependencies.Get<IMainWindow>().HideEvent -= Close;
