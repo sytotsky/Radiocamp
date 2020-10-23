@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls">
 
-	<Style TargetType="{x:Type controls:SideMenuButton}">
+	<Style TargetType="{x:Type controls:NavigationDrawerButton}">
 
 		<Setter Property="Focusable" Value="False"/>
 		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -16,7 +16,7 @@
 
 		<Setter Property="Template">
 			<Setter.Value>
-				<ControlTemplate TargetType="{x:Type controls:SideMenuButton}">
+				<ControlTemplate TargetType="{x:Type controls:NavigationDrawerButton}">
 
 					<Border x:Name="Border"
 					        Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">

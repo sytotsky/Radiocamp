@@ -35,8 +35,8 @@ namespace Dartware.Radiocamp.Clients.Windows
 			}, ServiceLifetime.Transient);
 
 			Dependencies.Services.AddSingleton<MainWindowViewModel>();
-			Dependencies.Services.AddSingleton<SideMenuDimmableOverlayViewModel>();
-			Dependencies.Services.AddSingleton<SideMenuViewModel>();
+			Dependencies.Services.AddSingleton<NavigationDrawerDimmableOverlayViewModel>();
+			Dependencies.Services.AddSingleton<NavigationDrawerViewModel>();
 			Dependencies.Services.AddSingleton<SettingsViewModel>(provider => new SettingsViewModel(new DialogArgs(Dependencies.Get<IMainWindow>().Window)));
 			Dependencies.Services.AddSingleton<TaskbarIconViewModel>();
 			Dependencies.Services.AddSingleton<PlayerViewModel>();

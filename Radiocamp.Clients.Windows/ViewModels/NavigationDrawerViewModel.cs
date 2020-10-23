@@ -11,7 +11,7 @@ using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
-	public sealed class SideMenuViewModel : ViewModel
+	public sealed class NavigationDrawerViewModel : ViewModel
 	{
 
 		private readonly IApplication application;
@@ -28,7 +28,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ICommand AboutCommand { get; }
 		public ICommand ExitCommand { get; }
 
-		public SideMenuViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs, ISettings settings, IRadiostations radiostations)
+		public NavigationDrawerViewModel(IMainWindow mainWindow, IApplication application, IDialogs dialogs, ISettings settings, IRadiostations radiostations)
 		{
 
 			this.application = application;
@@ -42,7 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			AboutCommand = ReactiveCommand.CreateFromTask(About);
 			ExitCommand = ReactiveCommand.Create(Exit);
 
-			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Click += Hide;
+			Dependencies.Get<NavigationDrawerDimmableOverlayViewModel>().Click += Hide;
 			mainWindow.EscapeEvent += Hide;
 			mainWindow.HideEvent += Hide;
 			dialogs.ShowDialog += Hide;
@@ -89,7 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private void OnVisibleChanged(Boolean visible)
 		{
-			Dependencies.Get<SideMenuDimmableOverlayViewModel>().Visible = visible;
+			Dependencies.Get<NavigationDrawerDimmableOverlayViewModel>().Visible = visible;
 		}
 
 	}

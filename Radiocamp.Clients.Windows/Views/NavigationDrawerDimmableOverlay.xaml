@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.SideMenuDimmableOverlay"
+﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.NavigationDrawerDimmableOverlay"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,8 +6,8 @@
              xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
              xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance vm:SideMenuDimmableOverlayViewModel}"
-             MouseDown="SideMenuDimmableOverlay_OnMouseDown"
+             d:DataContext="{d:DesignInstance vm:NavigationDrawerDimmableOverlayViewModel}"
+             MouseDown="NavigationDrawerDimmableOverlay_OnMouseDown"
              Panel.ZIndex="1">
 
 	<Border Background="{DynamicResource DimmableOverlay}"

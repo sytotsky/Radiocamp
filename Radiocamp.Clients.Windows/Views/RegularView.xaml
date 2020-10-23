@@ -30,12 +30,12 @@
 		              Grid.Column="0"
 		              Grid.ColumnSpan="2"/>
 
-		<views:SideMenuDimmableOverlay Grid.Row="0"
+		<views:NavigationDrawerDimmableOverlay Grid.Row="0"
 									   Grid.RowSpan="3"
 		                               Grid.Column="0"
 		                               Grid.ColumnSpan="2"/>
 
-		<views:SideMenu Grid.Row="0"
+		<views:NavigationDrawer Grid.Row="0"
 		                Grid.RowSpan="3"
 		                Grid.Column="0"/>
 

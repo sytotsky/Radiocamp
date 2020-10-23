@@ -14,7 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 			if (!DesignerProperties.GetIsInDesignMode(this))
 			{
-				SideMenuToggleButton.DataContext = Dependencies.Get<SideMenuViewModel>();
+				NavigationDrawerToggleButton.DataContext = Dependencies.Get<NavigationDrawerViewModel>();
 			}
 
 		}

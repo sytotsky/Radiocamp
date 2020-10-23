@@ -7,24 +7,24 @@ using Dartware.Radiocamp.Clients.Windows.ViewModels;
 
 namespace Dartware.Radiocamp.Clients.Windows.Views
 {
-	public partial class SideMenuDimmableOverlay : UserControl
+	public partial class NavigationDrawerDimmableOverlay : UserControl
 	{
 
-		public SideMenuDimmableOverlay()
+		public NavigationDrawerDimmableOverlay()
 		{
 			
 			InitializeComponent();
 
 			if (!DesignerProperties.GetIsInDesignMode(this))
 			{
-				DataContext = Dependencies.Get<SideMenuDimmableOverlayViewModel>();
+				DataContext = Dependencies.Get<NavigationDrawerDimmableOverlayViewModel>();
 			}
 
 		}
 
-		private void SideMenuDimmableOverlay_OnMouseDown(Object sender, MouseButtonEventArgs args)
+		private void NavigationDrawerDimmableOverlay_OnMouseDown(Object sender, MouseButtonEventArgs args)
 		{
-			if (DataContext is SideMenuDimmableOverlayViewModel viewModel)
+			if (DataContext is NavigationDrawerDimmableOverlayViewModel viewModel)
 			{
 				viewModel.DimmableOverlay_OnMouseDown(sender, args);
 			}
