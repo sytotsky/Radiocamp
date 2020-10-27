@@ -10,7 +10,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 	public abstract class RadiocampButton : Button
 	{
 
-		public static readonly DependencyProperty LocalizedContentProperty = DependencyProperty.Register(nameof(LocalizedContent), typeof(Object), typeof(RadiocampButton), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, LocalizedContentChanged));
+		public static readonly DependencyProperty LocalizedContentProperty = DependencyProperty.Register(nameof(LocalizedContent), typeof(Object), typeof(RadiocampButton), new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.AffectsMeasure, OnLocalizedContentChanged));
 
 		public Object LocalizedContent
 		{
@@ -42,7 +42,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 			RightClickCommand?.Execute(null);
 		}
 
-		private static void LocalizedContentChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
+		private static void OnLocalizedContentChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
 			if (!(dependency is RadiocampButton button))

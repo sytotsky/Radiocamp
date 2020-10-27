@@ -1,55 +1,55 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls"
-                    xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters">
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls"
+					xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters">
 
-    <Style TargetType="{x:Type controls:FormatBitrate}">
+	<Style TargetType="{x:Type controls:FormatBitrate}">
 
-        <Setter Property="Foreground" Value="{DynamicResource DimFg}"/>
-        <Setter Property="FontSize" Value="11"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="0"/>
+		<Setter Property="Foreground" Value="{DynamicResource DimFg}"/>
+		<Setter Property="FontSize" Value="11"/>
+		<Setter Property="Margin" Value="0"/>
+		<Setter Property="Padding" Value="0"/>
 
-	    <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:FormatBitrate}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type controls:FormatBitrate}">
 
 					<Border Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-					        Margin="{Binding Margin, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-					        Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
-	                    <StackPanel Orientation="Horizontal">
+							Margin="{Binding Margin, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+							Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
+						<StackPanel Orientation="Horizontal">
 
-                            <TextBlock x:Name="Format"
-                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                       FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                       Text="{Binding Format, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={converters:ToStringConverter}}"/>
+							<TextBlock x:Name="Format"
+									   Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+									   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+									   Text="{Binding Format, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={converters:ToStringConverter}}"/>
 
-                            <TextBlock x:Name="Comma"
-                                       Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                       FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                       Text=", "/>
+							<TextBlock x:Name="Comma"
+									   Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+									   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+									   Text=", "/>
 
 							<StackPanel x:Name="Bitrate"
-							            Orientation="Horizontal">
+										Orientation="Horizontal">
 
 								<TextBlock Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-								           FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-	                                       Text="{Binding Bitrate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+										   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+										   Text="{Binding Bitrate, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
 
 								<TextBlock Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-								           FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                           Text=" kbps"/>
+										   FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+										   Text=" kbps"/>
 
 							</StackPanel>
 
-	                    </StackPanel>
+						</StackPanel>
 					</Border>
 
-	                <ControlTemplate.Triggers>
+					<ControlTemplate.Triggers>
 
-                        <Trigger Property="Format" Value="Unknown">
-                            <Setter TargetName="Comma" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="Format" Property="Visibility" Value="Collapsed"/>
+						<Trigger Property="Format" Value="Unknown">
+							<Setter TargetName="Comma" Property="Visibility" Value="Collapsed"/>
+							<Setter TargetName="Format" Property="Visibility" Value="Collapsed"/>
 						</Trigger>
 
 						<Trigger Property="Bitrate" Value="0">
@@ -57,12 +57,12 @@
 							<Setter TargetName="Bitrate" Property="Visibility" Value="Collapsed"/>
 						</Trigger>
 
-                        <MultiTrigger>
+						<MultiTrigger>
 
-                            <MultiTrigger.Conditions>
+							<MultiTrigger.Conditions>
 								<Condition Property="Format" Value="Unknown"/>
 								<Condition Property="Bitrate" Value="0"/>
-                            </MultiTrigger.Conditions>
+							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
 								<Setter Property="Visibility" Value="Collapsed"/>
@@ -71,14 +71,14 @@
 								<Setter TargetName="Bitrate" Property="Visibility" Value="Collapsed"/>
 							</MultiTrigger.Setters>
 
-                        </MultiTrigger>
+						</MultiTrigger>
 
 					</ControlTemplate.Triggers>
 
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
 
-    </Style>
-    
+	</Style>
+	
 </ResourceDictionary>

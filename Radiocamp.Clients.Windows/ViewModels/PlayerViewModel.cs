@@ -36,7 +36,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Int32 VolumeStep { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
-		public ReactiveCommand<Unit, Unit> MuteUnmuteCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlayCommand { get; }
 		public ReactiveCommand<Unit, Unit> PauseCommand { get; }
 		public ReactiveCommand<Unit, Unit> StartRecordingCommand { get; }
@@ -55,7 +54,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			settings.VolumeStepChanged += volumeStep => VolumeStep = volumeStep;
 
 			SearchSongCommand = ReactiveCommand.Create(SearchSong);
-			MuteUnmuteCommand = ReactiveCommand.Create(MuteUnmute);
 			PlayCommand = ReactiveCommand.Create(Play);
 			PauseCommand = ReactiveCommand.Create(Pause);
 			StartRecordingCommand = ReactiveCommand.Create(StartRecording);
@@ -104,11 +102,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private void SearchSong()
 		{
 			browser.Search(SongName, settings.SearchEngine);
-		}
-
-		private void MuteUnmute()
-		{
-			throw new NotImplementedException();
 		}
 
 		private void Play()

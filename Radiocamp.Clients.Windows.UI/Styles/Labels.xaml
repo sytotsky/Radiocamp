@@ -4,6 +4,7 @@
 		<ResourceDictionary Source="Labels/Label.xaml"/>
 		<ResourceDictionary Source="Labels/HotkeyLabel.xaml"/>
 		<ResourceDictionary Source="Labels/FormatBitrate.xaml"/>
+		<ResourceDictionary Source="Labels/GenreCountry.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

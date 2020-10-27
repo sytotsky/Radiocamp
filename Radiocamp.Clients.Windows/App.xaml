@@ -17,7 +17,7 @@
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/ContextMenu.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/TextBlock.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/TextBoxes.xaml"/>
-				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/CheckBox.xaml"/>
+				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/CheckBoxes.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Thumb.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/Scroll.xaml"/>
 				<ResourceDictionary Source="pack://application:,,,/Radiocamp.Clients.Windows.UI;component/Styles/RepeatButton.xaml"/>

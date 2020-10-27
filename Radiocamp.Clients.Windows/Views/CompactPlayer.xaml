@@ -35,7 +35,6 @@
 		                 Style="{DynamicResource CompactVolumeStyle}"
 		                 VerticalAlignment="Center"
 		                 Margin="0 0 8 0"
-		                 MuteUnmuteCommand="{Binding MuteUnmuteCommand}"
 		                 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
 

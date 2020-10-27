@@ -21,7 +21,7 @@
 				<ControlTemplate TargetType="{x:Type controls:IconButton}">
 
 					<Border x:Name="Border"
-							Cursor="{TemplateBinding Cursor}"
+							Cursor="{Binding Cursor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 							Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 							Margin="{Binding Margin, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
 							Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"

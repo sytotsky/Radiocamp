@@ -5,6 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
 			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:RadiostationItemViewModel}">
 
@@ -14,12 +15,44 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type views:RadiostationItem}">
 
-						<Grid>
-							<TextBlock Foreground="White"
-							           Text="{Binding Title, Mode=OneWay}"/>
-						</Grid>
+						<Border x:Name="Border"
+						        Padding="0 8 16 8">
+							<Grid>
 
-						<ControlTemplate.Triggers></ControlTemplate.Triggers>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+
+								<controls:IconCheckBox Grid.Column="0"
+													   Padding="16 0 16 0"
+													   VerticalAlignment="Center"
+													   FontSize="18"
+													   IsChecked="{Binding IsFavorite, Mode=TwoWay}"
+								                       Icon="{DynamicResource EmptyStarIcon}"
+													   CheckedIcon="{DynamicResource FillStarIcon}"/>
+
+								<StackPanel Grid.Column="1"
+											VerticalAlignment="Center"
+								            Orientation="Vertical">
+
+									<TextBlock Foreground="{DynamicResource MainFg}"
+									           FontSize="14"
+									           Text="{Binding Title, Mode=OneWay}"/>
+
+									<controls:GenreCountry Genre="{Binding Genre, Mode=OneWay}"
+									                       Country="{Binding Country, Mode=OneWay}"/>
+
+								</StackPanel>
+
+							</Grid>
+						</Border>
+
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="Border" Property="Background" Value="{DynamicResource WindowOver}"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
 
 					</ControlTemplate>
 				</Setter.Value>
