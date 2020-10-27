@@ -57,13 +57,9 @@
 		            VerticalAlignment="Center">
 
 			<controls:RecordButton Margin="0 0 -9 0"
-			                       VerticalAlignment="Center"
-			                       StartCommand="{Binding StartRecordingCommand}"
-			                       StopCommand="{Binding StopRecordingCommand}"/>
+			                       VerticalAlignment="Center"/>
 
-			<controls:PlayPauseButton VerticalAlignment="Center"
-			                          PlayCommand="{Binding PlayCommand}"
-			                          PauseCommand="{Binding PauseCommand}"/>
+			<controls:PlayPauseButton VerticalAlignment="Center"/>
 
 		</StackPanel>
 

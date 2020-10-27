@@ -36,10 +36,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Int32 VolumeStep { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
-		public ReactiveCommand<Unit, Unit> PlayCommand { get; }
-		public ReactiveCommand<Unit, Unit> PauseCommand { get; }
-		public ReactiveCommand<Unit, Unit> StartRecordingCommand { get; }
-		public ReactiveCommand<Unit, Unit> StopRecordingCommand { get; }
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
 
@@ -54,10 +50,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			settings.VolumeStepChanged += volumeStep => VolumeStep = volumeStep;
 
 			SearchSongCommand = ReactiveCommand.Create(SearchSong);
-			PlayCommand = ReactiveCommand.Create(Play);
-			PauseCommand = ReactiveCommand.Create(Pause);
-			StartRecordingCommand = ReactiveCommand.Create(StartRecording);
-			StopRecordingCommand = ReactiveCommand.Create(StopRecording);
 			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 
@@ -102,26 +94,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private void SearchSong()
 		{
 			browser.Search(SongName, settings.SearchEngine);
-		}
-
-		private void Play()
-		{
-			throw new NotImplementedException();
-		}
-
-		private void Pause()
-		{
-			throw new NotImplementedException();
-		}
-
-		private void StartRecording()
-		{
-			throw new NotImplementedException();
-		}
-
-		private void StopRecording()
-		{
-			throw new NotImplementedException();
 		}
 
 		private Task AudioSettingsAsync()

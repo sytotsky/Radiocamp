@@ -41,15 +41,11 @@
 		<controls:PlayPauseButton Grid.Column="2"
 		                          Style="{DynamicResource CompactPlayPauseButtonStyle}"
 		                          VerticalAlignment="Center"
-		                          Margin="0 0 5 0"
-		                          PlayCommand="{Binding PlayCommand}"
-		                          PauseCommand="{Binding PauseCommand}"/>
+		                          Margin="0 0 5 0"/>
 
 		<controls:RecordButton Grid.Column="3"
 		                       Style="{DynamicResource CompactRecordButtonStyle}"
-		                       VerticalAlignment="Center"
-		                       StartCommand="{Binding StartRecordingCommand}"
-		                       StopCommand="{Binding StopRecordingCommand}"/>
+		                       VerticalAlignment="Center"/>
 
 	</Grid>
 
