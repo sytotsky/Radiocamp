@@ -7,6 +7,7 @@ using ReactiveUI.Fody.Helpers;
 using Dartware.NRadio.Meta;
 using Dartware.Radiocamp.Clients.Shared.Services;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -16,6 +17,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private readonly ISettings settings;
 		private readonly IBrowser browser;
+		private readonly IPlayer player;
 
 		[Reactive]
 		public String Title { get; private set; }
@@ -39,11 +41,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
 
-		public PlayerViewModel(IBrowser browser, ISettings settings)
+		public PlayerViewModel(IBrowser browser, ISettings settings, IPlayer player)
 		{
 
 			this.browser = browser;
 			this.settings = settings;
+			this.player = player;
 
 			VolumeStep = settings.VolumeStep;
 
@@ -53,11 +56,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 
+			Volume = player.Volume;
 			Title = "Vocal Trance Radio";
 			SongName = "Stargazers & Katty Heath - Be Here With Me (Extended Mix) Amsterdam Trance";
 			Format = Format.MP3;
 			Bitrate = 256;
-			Volume = 50;
+
+			this.WhenAnyValue(viewModel => viewModel.Volume).Subscribe(volume => player.Volume = volume);
 
 		}
 

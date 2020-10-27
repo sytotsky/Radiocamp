@@ -53,6 +53,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<ILocalization, LocalizationService>();
 			Dependencies.Services.AddSingleton<IColorThemes, ColorThemesService>();
 			Dependencies.Services.AddSingleton<IRadiostations, RadiostationsService>();
+			Dependencies.Services.AddSingleton<IPlayer, PlayerService>();
 
 			Dependencies.Build();
 

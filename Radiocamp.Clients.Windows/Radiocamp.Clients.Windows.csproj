@@ -54,4 +54,10 @@
 		<Resource Include="Resources\Images\Logotype_About.png" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="bass.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
