@@ -9,14 +9,54 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201022032529_Initial")]
+    [Migration("20201028071824_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.9");
+
+            modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Core.Models.WindowsRadiostation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Country")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateOfCreation")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("datetime('now')");
+
+                    b.Property<int>("Genre")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsCustom")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsFavorite")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("StreamURL")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Volume")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Radiostations");
+                });
 
             modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Hotkeys.Hotkey", b =>
                 {
@@ -43,7 +83,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f90cc288-598f-4f73-a7d2-703489feacd1"),
+                            Id = new Guid("f83fffd9-a1f8-499e-9a66-1f2d80bcb4cb"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -51,7 +91,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e400baba-8ec8-48b5-82b6-640e29fe2625"),
+                            Id = new Guid("d884a1dc-fa68-4cdc-848d-d641c99554f5"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -59,7 +99,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("027174f5-9841-464c-98ce-6c9ec4c0f048"),
+                            Id = new Guid("c3ebb27f-098f-4908-841a-3d5de2d7b124"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -67,7 +107,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2fe4ea56-793d-4bbe-9422-9f2c7782b362"),
+                            Id = new Guid("6bc66ad2-793f-4d15-892f-af385f09a3fa"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -75,7 +115,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("47b676af-7d73-4578-a076-a25f78506a4d"),
+                            Id = new Guid("49888dfa-c7be-46b6-8df4-d712f6ac7736"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -83,7 +123,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c7e9b2a0-3d47-4932-8507-95f442e30693"),
+                            Id = new Guid("af12d4ac-cb18-4a08-8844-69c001daa30e"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -184,6 +224,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<bool>("StartMinimized")
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("Volume")
+                        .HasColumnType("REAL");
+
                     b.Property<int>("VolumeStep")
                         .HasColumnType("INTEGER");
 
@@ -194,7 +237,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ec71bc50-c6ad-4611-b8e9-4b29b58fe0a6"),
+                            Id = new Guid("a9ae53f5-8500-42ae-8380-f56c90ec3cc0"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -223,45 +266,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             ShowFavoritesAtStart = false,
                             ShowOnlyCustomAtStart = false,
                             StartMinimized = false,
+                            Volume = 50.0,
                             VolumeStep = 4
                         });
-                });
-
-            modelBuilder.Entity("Dartware.Radiocamp.Core.Models.Radiostation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Country")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateOfCreation")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("datetime('now')");
-
-                    b.Property<int>("Genre")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsCurrent")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsCustom")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsFavorite")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("StreamURL")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Radiostations");
                 });
 #pragma warning restore 612, 618
         }

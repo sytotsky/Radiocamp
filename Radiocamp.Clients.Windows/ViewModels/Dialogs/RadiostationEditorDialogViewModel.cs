@@ -5,12 +5,13 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
-	public sealed class RadiostationEditorDialogViewModel : DialogViewModel<Radiostation>
+	public sealed class RadiostationEditorDialogViewModel : DialogViewModel<WindowsRadiostation>
 	{
 
 		private readonly IDialogs dialogs;
@@ -91,7 +92,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private void Create()
 		{
 
-			Result = new Radiostation()
+			Result = new WindowsRadiostation()
 			{
 				Title = Title,
 				StreamURL = StreamURL,

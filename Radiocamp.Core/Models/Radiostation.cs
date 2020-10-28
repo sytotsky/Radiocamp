@@ -2,7 +2,7 @@
 
 namespace Dartware.Radiocamp.Core.Models
 {
-	public sealed class Radiostation
+	public abstract class Radiostation
 	{
 		public Guid Id { get; set; }
 		public String Title { get; set; }

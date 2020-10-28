@@ -54,6 +54,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		// Sound
 
+		public Double Volume { get; set; }
 		public Int32 VolumeStep { get; set; }
 
 		// Hotkeys

@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DynamicData;
-using Dartware.Radiocamp.Core.Models;
-using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Database;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
+using Dartware.Radiocamp.Clients.Shared.Models;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -16,7 +16,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly DatabaseContext databaseContext;
 		private readonly IDialogs dialogs;
 
-		private ISourceCache<Radiostation, Guid> all;
+		private ISourceCache<WindowsRadiostation, Guid> all;
 		private Boolean isInitialized;
 
 		public RadiostationsService(DatabaseContext databaseContext, IDialogs dialogs)
@@ -25,13 +25,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			this.dialogs = dialogs;
 		}
 
-		public async Task<IObservable<IChangeSet<Radiostation, Guid>>> ConnectAsync()
+		public async Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync()
 		{
 
 			if (!isInitialized)
 			{
 
-				all = new SourceCache<Radiostation, Guid>(radiostation => radiostation.Id);
+				all = new SourceCache<WindowsRadiostation, Guid>(radiostation => radiostation.Id);
 
 				all.AddOrUpdate(await databaseContext.Radiostations.ToListAsync());
 
@@ -51,7 +51,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				Mode = RadiostationEditorMode.Create
 			};
 
-			Radiostation radiostation = await dialogs.Show<Radiostation, RadiostationEditorDialog, RadiostationEditorDialogViewModel>(radiostationEditorArgs);
+			WindowsRadiostation radiostation = await dialogs.Show<WindowsRadiostation, RadiostationEditorDialog, RadiostationEditorDialogViewModel>(radiostationEditorArgs);
 
 			if (radiostation != null)
 			{

@@ -34,7 +34,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     IsCustom = table.Column<bool>(nullable: false),
                     IsCurrent = table.Column<bool>(nullable: false),
                     Genre = table.Column<int>(nullable: false),
-                    Country = table.Column<int>(nullable: false)
+                    Country = table.Column<int>(nullable: false),
+                    Volume = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,6 +75,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     MainWindowTopmostOnlyCompact = table.Column<bool>(nullable: false),
                     HideInTaskbar = table.Column<bool>(nullable: false),
                     HideInTaskbarOnlyCompact = table.Column<bool>(nullable: false),
+                    Volume = table.Column<double>(nullable: false),
                     VolumeStep = table.Column<int>(nullable: false),
                     HotkeysIsEnabled = table.Column<bool>(nullable: false)
                 },
@@ -85,37 +87,37 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("f90cc288-598f-4f73-a7d2-703489feacd1"), 1, false, 0, 0 });
+                values: new object[] { new Guid("f83fffd9-a1f8-499e-9a66-1f2d80bcb4cb"), 1, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("e400baba-8ec8-48b5-82b6-640e29fe2625"), 2, false, 0, 0 });
+                values: new object[] { new Guid("d884a1dc-fa68-4cdc-848d-d641c99554f5"), 2, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("027174f5-9841-464c-98ce-6c9ec4c0f048"), 3, false, 0, 0 });
+                values: new object[] { new Guid("c3ebb27f-098f-4908-841a-3d5de2d7b124"), 3, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("2fe4ea56-793d-4bbe-9422-9f2c7782b362"), 4, false, 0, 0 });
+                values: new object[] { new Guid("6bc66ad2-793f-4d15-892f-af385f09a3fa"), 4, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("47b676af-7d73-4578-a076-a25f78506a4d"), 5, false, 0, 0 });
+                values: new object[] { new Guid("49888dfa-c7be-46b6-8df4-d712f6ac7736"), 5, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Hotkeys",
                 columns: new[] { "Id", "Command", "IsEnabled", "Key", "ModifierKey" },
-                values: new object[] { new Guid("c7e9b2a0-3d47-4932-8507-95f442e30693"), 6, false, 0, 0 });
+                values: new object[] { new Guid("af12d4ac-cb18-4a08-8844-69c001daa30e"), 6, false, 0, 0 });
 
             migrationBuilder.InsertData(
                 table: "Settings",
-                columns: new[] { "Id", "AlwaysShowTrayIcon", "ExportRadiostationsAll", "ExportRadiostationsCustomOnly", "ExportRadiostationsFavoritesOnly", "ExportRadiostationsFormat", "ExportRadiostationsOnlyFavoritesOrCustom", "ExportRadiostationsPath", "ExportRadiostationsSaveFavoritesTags", "ExportRadiostationsSaveSoundSettings", "HideApplicationOnCloseButtonClick", "HideApplicationOnMinimizeButtonClick", "HideInTaskbar", "HideInTaskbarOnlyCompact", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowAdvancedCompactPosition", "MainWindowCompactAdvancedHeight", "MainWindowHeight", "MainWindowLeft", "MainWindowMode", "MainWindowTop", "MainWindowTopmost", "MainWindowTopmostOnlyCompact", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized", "VolumeStep" },
-                values: new object[] { new Guid("ec71bc50-c6ad-4611-b8e9-4b29b58fe0a6"), true, true, false, false, 0, false, null, true, true, true, false, false, false, false, false, 0, 0, 400.0, 0.0, 0.0, 0, 0.0, false, false, 0.0, 0, false, false, false, 4 });
+                columns: new[] { "Id", "AlwaysShowTrayIcon", "ExportRadiostationsAll", "ExportRadiostationsCustomOnly", "ExportRadiostationsFavoritesOnly", "ExportRadiostationsFormat", "ExportRadiostationsOnlyFavoritesOrCustom", "ExportRadiostationsPath", "ExportRadiostationsSaveFavoritesTags", "ExportRadiostationsSaveSoundSettings", "HideApplicationOnCloseButtonClick", "HideApplicationOnMinimizeButtonClick", "HideInTaskbar", "HideInTaskbarOnlyCompact", "HotkeysIsEnabled", "IsNightMode", "Localization", "MainWindowAdvancedCompactPosition", "MainWindowCompactAdvancedHeight", "MainWindowHeight", "MainWindowLeft", "MainWindowMode", "MainWindowTop", "MainWindowTopmost", "MainWindowTopmostOnlyCompact", "MainWindowWidth", "SearchEngine", "ShowFavoritesAtStart", "ShowOnlyCustomAtStart", "StartMinimized", "Volume", "VolumeStep" },
+                values: new object[] { new Guid("a9ae53f5-8500-42ae-8380-f56c90ec3cc0"), true, true, false, false, 0, false, null, true, true, true, false, false, false, false, false, 0, 0, 400.0, 0.0, 0.0, 0, 0.0, false, false, 0.0, 0, false, false, false, 50.0, 4 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

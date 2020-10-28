@@ -21,7 +21,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 				AlwaysShowTrayIcon = true,
 				HideApplicationOnCloseButtonClick = true,
 				VolumeStep = 4,
-				MainWindowCompactAdvancedHeight = 400
+				MainWindowCompactAdvancedHeight = 400,
+				Volume = 50
 			});
 
 		}

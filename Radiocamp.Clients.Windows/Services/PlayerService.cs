@@ -12,14 +12,33 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly IHotkeys hotkeys;
 		private readonly IRadioEngine radioEngine;
 
-		public Double Volume { get; set; }
+		private Double volume;
+
+		public Double Volume
+		{
+			get => volume;
+			set
+			{
+
+				if (volume == value)
+				{
+					return;
+				}
+				
+				volume = value;
+				radioEngine.Volume = value;
+				settings.Volume = value;
+
+			}
+		}
 
 		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
 			this.settings = settings;
 			this.hotkeys = hotkeys;
 			radioEngine = RadioEngineFactory.Default;
-			Volume = 50;
+			radioEngine.Volume = settings.Volume;
+			volume = settings.Volume;
 		}
 
 	}

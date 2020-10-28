@@ -79,6 +79,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 
 		event Action<Int32> VolumeStepChanged;
 
+		Double Volume { get; set; }
 		Int32 VolumeStep { get; set; }
 
 		// Hotkeys
