@@ -1,7 +1,10 @@
 ﻿using System;
-using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
-using Dartware.Radiocamp.Core.Models;
+using System.Threading.Tasks;
+using Dartware.Radiocamp.Clients.Windows.Core;
 using ReactiveUI.Fody.Helpers;
+using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Services;
+using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -9,6 +12,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 	{
 
 		private readonly Guid id;
+		private readonly IPlayer player;
+		private readonly IRadiostations radiostations;
 
 		[Reactive]
 		public String Title { get; set; }
@@ -31,6 +36,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public RadiostationItemViewModel(Guid id)
 		{
 			this.id = id;
+			player = Dependencies.Get<IPlayer>();
+			radiostations = Dependencies.Get<IRadiostations>();
+		}
+
+		public async Task Click()
+		{
+			await player.SetRadiostationAsync(radiostations.Get(id));
+			player.Play();
 		}
 
 	}

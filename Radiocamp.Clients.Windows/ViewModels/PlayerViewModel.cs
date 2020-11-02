@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.NRadio.Meta;
 using Dartware.Radiocamp.Clients.Shared.Services;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
@@ -37,6 +39,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Int32 VolumeStep { get; private set; }
 
+		[Reactive]
+		public Boolean ControlsIsEnabled { get; private set; }
+
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
@@ -56,13 +61,19 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 
-			Volume = player.Volume;
-			Title = "Vocal Trance Radio";
-			SongName = "Stargazers & Katty Heath - Be Here With Me (Extended Mix) Amsterdam Trance";
-			Format = Format.MP3;
-			Bitrate = 256;
+			this.WhenAnyValue(viewModel => viewModel.Volume)
+				.Skip(1)
+				.Subscribe(volume => this.player.SetVolume(volume));
 
-			this.WhenAnyValue(viewModel => viewModel.Volume).Subscribe(volume => player.Volume = volume);
+			this.player.VolumeSubject.DistinctUntilChanged()
+									 .Subscribe(volume => Volume = volume);
+
+			this.player.RadiostationSubject.Do(radiostation => ControlsIsEnabled = radiostation != null)
+										   .Where(radiostation => radiostation != null)
+										   .Subscribe(OnNewRadiostation);
+
+			this.player.MetadataSubject.Where(metadata => metadata != null)
+									   .Subscribe(OnNewMetadata);
 
 		}
 
@@ -109,6 +120,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private Task PlaybackHistoryAsync()
 		{
 			throw new NotImplementedException();
+		}
+
+		private void OnNewRadiostation(WindowsRadiostation radiostation)
+		{
+			Title = radiostation.Title;
+		}
+
+		private void OnNewMetadata(IMetadata metadata)
+		{
+			SongName = metadata.SongName;
+			Format = metadata.Format;
+			Bitrate = metadata.Bitrate;
 		}
 
 	}

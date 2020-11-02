@@ -57,9 +57,11 @@
 		            VerticalAlignment="Center">
 
 			<controls:RecordButton Margin="0 0 -9 0"
-			                       VerticalAlignment="Center"/>
+			                       VerticalAlignment="Center"
+			                       IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"/>
 
-			<controls:PlayPauseButton VerticalAlignment="Center"/>
+			<controls:PlayPauseButton VerticalAlignment="Center"
+			                          IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"/>
 
 		</StackPanel>
 
@@ -69,10 +71,12 @@
 
 			<controls:IconButton Margin="0 0 0 4"
 			                     FontSize="16"
+			                     IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"
 								 Command="{Binding AudioSettingsCommand}"
 			                     Content="{StaticResource AudioSettingsIcon}"/>
-			
+
 			<controls:IconButton FontSize="16"
+			                     IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"
 								 Command="{Binding PlaybackHistoryCommand}"
 			                     Content="{StaticResource HistoryIcon}"/>
 

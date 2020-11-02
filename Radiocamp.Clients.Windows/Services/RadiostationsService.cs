@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DynamicData;
@@ -42,6 +43,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			return all?.Connect();
 
 		}
+
+		public WindowsRadiostation Get(Guid id) => all?.Items.FirstOrDefault(radiostation => radiostation.Id.Equals(id));
 
 		public async Task CreateAsync()
 		{

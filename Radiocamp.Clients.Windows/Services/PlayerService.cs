@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Reactive.Subjects;
+using System.Threading.Tasks;
 using Dartware.NRadio;
-using Dartware.Radiocamp.Clients.Windows.Hotkeys;
+using Dartware.NRadio.Meta;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
@@ -9,36 +12,63 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly ISettings settings;
-		private readonly IHotkeys hotkeys;
 		private readonly IRadioEngine radioEngine;
 
-		private Double volume;
+		private WindowsRadiostation radiostation;
 
-		public Double Volume
+		public ISubject<WindowsRadiostation> RadiostationSubject { get; }
+		public ISubject<Double> VolumeSubject { get; }
+		public ISubject<IMetadata> MetadataSubject { get; }
+
+		public PlayerService(ISettings settings)
 		{
-			get => volume;
-			set
-			{
 
-				if (volume == value)
-				{
-					return;
-				}
-				
-				volume = value;
-				radioEngine.Volume = value;
-				settings.Volume = value;
+			this.settings = settings;
+			radioEngine = RadioEngineFactory.Default;
+			RadiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
+			VolumeSubject = new BehaviorSubject<Double>(50.0d);
+			MetadataSubject = new BehaviorSubject<IMetadata>(null);
 
-			}
+			SetVolume(settings.Volume);
+
+			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
+
 		}
 
-		public PlayerService(ISettings settings, IHotkeys hotkeys)
+		public async Task SetRadiostationAsync(WindowsRadiostation radiostation)
 		{
-			this.settings = settings;
-			this.hotkeys = hotkeys;
-			radioEngine = RadioEngineFactory.Default;
-			radioEngine.Volume = settings.Volume;
-			volume = settings.Volume;
+
+			RadiostationSubject.OnNext(radiostation);
+
+			if (radiostation == null)
+			{
+				return;
+			}
+
+			if (this.radiostation?.Equals(radiostation) ?? false)
+			{
+				return;
+			}
+
+			this.radiostation = radiostation;
+
+			await radioEngine.SetURLAsync(radiostation.StreamURL);
+
+		}
+
+		public void SetVolume(Double volume)
+		{
+
+			VolumeSubject.OnNext(volume);
+
+			radioEngine.Volume = volume;
+			settings.Volume = volume;
+
+		}
+
+		public void Play()
+		{
+			radioEngine.Play();
 		}
 
 	}
