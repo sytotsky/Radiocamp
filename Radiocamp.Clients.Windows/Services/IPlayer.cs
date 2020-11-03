@@ -16,6 +16,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		Task SetRadiostationAsync(WindowsRadiostation radiostation);
 		void SetVolume(Double volume);
 		void Play();
+		void VolumeUp();
+		void VolumeDown();
 
 	}
 }

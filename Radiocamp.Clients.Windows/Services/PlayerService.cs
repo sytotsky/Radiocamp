@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Dartware.NRadio;
 using Dartware.NRadio.Meta;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
@@ -20,7 +21,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public ISubject<Double> VolumeSubject { get; }
 		public ISubject<IMetadata> MetadataSubject { get; }
 
-		public PlayerService(ISettings settings)
+		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
 
 			this.settings = settings;
@@ -32,6 +33,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			SetVolume(settings.Volume);
 
 			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
+			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
+			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 
 		}
 
@@ -69,6 +72,34 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public void Play()
 		{
 			radioEngine.Play();
+		}
+
+		public void VolumeUp()
+		{
+
+			Double newVolume = radioEngine.Volume + settings.VolumeStep;
+
+			if (newVolume > 100)
+			{
+				newVolume = 100;
+			}
+
+			SetVolume(newVolume);
+
+		}
+
+		public void VolumeDown()
+		{
+
+			Double newVolume = radioEngine.Volume - settings.VolumeStep;
+
+			if (newVolume < 0)
+			{
+				newVolume = 0;
+			}
+
+			SetVolume(newVolume);
+
 		}
 
 	}

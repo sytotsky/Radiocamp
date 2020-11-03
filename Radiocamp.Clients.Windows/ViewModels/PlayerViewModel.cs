@@ -81,29 +81,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			if (args.Delta > 0)
 			{
-
-				Double newVolume = Volume + VolumeStep;
-
-				if (newVolume > 100)
-				{
-					newVolume = 100;
-				}
-
-				Volume = newVolume;
-
+				player.VolumeUp();
 			}
 			else
 			{
-
-				Double newVolume = Volume - VolumeStep;
-
-				if (newVolume < 0)
-				{
-					newVolume = 0;
-				}
-
-				Volume = newVolume;
-
+				player.VolumeDown();
 			}
 		}
 
