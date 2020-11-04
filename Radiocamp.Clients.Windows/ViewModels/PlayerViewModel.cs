@@ -41,6 +41,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public Int32 VolumeStep { get; private set; }
 
 		[Reactive]
+		public Int64 BufferingProgress { get; private set; }
+
+		[Reactive]
 		public Boolean ControlsIsEnabled { get; private set; }
 
 		[Reactive]
@@ -48,6 +51,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		[Reactive]
 		public Boolean IsRecording { get; set; }
+
+		[Reactive]
+		public Boolean SongNameVisible { get; private set; }
+
+		[Reactive]
+		public Boolean ConnectionLableVisible { get; private set; }
+
+		[Reactive]
+		public Boolean BufferingProgressLabelVisible { get; private set; }
 
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
@@ -63,6 +75,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.player = player;
 
 			VolumeStep = settings.VolumeStep;
+			SongNameVisible = true;
 
 			settings.VolumeStepChanged += volumeStep => VolumeStep = volumeStep;
 
@@ -71,6 +84,37 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
 			MuteCommand = ReactiveCommand.Create(player.Mute);
 			UnmuteCommand = ReactiveCommand.Create(player.Unmute);
+
+			player.ConnectionStarted += () =>
+			{
+				
+				HideSongNameConnectionAndBufferingLabels();
+
+				ConnectionLableVisible = true;
+
+			};
+
+			player.ConnectionEnded += HideSongNameConnectionAndBufferingLabels;
+
+			player.BufferingStarted += () =>
+			{
+
+				HideSongNameConnectionAndBufferingLabels();
+
+				BufferingProgressLabelVisible = true;
+
+			};
+
+			player.BufferingProgressChanged += bufferingProgress => BufferingProgress = bufferingProgress;
+
+			player.BufferingEnded += () =>
+			{
+				
+				HideSongNameConnectionAndBufferingLabels();
+
+				SongNameVisible = true;
+
+			};
 
 			this.WhenAnyValue(viewModel => viewModel.Volume)
 				.Skip(1)
@@ -100,7 +144,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.player.MetadataSubject.Where(metadata => metadata != null)
 									   .Subscribe(OnNewMetadata);
 
-			this.player.PlaybackStatusSubject.Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
+			this.player.PlaybackStatusSubject.DistinctUntilChanged()
+											 .Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
 
 		}
 
@@ -141,6 +186,13 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			SongName = metadata.SongName;
 			Format = metadata.Format;
 			Bitrate = metadata.Bitrate;
+		}
+
+		private void HideSongNameConnectionAndBufferingLabels()
+		{
+			SongNameVisible = false;
+			ConnectionLableVisible = false;
+			BufferingProgressLabelVisible = false;
 		}
 
 	}

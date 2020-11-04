@@ -25,6 +25,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
 		public ISubject<RecordingStatus> RecordingStatusSubject { get; }
 
+		public event Action ConnectionStarted;
+		public event Action ConnectionEnded;
+		public event Action BufferingStarted;
+		public event Action<Int64> BufferingProgressChanged;
+		public event Action BufferingEnded;
+
 		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
 
@@ -41,6 +47,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
 			radioEngine.PlaybackStatusChanged += playbackStatus => PlaybackStatusSubject.OnNext(playbackStatus);
 			radioEngine.RecordingStatusChanged += recordStatus => RecordingStatusSubject.OnNext(recordStatus);
+			radioEngine.ConnectionStarted += () => ConnectionStarted?.Invoke();
+			radioEngine.ConnectionEnded += () => ConnectionEnded?.Invoke();
+			radioEngine.BufferingStarted += () => BufferingStarted?.Invoke();
+			radioEngine.BufferingEnded += () => BufferingEnded?.Invoke();
+			radioEngine.BufferingProgressChanged += bufferingProgress => BufferingProgressChanged?.Invoke(bufferingProgress);
 			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;

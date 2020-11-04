@@ -16,6 +16,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
 		ISubject<RecordingStatus> RecordingStatusSubject { get; }
 
+		event Action ConnectionStarted;
+		event Action ConnectionEnded;
+		event Action BufferingStarted;
+		event Action<Int64> BufferingProgressChanged;
+		event Action BufferingEnded;
+
 		Task SetRadiostationAsync(WindowsRadiostation radiostation);
 		void SetVolume(Double volume);
 		void Play();

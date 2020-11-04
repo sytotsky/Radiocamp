@@ -5,6 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			 xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:PlayerViewModel}"
 			 Height="70"
@@ -36,9 +37,37 @@
 					   Foreground="{DynamicResource MainFg}"
 					   Text="{Binding Title, Mode=OneWay}"/>
 
-			<controls:TextButton HorizontalAlignment="Left"
-			                     Command="{Binding SearchSongCommand}"
-			                     Content="{Binding SongName, Mode=OneWay}"/>
+			<Grid>
+
+				<controls:TextButton HorizontalAlignment="Left"
+				                     Visibility="{Binding SongNameVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityHiddenConverter}}"
+				                     Command="{Binding SearchSongCommand}"
+				                     Content="{Binding SongName, Mode=OneWay}"/>
+
+				<TextBlock Visibility="{Binding ConnectionLableVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityHiddenConverter}}"
+				           Foreground="{DynamicResource DimFg}"
+				           FontSize="14"
+				           Text="{DynamicResource Connecting}"/>
+
+				<StackPanel Orientation="Horizontal"
+				            Visibility="{Binding BufferingProgressLabelVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityHiddenConverter}}">
+
+					<TextBlock Margin="0 0 3 0"
+					           Foreground="{DynamicResource DimFg}"
+					           FontSize="14"
+					           Text="{DynamicResource Buffering}"/>
+
+					<TextBlock Foreground="{DynamicResource DimFg}"
+					           FontSize="14"
+					           Text="{Binding BufferingProgress, Mode=OneWay}"/>
+
+					<TextBlock Foreground="{DynamicResource DimFg}"
+					           FontSize="14"
+					           Text="%"/>
+
+				</StackPanel>
+
+			</Grid>
 
 			<controls:FormatBitrate Format="{Binding Format, Mode=OneWay}"
 			                        Bitrate="{Binding Bitrate, Mode=OneWay}"/>
