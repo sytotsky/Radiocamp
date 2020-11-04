@@ -16,6 +16,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly IRadioEngine radioEngine;
 
 		private WindowsRadiostation radiostation;
+		private Double volumeBeforeMute;
+		private Boolean isMuted;
 
 		public ISubject<WindowsRadiostation> RadiostationSubject { get; }
 		public ISubject<Double> VolumeSubject { get; }
@@ -35,6 +37,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
 			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
+			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
 
 		}
 
@@ -64,6 +67,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			VolumeSubject.OnNext(volume);
 
+			isMuted = volume == 0;
 			radioEngine.Volume = volume;
 			settings.Volume = volume;
 
@@ -71,7 +75,10 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public void Play()
 		{
-			radioEngine.Play();
+			if (radiostation != null)
+			{
+				radioEngine.Play();
+			}
 		}
 
 		public void VolumeUp()
@@ -100,6 +107,36 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			SetVolume(newVolume);
 
+		}
+
+		private void Mute()
+		{
+
+			volumeBeforeMute = radioEngine.Volume;
+
+			SetVolume(0);
+
+		}
+
+		private void Unmute()
+		{
+			
+			SetVolume(volumeBeforeMute == 0 ? 50 : volumeBeforeMute);
+
+			volumeBeforeMute = 0;
+
+		}
+
+		private void MuteUnmute()
+		{
+			if (isMuted)
+			{
+				Unmute();
+			}
+			else
+			{
+				Mute();
+			}
 		}
 
 	}

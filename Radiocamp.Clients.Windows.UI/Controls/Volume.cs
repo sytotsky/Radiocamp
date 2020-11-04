@@ -138,14 +138,8 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 		{
 			if (IsMuted)
 			{
-				
-				if (volumeBeforeMute == 0)
-				{
-					volumeBeforeMute = 50;
-				}
-
-				Value = volumeBeforeMute;
-
+				Value = volumeBeforeMute == 0 ? 50 : volumeBeforeMute;
+				volumeBeforeMute = 0;
 			}
 			else
 			{
