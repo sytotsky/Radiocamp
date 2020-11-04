@@ -52,6 +52,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
+		public ReactiveCommand<Unit, Unit> MuteCommand { get; }
+		public ReactiveCommand<Unit, Unit> UnmuteCommand { get; }
 
 		public PlayerViewModel(IBrowser browser, ISettings settings, IPlayer player)
 		{
@@ -67,6 +69,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			SearchSongCommand = ReactiveCommand.Create(SearchSong);
 			AudioSettingsCommand = ReactiveCommand.CreateFromTask(AudioSettingsAsync);
 			PlaybackHistoryCommand = ReactiveCommand.CreateFromTask(PlaybackHistoryAsync);
+			MuteCommand = ReactiveCommand.Create(player.Mute);
+			UnmuteCommand = ReactiveCommand.Create(player.Unmute);
 
 			this.WhenAnyValue(viewModel => viewModel.Volume)
 				.Skip(1)

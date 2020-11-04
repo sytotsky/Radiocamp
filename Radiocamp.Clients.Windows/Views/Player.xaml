@@ -48,6 +48,8 @@
 		<controls:Volume Grid.Column="1"
 		                 Margin="0 -84 -3 0"
 						 VerticalAlignment="Center"
+						 MuteCommand="{Binding MuteCommand}"
+						 UnmuteCommand="{Binding UnmuteCommand}"
 						 Step="{Binding VolumeStep, Mode=OneWay}"
 		                 Value="{Binding Volume, Mode=TwoWay}"/>
 

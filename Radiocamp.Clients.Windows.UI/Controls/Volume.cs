@@ -26,7 +26,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 		public Boolean IsMuted
 		{
 			get => (Boolean) GetValue(IsMutedProperty);
-			set => SetValue(IsMutedProperty, value);
+			private set => SetValue(IsMutedProperty, value);
 		}
 
 		public static readonly DependencyProperty StepProperty = DependencyProperty.Register(nameof(Step), typeof(Int32), typeof(UserControl), new PropertyMetadata(4));
@@ -51,6 +51,22 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 		{
 			get => (Boolean) GetValue(IsValueModeProperty);
 			private set => SetValue(IsValueModeProperty, value);
+		}
+
+		public static readonly DependencyProperty MuteCommandProperty = DependencyProperty.Register(nameof(MuteCommand), typeof(ICommand), typeof(Volume), new PropertyMetadata(default(ICommand)));
+
+		public ICommand MuteCommand
+		{
+			get => (ICommand) GetValue(MuteCommandProperty);
+			set => SetValue(MuteCommandProperty, value);
+		}
+
+		public static readonly DependencyProperty UnmuteCommandProperty = DependencyProperty.Register(nameof(UnmuteCommand), typeof(ICommand), typeof(Volume), new PropertyMetadata(default(ICommand)));
+
+		public ICommand UnmuteCommand
+		{
+			get => (ICommand) GetValue(UnmuteCommandProperty);
+			set => SetValue(UnmuteCommandProperty, value);
 		}
 
 		public override void OnApplyTemplate()
@@ -138,13 +154,11 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 		{
 			if (IsMuted)
 			{
-				Value = volumeBeforeMute == 0 ? 50 : volumeBeforeMute;
-				volumeBeforeMute = 0;
+				UnmuteCommand?.Execute(null);
 			}
 			else
 			{
-				volumeBeforeMute = Value;
-				Value = 0;
+				MuteCommand?.Execute(null);
 			}
 		}
 

@@ -133,7 +133,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
-		private void Mute()
+		public void Mute()
 		{
 
 			volumeBeforeMute = radioEngine.Volume;
@@ -142,7 +142,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
-		private void Unmute()
+		public void Unmute()
 		{
 			
 			SetVolume(volumeBeforeMute == 0 ? 50 : volumeBeforeMute);

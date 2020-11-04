@@ -23,6 +23,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		void PlayPause();
 		void VolumeUp();
 		void VolumeDown();
+		void Mute();
+		void Unmute();
 
 	}
 }
