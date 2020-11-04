@@ -53,7 +53,7 @@
 
 							<MultiTrigger.Conditions>
 								<Condition Property="IsMouseOver" Value="False"/>
-								<Condition Property="IsRecord" Value="True"/>
+								<Condition Property="IsRecording" Value="True"/>
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
@@ -67,7 +67,7 @@
 
 							<MultiTrigger.Conditions>
 								<Condition Property="IsMouseOver" Value="True"/>
-								<Condition Property="IsRecord" Value="True"/>
+								<Condition Property="IsRecording" Value="True"/>
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
@@ -116,7 +116,7 @@
 
 							<MultiTrigger.Conditions>
 								<Condition Property="IsMouseOver" Value="False"/>
-								<Condition Property="IsRecord" Value="True"/>
+								<Condition Property="IsRecording" Value="True"/>
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>
@@ -129,7 +129,7 @@
 
 							<MultiTrigger.Conditions>
 								<Condition Property="IsMouseOver" Value="True"/>
-								<Condition Property="IsRecord" Value="True"/>
+								<Condition Property="IsRecording" Value="True"/>
 							</MultiTrigger.Conditions>
 
 							<MultiTrigger.Setters>

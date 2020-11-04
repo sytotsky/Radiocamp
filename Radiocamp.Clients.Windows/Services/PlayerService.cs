@@ -22,6 +22,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public ISubject<WindowsRadiostation> RadiostationSubject { get; }
 		public ISubject<Double> VolumeSubject { get; }
 		public ISubject<IMetadata> MetadataSubject { get; }
+		public ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
+		public ISubject<RecordingStatus> RecordingStatusSubject { get; }
 
 		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
@@ -31,13 +33,18 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			RadiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
 			VolumeSubject = new BehaviorSubject<Double>(50.0d);
 			MetadataSubject = new BehaviorSubject<IMetadata>(null);
+			PlaybackStatusSubject = new BehaviorSubject<PlaybackStatus>(PlaybackStatus.Pause);
+			RecordingStatusSubject = new BehaviorSubject<RecordingStatus>(RecordingStatus.Stop);
 
 			SetVolume(settings.Volume);
 
 			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
+			radioEngine.PlaybackStatusChanged += playbackStatus => PlaybackStatusSubject.OnNext(playbackStatus);
+			radioEngine.RecordingStatusChanged += recordStatus => RecordingStatusSubject.OnNext(recordStatus);
 			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
+			hotkeys.PlayPauseHotkeyPressed += PlayPause;
 
 		}
 
@@ -78,6 +85,23 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			if (radiostation != null)
 			{
 				radioEngine.Play();
+			}
+		}
+
+		public void Pause()
+		{
+			if (radiostation != null)
+			{
+				radioEngine.Pause();
+			}
+		}
+
+		public void PlayPause()
+		{
+			switch (radioEngine.PlaybackStatus)
+			{
+				case PlaybackStatus.Play: Pause(); break;
+				case PlaybackStatus.Pause: Play(); break;
 			}
 		}
 

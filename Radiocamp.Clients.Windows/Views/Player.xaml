@@ -58,10 +58,12 @@
 
 			<controls:RecordButton Margin="0 0 -9 0"
 			                       VerticalAlignment="Center"
-			                       IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"/>
+			                       IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"
+			                       IsRecording="{Binding IsRecording, Mode=TwoWay}"/>
 
 			<controls:PlayPauseButton VerticalAlignment="Center"
-			                          IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"/>
+			                          IsEnabled="{Binding ControlsIsEnabled, Mode=OneWay}"
+			                          IsPlay="{Binding IsPlay, Mode=TwoWay}"/>
 
 		</StackPanel>
 

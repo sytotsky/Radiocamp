@@ -7,12 +7,12 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 	public sealed class RecordButton : Button
 	{
 
-		public static readonly DependencyProperty IsRecordProperty = DependencyProperty.Register(nameof(IsRecord), typeof(Boolean), typeof(RecordButton), new PropertyMetadata(default(Boolean)));
+		public static readonly DependencyProperty IsRecordingProperty = DependencyProperty.Register(nameof(IsRecording), typeof(Boolean), typeof(RecordButton), new PropertyMetadata(default(Boolean)));
 
-		public Boolean IsRecord
+		public Boolean IsRecording
 		{
-			get => (Boolean) GetValue(IsRecordProperty);
-			set => SetValue(IsRecordProperty, value);
+			get => (Boolean) GetValue(IsRecordingProperty);
+			set => SetValue(IsRecordingProperty, value);
 		}
 
 		protected override void OnClick()
@@ -20,7 +20,7 @@ namespace Dartware.Radiocamp.Clients.Windows.UI.Controls
 			
 			base.OnClick();
 
-			IsRecord = !IsRecord;
+			IsRecording = !IsRecording;
 
 		}
 

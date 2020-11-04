@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Dartware.NRadio;
 using Dartware.NRadio.Meta;
 using Dartware.Radiocamp.Clients.Shared.Services;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
@@ -42,6 +43,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean ControlsIsEnabled { get; private set; }
 
+		[Reactive]
+		public Boolean IsPlay { get; set; }
+
+		[Reactive]
+		public Boolean IsRecording { get; set; }
+
 		public ReactiveCommand<Unit, Unit> SearchSongCommand { get; }
 		public ReactiveCommand<Unit, Unit> AudioSettingsCommand { get; }
 		public ReactiveCommand<Unit, Unit> PlaybackHistoryCommand { get; }
@@ -65,6 +72,20 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				.Skip(1)
 				.Subscribe(volume => this.player.SetVolume(volume));
 
+			this.WhenAnyValue(viewModel => viewModel.IsPlay)
+				.Skip(1)
+				.Subscribe(isPlay =>
+				{
+					if (isPlay)
+					{
+						player.Play();
+					}
+					else
+					{
+						player.Pause();
+					}
+				});
+
 			this.player.VolumeSubject.DistinctUntilChanged()
 									 .Subscribe(volume => Volume = volume);
 
@@ -74,6 +95,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			this.player.MetadataSubject.Where(metadata => metadata != null)
 									   .Subscribe(OnNewMetadata);
+
+			this.player.PlaybackStatusSubject.Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
 
 		}
 
