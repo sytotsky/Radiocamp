@@ -85,37 +85,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			MuteCommand = ReactiveCommand.Create(player.Mute);
 			UnmuteCommand = ReactiveCommand.Create(player.Unmute);
 
-			player.ConnectionStarted += () =>
-			{
-				
-				HideSongNameConnectionAndBufferingLabels();
-
-				ConnectionLableVisible = true;
-
-			};
-
-			player.ConnectionEnded += HideSongNameConnectionAndBufferingLabels;
-
-			player.BufferingStarted += () =>
-			{
-
-				HideSongNameConnectionAndBufferingLabels();
-
-				BufferingProgressLabelVisible = true;
-
-			};
-
-			player.BufferingProgressChanged += bufferingProgress => BufferingProgress = bufferingProgress;
-
-			player.BufferingEnded += () =>
-			{
-				
-				HideSongNameConnectionAndBufferingLabels();
-
-				SongNameVisible = true;
-
-			};
-
 			this.WhenAnyValue(viewModel => viewModel.Volume)
 				.Skip(1)
 				.Subscribe(volume => this.player.SetVolume(volume));
@@ -146,6 +115,12 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			this.player.PlaybackStatusSubject.DistinctUntilChanged()
 											 .Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
+
+			this.player.ConnectionStateSubject.DistinctUntilChanged()
+											  .Subscribe(OnConnectionStateChanged);
+
+			this.player.BufferingProgressSubject.DistinctUntilChanged()
+												.Subscribe(bufferingProgress => BufferingProgress = bufferingProgress);
 
 		}
 
@@ -188,11 +163,20 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			Bitrate = metadata.Bitrate;
 		}
 
-		private void HideSongNameConnectionAndBufferingLabels()
+		private void OnConnectionStateChanged(ConnectionState connectionState)
 		{
+
 			SongNameVisible = false;
 			ConnectionLableVisible = false;
 			BufferingProgressLabelVisible = false;
+
+			switch (connectionState)
+			{
+				case ConnectionState.None: SongNameVisible = true; break;
+				case ConnectionState.Connection: ConnectionLableVisible = true; break;
+				case ConnectionState.Buffering: BufferingProgressLabelVisible = true; break;
+			}
+
 		}
 
 	}

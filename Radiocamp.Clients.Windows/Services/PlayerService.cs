@@ -24,12 +24,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public ISubject<IMetadata> MetadataSubject { get; }
 		public ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
 		public ISubject<RecordingStatus> RecordingStatusSubject { get; }
-
-		public event Action ConnectionStarted;
-		public event Action ConnectionEnded;
-		public event Action BufferingStarted;
-		public event Action<Int64> BufferingProgressChanged;
-		public event Action BufferingEnded;
+		public ISubject<ConnectionState> ConnectionStateSubject { get; }
+		public ISubject<Int64> BufferingProgressSubject { get; }
 
 		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
@@ -41,17 +37,16 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			MetadataSubject = new BehaviorSubject<IMetadata>(null);
 			PlaybackStatusSubject = new BehaviorSubject<PlaybackStatus>(PlaybackStatus.Pause);
 			RecordingStatusSubject = new BehaviorSubject<RecordingStatus>(RecordingStatus.Stop);
+			ConnectionStateSubject = new BehaviorSubject<ConnectionState>(ConnectionState.None);
+			BufferingProgressSubject = new BehaviorSubject<Int64>(0);
 
 			SetVolume(settings.Volume);
 
 			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
 			radioEngine.PlaybackStatusChanged += playbackStatus => PlaybackStatusSubject.OnNext(playbackStatus);
 			radioEngine.RecordingStatusChanged += recordStatus => RecordingStatusSubject.OnNext(recordStatus);
-			radioEngine.ConnectionStarted += () => ConnectionStarted?.Invoke();
-			radioEngine.ConnectionEnded += () => ConnectionEnded?.Invoke();
-			radioEngine.BufferingStarted += () => BufferingStarted?.Invoke();
-			radioEngine.BufferingEnded += () => BufferingEnded?.Invoke();
-			radioEngine.BufferingProgressChanged += bufferingProgress => BufferingProgressChanged?.Invoke(bufferingProgress);
+			radioEngine.ConnectionStateChanged += connectionState => ConnectionStateSubject.OnNext(connectionState);
+			radioEngine.BufferingProgressChanged += bufferingProgress => BufferingProgressSubject.OnNext(bufferingProgress);
 			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
