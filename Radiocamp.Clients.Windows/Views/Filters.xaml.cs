@@ -14,7 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 			if (!DesignerProperties.GetIsInDesignMode(this))
 			{
-				DataContext = Dependencies.Get<FiltersViewModel>();
+				DataContext = Dependencies.Get<RadiostationsListViewModel>();
 			}
 
 		}
