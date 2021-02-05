@@ -103,23 +103,23 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 					}
 				});
 
-			this.player.VolumeSubject.DistinctUntilChanged()
+			this.player.Volume.DistinctUntilChanged()
 									 .Subscribe(volume => Volume = volume);
 
-			this.player.RadiostationSubject.Do(radiostation => ControlsIsEnabled = radiostation != null)
+			this.player.Radiostation.Do(radiostation => ControlsIsEnabled = radiostation != null)
 										   .Where(radiostation => radiostation != null)
 										   .Subscribe(OnNewRadiostation);
 
-			this.player.MetadataSubject.Where(metadata => metadata != null)
+			this.player.Metadata.Where(metadata => metadata != null)
 									   .Subscribe(OnNewMetadata);
 
-			this.player.PlaybackStatusSubject.DistinctUntilChanged()
+			this.player.PlaybackStatus.DistinctUntilChanged()
 											 .Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
 
-			this.player.ConnectionStateSubject.DistinctUntilChanged()
+			this.player.ConnectionState.DistinctUntilChanged()
 											  .Subscribe(OnConnectionStateChanged);
 
-			this.player.BufferingProgressSubject.DistinctUntilChanged()
+			this.player.BufferingProgress.DistinctUntilChanged()
 												.Subscribe(bufferingProgress => BufferingProgress = bufferingProgress);
 
 		}

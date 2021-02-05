@@ -15,38 +15,46 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly ISettings settings;
 		private readonly IRadioEngine radioEngine;
 
+		private readonly ISubject<WindowsRadiostation> radiostationSubject;
+		private readonly ISubject<Double> volumeSubject;
+		private readonly ISubject<IMetadata> metadataSubject;
+		private readonly ISubject<PlaybackStatus> playbackStatusSubject;
+		private readonly ISubject<RecordingStatus> recordingStatusSubject;
+		private readonly ISubject<ConnectionState> connectionStateSubject;
+		private readonly ISubject<Int64> bufferingProgressSubject;
+
 		private WindowsRadiostation radiostation;
 		private Double volumeBeforeMute;
 		private Boolean isMuted;
 
-		public ISubject<WindowsRadiostation> RadiostationSubject { get; }
-		public ISubject<Double> VolumeSubject { get; }
-		public ISubject<IMetadata> MetadataSubject { get; }
-		public ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
-		public ISubject<RecordingStatus> RecordingStatusSubject { get; }
-		public ISubject<ConnectionState> ConnectionStateSubject { get; }
-		public ISubject<Int64> BufferingProgressSubject { get; }
+		public IObservable<WindowsRadiostation> Radiostation => radiostationSubject;
+		public IObservable<Double> Volume => volumeSubject;
+		public IObservable<IMetadata> Metadata => metadataSubject;
+		public IObservable<PlaybackStatus> PlaybackStatus => playbackStatusSubject;
+		public IObservable<RecordingStatus> RecordingStatus => recordingStatusSubject;
+		public IObservable<ConnectionState> ConnectionState => connectionStateSubject;
+		public IObservable<Int64> BufferingProgress => bufferingProgressSubject;
 
 		public PlayerService(ISettings settings, IHotkeys hotkeys)
 		{
 
 			this.settings = settings;
 			radioEngine = RadioEngineFactory.Default;
-			RadiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
-			VolumeSubject = new BehaviorSubject<Double>(50.0d);
-			MetadataSubject = new BehaviorSubject<IMetadata>(null);
-			PlaybackStatusSubject = new BehaviorSubject<PlaybackStatus>(PlaybackStatus.Pause);
-			RecordingStatusSubject = new BehaviorSubject<RecordingStatus>(RecordingStatus.Stop);
-			ConnectionStateSubject = new BehaviorSubject<ConnectionState>(ConnectionState.None);
-			BufferingProgressSubject = new BehaviorSubject<Int64>(0);
+			radiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
+			volumeSubject = new BehaviorSubject<Double>(50.0d);
+			metadataSubject = new BehaviorSubject<IMetadata>(null);
+			playbackStatusSubject = new BehaviorSubject<PlaybackStatus>(NRadio.PlaybackStatus.Pause);
+			recordingStatusSubject = new BehaviorSubject<RecordingStatus>(NRadio.RecordingStatus.Stop);
+			connectionStateSubject = new BehaviorSubject<ConnectionState>(NRadio.ConnectionState.None);
+			bufferingProgressSubject = new BehaviorSubject<Int64>(0);
 
 			SetVolume(settings.Volume);
 
-			radioEngine.MetadataChanged += metadata => MetadataSubject.OnNext(metadata);
-			radioEngine.PlaybackStatusChanged += playbackStatus => PlaybackStatusSubject.OnNext(playbackStatus);
-			radioEngine.RecordingStatusChanged += recordStatus => RecordingStatusSubject.OnNext(recordStatus);
-			radioEngine.ConnectionStateChanged += connectionState => ConnectionStateSubject.OnNext(connectionState);
-			radioEngine.BufferingProgressChanged += bufferingProgress => BufferingProgressSubject.OnNext(bufferingProgress);
+			radioEngine.MetadataChanged += metadata => metadataSubject.OnNext(metadata);
+			radioEngine.PlaybackStatusChanged += playbackStatus => playbackStatusSubject.OnNext(playbackStatus);
+			radioEngine.RecordingStatusChanged += recordStatus => recordingStatusSubject.OnNext(recordStatus);
+			radioEngine.ConnectionStateChanged += connectionState => connectionStateSubject.OnNext(connectionState);
+			radioEngine.BufferingProgressChanged += bufferingProgress => bufferingProgressSubject.OnNext(bufferingProgress);
 			hotkeys.VolumeUpHotkeyPressed += VolumeUp;
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
@@ -57,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public async Task SetRadiostationAsync(WindowsRadiostation radiostation)
 		{
 
-			RadiostationSubject.OnNext(radiostation);
+			radiostationSubject.OnNext(radiostation);
 
 			if (radiostation == null)
 			{
@@ -78,7 +86,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public void SetVolume(Double volume)
 		{
 
-			VolumeSubject.OnNext(volume);
+			volumeSubject.OnNext(volume);
 
 			isMuted = volume == 0;
 			radioEngine.Volume = volume;
@@ -106,8 +114,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		{
 			switch (radioEngine.PlaybackStatus)
 			{
-				case PlaybackStatus.Play: Pause(); break;
-				case PlaybackStatus.Pause: Play(); break;
+				case NRadio.PlaybackStatus.Play: Pause(); break;
+				case NRadio.PlaybackStatus.Pause: Play(); break;
 			}
 		}
 

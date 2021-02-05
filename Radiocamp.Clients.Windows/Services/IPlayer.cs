@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using Dartware.NRadio;
 using Dartware.NRadio.Meta;
@@ -10,13 +9,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	public interface IPlayer
 	{
 
-		ISubject<WindowsRadiostation> RadiostationSubject { get; }
-		ISubject<Double> VolumeSubject { get; }
-		ISubject<IMetadata> MetadataSubject { get; }
-		ISubject<PlaybackStatus> PlaybackStatusSubject { get; }
-		ISubject<RecordingStatus> RecordingStatusSubject { get; }
-		ISubject<ConnectionState> ConnectionStateSubject { get; }
-		ISubject<Int64> BufferingProgressSubject { get; }
+		IObservable<WindowsRadiostation> Radiostation { get; }
+		IObservable<Double> Volume { get; }
+		IObservable<IMetadata> Metadata { get; }
+		IObservable<PlaybackStatus> PlaybackStatus { get; }
+		IObservable<RecordingStatus> RecordingStatus { get; }
+		IObservable<ConnectionState> ConnectionState { get; }
+		IObservable<Int64> BufferingProgress { get; }
 
 		Task SetRadiostationAsync(WindowsRadiostation radiostation);
 		void SetVolume(Double volume);
