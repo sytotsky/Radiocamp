@@ -17,9 +17,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public String IconSource { get; set; }
 
-		public ReactiveCommand<Unit, Unit> OpenCommand { get; private set; }
-		public ReactiveCommand<Unit, Unit> QuitCommand { get; private set; }
-		public ReactiveCommand<Unit, Unit> ToggleMainWindowCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> OpenCommand { get; }
+		public ReactiveCommand<Unit, Unit> QuitCommand { get; }
+		public ReactiveCommand<Unit, Unit> ToggleMainWindowCommand { get; }
 
 		public TaskbarIconViewModel(ISettings settings, IMainWindow mainWindow, IApplication application)
 		{

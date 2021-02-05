@@ -3,6 +3,7 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="TextBoxes/RegularTextBox.xaml"/>
 		<ResourceDictionary Source="TextBoxes/DialogSearchBox.xaml"/>
+		<ResourceDictionary Source="TextBoxes/RegularSearchBox.xaml"/>
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

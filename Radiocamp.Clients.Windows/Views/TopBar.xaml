@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
              xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
              mc:Ignorable="d"
              Padding="0 10">
     
@@ -18,11 +19,14 @@
 		<controls:IconButton x:Name="NavigationDrawerToggleButton"
 		                     Grid.Column="0"
 		                     VerticalAlignment="Stretch"
-		                     Padding="16 0"
+		                     Padding="16 0 12 0"
 		                     d:DataContext="{d:DesignInstance vm:NavigationDrawerViewModel}"
 		                     FontSize="24"
 		                     Command="{Binding ToggleCommand}"
 		                     Content="{StaticResource MenuIcon}"/>
+
+		<views:Filters Grid.Column="1"
+		               Margin="0 0 18 0"/>
 
 	</Grid>
 
