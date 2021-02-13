@@ -24,7 +24,7 @@
 		         BorderThickness="0"
 		         Padding="0"
 		         SelectionMode="Single"
-		         ItemsSource="{Binding RadiostationsItems, Mode=OneWay, IsAsync=True}"
+		         ItemsSource="{Binding Items, Mode=OneWay, IsAsync=True}"
 		         Focusable="False">
 
 			<ListBox.Resources>

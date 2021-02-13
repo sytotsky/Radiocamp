@@ -15,6 +15,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		private Boolean showFavoritesAtStart;
 		private Boolean showOnlyCustomAtStart;
 		private SearchEngine searchEngine;
+		private Boolean showOnlyFavorites;
 
 #pragma warning restore 0649
 
@@ -62,6 +63,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public SearchEngine SearchEngine
 		{
 			get => searchEngine;
+			set => SetValue(value);
+		}
+		
+		[Field(nameof(showOnlyFavorites))]
+		public Boolean ShowOnlyFavorites
+		{
+			get => showOnlyFavorites;
 			set => SetValue(value);
 		}
 

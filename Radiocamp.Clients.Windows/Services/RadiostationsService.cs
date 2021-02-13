@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DynamicData;
 using Dartware.Radiocamp.Clients.Windows.Database;
-using Dartware.Radiocamp.Clients.Windows.Dialogs;
-using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 
@@ -15,15 +13,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly DatabaseContext databaseContext;
-		private readonly IDialogs dialogs;
 
 		private ISourceCache<WindowsRadiostation, Guid> all;
 		private Boolean isInitialized;
 
-		public RadiostationsService(DatabaseContext databaseContext, IDialogs dialogs)
+		public RadiostationsService(DatabaseContext databaseContext)
 		{
 			this.databaseContext = databaseContext;
-			this.dialogs = dialogs;
 		}
 
 		public async Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync()
@@ -46,25 +42,44 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public WindowsRadiostation Get(Guid id) => all?.Items.FirstOrDefault(radiostation => radiostation.Id.Equals(id));
 
-		public async Task CreateAsync()
+		public async Task CreateAsync(WindowsRadiostation radiostation)
 		{
 
-			RadiostationEditorArgs radiostationEditorArgs = new RadiostationEditorArgs(null)
+			if (radiostation == null)
 			{
-				Mode = RadiostationEditorMode.Create
-			};
+				return;
+			}
 
-			WindowsRadiostation radiostation = await dialogs.Show<WindowsRadiostation, RadiostationEditorDialog, RadiostationEditorDialogViewModel>(radiostationEditorArgs);
+			radiostation.Id = Guid.NewGuid();
+			radiostation.IsCustom = true;
+			radiostation.DateOfCreation = DateTime.Now;
 
-			if (radiostation != null)
+			all.AddOrUpdate(radiostation);
+			await databaseContext.Radiostations.AddAsync(radiostation);
+			await databaseContext.SaveChangesAsync();
+
+		}
+
+		public async Task UpdateAsync(WindowsRadiostation radiostation)
+		{
+
+			if (radiostation == null)
 			{
+				return;
+			}
 
-				radiostation.Id = Guid.NewGuid();
-				radiostation.IsCustom = true;
-				radiostation.DateOfCreation = DateTime.Now;
+			if (radiostation.Id == Guid.Empty)
+			{
+				await CreateAsync(radiostation);
+			}
+			else
+			{
 
 				all.AddOrUpdate(radiostation);
-				await databaseContext.Radiostations.AddAsync(radiostation);
+
+				databaseContext.Entry(radiostation).State = EntityState.Modified;
+
+				databaseContext.Radiostations.Update(radiostation);
 				await databaseContext.SaveChangesAsync();
 
 			}

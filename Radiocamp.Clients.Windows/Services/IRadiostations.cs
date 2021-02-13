@@ -10,7 +10,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 		Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync();
 		WindowsRadiostation Get(Guid id);
-		Task CreateAsync();
+		Task CreateAsync(WindowsRadiostation radiostation);
+		Task UpdateAsync(WindowsRadiostation radiostation);
 		Task ClearAsync();
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);

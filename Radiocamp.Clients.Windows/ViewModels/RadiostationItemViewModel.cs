@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Dartware.Radiocamp.Clients.Windows.Core;
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
-using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.Services;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -35,15 +38,37 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public RadiostationItemViewModel(Guid id)
 		{
+			
 			this.id = id;
 			player = Dependencies.Get<IPlayer>();
 			radiostations = Dependencies.Get<IRadiostations>();
+
+			this.WhenAnyValue(viewModel => viewModel.IsFavorite)
+				.Skip(1)
+				.Subscribe(OnIsFavoriteChanged);
+
 		}
 
 		public async Task Click()
 		{
 			await player.SetRadiostationAsync(radiostations.Get(id));
 			player.Play();
+		}
+
+		private async void OnIsFavoriteChanged(Boolean isFavorite)
+		{
+
+			WindowsRadiostation radiostation = radiostations.Get(id);
+
+			if (radiostation != null)
+			{
+				
+				radiostation.IsFavorite = isFavorite;
+
+				await radiostations.UpdateAsync(radiostation);
+
+			}
+
 		}
 
 	}

@@ -14,7 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.9");
+                .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("Dartware.Radiocamp.Clients.Windows.Core.Models.WindowsRadiostation", b =>
                 {
@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f83fffd9-a1f8-499e-9a66-1f2d80bcb4cb"),
+                            Id = new Guid("8798db76-1377-4334-ade9-f5d63fd0311d"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -89,7 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d884a1dc-fa68-4cdc-848d-d641c99554f5"),
+                            Id = new Guid("d08d65ba-e65f-44ac-9915-0faa6054d8e7"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -97,7 +97,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c3ebb27f-098f-4908-841a-3d5de2d7b124"),
+                            Id = new Guid("119aee2b-4bd6-4c23-8cf0-bd4f05b4c909"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -105,7 +105,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6bc66ad2-793f-4d15-892f-af385f09a3fa"),
+                            Id = new Guid("a80438a1-a2ea-4118-abe1-25b2b700fbd1"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -113,7 +113,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("49888dfa-c7be-46b6-8df4-d712f6ac7736"),
+                            Id = new Guid("aaa6ba5e-2513-4ab3-8936-9646d8dc4cb6"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -121,7 +121,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("af12d4ac-cb18-4a08-8844-69c001daa30e"),
+                            Id = new Guid("61936faa-7b81-4b6f-a480-59ae92dfa5c0"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -219,6 +219,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<bool>("ShowOnlyCustomAtStart")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("ShowOnlyFavorites")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("StartMinimized")
                         .HasColumnType("INTEGER");
 
@@ -235,7 +238,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a9ae53f5-8500-42ae-8380-f56c90ec3cc0"),
+                            Id = new Guid("e0fbe53f-8903-48e4-8a26-b31ca30c8d6d"),
                             AlwaysShowTrayIcon = true,
                             ExportRadiostationsAll = true,
                             ExportRadiostationsCustomOnly = false,
@@ -263,6 +266,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                             SearchEngine = 0,
                             ShowFavoritesAtStart = false,
                             ShowOnlyCustomAtStart = false,
+                            ShowOnlyFavorites = false,
                             StartMinimized = false,
                             Volume = 50.0,
                             VolumeStep = 4

@@ -25,6 +25,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Boolean ShowFavoritesAtStart { get; set; }
 		public Boolean ShowOnlyCustomAtStart { get; set; }
 		public SearchEngine SearchEngine { get; set; }
+		public Boolean ShowOnlyFavorites { get; set; }
 
 		// Export radiostations
 

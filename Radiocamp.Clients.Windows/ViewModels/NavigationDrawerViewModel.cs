@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Clients.Windows.Core;
+using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
@@ -69,7 +70,16 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task Create()
 		{
-			await radiostations.CreateAsync();
+
+			RadiostationEditorArgs radiostationEditorArgs = new RadiostationEditorArgs(null)
+			{
+				Mode = RadiostationEditorMode.Create
+			};
+
+			WindowsRadiostation radiostation = await dialogs.Show<WindowsRadiostation, RadiostationEditorDialog, RadiostationEditorDialogViewModel>(radiostationEditorArgs);
+
+			await radiostations.CreateAsync(radiostation);
+
 		}
 
 		private async Task Settings()
