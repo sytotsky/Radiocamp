@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reactive.Disposables;
-using Dartware.Radiocamp.Core;
 using ReactiveUI;
+using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.Core.MVVM
 {

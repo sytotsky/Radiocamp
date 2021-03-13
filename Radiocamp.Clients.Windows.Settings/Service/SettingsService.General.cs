@@ -16,6 +16,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		private Boolean showOnlyCustomAtStart;
 		private SearchEngine searchEngine;
 		private Boolean showOnlyFavorites;
+		private SortingType sortingType;
 
 #pragma warning restore 0649
 
@@ -70,6 +71,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		public Boolean ShowOnlyFavorites
 		{
 			get => showOnlyFavorites;
+			set => SetValue(value);
+		}
+		
+		[Field(nameof(sortingType))]
+		public SortingType SortingType
+		{
+			get => sortingType;
 			set => SetValue(value);
 		}
 

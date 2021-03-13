@@ -38,6 +38,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		Boolean ShowOnlyCustomAtStart { get; set; }
 		SearchEngine SearchEngine { get; set; }
 		Boolean ShowOnlyFavorites { get; set; }
+		public SortingType SortingType { get; set; }
 
 		// Export radiostations
 

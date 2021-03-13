@@ -36,6 +36,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsCustom { get; set; }
 
+		[Reactive]
+		public Boolean IsPinned { get; set; }
+
 		public RadiostationItemViewModel(Guid id)
 		{
 			
