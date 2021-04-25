@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Reactive.Disposables;
 using System.Windows;
 using System.Windows.Input;
-using DynamicData.Binding;
-using Dartware.Radiocamp.Core;
 using Dartware.Radiocamp.Clients.Windows.Windows;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;

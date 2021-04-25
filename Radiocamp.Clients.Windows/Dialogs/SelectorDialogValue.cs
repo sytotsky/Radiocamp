@@ -6,7 +6,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 
 	public abstract class SelectorDialogValue : AbstractNotifyPropertyChanged
 	{
+		
+		public abstract Boolean IsCurrent { get; set; }
+		
 		public abstract void Select();
+		
 	}
 
 	public sealed class SelectorDialogValue<SelectorType> : SelectorDialogValue where SelectorType : struct, IConvertible
@@ -23,7 +27,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			set => SetAndRaise(ref this.value, value);
 		}
 
-		public Boolean IsCurrent
+		public override Boolean IsCurrent
 		{
 			get => isCurrent;
 			set => SetAndRaise(ref isCurrent, value);

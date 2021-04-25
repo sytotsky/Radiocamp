@@ -43,12 +43,13 @@
 							</Grid>
 
 							<controls:DialogSearchBox x:Name="Search"
-							                       Grid.Row="1"
-												   Visibility="{Binding Search, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
-							                       Placeholder="{DynamicResource Search}"
-							                       Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+							                          Grid.Row="1"
+							                          Visibility="{Binding Search, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+							                          Placeholder="{DynamicResource Search}"
+							                          Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-							<ListBox Grid.Row="2"
+							<ListBox x:Name="MainListBox"
+							         Grid.Row="2"
 							         Margin="0 0 0 20"
 									 HorizontalContentAlignment="Stretch"
 									 ScrollViewer.VerticalScrollBarVisibility="Visible"

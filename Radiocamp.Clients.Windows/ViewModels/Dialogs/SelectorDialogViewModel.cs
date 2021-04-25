@@ -53,7 +53,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		public override void Initialize()
 		{
-			
+
 			base.Initialize();
 
 			list = new SourceCache<SelectorDialogValue<SelectorType>, SelectorType>(value => value.Value);
@@ -104,7 +104,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			IEnumerable<SelectorType> values = Enum.GetValues(type) as IEnumerable<SelectorType>;
 
-			list.AddOrUpdate(values.Select(value =>
+			list.AddOrUpdate((values ?? Array.Empty<SelectorType>()).Select(value =>
 			{
 
 				String localizationResourceKey = value.ToLocalizationResourceKey();
@@ -122,8 +122,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			}));
 
-			IObservable<Func<SelectorDialogValue<SelectorType>, Boolean>> searchFilter = this.WhenValueChanged(viewModel => viewModel.SearchQuery, true)
-																					   .Select(BuildSearcher);
+			IObservable<Func<SelectorDialogValue<SelectorType>, Boolean>> searchFilter = this.WhenValueChanged(viewModel => viewModel.SearchQuery)
+																							 .Select(BuildSearcher);
 
 			IDisposable listSubscription = list.Connect()
 											   .NotEmpty()
@@ -176,7 +176,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (String.IsNullOrEmpty(searchQuery))
 			{
-				return selectorValue => true;
+				return _ => true;
 			}
 
 			return selectorValue =>
