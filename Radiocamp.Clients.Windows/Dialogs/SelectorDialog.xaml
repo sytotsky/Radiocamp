@@ -4,12 +4,10 @@
 				xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 				xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 				xmlns:dialogs="clr-namespace:Dartware.Radiocamp.Clients.Windows.Dialogs"
-				xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 				xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
 				xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 				xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
-				mc:Ignorable="d"
-				d:DataContext="{d:DesignInstance vm:SelectorDialogViewModel}">
+				mc:Ignorable="d">
 
 	<dialogs:Dialog.Resources>
 		<Style TargetType="{x:Type dialogs:SelectorDialog}">

@@ -9,7 +9,6 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using DynamicData;
 using DynamicData.Binding;
-using DynamicData.PLinq;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
@@ -189,7 +188,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (String.IsNullOrEmpty(searchQuery))
 			{
-				return radiostation => true;
+				return _ => true;
 			}
 
 			return radiostation =>
@@ -212,7 +211,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				return radiostation => radiostation.IsFavorite;
 			}
 
-			return radiostation => true;
+			return _ => true;
 
 		}
 
