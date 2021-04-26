@@ -42,6 +42,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public WindowsRadiostation Get(Guid id) => all?.Items.FirstOrDefault(radiostation => radiostation.Id.Equals(id));
 
+		public WindowsRadiostation GetCurrent() => all?.Items.FirstOrDefault(radiostation => radiostation.IsCurrent);
+
 		public async Task CreateAsync(WindowsRadiostation radiostation)
 		{
 
@@ -83,6 +85,31 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				await databaseContext.SaveChangesAsync();
 
 			}
+
+		}
+
+		public async Task SetCurrentAsync(WindowsRadiostation radiostation)
+		{
+			
+			WindowsRadiostation currentRadiostation = all.Items.FirstOrDefault(windowsRadiostation => windowsRadiostation.IsCurrent);
+
+			if (currentRadiostation != null)
+			{
+				
+				if (currentRadiostation.Equals(radiostation))
+				{
+					return;
+				}
+
+				currentRadiostation.IsCurrent = false;
+
+				await UpdateAsync(currentRadiostation);
+
+			}
+
+			radiostation.IsCurrent = true;
+
+			await UpdateAsync(radiostation);
 
 		}
 

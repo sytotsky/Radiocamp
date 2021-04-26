@@ -6,6 +6,7 @@
 			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
 			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
 			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			 xmlns:converters="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Converters;assembly=Radiocamp.Clients.Windows.UI"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:RadiostationItemViewModel}">
 
@@ -22,6 +23,7 @@
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto"/>
 									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
 								</Grid.ColumnDefinitions>
 
 								<controls:IconCheckBox Grid.Column="0"
@@ -42,6 +44,19 @@
 
 									<controls:GenreCountry Genre="{Binding Genre, Mode=OneWay}"
 									                       Country="{Binding Country, Mode=OneWay}"/>
+
+								</StackPanel>
+
+								<StackPanel Grid.Column="2"
+								            Orientation="Horizontal"
+								            VerticalAlignment="Center">
+
+									<TextBlock Visibility="{Binding IsCurrent, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+									           Margin="0 0 5 0"
+									           FontFamily="{StaticResource RadiocampIcons}"
+									           Foreground="{DynamicResource DimFg}"
+									           FontSize="16"
+									           Text="{StaticResource CurrentIcon}"/>
 
 								</StackPanel>
 

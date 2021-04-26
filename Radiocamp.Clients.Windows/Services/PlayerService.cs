@@ -13,6 +13,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly ISettings settings;
+		private readonly IHotkeys hotkeys;
+		private readonly IRadiostations radiostations;
 		private readonly IRadioEngine radioEngine;
 
 		private readonly ISubject<WindowsRadiostation> radiostationSubject;
@@ -35,10 +37,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public IObservable<ConnectionState> ConnectionState => connectionStateSubject;
 		public IObservable<Int64> BufferingProgress => bufferingProgressSubject;
 
-		public PlayerService(ISettings settings, IHotkeys hotkeys)
+		public PlayerService(ISettings settings, IHotkeys hotkeys, IRadiostations radiostations)
 		{
 
 			this.settings = settings;
+			this.hotkeys = hotkeys;
+			this.radiostations = radiostations;
+
 			radioEngine = RadioEngineFactory.Default;
 			radiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
 			volumeSubject = new BehaviorSubject<Double>(50.0d);
@@ -48,7 +53,21 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			connectionStateSubject = new BehaviorSubject<ConnectionState>(NRadio.ConnectionState.None);
 			bufferingProgressSubject = new BehaviorSubject<Int64>(0);
 
+			Initialize();
+
+		}
+
+		private async void Initialize()
+		{
+
 			SetVolume(settings.Volume);
+
+			WindowsRadiostation currentRadiostation = radiostations.GetCurrent();
+
+			if (currentRadiostation != null)
+			{
+				await SetRadiostationAsync(currentRadiostation);
+			}
 
 			radioEngine.MetadataChanged += metadata => metadataSubject.OnNext(metadata);
 			radioEngine.PlaybackStatusChanged += playbackStatus => playbackStatusSubject.OnNext(playbackStatus);
@@ -79,6 +98,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			this.radiostation = radiostation;
 
+			await radiostations.SetCurrentAsync(radiostation);
 			await radioEngine.SetURLAsync(radiostation.StreamURL);
 
 		}
