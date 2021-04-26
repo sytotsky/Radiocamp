@@ -74,5 +74,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		public async void UnpinFromTop()
+		{
+			await radiostations.TogglePinnedAsync(id);
+		}
+
+		public async void PinToTop()
+		{
+			await radiostations.TogglePinnedAsync(id);
+		}
+
 	}
 }

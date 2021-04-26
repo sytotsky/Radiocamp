@@ -171,6 +171,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			viewModel.IsFavorite = radiostation.IsFavorite;
 			viewModel.IsCurrent = radiostation.IsCurrent;
 			viewModel.IsCustom = radiostation.IsCustom;
+			viewModel.IsPinned = radiostation.IsPinned;
 		}
 
 		private void OnSearchQueryChanged(String searchQuery)

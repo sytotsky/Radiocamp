@@ -113,6 +113,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
+		public async Task TogglePinnedAsync(Guid id)
+		{
+
+			WindowsRadiostation radiostation = Get(id);
+
+			if (radiostation != null)
+			{
+
+				radiostation.IsPinned = !radiostation.IsPinned;
+
+				await UpdateAsync(radiostation);
+
+			}
+
+		}
+
 		public Task ExportAsync(ExportArgs exportArgs)
 		{
 			throw new NotImplementedException();

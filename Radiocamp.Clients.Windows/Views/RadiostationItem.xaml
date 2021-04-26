@@ -10,6 +10,51 @@
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance vm:RadiostationItemViewModel}">
 
+	<UserControl.ContextMenu>
+		<ContextMenu>
+
+			<MenuItem Visibility="{Binding IsPlay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}, ConverterParameter=1}"
+					  Click="StartPlaybackContextMenuItem_OnClick"
+			          Header="{DynamicResource StartPlayback}"/>
+
+			<MenuItem Visibility="{Binding IsPlay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+			          Click="StopPlaybackContextMenuItem_OnClick"
+			          Header="{DynamicResource StopPlayback}"/>
+
+			<MenuItem Visibility="{Binding IsFavorite, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}, ConverterParameter=1}"
+			          Click="AddToFavoritesContextMenuItem_OnClick"
+			          Header="{DynamicResource AddToFavorites}"/>
+
+			<MenuItem Visibility="{Binding IsFavorite, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+			          Click="RemoveFromFavoritesContextMenuItem_OnClick"
+			          Header="{DynamicResource RemoveFromFavorites}"/>
+
+			<MenuItem Visibility="{Binding IsPinned, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}, ConverterParameter=1}"
+			          Click="PinToTopContextMenuItem_OnClick"
+			          Header="{DynamicResource Pin_PinToTop}"/>
+
+			<MenuItem Visibility="{Binding IsPinned, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+			          Click="UnpinFromTopContextMenuItem_OnClick"
+			          Header="{DynamicResource Pin_UnpinFromTop}"/>
+
+			<MenuItem Click="ShowPlaybackHistoryContextMenuItem_OnClick"
+			          Header="{DynamicResource PlaybackHistory}"/>
+
+			<MenuItem Click="EditContextMenuItem_OnClick"
+			          Header="{DynamicResource Edit}"/>
+
+			<MenuItem Click="RemoveContextMenuItem_OnClick"
+			          Header="{DynamicResource Remove}"/>
+
+			<MenuItem Click="CopyStreamURLContextMenuItem_OnClick"
+			          Header="{DynamicResource RadiostationItem_CM_CopyStreamURL}"/>
+
+			<MenuItem Click="CopyNameContextMenuItem_OnClick"
+			          Header="{DynamicResource RadiostationItem_CM_CopyName}"/>
+
+		</ContextMenu>
+	</UserControl.ContextMenu>
+
 	<UserControl.Resources>
 		<Style TargetType="{x:Type views:RadiostationItem}">
 			<Setter Property="Template">
@@ -57,6 +102,21 @@
 									           Foreground="{DynamicResource DimFg}"
 									           FontSize="16"
 									           Text="{StaticResource CurrentIcon}"/>
+
+									<TextBlock Visibility="{Binding IsCustom, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+									           Margin="0 0 5 0"
+									           FontFamily="{StaticResource RadiocampIcons}"
+									           Foreground="{DynamicResource DimFg}"
+									           FontSize="16"
+									           Text="{StaticResource UserIcon}"/>
+
+									<TextBlock x:Name="PinIcon"
+									           Visibility="{Binding IsPinned, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
+									           Margin="0 0 5 0"
+									           FontFamily="{StaticResource RadiocampIcons}"
+									           Foreground="{DynamicResource DimFg}"
+									           FontSize="16"
+									           Text="{StaticResource PinIcon}"/>
 
 								</StackPanel>
 

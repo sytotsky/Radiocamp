@@ -14,6 +14,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		Task CreateAsync(WindowsRadiostation radiostation);
 		Task UpdateAsync(WindowsRadiostation radiostation);
 		Task SetCurrentAsync(WindowsRadiostation radiostation);
+		Task TogglePinnedAsync(Guid id);
 		Task ClearAsync();
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);
