@@ -40,13 +40,13 @@
 					<ControlTemplate.Triggers>
 
 						<Trigger Property="Genre" Value="Unknown">
-							<Setter TargetName="Comma" Property="Visibility" Value="Collapsed"/>
-							<Setter TargetName="Genre" Property="Visibility" Value="Collapsed"/>
+							<Setter TargetName="Comma" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Genre" Property="Visibility" Value="Hidden"/>
 						</Trigger>
 
 						<Trigger Property="Country" Value="Unknown">
-							<Setter TargetName="Comma" Property="Visibility" Value="Collapsed"/>
-							<Setter TargetName="Country" Property="Visibility" Value="Collapsed"/>
+							<Setter TargetName="Comma" Property="Visibility" Value="Hidden"/>
+							<Setter TargetName="Country" Property="Visibility" Value="Hidden"/>
 						</Trigger>
 
 					</ControlTemplate.Triggers>

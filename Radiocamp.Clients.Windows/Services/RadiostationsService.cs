@@ -32,7 +32,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 				all = new SourceCache<WindowsRadiostation, Guid>(radiostation => radiostation.Id);
 
-				all.AddOrUpdate(await databaseContext.Radiostations.ToListAsync());
+				all.AddOrUpdate(await databaseContext.Radiostations.AsNoTracking().ToListAsync());
 
 				isInitialized = true;
 
@@ -62,6 +62,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			await databaseContext.Radiostations.AddAsync(radiostation);
 			await databaseContext.SaveChangesAsync();
 
+			databaseContext.Entry(radiostation).State = EntityState.Detached;
+
 		}
 
 		public async Task UpdateAsync(WindowsRadiostation radiostation)
@@ -87,6 +89,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				databaseContext.Radiostations.Update(radiostation);
 				await databaseContext.SaveChangesAsync();
 
+				databaseContext.Entry(radiostation).State = EntityState.Detached;
+
 			}
 
 		}
@@ -94,12 +98,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public async Task RemoveAsync(Guid id)
 		{
 			
-			WindowsRadiostation radiostation = Get(id);
+			WindowsRadiostation radiostation = new WindowsRadiostation()
+			{
+				Id = id
+			};
 
 			all.RemoveKey(id);
 
-			databaseContext.Attach(radiostation);
-			databaseContext.Remove(radiostation);
+			databaseContext.Entry(radiostation).State = EntityState.Deleted;
+
 			await databaseContext.SaveChangesAsync();
 
 		}
