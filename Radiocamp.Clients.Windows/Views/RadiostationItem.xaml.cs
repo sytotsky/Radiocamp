@@ -32,12 +32,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 		private void AddToFavoritesContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.AddToFavorites();
+			(DataContext as RadiostationItemViewModel)?.AddToFavorites();
 		}
 
 		private void RemoveFromFavoritesContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.RemoveFromFavorites();
+			(DataContext as RadiostationItemViewModel)?.RemoveFromFavorites();
 		}
 
 		private void PinToTopContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
@@ -57,7 +57,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 		private void EditContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.Edit();
+			(DataContext as RadiostationItemViewModel)?.Edit();
 		}
 
 		private void RemoveContextMenuItem_OnClick(Object sender, RoutedEventArgs args)

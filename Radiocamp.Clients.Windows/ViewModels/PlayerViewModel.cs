@@ -21,6 +21,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IBrowser browser;
 		private readonly IPlayer player;
+		private readonly IRadiostations radiostations;
+
+		private Guid radiostationId;
 
 		[Reactive]
 		public String Title { get; private set; }
@@ -67,7 +70,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ReactiveCommand<Unit, Unit> MuteCommand { get; }
 		public ReactiveCommand<Unit, Unit> UnmuteCommand { get; }
 
-		public PlayerViewModel(IBrowser browser, ISettings settings, IPlayer player)
+		public PlayerViewModel(IBrowser browser, ISettings settings, IPlayer player, IRadiostations radiostations)
 		{
 
 			this.browser = browser;
@@ -104,24 +107,34 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				});
 
 			this.player.Volume.DistinctUntilChanged()
-									 .Subscribe(volume => Volume = volume);
+							  .Subscribe(volume => Volume = volume);
 
 			this.player.Radiostation.Do(radiostation => ControlsIsEnabled = radiostation != null)
-										   .Where(radiostation => radiostation != null)
-										   .Subscribe(OnNewRadiostation);
+									.Where(radiostation => radiostation != null)
+									.Subscribe(OnNewRadiostation);
 
 			this.player.Metadata.Where(metadata => metadata != null)
-									   .Subscribe(OnNewMetadata);
+								.Subscribe(OnNewMetadata);
 
 			this.player.PlaybackStatus.DistinctUntilChanged()
-											 .Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
+									  .Subscribe(playbackStatus => IsPlay = playbackStatus == PlaybackStatus.Play);
 
 			this.player.ConnectionState.DistinctUntilChanged()
-											  .Subscribe(OnConnectionStateChanged);
+									   .Subscribe(OnConnectionStateChanged);
 
 			this.player.BufferingProgress.DistinctUntilChanged()
-												.Subscribe(bufferingProgress => BufferingProgress = bufferingProgress);
+										 .Subscribe(bufferingProgress => BufferingProgress = bufferingProgress);
 
+			radiostations.RadiostationUpdated += OnRadiostationUpdated;
+
+		}
+
+		private void OnRadiostationUpdated(WindowsRadiostation radiostation)
+		{
+			if (radiostation != null && !radiostationId.Equals(Guid.Empty) && radiostation.Id.Equals(radiostationId))
+			{
+				OnNewRadiostation(radiostation);
+			}
 		}
 
 		public void OnMouseWheel(MouseWheelEventArgs args)
@@ -153,6 +166,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private void OnNewRadiostation(WindowsRadiostation radiostation)
 		{
+			radiostationId = radiostation.Id;
 			Title = radiostation.Title;
 		}
 

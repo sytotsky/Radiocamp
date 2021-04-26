@@ -87,6 +87,17 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			disposables.Add(SelectGenreCommand);
 			disposables.Add(SelectCountryCommand);
 
+			if (Mode.Equals(RadiostationEditorMode.Edit))
+			{
+				if (parameter is WindowsRadiostation radiostation)
+				{
+					Title = radiostation.Title;
+					StreamURL = radiostation.StreamURL;
+					Genre = radiostation.Genre;
+					Country = radiostation.Country;
+				}
+			}
+
 		}
 
 		private void Create()
@@ -110,7 +121,21 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private void Save()
 		{
+
+			if (Mode.Equals(RadiostationEditorMode.Edit))
+			{
+				if (parameter is WindowsRadiostation radiostation)
+				{
+					radiostation.Title = Title;
+					radiostation.StreamURL = StreamURL;
+					radiostation.Genre = Genre;
+					radiostation.Country = Country;
+					Result = radiostation;
+				}
+			}
+
 			Close();
+
 		}
 
 		private async Task SelectGenreAsync()

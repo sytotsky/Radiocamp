@@ -8,6 +8,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 {
 	public interface IRadiostations
 	{
+
+		event Action<WindowsRadiostation> RadiostationUpdated;
+
 		Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync();
 		WindowsRadiostation Get(Guid id);
 		WindowsRadiostation GetCurrent();
@@ -19,5 +22,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);
 		void SetIsPlay(WindowsRadiostation radiostation, Boolean isPlay);
+
 	}
 }

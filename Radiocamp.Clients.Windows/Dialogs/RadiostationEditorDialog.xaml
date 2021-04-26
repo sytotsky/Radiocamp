@@ -72,7 +72,7 @@
 
 			<controls:TransparentButton IsDefault="{Binding CreateIsDefault, Mode=OneWay}"
 										Visibility="{Binding SaveVisible, Mode=OneWay, Converter={converters:BooleanToVisiblityCollapsedConverter}}"
-										Command="{Binding CreateCommand}"
+										Command="{Binding SaveCommand}"
 			                            Content="{DynamicResource Save_UPPERCASE}"/>
 
 			<controls:TransparentButton IsDefault="{Binding SaveIsDefault, Mode=OneWay}"

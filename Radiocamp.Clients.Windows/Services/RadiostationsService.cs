@@ -17,6 +17,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private ISourceCache<WindowsRadiostation, Guid> all;
 		private Boolean isInitialized;
 
+		public event Action<WindowsRadiostation> RadiostationUpdated;
+
 		public RadiostationsService(DatabaseContext databaseContext)
 		{
 			this.databaseContext = databaseContext;
@@ -77,6 +79,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			else
 			{
 
+				RadiostationUpdated?.Invoke(radiostation);
 				all.AddOrUpdate(radiostation);
 
 				databaseContext.Entry(radiostation).State = EntityState.Modified;

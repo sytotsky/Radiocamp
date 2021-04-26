@@ -7,6 +7,7 @@ using Dartware.Radiocamp.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Core;
 using Dartware.Radiocamp.Clients.Windows.Core.MVVM;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.Services;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
@@ -17,6 +18,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly Guid id;
 		private readonly IPlayer player;
 		private readonly IRadiostations radiostations;
+		private readonly IDialogs dialogs;
 
 		[Reactive]
 		public String Title { get; set; }
@@ -48,11 +50,22 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.id = id;
 			player = Dependencies.Get<IPlayer>();
 			radiostations = Dependencies.Get<IRadiostations>();
+			dialogs = Dependencies.Get<IDialogs>();
 
 			this.WhenAnyValue(viewModel => viewModel.IsFavorite)
 				.Skip(1)
 				.Subscribe(OnIsFavoriteChanged);
 
+		}
+
+		public void AddToFavorites()
+		{
+			IsFavorite = true;
+		}
+
+		public void RemoveFromFavorites()
+		{
+			IsFavorite = false;
 		}
 
 		public async Task StartPlayback()
@@ -75,6 +88,27 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			{
 				
 				radiostation.IsFavorite = isFavorite;
+
+				await radiostations.UpdateAsync(radiostation);
+
+			}
+
+		}
+
+		public async void Edit()
+		{
+
+			WindowsRadiostation currentRadiostation = radiostations.Get(id);
+
+			if (currentRadiostation is not null)
+			{
+
+				RadiostationEditorArgs radiostationEditorArgs = new RadiostationEditorArgs(null, currentRadiostation)
+				{
+					Mode = RadiostationEditorMode.Edit
+				};
+
+				WindowsRadiostation radiostation = await dialogs.Show<WindowsRadiostation, RadiostationEditorDialog, RadiostationEditorDialogViewModel>(radiostationEditorArgs);
 
 				await radiostations.UpdateAsync(radiostation);
 
