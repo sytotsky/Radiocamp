@@ -91,6 +91,19 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
+		public async Task RemoveAsync(Guid id)
+		{
+			
+			WindowsRadiostation radiostation = Get(id);
+
+			all.RemoveKey(id);
+
+			databaseContext.Attach(radiostation);
+			databaseContext.Remove(radiostation);
+			await databaseContext.SaveChangesAsync();
+
+		}
+
 		public async Task SetCurrentAsync(WindowsRadiostation radiostation)
 		{
 			

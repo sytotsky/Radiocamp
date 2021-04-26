@@ -95,6 +95,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		public async void Remove()
+		{
+			await radiostations.RemoveAsync(id);
+		}
+
 		public async void Edit()
 		{
 

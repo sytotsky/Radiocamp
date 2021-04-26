@@ -62,7 +62,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 		private void RemoveContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.Remove();
+			(DataContext as RadiostationItemViewModel)?.Remove();
 		}
 
 		private void CopyStreamURLContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
