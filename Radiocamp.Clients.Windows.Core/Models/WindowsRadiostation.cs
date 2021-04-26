@@ -7,5 +7,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Core.Models
 	{
 		public Double Volume { get; set; }
 		public Boolean IsPinned { get; set; }
+		public Boolean IsPlay { get; set; }
 	}
 }

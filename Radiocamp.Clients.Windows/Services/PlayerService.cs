@@ -119,6 +119,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			if (radiostation != null)
 			{
 				radioEngine.Play();
+				radiostations.SetIsPlay(radiostation, true);
 			}
 		}
 
@@ -127,6 +128,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			if (radiostation != null)
 			{
 				radioEngine.Pause();
+				radiostations.SetIsPlay(radiostation, false);
 			}
 		}
 

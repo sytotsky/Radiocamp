@@ -10,6 +10,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Configurations
 		{
 			builder.ToTable("Radiostations");
 			builder.HasKey(radiostation => radiostation.Id);
+			builder.Ignore(radiostation => radiostation.IsPlay);
 			builder.Property(radiostation => radiostation.DateOfCreation).HasDefaultValueSql("datetime('now')");
 		}
 	}

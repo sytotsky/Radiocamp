@@ -17,22 +17,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 		protected override async void OnMouseLeftButtonDown(MouseButtonEventArgs args)
 		{
 			base.OnMouseLeftButtonDown(args);
-			await (DataContext as RadiostationItemViewModel)?.Click();
-		}
-
-		private void RadiostationItem_OnMouseLeftButtonDown(Object sender, MouseButtonEventArgs args)
-		{
-			// (DataContext as RadiostationItemViewModel)?.StartPlayback();
+			await (DataContext as RadiostationItemViewModel)?.StartPlayback();
 		}
 
 		private void StartPlaybackContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.StartPlayback();
+			(DataContext as RadiostationItemViewModel)?.StartPlayback();
 		}
 
 		private void StopPlaybackContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.StopPlayback();
+			(DataContext as RadiostationItemViewModel)?.StopPlayback();
 		}
 
 		private void AddToFavoritesContextMenuItem_OnClick(Object sender, RoutedEventArgs args)

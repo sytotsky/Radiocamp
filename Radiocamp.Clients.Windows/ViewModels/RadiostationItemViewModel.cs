@@ -39,6 +39,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		[Reactive]
 		public Boolean IsPinned { get; set; }
 
+		[Reactive]
+		public Boolean IsPlay { get; set; }
+
 		public RadiostationItemViewModel(Guid id)
 		{
 			
@@ -52,10 +55,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		public async Task Click()
+		public async Task StartPlayback()
 		{
 			await player.SetRadiostationAsync(radiostations.Get(id));
 			player.Play();
+		}
+
+		public void StopPlayback()
+		{
+			player.Pause();
 		}
 
 		private async void OnIsFavoriteChanged(Boolean isFavorite)

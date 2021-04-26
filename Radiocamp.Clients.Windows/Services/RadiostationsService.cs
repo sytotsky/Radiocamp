@@ -47,7 +47,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public async Task CreateAsync(WindowsRadiostation radiostation)
 		{
 
-			if (radiostation == null)
+			if (radiostation is null)
 			{
 				return;
 			}
@@ -65,7 +65,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public async Task UpdateAsync(WindowsRadiostation radiostation)
 		{
 
-			if (radiostation == null)
+			if (radiostation is null)
 			{
 				return;
 			}
@@ -93,7 +93,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			
 			WindowsRadiostation currentRadiostation = all.Items.FirstOrDefault(windowsRadiostation => windowsRadiostation.IsCurrent);
 
-			if (currentRadiostation != null)
+			if (currentRadiostation is not null)
 			{
 				
 				if (currentRadiostation.Equals(radiostation))
@@ -118,7 +118,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			WindowsRadiostation radiostation = Get(id);
 
-			if (radiostation != null)
+			if (radiostation is not null)
 			{
 
 				radiostation.IsPinned = !radiostation.IsPinned;
@@ -126,6 +126,26 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				await UpdateAsync(radiostation);
 
 			}
+
+		}
+
+		public void SetIsPlay(WindowsRadiostation radiostation, Boolean isPlay)
+		{
+
+			WindowsRadiostation current = all.Items.FirstOrDefault(windowsRadiostation => windowsRadiostation.IsPlay);
+
+			if (current is not null && !current.Equals(radiostation))
+			{
+
+				current.IsPlay = false;
+
+				all.AddOrUpdate(current);
+
+			}
+
+			radiostation.IsPlay = isPlay;
+
+			all.AddOrUpdate(radiostation);
 
 		}
 

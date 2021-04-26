@@ -18,5 +18,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		Task ClearAsync();
 		Task ImportAsync();
 		Task ExportAsync(ExportArgs exportArgs);
+		void SetIsPlay(WindowsRadiostation radiostation, Boolean isPlay);
 	}
 }
