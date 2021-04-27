@@ -67,22 +67,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 		private void CopyStreamURLContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.CopyStreamURL();
+			(DataContext as RadiostationItemViewModel)?.CopyStreamURL();
 		}
 
 		private void CopyNameContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			// (DataContext as RadiostationItemViewModel)?.CopyName();
-		}
-
-		private void FavoriteButton_OnChecked()
-		{
-			// (DataContext as RadiostationItemViewModel)?.AddToFavorites();
-		}
-
-		private void FavoriteButton_OnUnchecked()
-		{
-			// (DataContext as RadiostationItemViewModel)?.RemoveFromFavorites();
+			(DataContext as RadiostationItemViewModel)?.CopyName();
 		}
 
 	}

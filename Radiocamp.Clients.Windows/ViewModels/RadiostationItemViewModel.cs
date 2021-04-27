@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Dartware.Radiocamp.Core.Models;
@@ -19,6 +20,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly IPlayer player;
 		private readonly IRadiostations radiostations;
 		private readonly IDialogs dialogs;
+
+		public String StreamURL { get; set; }
 
 		[Reactive]
 		public String Title { get; set; }
@@ -129,6 +132,19 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public async void PinToTop()
 		{
 			await radiostations.TogglePinnedAsync(id);
+		}
+
+
+		public void CopyName()
+		{
+			Clipboard.Clear();
+			Clipboard.SetText(Title);
+		}
+
+		public void CopyStreamURL()
+		{
+			Clipboard.Clear();
+			Clipboard.SetText(StreamURL);
 		}
 
 	}

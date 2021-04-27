@@ -46,11 +46,11 @@
 			<MenuItem Click="RemoveContextMenuItem_OnClick"
 			          Header="{DynamicResource Remove}"/>
 
-			<MenuItem Click="CopyStreamURLContextMenuItem_OnClick"
-			          Header="{DynamicResource RadiostationItem_CM_CopyStreamURL}"/>
-
 			<MenuItem Click="CopyNameContextMenuItem_OnClick"
 			          Header="{DynamicResource RadiostationItem_CM_CopyName}"/>
+
+			<MenuItem Click="CopyStreamURLContextMenuItem_OnClick"
+			          Header="{DynamicResource RadiostationItem_CM_CopyStreamURL}"/>
 
 		</ContextMenu>
 	</UserControl.ContextMenu>

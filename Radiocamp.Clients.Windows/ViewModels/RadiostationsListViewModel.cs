@@ -116,11 +116,14 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 																						.TransformWithInlineUpdate(radiostation => new RadiostationItemViewModel(radiostation.Id)
 																						{
 																							Title = radiostation.Title,
+																							StreamURL = radiostation.StreamURL,
 																							Genre = radiostation.Genre,
 																							Country = radiostation.Country,
 																							IsFavorite = radiostation.IsFavorite,
 																							IsCurrent = radiostation.IsCurrent,
-																							IsCustom = radiostation.IsCustom
+																							IsCustom = radiostation.IsCustom,
+																							IsPinned = radiostation.IsPinned,
+																							IsPlay = radiostation.IsPlay
 																						}, TransformWithInlineUpdater)
 																						.Sort(sorting)
 																						.ObserveOnDispatcher(DispatcherPriority.Background)
@@ -166,6 +169,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private void TransformWithInlineUpdater([NotNull] RadiostationItemViewModel viewModel, [NotNull] WindowsRadiostation radiostation)
 		{
 			viewModel.Title = radiostation.Title;
+			viewModel.StreamURL = radiostation.StreamURL;
 			viewModel.Genre = radiostation.Genre;
 			viewModel.Country = radiostation.Country;
 			viewModel.IsFavorite = radiostation.IsFavorite;
