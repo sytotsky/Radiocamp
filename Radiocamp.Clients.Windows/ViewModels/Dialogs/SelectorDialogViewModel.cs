@@ -138,6 +138,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		protected override void OnEscape()
+		{
+			base.OnEscape();
+			Close();
+		}
+
+		protected override void OnEnter()
+		{
+			base.OnEnter();
+			Close();
+		}
+
 		private void OnSelectedChanged(SelectorDialogValue<SelectorType> newSelected)
 		{
 

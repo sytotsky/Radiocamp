@@ -100,6 +100,28 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		protected override void OnEscape()
+		{
+			base.OnEscape();
+			Close();
+		}
+
+		protected override void OnEnter()
+		{
+			
+			base.OnEnter();
+
+			if (Mode == RadiostationEditorMode.Create)
+			{
+				Create();
+			}
+			else if (Mode == RadiostationEditorMode.Edit)
+			{
+				Save();
+			}
+
+		}
+
 		private void Create()
 		{
 
