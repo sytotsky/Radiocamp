@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
-
-namespace Dartware.Radiocamp.Clients.Windows.Views
+﻿namespace Dartware.Radiocamp.Clients.Windows.Views
 {
-	public partial class HotkeyItem : UserControl
+	public partial class HotkeyItem : View
 	{
 		public HotkeyItem()
 		{

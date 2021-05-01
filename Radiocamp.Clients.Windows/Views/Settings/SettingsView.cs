@@ -1,18 +1,8 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
-using Dartware.Radiocamp.Clients.Windows.Core;
-using Dartware.Radiocamp.Clients.Windows.ViewModels;
+﻿using Dartware.Radiocamp.Clients.Windows.ViewModels;
 
 namespace Dartware.Radiocamp.Clients.Windows.Views
 {
-	public abstract class SettingsView : UserControl
+	public abstract class SettingsView : View<SettingsViewModel>
 	{
-		public SettingsView()
-		{
-			if (!DesignerProperties.GetIsInDesignMode(this))
-			{
-				DataContext = Dependencies.Get<SettingsViewModel>();
-			}
-		}
 	}
 }

@@ -11,7 +11,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		event Action<WindowsRadiostation> RadiostationUpdated;
 
-		Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync();
+		Task InitializeAsync();
+		IObservable<IChangeSet<WindowsRadiostation, Guid>> Connect();
 		WindowsRadiostation Get(Guid id);
 		WindowsRadiostation GetCurrent();
 		Task CreateAsync(WindowsRadiostation radiostation);

@@ -18,7 +18,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 {
 	public partial class App : Application
 	{
-		protected override void OnStartup(StartupEventArgs args)
+		protected override async void OnStartup(StartupEventArgs args)
 		{
 			
 			base.OnStartup(args);
@@ -60,6 +60,7 @@ namespace Dartware.Radiocamp.Clients.Windows
 			ISettings settings = Dependencies.Get<ISettings>();
 
 			settings.Initialize();
+			await Dependencies.Get<IRadiostations>().InitializeAsync();
 			Dependencies.Get<IMainWindow>().Initialize();
 			Dependencies.Get<IHotkeys>().Initialize();
 			Dependencies.Get<ILocalization>().Apply(settings.Localization);

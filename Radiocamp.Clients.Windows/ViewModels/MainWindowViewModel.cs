@@ -12,6 +12,7 @@ using Dartware.Radiocamp.Clients.Windows.UI.Utilities;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 
 using WindowState = Dartware.Radiocamp.Clients.Windows.Settings.WindowState;
+using Dartware.NRadio.Meta;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -40,7 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		public ReactiveCommand<Unit, Unit> CloseCommand { get; private set; }
 		public ReactiveCommand<Unit, Unit> CompactCommand { get; private set; }
 
-		public MainWindowViewModel(ISettings settings, IMainWindow mainWindow)
+		public MainWindowViewModel(ISettings settings, IMainWindow mainWindow, IPlayer player)
 		{
 			
 			this.settings = settings;
@@ -72,6 +73,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				Command = new RelayCommand(Close),
 				Gesture = new KeyGesture(Key.F4, ModifierKeys.Alt)
 			});
+
+			player.Metadata.WhereNotNull()
+						   .Subscribe(metadata => Title = metadata.SongName ?? "Radiocamp");
 
 		}
 

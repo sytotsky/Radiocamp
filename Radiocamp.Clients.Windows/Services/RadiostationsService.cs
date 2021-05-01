@@ -24,9 +24,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			this.databaseContext = databaseContext;
 		}
 
-		public async Task<IObservable<IChangeSet<WindowsRadiostation, Guid>>> ConnectAsync()
+		public async Task InitializeAsync()
 		{
-
 			if (!isInitialized)
 			{
 
@@ -37,10 +36,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				isInitialized = true;
 
 			}
-
-			return all?.Connect();
-
 		}
+
+		public IObservable<IChangeSet<WindowsRadiostation, Guid>> Connect() => all?.Connect();
 
 		public WindowsRadiostation Get(Guid id) => all?.Items.FirstOrDefault(radiostation => radiostation.Id.Equals(id));
 

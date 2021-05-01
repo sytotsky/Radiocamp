@@ -60,15 +60,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private async void Initialize()
 		{
 
-			SetVolume(settings.Volume);
-
-			WindowsRadiostation currentRadiostation = radiostations.GetCurrent();
-
-			if (currentRadiostation != null)
-			{
-				await SetRadiostationAsync(currentRadiostation);
-			}
-
 			radioEngine.MetadataChanged += metadata => metadataSubject.OnNext(metadata);
 			radioEngine.PlaybackStatusChanged += playbackStatus => playbackStatusSubject.OnNext(playbackStatus);
 			radioEngine.RecordingStatusChanged += recordStatus => recordingStatusSubject.OnNext(recordStatus);
@@ -78,6 +69,15 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
 			hotkeys.PlayPauseHotkeyPressed += PlayPause;
+
+			SetVolume(settings.Volume);
+
+			WindowsRadiostation currentRadiostation = radiostations.GetCurrent();
+
+			if (currentRadiostation != null)
+			{
+				await SetRadiostationAsync(currentRadiostation);
+			}
 
 		}
 

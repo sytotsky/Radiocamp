@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Core;
@@ -8,7 +7,7 @@ using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.Views
 {
-	public partial class SelectorItem : UserControl
+	public partial class SelectorItem : View
 	{
 
 		public static readonly DependencyProperty IsCurrentProperty = DependencyProperty.Register(nameof(IsCurrent), typeof(Boolean), typeof(SelectorItem), new PropertyMetadata(default(Boolean)));
@@ -57,7 +56,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 		private static void LocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
-			if (!(dependency is SelectorItem selectorItem))
+			if (dependency is not SelectorItem selectorItem)
 			{
 				return;
 			}
@@ -74,7 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 		private static void HintLocalizationResourceKeyChanged(DependencyObject dependency, DependencyPropertyChangedEventArgs args)
 		{
 
-			if (!(dependency is SelectorItem selectorItem))
+			if (dependency is not SelectorItem selectorItem)
 			{
 				return;
 			}

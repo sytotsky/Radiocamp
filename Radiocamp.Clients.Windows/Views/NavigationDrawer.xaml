@@ -1,18 +1,20 @@
-﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.NavigationDrawer"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
-			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
-			 xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
-			 mc:Ignorable="d"
-			 d:DataContext="{d:DesignInstance vm:NavigationDrawerViewModel}"
-			 Width="200"
-			 d:DesignHeight="450"
-			 Background="{DynamicResource WindowBg}"
-			 ap:AnimateSlideInFromLeft.Value="{Binding Visible}"
-			 Panel.ZIndex="2">
+﻿<views:View x:Class="Dartware.Radiocamp.Clients.Windows.Views.NavigationDrawer"
+			x:TypeArguments="vm:NavigationDrawerViewModel"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
+			xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+			xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			xmlns:ap="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.AttachedProperties;assembly=Radiocamp.Clients.Windows.UI"
+			mc:Ignorable="d"
+			d:DataContext="{d:DesignInstance vm:NavigationDrawerViewModel}"
+			Width="200"
+			d:DesignHeight="450"
+			Background="{DynamicResource WindowBg}"
+			ap:AnimateSlideInFromLeft.Value="{Binding Visible}"
+			Panel.ZIndex="2">
 
 	<UserControl.Effect>
 		<DropShadowEffect Color="{DynamicResource ShadowColor}"
@@ -47,4 +49,4 @@
 		</StackPanel>
 	</ScrollViewer>
 
-</UserControl>
+</views:View>

@@ -110,26 +110,27 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			IObservable<IComparer<RadiostationItemViewModel>> sorting = this.WhenPropertyChanged(viewModel => viewModel.SortingComparer)
 																			.Select(propertyValue => propertyValue.Value);
 
-			IDisposable radiostationsSubscription = (await radiostations.ConnectAsync()).NotEmpty()
-																						.Filter(searchFilter)
-																						.Filter(onlyFavoritesFilter)
-																						.TransformWithInlineUpdate(radiostation => new RadiostationItemViewModel(radiostation.Id)
-																						{
-																							Title = radiostation.Title,
-																							StreamURL = radiostation.StreamURL,
-																							Genre = radiostation.Genre,
-																							Country = radiostation.Country,
-																							IsFavorite = radiostation.IsFavorite,
-																							IsCurrent = radiostation.IsCurrent,
-																							IsCustom = radiostation.IsCustom,
-																							IsPinned = radiostation.IsPinned,
-																							IsPlay = radiostation.IsPlay
-																						}, TransformWithInlineUpdater)
-																						.Sort(sorting)
-																						.ObserveOnDispatcher(DispatcherPriority.Background)
-																						.Bind(out items)
-																						.DisposeMany()
-																						.Subscribe();
+			IDisposable radiostationsSubscription = radiostations.Connect()
+																 .NotEmpty()
+																 .Filter(searchFilter)
+																 .Filter(onlyFavoritesFilter)
+																 .TransformWithInlineUpdate(radiostation => new RadiostationItemViewModel(radiostation.Id)
+																 {
+																	 Title = radiostation.Title,
+																	 StreamURL = radiostation.StreamURL,
+																	 Genre = radiostation.Genre,
+																	 Country = radiostation.Country,
+																	 IsFavorite = radiostation.IsFavorite,
+																	 IsCurrent = radiostation.IsCurrent,
+																	 IsCustom = radiostation.IsCustom,
+																	 IsPinned = radiostation.IsPinned,
+																	 IsPlay = radiostation.IsPlay
+																 }, TransformWithInlineUpdater)
+																 .Sort(sorting)
+																 .ObserveOnDispatcher(DispatcherPriority.Background)
+																 .Bind(out items)
+																 .DisposeMany()
+																 .Subscribe();
 
 			disposables.Add(radiostationsSubscription);
 

@@ -1,53 +1,66 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Dartware.Radiocamp.Clients.Windows.ViewModels;
 
 namespace Dartware.Radiocamp.Clients.Windows.Views
 {
-	public partial class RadiostationItem : UserControl
+	public partial class RadiostationItem : View
 	{
-		
+
+		public RadiostationItemViewModel ViewModel { get; private set; }
+
 		public RadiostationItem()
 		{
+			
 			InitializeComponent();
+
+			DataContextChanged += OnDataContextChanged;
+
+		}
+
+		private void OnDataContextChanged(Object sender, DependencyPropertyChangedEventArgs args)
+		{
+			if (args.NewValue is RadiostationItemViewModel viewModel)
+			{
+				ViewModel = viewModel;
+			}
 		}
 
 		protected override async void OnMouseLeftButtonDown(MouseButtonEventArgs args)
 		{
 			base.OnMouseLeftButtonDown(args);
-			await (DataContext as RadiostationItemViewModel)?.StartPlayback();
+			await ViewModel.StartPlayback();
 		}
 
-		private void StartPlaybackContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
+		private async void StartPlaybackContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.StartPlayback();
+			await ViewModel.StartPlayback();
 		}
 
 		private void StopPlaybackContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.StopPlayback();
+			ViewModel.StopPlayback();
 		}
 
 		private void AddToFavoritesContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.AddToFavorites();
+			ViewModel.AddToFavorites();
 		}
 
 		private void RemoveFromFavoritesContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.RemoveFromFavorites();
+			ViewModel.RemoveFromFavorites();
 		}
 
 		private void PinToTopContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.PinToTop();
+			ViewModel.PinToTop();
 		}
 
 		private void UnpinFromTopContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.UnpinFromTop();
+			ViewModel.UnpinFromTop();
 		}
 
 		private void ShowPlaybackHistoryContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
@@ -57,22 +70,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Views
 
 		private void EditContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.Edit();
+			ViewModel.Edit();
 		}
 
 		private void RemoveContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.Remove();
+			ViewModel.Remove();
 		}
 
 		private void CopyStreamURLContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.CopyStreamURL();
+			ViewModel.CopyStreamURL();
 		}
 
 		private void CopyNameContextMenuItem_OnClick(Object sender, RoutedEventArgs args)
 		{
-			(DataContext as RadiostationItemViewModel)?.CopyName();
+			ViewModel.CopyName();
 		}
 
 	}

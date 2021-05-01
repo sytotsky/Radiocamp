@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="Dartware.Radiocamp.Clients.Windows.Views.CompactView"
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-			 xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
-			 xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
-			 xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
-			 mc:Ignorable="d"
-			 d:DataContext="{d:DesignInstance vm:CompactViewViewModel}"
-			 Visibility="{Binding Visibility, Mode=OneWay}">
+﻿<views:View x:Class="Dartware.Radiocamp.Clients.Windows.Views.CompactView"
+			x:TypeArguments="vm:CompactViewViewModel"
+			xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			xmlns:vm="clr-namespace:Dartware.Radiocamp.Clients.Windows.ViewModels"
+			xmlns:views="clr-namespace:Dartware.Radiocamp.Clients.Windows.Views"
+			xmlns:controls="clr-namespace:Dartware.Radiocamp.Clients.Windows.UI.Controls;assembly=Radiocamp.Clients.Windows.UI"
+			mc:Ignorable="d"
+			d:DataContext="{d:DesignInstance vm:CompactViewViewModel}"
+			Visibility="{Binding Visibility, Mode=OneWay}">
 	
 	<Grid>
 
@@ -59,4 +60,4 @@
 
 	</Grid>
 
-</UserControl>
+</views:View>
