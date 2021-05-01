@@ -75,6 +75,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			
 			base.Initialize();
 
+			CloseOnEscape = true;
 			Width = 360;
 
 			CreateCommand = ReactiveCommand.Create(Create);
@@ -98,12 +99,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				}
 			}
 
-		}
-
-		protected override void OnEscape()
-		{
-			base.OnEscape();
-			Close();
 		}
 
 		protected override void OnEnter()

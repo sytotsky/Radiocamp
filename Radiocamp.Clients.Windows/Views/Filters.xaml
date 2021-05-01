@@ -34,6 +34,7 @@
 		<controls:IconButton Grid.Column="2"
 		                     Padding="7 0 0 0"
 		                     VerticalAlignment="Center"
+							 Command="{Binding ShowFiltersCommand}"
 		                     Content="{StaticResource FilterIcon}"/>
 
 		<controls:IconButton Grid.Column="3"

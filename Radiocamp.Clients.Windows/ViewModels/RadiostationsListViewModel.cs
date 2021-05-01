@@ -17,6 +17,7 @@ using Dartware.Radiocamp.Clients.Windows.Extensions;
 using Dartware.Radiocamp.Clients.Windows.Services;
 using Dartware.Radiocamp.Clients.Windows.Settings;
 using Dartware.Radiocamp.Clients.Windows.UI.Resources.Icons;
+using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -30,6 +31,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private ReadOnlyObservableCollection<RadiostationItemViewModel> items;
 		private String searchQuery;
+		private Boolean isCustomOnly;
+		private Country country;
+		private Genre genre;
 		private Boolean onlyFavorites;
 		private SortingType sortingType;
 		private SortExpressionComparer<RadiostationItemViewModel> sortingComparer;
@@ -41,6 +45,24 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			get => searchQuery;
 			set => SetAndRaise(ref searchQuery, value);
+		}
+
+		public Boolean IsCustomOnly
+		{
+			get => isCustomOnly;
+			set => SetAndRaise(ref isCustomOnly, value);
+		}
+
+		public Country Country
+		{
+			get => country;
+			set => SetAndRaise(ref country, value);
+		}
+
+		public Genre Genre
+		{
+			get => genre;
+			set => SetAndRaise(ref genre, value);
 		}
 		
 		public Boolean OnlyFavorites
@@ -68,6 +90,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		}
 
 		public ReactiveCommand<Unit, Unit> ShowSortingSelectorCommand { get; private set; }
+		public ReactiveCommand<Unit, Unit> ShowFiltersCommand { get; private set; }
 
 		public RadiostationsListViewModel(IRadiostations radiostations, ISettings settings, IDialogs dialogs, IMainWindow mainWindow)
 		{
@@ -81,21 +104,34 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
-		public override async void Initialize()
+		public override void Initialize()
 		{
 
 			base.Initialize();
 
 			OnlyFavorites = settings.ShowOnlyFavorites;
 			SortingType = settings.SortingType;
+			Country = settings.Country;
+			Genre = settings.Genre;
+			IsCustomOnly = settings.IsCustomOnly;
 
 			ShowSortingSelectorCommand = ReactiveCommand.CreateFromTask(ShowSortingSelectorAsync);
+			ShowFiltersCommand = ReactiveCommand.CreateFromTask(ShowFiltersAsync);
 
 			this.WhenValueChanged(viewModel => viewModel.SearchQuery, false)
 				.Subscribe(OnSearchQueryChanged);
 
 			this.WhenValueChanged(viewModel => viewModel.OnlyFavorites)
 				.Subscribe(onlyFavorites => settings.ShowOnlyFavorites = onlyFavorites);
+
+			this.WhenAnyValue(viewModel => viewModel.Country)
+				.Subscribe(country => settings.Country = country);
+
+			this.WhenAnyValue(viewModel => viewModel.Genre)
+				.Subscribe(genre => settings.Genre = genre);
+
+			this.WhenAnyValue(viewModel => viewModel.IsCustomOnly)
+				.Subscribe(isCustomOnly => settings.IsCustomOnly = isCustomOnly);
 
 			this.WhenValueChanged(viewModel => viewModel.SortingType)
 				.Subscribe(OnSortingTypeChanged);
@@ -107,6 +143,15 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			IObservable<Func<WindowsRadiostation, Boolean>> onlyFavoritesFilter = this.WhenValueChanged(viewModel => viewModel.OnlyFavorites)
 																					  .Select(BuildOnlyFavoritesFilterPredicate);
 
+			IObservable<Func<WindowsRadiostation, Boolean>> countryFilter = this.WhenValueChanged(viewModel => viewModel.Country)
+																				.Select(BuildCountryFilterPredicate);
+
+			IObservable<Func<WindowsRadiostation, Boolean>> genreFilter = this.WhenValueChanged(viewModel => viewModel.Genre)
+																			  .Select(BuildGenreFilterPredicate);
+
+			IObservable<Func<WindowsRadiostation, Boolean>> isCustomOnlyFilter = this.WhenValueChanged(viewModel => viewModel.IsCustomOnly)
+																					 .Select(BuildisCustomOnlyFilterPredicate);
+
 			IObservable<IComparer<RadiostationItemViewModel>> sorting = this.WhenPropertyChanged(viewModel => viewModel.SortingComparer)
 																			.Select(propertyValue => propertyValue.Value);
 
@@ -114,6 +159,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 																 .NotEmpty()
 																 .Filter(searchFilter)
 																 .Filter(onlyFavoritesFilter)
+																 .Filter(countryFilter)
+																 .Filter(genreFilter)
+																 .Filter(isCustomOnlyFilter)
 																 .TransformWithInlineUpdate(radiostation => new RadiostationItemViewModel(radiostation.Id)
 																 {
 																	 Title = radiostation.Title,
@@ -222,6 +270,42 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		private Func<WindowsRadiostation, Boolean> BuildCountryFilterPredicate(Country country)
+		{
+
+			if (country.Equals(Country.Unknown))
+			{
+				return radiostation => true;
+			}
+
+			return radiostation => radiostation.Country.Equals(country);
+
+		}
+
+		private Func<WindowsRadiostation, Boolean> BuildGenreFilterPredicate(Genre genre)
+		{
+
+			if (genre.Equals(Genre.Unknown))
+			{
+				return radiostation => true;
+			}
+
+			return radiostation => radiostation.Genre.Equals(genre);
+
+		}
+
+		private Func<WindowsRadiostation, Boolean> BuildisCustomOnlyFilterPredicate(Boolean isCustomOnly)
+		{
+
+			if (isCustomOnly)
+			{
+				return radiostation => radiostation.IsCustom;
+			}
+
+			return radiostation => true;
+
+		}
+
 		private async Task ShowSortingSelectorAsync()
 		{
 			await dialogs.Selector(new SelectorDialogArgs<SortingType>(mainWindow.Window)
@@ -231,6 +315,19 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				Search = true,
 				Height = 382,
 				Width = 350
+			});
+		}
+
+		private async Task ShowFiltersAsync()
+		{
+			await dialogs.Show<FiltersDialog, FiltersDialogViewModel>(new FiltersDialogArgs(mainWindow.Window)
+			{
+				Country = Country,
+				CountryChangeCallback = country => Country = country,
+				Genre = Genre,
+				GenreChangeCallback = genre => Genre = genre,
+				IsCustomOnly = IsCustomOnly,
+				IsCusomOnlyChangeCallback = isCustomOnly => IsCustomOnly = isCustomOnly
 			});
 		}
 

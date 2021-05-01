@@ -1,6 +1,7 @@
 ﻿using System;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -62,6 +63,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		// Hotkeys
 
 		public Boolean HotkeysIsEnabled { get; set; }
+
+		// Filters
+
+		public Country Country { get; set; }
+		public Genre Genre { get; set; }
+		public Boolean IsCustomOnly { get; set; }
 
 	}
 }

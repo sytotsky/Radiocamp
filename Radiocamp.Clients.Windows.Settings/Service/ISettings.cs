@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using Dartware.Radiocamp.Core.Models;
 
 namespace Dartware.Radiocamp.Clients.Windows.Settings
 {
@@ -37,8 +38,6 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		Boolean ShowFavoritesAtStart { get; set; }
 		Boolean ShowOnlyCustomAtStart { get; set; }
 		SearchEngine SearchEngine { get; set; }
-		Boolean ShowOnlyFavorites { get; set; }
-		public SortingType SortingType { get; set; }
 
 		// Export radiostations
 
@@ -89,6 +88,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Settings
 		event Action<Boolean> HotkeysIsEnabledChanged;
 
 		Boolean HotkeysIsEnabled { get; set; }
+
+		// Filters
+		Boolean ShowOnlyFavorites { get; set; }
+		public SortingType SortingType { get; set; }
+		Country Country { get; set; }
+		Genre Genre { get; set; }
+		Boolean IsCustomOnly { get; set; }
 
 	}
 }
