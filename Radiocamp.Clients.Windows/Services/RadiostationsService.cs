@@ -54,7 +54,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 			radiostation.Id = Guid.NewGuid();
 			radiostation.IsCustom = true;
-			radiostation.DateOfCreation = DateTime.Now;
+			radiostation.Created = DateTime.Now;
 
 			all.AddOrUpdate(radiostation);
 			await databaseContext.Radiostations.AddAsync(radiostation);

@@ -25,7 +25,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.Property<int>("Country")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateOfCreation")
+                    b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasDefaultValueSql("datetime('now')");
@@ -44,6 +44,12 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
 
                     b.Property<bool>("IsPinned")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LastPlayTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan>("ListenTime")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("StreamURL")
                         .HasColumnType("TEXT");
@@ -84,7 +90,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ab4e246b-1c68-429e-af76-68a0d5fd779c"),
+                            Id = new Guid("653fc076-c1ca-4de9-b986-e404e0423fc1"),
                             Command = 1,
                             IsEnabled = false,
                             Key = 0,
@@ -92,7 +98,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2902bd00-21df-47be-a236-c1dcc6d11204"),
+                            Id = new Guid("c264a967-534e-4be9-9494-211397668453"),
                             Command = 2,
                             IsEnabled = false,
                             Key = 0,
@@ -100,7 +106,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3f5b171b-1606-44ad-b1b2-e3cd64d04acd"),
+                            Id = new Guid("8feddbf0-d655-499b-8748-63529e242de7"),
                             Command = 3,
                             IsEnabled = false,
                             Key = 0,
@@ -108,7 +114,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3767a3d1-320e-4614-b917-27fee2c3a902"),
+                            Id = new Guid("511ef7fc-b4c5-4a22-b13f-46e3ea117bfe"),
                             Command = 4,
                             IsEnabled = false,
                             Key = 0,
@@ -116,7 +122,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c23505fc-0930-4f22-8192-367da593be4b"),
+                            Id = new Guid("38513515-93c4-49d8-b876-6c4eba0a6c6a"),
                             Command = 5,
                             IsEnabled = false,
                             Key = 0,
@@ -124,7 +130,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                         },
                         new
                         {
-                            Id = new Guid("198c5cc4-4976-4935-9bb0-8579d91405e9"),
+                            Id = new Guid("6b825436-b5a1-49e5-9b78-42abe43c05c2"),
                             Command = 6,
                             IsEnabled = false,
                             Key = 0,
@@ -253,7 +259,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Database.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("deb32f01-5d30-4bc2-aa29-ef7406b14672"),
+                            Id = new Guid("e2ab5c7d-ae56-4917-8459-3c5a9b039cc5"),
                             AlwaysShowTrayIcon = true,
                             Country = 0,
                             ExportRadiostationsAll = true,

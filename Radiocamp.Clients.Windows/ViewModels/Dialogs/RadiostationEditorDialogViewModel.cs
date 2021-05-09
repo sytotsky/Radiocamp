@@ -129,7 +129,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				IsFavorite = AddToFavorites,
 				IsCustom = true,
 				IsCurrent = StartPlayback,
-				DateOfCreation = DateTime.Now
+				Created = DateTime.Now
 			};
 
 			Close();
