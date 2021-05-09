@@ -172,7 +172,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 																	 IsCurrent = radiostation.IsCurrent,
 																	 IsCustom = radiostation.IsCustom,
 																	 IsPinned = radiostation.IsPinned,
-																	 IsPlay = radiostation.IsPlay
+																	 IsPlay = radiostation.IsPlay,
+																	 Created = radiostation.Created,
+																	 ListenTime = radiostation.ListenTime,
+																	 LastPlayTime = radiostation.LastPlayTime
 																 }, TransformWithInlineUpdater)
 																 .Sort(sorting)
 																 .ObserveOnDispatcher(DispatcherPriority.Background)
@@ -192,10 +195,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				SortingType.NameAscending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByAscending(item => item.Title),
 				SortingType.NameDescending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.Title),
 				SortingType.FavoritesFirst => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.IsFavorite),
-				// SortingType.PopularFirst => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.ListenTime),
-				// SortingType.DateAddedAscending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByAscending(item => item.DateOfCreation),
-				// SortingType.DateAddedDescending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.DateOfCreation),
-				// SortingType.PlaybackOrder => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.LastPlayTime),
+				SortingType.PopularFirst => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.ListenTime),
+				SortingType.DateAddedAscending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByAscending(item => item.Created),
+				SortingType.DateAddedDescending => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.Created),
+				SortingType.PlaybackOrder => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.LastPlayTime),
 				SortingType.CustomFirst => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned).ThenByDescending(item => item.IsCustom),
 				_ => SortExpressionComparer<RadiostationItemViewModel>.Descending(item => item.IsPinned)
 			};
@@ -226,6 +229,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			viewModel.IsCustom = radiostation.IsCustom;
 			viewModel.IsPinned = radiostation.IsPinned;
 			viewModel.IsPlay = radiostation.IsPlay;
+			viewModel.LastPlayTime = radiostation.LastPlayTime;
 		}
 
 		private void OnSearchQueryChanged(String searchQuery)

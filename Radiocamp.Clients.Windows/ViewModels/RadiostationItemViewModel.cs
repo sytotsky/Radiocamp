@@ -22,6 +22,9 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly IDialogs dialogs;
 
 		public String StreamURL { get; set; }
+		public DateTime Created { get; set; }
+		public TimeSpan ListenTime { get; set; }
+		public DateTime LastPlayTime { get; set; }
 
 		[Reactive]
 		public String Title { get; set; }
