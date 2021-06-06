@@ -170,6 +170,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
+		public async Task AddListenTimeAsync(Guid id, TimeSpan listenTime)
+		{
+			
+			WindowsRadiostation radiostation = Get(id);
+
+			if (radiostation is not null)
+			{
+				
+				radiostation.ListenTime += listenTime;
+
+				await UpdateAsync(radiostation);
+				
+			}
+
+		}
+
 		public Task ExportAsync(ExportArgs exportArgs)
 		{
 			throw new NotImplementedException();

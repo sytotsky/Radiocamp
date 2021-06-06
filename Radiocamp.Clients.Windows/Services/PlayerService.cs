@@ -16,6 +16,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private readonly IHotkeys hotkeys;
 		private readonly IRadiostations radiostations;
 		private readonly IRadioEngine radioEngine;
+		private readonly IApplication application;
 
 		private readonly ISubject<WindowsRadiostation> radiostationSubject;
 		private readonly ISubject<Double> volumeSubject;
@@ -28,6 +29,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		private WindowsRadiostation radiostation;
 		private Double volumeBeforeMute;
 		private Boolean isMuted;
+		private DateTime changeCurrentRadiostationTime;
 
 		public IObservable<WindowsRadiostation> Radiostation => radiostationSubject;
 		public IObservable<Double> Volume => volumeSubject;
@@ -37,12 +39,13 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public IObservable<ConnectionState> ConnectionState => connectionStateSubject;
 		public IObservable<Int64> BufferingProgress => bufferingProgressSubject;
 
-		public PlayerService(ISettings settings, IHotkeys hotkeys, IRadiostations radiostations)
+		public PlayerService(ISettings settings, IHotkeys hotkeys, IRadiostations radiostations, IApplication application)
 		{
 
 			this.settings = settings;
 			this.hotkeys = hotkeys;
 			this.radiostations = radiostations;
+			this.application = application;
 
 			radioEngine = RadioEngineFactory.Default;
 			radiostationSubject = new BehaviorSubject<WindowsRadiostation>(null);
@@ -52,6 +55,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			recordingStatusSubject = new BehaviorSubject<RecordingStatus>(NRadio.RecordingStatus.Stop);
 			connectionStateSubject = new BehaviorSubject<ConnectionState>(NRadio.ConnectionState.None);
 			bufferingProgressSubject = new BehaviorSubject<Int64>(0);
+			changeCurrentRadiostationTime = DateTime.Now;
 
 			Initialize();
 
@@ -69,6 +73,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			hotkeys.VolumeDownHotkeyPressed += VolumeDown;
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
 			hotkeys.PlayPauseHotkeyPressed += PlayPause;
+			application.ShutdownLong += OnShutdownLong;
 
 			SetVolume(settings.Volume);
 
@@ -84,6 +89,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public async Task SetRadiostationAsync(WindowsRadiostation radiostation)
 		{
 
+			await SaveListenTime();
 			radiostationSubject.OnNext(radiostation);
 
 			if (radiostation == null)
@@ -97,6 +103,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 
 			this.radiostation = radiostation;
+			changeCurrentRadiostationTime = DateTime.Now;
 
 			await radiostations.SetCurrentAsync(radiostation);
 			await radioEngine.SetURLAsync(radiostation.StreamURL);
@@ -196,6 +203,19 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			else
 			{
 				Mute();
+			}
+		}
+
+		private async void OnShutdownLong()
+		{
+			await SaveListenTime();
+		}
+
+		private async Task SaveListenTime()
+		{
+			if (radiostation is not null)
+			{
+				await radiostations.AddListenTimeAsync(this.radiostation.Id, DateTime.Now - changeCurrentRadiostationTime);
 			}
 		}
 
