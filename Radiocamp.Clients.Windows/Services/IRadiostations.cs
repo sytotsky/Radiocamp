@@ -25,6 +25,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		Task ExportAsync(ExportArgs exportArgs);
 		void SetIsPlay(WindowsRadiostation radiostation, Boolean isPlay);
 		Task AddListenTimeAsync(Guid id, TimeSpan listenTime);
+		Task SetLastPlaybackTimeAsync(Guid id);
 
 	}
 }

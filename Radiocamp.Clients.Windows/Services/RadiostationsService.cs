@@ -186,6 +186,22 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
+		public async Task SetLastPlaybackTimeAsync(Guid id)
+		{
+			
+			WindowsRadiostation radiostation = Get(id);
+
+			if (radiostation is not null)
+			{
+				
+				radiostation.LastPlayTime = DateTime.Now;
+
+				await UpdateAsync(radiostation);
+
+			}
+			
+		}
+
 		public Task ExportAsync(ExportArgs exportArgs)
 		{
 			throw new NotImplementedException();

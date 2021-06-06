@@ -102,6 +102,8 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				return;
 			}
 
+			await radiostations.SetLastPlaybackTimeAsync(radiostation.Id);
+
 			this.radiostation = radiostation;
 			changeCurrentRadiostationTime = DateTime.Now;
 
