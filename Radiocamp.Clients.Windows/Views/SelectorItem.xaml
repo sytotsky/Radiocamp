@@ -81,6 +81,7 @@
 							<Trigger Property="IsCurrent" Value="True">
 								<Setter TargetName="OptionMark" Property="Visibility" Value="Visible"/>
 								<Setter TargetName="RadioButtonBorder" Property="BorderBrush" Value="{DynamicResource Primary}"/>
+								<Setter TargetName="Border" Property="Background" Value="{DynamicResource WindowOver}"/>
 							</Trigger>
 
 							<Trigger Property="Hint" Value="">
