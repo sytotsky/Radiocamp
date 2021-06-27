@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using Dartware.Radiocamp.Clients.Windows.ViewModels;
 using Dartware.Radiocamp.Core;
 
 namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 {
 	public partial class SelectorDialog : Dialog
 	{
-
-		private ListBox mainListBox;
 
 		public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(nameof(Title), typeof(String), typeof(SelectorDialog), new PropertyMetadata(default(String)));
 
@@ -30,11 +24,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			set => SetValue(TitleLocalizationResourceKeyProperty, value);
 		}
 
+		public event Action<ListBox> MainListBoxChanged;
+
 		public SelectorDialog()
 		{
-			
 			InitializeComponent();
-
 		}
 
 		public override void OnApplyTemplate()
@@ -42,103 +36,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Dialogs
 			
 			base.OnApplyTemplate();
 			
-			mainListBox = GetTemplateChild("MainListBox") as ListBox;
+			ListBox mainListBox = GetTemplateChild("MainListBox") as ListBox;
 
 			if (mainListBox is not null)
 			{
-				if (mainListBox.Items is INotifyCollectionChanged notifyCollectionChanged)
-				{
-					notifyCollectionChanged.CollectionChanged += OnCollectionChanged;
-				}
-			}
-
-		}
-
-		private void OnCollectionChanged(Object sender, NotifyCollectionChangedEventArgs args)
-		{
-			
-			SelectorDialogValue currentValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault(value => value.IsCurrent);
-
-			if (currentValue is not null)
-			{
-				mainListBox.ScrollIntoView(currentValue);
-			}
-
-		}
-
-		protected override void OnPreviewKeyDown(KeyEventArgs args)
-		{
-			
-			base.OnPreviewKeyDown(args);
-
-			SelectorDialogValue currentValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault(value => value.IsCurrent);
-
-			if (args.Key.Equals(Key.Down))
-			{
-				if (currentValue is null)
-				{
-				
-					SelectorDialogValue firstValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault();
-				
-					if (firstValue != null)
-					{
-						firstValue.Select();
-						mainListBox.ScrollIntoView(firstValue);
-					}
-				
-				}
-				else
-				{
-
-					
-					SelectorDialogValue nextValue = null;
-
-					try
-					{
-
-						Int32 currentIndex = mainListBox.Items.IndexOf(currentValue);
-
-						nextValue = mainListBox.Items.GetItemAt(currentIndex + 1) as SelectorDialogValue;
-
-					}
-					catch
-					{
-					}
-
-					if (nextValue is not null)
-					{
-						nextValue.Select();
-						mainListBox.ScrollIntoView(nextValue);
-					}
-
-				}
-			}
-			else if (args.Key.Equals(Key.Up))
-			{
-				if (currentValue is not null)
-				{
-
-					SelectorDialogValue previousValue = null;
-
-					try
-					{
-
-						Int32 currentIndex = mainListBox.Items.IndexOf(currentValue);
-
-						previousValue = mainListBox.Items.GetItemAt(currentIndex - 1) as SelectorDialogValue;
-
-					}
-					catch
-					{
-					}
-
-					if (previousValue is not null)
-					{
-						previousValue.Select();
-						mainListBox.ScrollIntoView(previousValue);
-					}
-					
-				}
+				MainListBoxChanged?.Invoke(mainListBox);
 			}
 
 		}

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using DynamicData;
 using DynamicData.Binding;
@@ -25,6 +28,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private String searchQuery;
 		private Boolean search;
 		private ReadOnlyObservableCollection<SelectorDialogValue<SelectorType>> values;
+		private ListBox mainListBox;
 
 		public ReadOnlyObservableCollection<SelectorDialogValue<SelectorType>> Values => values;
 
@@ -136,6 +140,11 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			disposables.Add(listSubscription);
 
+			if (DialogWindow.Content is SelectorDialog selectorDialog)
+			{
+				selectorDialog.MainListBoxChanged += OnMainListBoxChanged;
+			}
+
 		}
 
 		protected override void OnEscape()
@@ -148,6 +157,82 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 			base.OnEnter();
 			Close();
+		}
+
+		protected override void OnPrePreviewKeyDown(KeyEventArgs args)
+		{
+			
+			base.OnPrePreviewKeyDown(args);
+
+			SelectorDialogValue currentValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault(value => value.IsCurrent);
+
+			if (args.Key.Equals(Key.Down))
+			{
+				if (currentValue is null)
+				{
+
+					SelectorDialogValue firstValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault();
+
+					if (firstValue != null)
+					{
+						firstValue.Select();
+						mainListBox.ScrollIntoView(firstValue);
+					}
+
+				}
+				else
+				{
+				
+					SelectorDialogValue nextValue = null;
+
+					try
+					{
+
+						Int32 currentIndex = mainListBox.Items.IndexOf(currentValue);
+
+						nextValue = mainListBox.Items.GetItemAt(currentIndex + 1) as SelectorDialogValue;
+
+					}
+					catch
+					{
+					}
+
+					if (nextValue is not null)
+					{
+						nextValue.Select();
+						mainListBox.ScrollIntoView(nextValue);
+					}
+
+				}
+			}
+			else if (args.Key.Equals(Key.Up))
+			{
+				if (currentValue is not null)
+				{
+
+					SelectorDialogValue previousValue = null;
+
+					try
+					{
+
+						Int32 currentIndex = mainListBox.Items.IndexOf(currentValue);
+
+						previousValue = mainListBox.Items.GetItemAt(currentIndex - 1) as SelectorDialogValue;
+
+					}
+					catch
+					{
+					}
+
+					if (previousValue is not null)
+					{
+						previousValue.Select();
+						mainListBox.ScrollIntoView(previousValue);
+					}
+
+				}
+			}
+
 		}
 
 		private void OnSelectedChanged(SelectorDialogValue<SelectorType> newSelected)
@@ -200,6 +285,30 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				return preparedSearchText.Contains(preparedSearchQuery);
 
 			};
+
+		}
+
+		private void OnMainListBoxChanged(ListBox listBox)
+		{
+
+			mainListBox = listBox;
+
+			if (listBox.Items is INotifyCollectionChanged notifyCollectionChanged)
+			{
+				notifyCollectionChanged.CollectionChanged += OnCollectionChanged;
+			}
+
+		}
+
+		private void OnCollectionChanged(Object sender, NotifyCollectionChangedEventArgs args)
+		{
+
+			SelectorDialogValue currentValue = mainListBox.Items.Cast<SelectorDialogValue>().FirstOrDefault(value => value.IsCurrent);
+
+			if (currentValue is not null)
+			{
+				mainListBox.ScrollIntoView(currentValue);
+			}
 
 		}
 

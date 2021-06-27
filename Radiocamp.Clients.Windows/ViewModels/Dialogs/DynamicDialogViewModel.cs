@@ -41,6 +41,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 				if (dialogWindow != null)
 				{
 					dialogWindow.KeyDown += OnKeyDown;
+					dialogWindow.PreviewKeyDown += OnPrePreviewKeyDown;
 				}
 
 			}
@@ -142,6 +143,10 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		{
 		}
 
+		protected virtual void OnPrePreviewKeyDown(KeyEventArgs args)
+		{
+		}
+
 		protected virtual void OnEscape()
 		{
 			if (CloseOnEscape)
@@ -168,11 +173,20 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 			if (args.Key == Key.Enter)
 			{
+				
 				OnEnter();
+
+				args.Handled = true;
+
 			}
 
 			OnKeyDown(args);
 
+		}
+
+		private void OnPrePreviewKeyDown(Object sender, KeyEventArgs args)
+		{
+			OnPrePreviewKeyDown(args);
 		}
 
 		private void OnDialogWindowSizeChanged(Object sender, SizeChangedEventArgs args)
