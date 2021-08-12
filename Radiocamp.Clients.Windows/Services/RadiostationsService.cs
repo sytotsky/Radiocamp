@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using DynamicData;
 using Dartware.Radiocamp.Clients.Windows.Database;
 using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
+using ProtoBuf;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
@@ -13,15 +17,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 	{
 
 		private readonly DatabaseContext databaseContext;
+		private readonly IMapper mapper;
 
 		private ISourceCache<WindowsRadiostation, Guid> all;
 		private Boolean isInitialized;
 
 		public event Action<WindowsRadiostation> RadiostationUpdated;
 
-		public RadiostationsService(DatabaseContext databaseContext)
+		public RadiostationsService(DatabaseContext databaseContext, IMapper mapper)
 		{
 			this.databaseContext = databaseContext;
+			this.mapper = mapper;
 		}
 
 		public async Task InitializeAsync()
@@ -202,9 +208,55 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			
 		}
 
-		public Task ExportAsync(ExportArgs exportArgs)
+		public async Task ExportAsync(ExportArgs exportArgs)
 		{
-			throw new NotImplementedException();
+
+			if (exportArgs is null)
+			{
+				throw new ArgumentNullException(nameof(exportArgs), "Export arguments cannot be null.");
+			}
+
+			if (String.IsNullOrEmpty(exportArgs.FilePath))
+			{
+				throw new ArgumentException("File path cannot be null or empty.", nameof(exportArgs.FilePath));
+			}
+
+			IQueryable<WindowsRadiostation> radiostations = databaseContext.Radiostations;
+
+			if (!exportArgs.All)
+			{
+				if (exportArgs.OnlyFavoritesOrCustom)
+				{
+					radiostations = radiostations.Where(radiostation => radiostation.IsFavorite || radiostation.IsCustom);
+				}
+				else
+				{
+					if (exportArgs.CustomOnly && exportArgs.FavoritesOnly)
+					{
+						radiostations = radiostations.Where(radiostation => radiostation.IsFavorite && radiostation.IsCustom);
+					}
+					else if (exportArgs.CustomOnly)
+					{
+						radiostations = radiostations.Where(radiostation => radiostation.IsCustom);
+					}
+					else if (exportArgs.FavoritesOnly)
+					{
+						radiostations = radiostations.Where(radiostation => radiostation.IsFavorite);
+					}
+				}
+			}
+
+			IEnumerable<SerializableRadiostation> serializableRadiostations = mapper.Map<IEnumerable<SerializableRadiostation>>(await radiostations.ToListAsync());
+
+			if (serializableRadiostations is not null)
+			{
+				switch (exportArgs.Format)
+				{
+					case ExportFormat.Binary: await ExportAsBinaryFormatAsync(serializableRadiostations, exportArgs.FilePath); break;
+					case ExportFormat.JSON: break;
+				}
+			}
+
 		}
 
 		public Task ImportAsync()
@@ -215,6 +267,18 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 		public Task ClearAsync()
 		{
 			throw new NotImplementedException();
+		}
+
+		private async Task ExportAsBinaryFormatAsync(IEnumerable<SerializableRadiostation> serializableRadiostations, String filePath)
+		{
+			await Task.Run(() =>
+			{
+
+				using FileStream file = File.Create(filePath);
+
+				Serializer.Serialize(file, serializableRadiostations);
+
+			});
 		}
 
 	}
