@@ -274,9 +274,24 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			await Task.Run(() =>
 			{
 
-				using FileStream file = File.Create(filePath);
+				String directory = Path.GetDirectoryName(filePath);
 
-				Serializer.Serialize(file, serializableRadiostations);
+				if (!String.IsNullOrEmpty(directory))
+				{
+					if (!Directory.Exists(directory))
+					{
+						Directory.CreateDirectory(directory);
+					}
+				}
+
+				if (!String.IsNullOrEmpty(filePath))
+				{
+					
+					using FileStream file = File.Create(filePath);
+
+					Serializer.Serialize(file, serializableRadiostations);
+
+				}
 
 			});
 		}
