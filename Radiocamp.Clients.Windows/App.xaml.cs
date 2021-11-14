@@ -55,6 +55,8 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Services.AddSingleton<IRadiostations, RadiostationsService>();
 			Dependencies.Services.AddSingleton<IPlayer, PlayerService>();
 
+			Dependencies.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 			Dependencies.Build();
 
 			ISettings settings = Dependencies.Get<ISettings>();

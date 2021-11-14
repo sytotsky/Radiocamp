@@ -81,7 +81,7 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			
 			ExportArgs exportArgs = await dialogs.Show<ExportArgs, ExportRadiostationsDialog, ExportRadiostationsDialogViewModel>(new DialogArgs(DialogWindow));
 
-			if (exportArgs != null)
+			if (exportArgs is not null)
 			{
 				await radiostations.ExportAsync(exportArgs);
 			}
