@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Dartware.Radiocamp.Core</RootNamespace>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
