@@ -21,7 +21,6 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 		private readonly ISettings settings;
 		private readonly IBrowser browser;
 		private readonly IPlayer player;
-		private readonly IRadiostations radiostations;
 
 		private Guid radiostationId;
 
@@ -110,8 +109,8 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 							  .Subscribe(volume => Volume = volume);
 
 			this.player.Radiostation.Do(radiostation => ControlsIsEnabled = radiostation != null)
-									.Where(radiostation => radiostation != null)
-									.Subscribe(OnNewRadiostation);
+									.WhereNotNull()
+									.Subscribe(SetRadiostation);
 
 			this.player.Metadata.Where(metadata => metadata != null)
 								.Subscribe(OnNewMetadata);
@@ -125,16 +124,27 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			this.player.BufferingProgress.DistinctUntilChanged()
 										 .Subscribe(bufferingProgress => BufferingProgress = bufferingProgress);
 
-			radiostations.RadiostationUpdated += OnRadiostationUpdated;
+			radiostations.Updated.WhereNotNull()
+								 .Subscribe(OnRadiostationUpdated);
+			
+			radiostations.Removed.Subscribe(OnRadiostationRemoved);
+			radiostations.Cleared.Subscribe(OnRadiostationsCleared);
 
 		}
 
 		private void OnRadiostationUpdated(WindowsRadiostation radiostation)
 		{
-			if (radiostation != null && !radiostationId.Equals(Guid.Empty) && radiostation.Id.Equals(radiostationId))
+			
+			if (radiostation is null)
 			{
-				OnNewRadiostation(radiostation);
+				return;
 			}
+			
+			if (!radiostationId.Equals(Guid.Empty) && radiostation.Id.Equals(radiostationId))
+			{
+				SetRadiostation(radiostation);
+			}
+			
 		}
 
 		public void OnMouseWheel(MouseWheelEventArgs args)
@@ -164,17 +174,24 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 			throw new NotImplementedException();
 		}
 
-		private void OnNewRadiostation(WindowsRadiostation radiostation)
-		{
-			radiostationId = radiostation.Id;
-			Title = radiostation.Title;
-		}
-
 		private void OnNewMetadata(IMetadata metadata)
 		{
 			SongName = metadata.SongName;
 			Format = metadata.Format;
 			Bitrate = metadata.Bitrate;
+		}
+
+		private void OnRadiostationRemoved(Guid id)
+		{
+			if (radiostationId.Equals(id))
+			{
+				Clear();
+			}
+		}
+		
+		private void OnRadiostationsCleared(Unit unit)
+		{
+			Clear();
 		}
 
 		private void OnConnectionStateChanged(ConnectionState connectionState)
@@ -193,5 +210,38 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		}
 
+		private void SetRadiostation(WindowsRadiostation radiostation)
+		{
+			if (radiostation is null)
+			{
+				Clear();
+			}
+			else
+			{
+				radiostationId = radiostation.Id;
+				Title = radiostation.Title;
+			}
+		}
+
+		private void Clear()
+		{
+			ClearRadiostation();
+			ClearMetadata();
+		}
+
+		private void ClearRadiostation()
+		{
+			radiostationId = Guid.Empty;
+			Title = null;
+			ControlsIsEnabled = false;
+		}
+
+		private void ClearMetadata()
+		{
+			SongName = null;
+			Format = Format.Unknown;
+			Bitrate = 0;
+		}
+		
 	}
 }

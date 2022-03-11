@@ -6,10 +6,11 @@ using Dartware.NRadio.Meta;
 using Dartware.Radiocamp.Clients.Windows.Core.Models;
 using Dartware.Radiocamp.Clients.Windows.Hotkeys;
 using Dartware.Radiocamp.Clients.Windows.Settings;
+using ReactiveUI;
 
 namespace Dartware.Radiocamp.Clients.Windows.Services
 {
-	public sealed class PlayerService : IPlayer
+	public sealed class PlayerService : IPlayer, IDisposable
 	{
 
 		private readonly ISettings settings;
@@ -74,6 +75,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			hotkeys.MuteUnmuteHotkeyPressed += MuteUnmute;
 			hotkeys.PlayPauseHotkeyPressed += PlayPause;
 			application.ShutdownLong += OnShutdownLong;
+
+			radiostations.Updated.WhereNotNull()
+								 .Subscribe(OnRadiostationUpdated);
+			
+			radiostations.Removed.Subscribe(OnRadiostationRemoved);
 
 			SetVolume(settings.Volume);
 
@@ -195,6 +201,17 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			volumeBeforeMute = 0;
 
 		}
+		
+		
+
+		public void Dispose()
+		{
+
+			radioEngine.Pause();
+			
+			radiostation = null;
+			
+		}
 
 		private void MuteUnmute()
 		{
@@ -220,6 +237,25 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				await radiostations.AddListenTimeAsync(this.radiostation.Id, DateTime.Now - changeCurrentRadiostationTime);
 			}
 		}
+		
+		private void OnRadiostationUpdated(WindowsRadiostation radiostation)
+		{
+		}
 
+		private void OnRadiostationRemoved(Guid id)
+		{
+			
+			if (radiostation is null)
+			{
+				return;
+			}
+			
+			if (radiostation.Id.Equals(id))
+			{
+				Dispose();
+			}
+			
+		}
+		
 	}
 }

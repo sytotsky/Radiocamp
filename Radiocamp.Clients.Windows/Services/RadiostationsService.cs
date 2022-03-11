@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Subjects;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -18,24 +20,34 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		private readonly DatabaseContext databaseContext;
 		private readonly IMapper mapper;
-
-		private ISourceCache<WindowsRadiostation, Guid> all;
+		private readonly ISourceCache<WindowsRadiostation, Guid> all;
+		private readonly ISubject<WindowsRadiostation> updated;
+		private readonly ISubject<Guid> removed;
+		private readonly ISubject<Unit> cleared;
+		
 		private Boolean isInitialized;
 
-		public event Action<WindowsRadiostation> RadiostationUpdated;
+		public IObservable<WindowsRadiostation> Updated => updated;
+		public IObservable<Guid> Removed => removed;
+		public IObservable<Unit> Cleared => cleared;
 
 		public RadiostationsService(DatabaseContext databaseContext, IMapper mapper)
 		{
+			
 			this.databaseContext = databaseContext;
 			this.mapper = mapper;
+			
+			all = new SourceCache<WindowsRadiostation, Guid>(radiostation => radiostation.Id);
+			updated = new Subject<WindowsRadiostation>();
+			removed = new Subject<Guid>();
+			cleared = new Subject<Unit>();
+
 		}
 
 		public async Task InitializeAsync()
 		{
 			if (!isInitialized)
 			{
-
-				all = new SourceCache<WindowsRadiostation, Guid>(radiostation => radiostation.Id);
 
 				all.AddOrUpdate(await databaseContext.Radiostations.AsNoTracking().ToListAsync());
 
@@ -52,6 +64,11 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		public async Task CreateAsync(WindowsRadiostation radiostation)
 		{
+			await CreateAsync(radiostation, true);
+		}
+
+		public async Task CreateAsync(WindowsRadiostation radiostation, Boolean isCustom)
+		{
 
 			if (radiostation is null)
 			{
@@ -59,7 +76,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			}
 
 			radiostation.Id = Guid.NewGuid();
-			radiostation.IsCustom = true;
+			radiostation.IsCustom = isCustom;
 			radiostation.Created = DateTime.Now;
 
 			all.AddOrUpdate(radiostation);
@@ -67,6 +84,36 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			await databaseContext.SaveChangesAsync();
 
 			databaseContext.Entry(radiostation).State = EntityState.Detached;
+
+		}
+
+		public async Task CreateRangeAsync(IEnumerable<WindowsRadiostation> radiostations)
+		{
+
+			if (radiostations is null)
+			{
+				return;
+			}
+
+			if (!radiostations.Any())
+			{
+				return;
+			}
+
+			foreach (WindowsRadiostation radiostation in radiostations)
+			{
+				radiostation.Id = Guid.NewGuid();
+				radiostation.Created = DateTime.Now;
+			}
+
+			all.AddOrUpdate(radiostations);
+			await databaseContext.Radiostations.AddRangeAsync(radiostations);
+			await databaseContext.SaveChangesAsync();
+
+			foreach (WindowsRadiostation radiostation in radiostations)
+			{
+				databaseContext.Entry(radiostation).State = EntityState.Detached;
+			}
 
 		}
 
@@ -85,7 +132,7 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 			else
 			{
 
-				RadiostationUpdated?.Invoke(radiostation);
+				updated?.OnNext(radiostation);
 				all.AddOrUpdate(radiostation);
 
 				databaseContext.Entry(radiostation).State = EntityState.Modified;
@@ -107,10 +154,9 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				Id = id
 			};
 
+			removed?.OnNext(id);
 			all.RemoveKey(id);
-
 			databaseContext.Entry(radiostation).State = EntityState.Deleted;
-
 			await databaseContext.SaveChangesAsync();
 
 		}
@@ -259,14 +305,43 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 
 		}
 
-		public Task ImportAsync()
+		public async Task ImportAsync(String filePath)
 		{
-			throw new NotImplementedException();
+
+			if (String.IsNullOrEmpty(filePath))
+			{
+				return;
+			}
+
+			if (!File.Exists(filePath))
+			{
+				return;
+			}
+
+			String extension = Path.GetExtension(filePath);
+
+			if (String.IsNullOrEmpty(extension))
+			{
+				return;
+			}
+
+			extension = extension.ToLower();
+
+			switch (extension)
+			{
+				case ".radcampback": await ImportBinaryAsync(filePath); break;
+				case ".json": break;
+			}
+
 		}
 
 		public Task ClearAsync()
 		{
+			
+			cleared?.OnNext(Unit.Default);
+			
 			throw new NotImplementedException();
+			
 		}
 
 		private async Task ExportAsBinaryFormatAsync(IEnumerable<SerializableRadiostation> serializableRadiostations, String filePath)
@@ -294,6 +369,67 @@ namespace Dartware.Radiocamp.Clients.Windows.Services
 				}
 
 			});
+		}
+
+		private async Task ImportBinaryAsync(String filePath)
+		{
+
+			if (String.IsNullOrEmpty(filePath))
+			{
+				return;
+			}
+
+			if (!File.Exists(filePath))
+			{
+				return;
+			}
+
+			String extension = Path.GetExtension(filePath);
+
+			if (String.IsNullOrEmpty(extension))
+			{
+				return;
+			}
+
+			extension = extension.ToLower();
+
+			if (!extension.Equals(".radcampback"))
+			{
+				return;
+			}
+
+			await Task.Run(async () =>
+			{
+				
+				await using FileStream file = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None);
+				IEnumerable<SerializableRadiostation> serializableRadiostations = Serializer.Deserialize<IEnumerable<SerializableRadiostation>>(file);
+
+				if (serializableRadiostations is null)
+				{
+					return;
+				}
+
+				if (!serializableRadiostations.Any())
+				{
+					return;
+				}
+
+				IEnumerable<WindowsRadiostation> radiostations = mapper.Map<IEnumerable<WindowsRadiostation>>(serializableRadiostations);
+
+				if (radiostations is null)
+				{
+					return;
+				}
+
+				if (!radiostations.Any())
+				{
+					return;
+				}
+
+				await CreateRangeAsync(radiostations);
+
+			});
+
 		}
 
 	}
