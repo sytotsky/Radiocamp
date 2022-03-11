@@ -8,6 +8,7 @@ using Dartware.Radiocamp.Clients.Shared.Models;
 using Dartware.Radiocamp.Clients.Windows.Dialogs;
 using Dartware.Radiocamp.Clients.Windows.UI.Localization;
 using Dartware.Radiocamp.Clients.Windows.UI.Controls;
+using Microsoft.Win32;
 
 namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 {
@@ -90,7 +91,18 @@ namespace Dartware.Radiocamp.Clients.Windows.ViewModels
 
 		private async Task ImportRadiostations()
 		{
-			await radiostations.ImportAsync();
+
+			OpenFileDialog openFileDialog = new OpenFileDialog()
+			{
+				Filter = $"{settings.ExportRadiostationsFileFormat.ToUpper()}|*.{settings.ExportRadiostationsFileFormat.ToLower()}|JSON|*.json",
+				InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+			};
+			
+			if (openFileDialog.ShowDialog() == true)
+			{
+				await radiostations.ImportAsync(openFileDialog.FileName);
+			}
+
 		}
 
 		private async Task RemoveAllRadiostations()

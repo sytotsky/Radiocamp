@@ -70,6 +70,5 @@ namespace Dartware.Radiocamp.Clients.Windows
 			Dependencies.Get<IColorThemes>().IsNightMode = settings.IsNightMode;
 
 		}
-
 	}
 }
